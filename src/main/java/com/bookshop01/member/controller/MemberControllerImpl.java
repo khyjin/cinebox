@@ -1,0 +1,153 @@
+package com.bookshop01.member.controller;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.bookshop01.common.base.BaseController;
+import com.bookshop01.member.service.MemberService;
+import com.bookshop01.member.vo.MemberVO;
+
+@Controller("memberController")
+@RequestMapping(value="/member")
+public class MemberControllerImpl extends BaseController implements MemberController{
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private MemberVO memberVO;
+	
+	@Override
+	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
+											// id 비밀번호 저장하기
+	public ModelAndView login(@RequestParam Map<String, String> loginMap,
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		 memberVO=memberService.login(loginMap); //dto에다가 아이디,패스워드를 저장
+		if(memberVO!= null && memberVO.getMember_id()!=null){ //dto가 널값이 아니고 가져온 아이디가 널이 아니라면
+			HttpSession session=request.getSession(); // 받은 세션(아이디, 패스워드) 가져오기
+			session=request.getSession();
+			session.setAttribute("isLogOn", true); //로그인 상태 true로 두기
+			session.setAttribute("memberInfo",memberVO); //vo에서 넘어온 회원정보를 추가
+			
+			String action=(String)session.getAttribute("action"); // 로그인 후 주문 상태라면 계속 주문
+			if(action!=null && action.equals("/order/orderEachGoods.do")){ //세션이 널이거나 주문 상태가 아니라면
+				mav.setViewName("forward:"+action);
+			}else{
+				mav.setViewName("redirect:/main/main.do");	// 메인 화면 띄우기
+			}
+			
+		}else{ //위에서 말하는 조건이 아니라면 실행
+			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
+			mav.addObject("message", message);
+			mav.setViewName("/member/loginForm");
+		}
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session=request.getSession();
+		session.setAttribute("isLogOn", false);
+		session.removeAttribute("memberInfo");
+		mav.setViewName("redirect:/main/main.do");
+		return mav;
+	}
+	
+	//전화번호 ID 찾기 폼
+	   @RequestMapping(value="/idsearchview.do" ,method = RequestMethod.POST)
+	      public ModelAndView goid(HttpServletRequest hs){
+	         ModelAndView mav = new ModelAndView();
+	         String View= (String) hs.getAttribute("viewName");
+	         mav.setViewName(View);
+	         return mav;
+	      }
+	 //전화번호로 id 찾아 결과 출력
+	   @RequestMapping(value="/idsearch.do" ,method = RequestMethod.POST)
+	     public ModelAndView goidv(@RequestParam Map<String,String> tel,HttpServletRequest rq,
+	         HttpServletResponse rs) throws Exception{
+
+	         ModelAndView mav = new ModelAndView();
+	         String view = (String)rq.getAttribute("viewName");
+	         MemberVO result = memberService.tels(tel);
+	         mav.addObject("member",result);
+	         mav.setViewName(view);
+	         return mav;
+	      }
+	   
+		//이름으로 ID 찾기 폼
+	   @RequestMapping(value="/namesearchview.do" ,method = RequestMethod.POST)
+	      public ModelAndView goname(HttpServletRequest hs){
+	         ModelAndView mav = new ModelAndView();
+	         String View= (String) hs.getAttribute("viewName");
+	         mav.setViewName(View);
+	         return mav;
+	      }
+	 //이름으로 id 찾아 결과 출력
+	   @RequestMapping(value="/namesearch.do" ,method = RequestMethod.POST)
+	     public ModelAndView gonamev(@RequestParam Map<String,String> name,HttpServletRequest rq, HttpServletResponse rs) throws Exception{
+
+	         ModelAndView mav = new ModelAndView();
+	         String view = (String)rq.getAttribute("viewName");
+	         MemberVO result = memberService.name(name);
+	         mav.addObject("member",result);
+	         mav.setViewName(view);
+	         return mav;
+	      }
+	
+	@Override
+	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
+	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
+			                HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+		    memberService.addMember(_memberVO);
+		    message  = "<script>";
+		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
+		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
+		    message += " </script>";
+		    
+		}catch(Exception e) {
+			message  = "<script>";
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
+		    message += " </script>";
+			e.printStackTrace();
+		}
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+	
+	@Override
+	@RequestMapping(value="/overlapped.do" ,method = RequestMethod.POST)
+	public ResponseEntity overlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity resEntity = null;
+		String result = memberService.overlapped(id);
+		resEntity =new ResponseEntity(result, HttpStatus.OK);
+		return resEntity;
+	}
+
+	
+	
+	
+}

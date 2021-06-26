@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	  <definition name="/member/loginForm" extends="baseLayout">
+         <put-attribute name="title" value="로그인 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+      </definition>  
+      
+      <definition name="/member/memberForm" extends="baseLayout">
+         <put-attribute name="title" value="회원 가입 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+      </definition>
+  
+  	<definition name="/member/idsearchview" extends="baseLayout">
+         <put-attribute name="title" value="전화번호로 아이디 찾기 폼" />
+         <put-attribute name="body" value="/WEB-INF/views/member/idsearchview.jsp" />
+      </definition>
+      <definition name="/member/idsearch" extends="baseLayout">
+         <put-attribute name="title" value="전화번호로 아이디 찾기" />
+         <put-attribute name="body" value="/WEB-INF/views/member/idsearch.jsp" />
+      </definition>
+      
+      <definition name="/member/namesearchview" extends="baseLayout">
+         <put-attribute name="title" value="이름으로 아이디 찾기 폼" />
+         <put-attribute name="body" value="/WEB-INF/views/member/namesearchview.jsp" />
+      </definition>
+      <definition name="/member/namesearch" extends="baseLayout">
+         <put-attribute name="title" value="이름으로 아이디 찾기" />
+         <put-attribute name="body" value="/WEB-INF/views/member/namesearch.jsp" />
+      </definition>
+</tiles-definitions>
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	  <definition name="/goods/goodsDetail" extends="baseLayout">
+         <put-attribute name="title" value="" />
+         <put-attribute name="body" value="/WEB-INF/views/goods/goodsDetail.jsp" />
+      </definition>  
+      
+      <definition name="/goods/searchGoods" extends="baseLayout">
+         <put-attribute name="title" value="상품 검색 결과 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/goods/searchGoods.jsp" />
+      </definition>
+  
+  
+	<definition name="/goods/goodslist" extends="baseLayout">
+		<put-attribute name="title" value="쇼핑몰 IT/인터넷" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/Corporation.jsp" />
+	</definition>
+	
+	<definition name="/goods/goodslist1" extends="baseLayout">
+		<put-attribute name="title" value="경제/경영" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/money.jsp" />
+	</definition>
+	
+	<definition name="/goods/goodslist2" extends="baseLayout">
+		<put-attribute name="title" value="대학교재" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/unibook.jsp" />
+	</definition>
+	
+	<definition name="/goods/goodslist3" extends="baseLayout">
+		<put-attribute name="title" value="자기게발" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/self.jsp" />
+	</definition>
+	
+	<definition name="/goods/goodslist4" extends="baseLayout">
+		<put-attribute name="title" value="자연과학/공학" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/science.jsp" />
+	</definition>
+	
+	<definition name="/goods/goodslist5" extends="baseLayout">
+		<put-attribute name="title" value="역사/인문학" />
+		<put-attribute name="body" value="/WEB-INF/views/goods/history.jsp" />
+	</definition>
+	
+	
+</tiles-definitions>
+
+
