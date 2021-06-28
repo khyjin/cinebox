@@ -22,11 +22,12 @@
 <script src="${contextPath}/resources/jquery/tabs.js" type="text/javascript"></script>
 <script src="${contextPath}/resources/jquery/carousel.js" type="text/javascript"></script>
 <script>
+
 	// 슬라이드 
 	$(document).ready(function() {
 		$('#ad_main_banner').bjqs({
-			'width' : 775,
-			'height' : 145,
+			'width' : 734,
+			'height' : 148,
 			'showMarkers' : true,
 			'showControls' : false,
 			'centerMarkers' : false
@@ -35,10 +36,11 @@
 	// 스티키 		
 	$(function() {
 		$("#sticky").stickySidebar({
-			timer : 100,
+			timer :1,
 			easing : "easeInBounce"
 		});
 	});
+	
 </script>
 	<title><tiles:insertAttribute name="title" /></title>
 	

@@ -73,23 +73,36 @@ function goodsDetail(){
 <body>    
     <div id="sticky" >
 	<ul>
+		<li><h3>퀵메뉴</h3></li>&emsp;&emsp;
 		<li><a href="#">
-		   <img	width="24" height="24" src="${contextPath}/resources/image/facebook_icon.png">
-				페이스북
+			공지사항 <img width="20" height="15" src="${contextPath}/resources/image/more2.png"></a></li>&emsp;
+		<li><a href="#">
+		   상영시간표  <img width="15" height="10" src="${contextPath}/resources/image/more2.png">
+		 </a></li>&emsp;
+		 <li><a href="#">
+		   빠른예매  <img width="20" height="15" src="${contextPath}/resources/image/more2.png">
+		 </a></li>&emsp;&emsp;
+		<li><a>공유하기</a>
+		</li>
+		<li>
+			<img width="15" height="20" src="${contextPath}/resources/image/more3.png"></li>
+		<li><a href="#">
+		   <img	width="52" height="52" src="${contextPath}/resources/image/facebook_icon2.png">
+		</a></li>&emsp;
+		<li><a href="#">
+		   <img width="33" height="33" src="${contextPath}/resources/image/instagram_icon.png">
 		</a></li>
 		<li><a href="#">
-		   <img width="24" height="24" src="${contextPath}/resources/image/twitter_icon.png">
-			트위터
-		</a></li>
-		<li><a href="#">
-		   <img	width="24" height="24" src="${contextPath}/resources/image/rss_icon.png">
-				RSS 피드
-		 </a></li>
-	</ul>
-	<div class="recent">
+		   <img width="35" height="35" src="${contextPath}/resources/image/twitter_icon2.png">
+		</a></li>&emsp;&emsp;&emsp;
+		 <li><a href="#"  id="top">
+		   <img width="45" height="45" src="${contextPath}/resources/image/top2.png">
+		  </a></li>&emsp;&emsp;
+	</ul>&emsp;&emsp;
+	<!-- <div class="recent">
 		<h3>최근 본 상품</h3>
 		  <ul>
-		<!--   상품이 없습니다. -->
+		<!--   상품이 없습니다. 
 		 <c:choose>
 			<c:when test="${ empty quickGoodsList }">
 				     <strong>상품이 없습니다.</strong>
@@ -127,7 +140,7 @@ function goodsDetail(){
            <h5><a  href='javascript:fn_show_previous_goods();'> 이전 </a> &nbsp;  <span id="cur_goods_num">1</span>/${quickGoodsListNum}  &nbsp; <a href='javascript:fn_show_next_goods();'> 다음 </a> </h5>
        </c:otherwise>
        </c:choose>
-    </div>
+    </div>-->
 </div>
 </body>
 </html>

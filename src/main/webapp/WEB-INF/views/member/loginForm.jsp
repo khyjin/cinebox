@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	 isELIgnored="false" %>
+   pageEncoding="utf-8"
+    isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <!DOCTYPE html >
 <html>
 <head>
@@ -15,38 +17,35 @@ window.onload=function()
 }
 
 function result(){
-	alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
+   alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
 }
 </script>
 </c:if>
 </head>
 <body>
-	<H3>회원 로그인 창</H3>
-	<DIV id="detail_table">
-	<form action="${contextPath}/member/login.do" method="post">
-		<TABLE>
-			<TBODY>
-				<TR class="dot_line">
-					<TD class="fixed_join">아이디</TD>
-					<TD><input name="member_id" type="text" size="20" /></TD>
-				</TR>
-				<TR class="solid_line">
-					<TD class="fixed_join">비밀번호</TD>
-					<TD><input name="member_pw" type="password" size="20" /></TD>
-				</TR>
-			</TBODY>
-		</TABLE>
-		<br><br>
-		<INPUT	type="submit" value="로그인"> 
-		<INPUT type="button" value="초기화">
-		
-		<Br><br>
-		   <a href="${contextPath}/member/idsearchview.do">전화번호로 아이디 찾기</a>  | 
-		   <a href="${contextPath}/member/namesearchview.do">이름으로 아이디 찾기</a>  | 
-		   <a href="#">비밀번호 찾기</a> | 
-		   <a href="${contextPath}/member/memberForm.do">회원가입</a>    | 
-		   <a href="${contextPath}/main/loading.do">고객 센터</a>
-					   
-	</form>		
+   <section class="loginContent">
+   <nav></nav>
+   <div class="memberLoginContainer">
+      <div class="loginButtonContainer">
+         <button class="loginbtn">로그인</button>
+      </div>
+
+      <div class="loginFormDiv">         
+         <form action="${contextPath}/member/login.do" class="loginForm" method="post">
+         <!--  <label for="member_id" class="lbl">아이디</label>-->
+            <input type="text" name="member_id" size="50" title="아이디" placeholder="아이디"><br><br>
+         <!--  <label for="member_pw" class="lbl">비밀번호</label>   -->
+            <input type="password" name="member_pw" size="50" title="비밀번호" placeholder="비밀번호"> 
+            <input id="submit" type="submit" size="50" value="로그인"><p>
+         
+      
+      <div class="searchDiv">         
+         <a href="${contextPath }/member/findId.do" class="serchDivItem">아이디 찾기</a>  | 
+         <a href="${contextPath }/member/findPw.do" class="serchDivItem">비밀번호 찾기</a> | 
+         <a href="${contextPath}/member/memberForm.do" class="serchDivItem">회원가입</a>
+      </div>
+      </form>
+      </div>   
+</section>
 </body>
 </html>

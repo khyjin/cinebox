@@ -32,7 +32,7 @@ import com.bookshop01.member.vo.MemberVO;
 @Controller("adminGoodsController")
 @RequestMapping(value="/admin/goods")
 public class AdminGoodsControllerImpl extends BaseController  implements AdminGoodsController{
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\project\\bookShop01\\src\\main\\webapp\\resources\\shopping\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "c:/project/bookShop01/src/main/webapp/resources/image/shopping/file_repo";
 														//${pageContext.request.contextPath}
 	@Autowired
 	private AdminGoodsService adminGoodsService;
