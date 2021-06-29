@@ -1,13 +1,94 @@
 package com.bookshop01.goods.vo;
 
+import java.sql.Date;
+
 public class ImageFileVO {
-	private int goods_id; //상품번호 (상품정보 테이블에서의 상품번호-> 외래키)
-	private int image_id; //이미지번호 (기본키)
-	private String fileName; //이미지화일명 
-	private String fileType; //이미지화일종류
-	private String reg_id; //등록자아이디 
+	private int goods_id;		//상품번호
+	private int image_id;		//이미지 번호
+	private String fileName;	//이미지 파일명
+	private String fileType;	//이미지 종류
+	private String reg_id;		//등록자 아이디
 	
 
+	private int movie_id;
+	private int image_number;
+	private String image_file_name;
+	private String image_admin_id;
+	private String image_file_sort;
+	private Date image_reg_date;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	public int getMovie_id() {
+		return movie_id;
+	}
+
+
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
+
+
+	public int getImage_number() {
+		return image_number;
+	}
+
+
+	public void setImage_number(int image_number) {
+		this.image_number = image_number;
+	}
+
+
+	public String getImage_file_name() {
+		return image_file_name;
+	}
+
+
+	public void setImage_file_name(String image_file_name) {
+		this.image_file_name = image_file_name;
+	}
+
+
+	public String getImage_admin_id() {
+		return image_admin_id;
+	}
+
+
+	public void setImage_admin_id(String image_admin_id) {
+		this.image_admin_id = image_admin_id;
+	}
+
+
+	public String getImage_file_sort() {
+		return image_file_sort;
+	}
+
+
+	public void setImage_file_sort(String image_file_sort) {
+		this.image_file_sort = image_file_sort;
+	}
+
+
+	public Date getImage_reg_date() {
+		return image_reg_date;
+	}
+
+
+	public void setImage_reg_date(Date image_reg_date) {
+		this.image_reg_date = image_reg_date;
+	}
+
+
+//-----------------------------------------------------------------------------	
 	public ImageFileVO() {
 		super();
 	}
