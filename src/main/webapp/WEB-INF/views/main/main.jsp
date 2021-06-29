@@ -19,12 +19,7 @@
 			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 			</a>
-				<img width="171" height="204" 
-<<<<<<< HEAD
-				     src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-=======
-				     src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
+				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
 			<div class="title">${item.movie_title }</div>
 			<div class="price">
@@ -57,11 +52,6 @@
 		  <a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id}">
 	       <img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 	      </a>
-<<<<<<< HEAD
-		 <img width="171" height="204"
-				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-		<div class="title">${item.goods_title }</div>
-=======
 		 <img width="171" height="204" 
 				src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 		<div class="title">${item.movie_title }</div>
