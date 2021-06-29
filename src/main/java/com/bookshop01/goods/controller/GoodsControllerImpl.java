@@ -126,6 +126,51 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		return mav;
 	}
 	
+	//상영 중인 영화 리스트 조회
+	@RequestMapping(value= "/movieopen.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView movieOpenList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session;
+		ModelAndView mav=new ModelAndView();
+		String viewName=(String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		
+		session=request.getSession();
+		session.setAttribute("side_menu", "user");
+		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodsself();
+		mav.addObject("goodsMap", goodsMap);
+		return mav;
+	}
+	
+	//상영 예정된 영화 리스트 조회 
+		@RequestMapping(value= "/moviescheduled.do" ,method={RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView movieScheduledList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			HttpSession session;
+			ModelAndView mav=new ModelAndView();
+			String viewName=(String)request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			
+			session=request.getSession();
+			session.setAttribute("side_menu", "user");
+			Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssort();
+			mav.addObject("goodsMap", goodsMap);
+			return mav;
+		}
+	
+	//상영 종료된 영화 리스트 조회 
+	@RequestMapping(value= "/movieclosed.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView movieClosedList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session;
+		ModelAndView mav=new ModelAndView();
+		String viewName=(String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		
+		session=request.getSession();
+		session.setAttribute("side_menu", "user");
+		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssci();
+		mav.addObject("goodsMap", goodsMap);
+		return mav;
+	}
+	
 	@RequestMapping(value="/keywordSearch.do",method = RequestMethod.GET,produces = "application/text; charset=utf8")
 	public @ResponseBody String  keywordSearch(@RequestParam("keyword") String keyword,
 			                                  HttpServletRequest request, HttpServletResponse response) throws Exception{

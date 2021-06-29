@@ -40,7 +40,7 @@ function result(){
          
       
       <div class="searchDiv">         
-         <a href="${contextPath }/member/findId.do" class="serchDivItem">아이디 찾기</a>  | 
+         <a href="${contextPath }/member/idsearchview.do" class="serchDivItem">아이디 찾기</a>  | 
          <a href="${contextPath }/member/findPw.do" class="serchDivItem">비밀번호 찾기</a> | 
          <a href="${contextPath}/member/memberForm.do" class="serchDivItem">회원가입</a>
       </div>
