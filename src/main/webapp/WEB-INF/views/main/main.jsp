@@ -33,13 +33,11 @@
      </c:if>
   </c:forEach>
 </div>
-<<<<<<< HEAD
+
 
 <div class="clear"></div>
 
-=======
 <div class="clear"></div>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 <div class="main_book">
 <c:set  var="goods_count" value="0" />
 	<h3>상영 예정작</h3>
@@ -55,7 +53,6 @@
 		 <img width="171" height="204" 
 				src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 		<div class="title">${item.movie_title }</div>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 		<div class="price">
 		    예매버튼
 		  </div>
