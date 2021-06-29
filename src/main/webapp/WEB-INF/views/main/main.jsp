@@ -13,19 +13,18 @@
 	<h3>예매율 순위</h3><button style="float: right;">
 		<a href="#" >더 보기<img width="23" height="15" src="${contextPath}/resources/image/more.png"></a>
 	</button><br>
-	<c:forEach var="item" items="${goodsMap.bestseller }">
+	<c:forEach var="item" items="${goodsMap.screening}">
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
-			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 			</a>
-				<img width="161" height="194" 
-				     src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+				<img width="171" height="204" 
+				     src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
-			<div class="title">${item.goods_title }</div>
+			<div class="title">${item.movie_title }</div>
 			<div class="price">
-		  	   <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
-		          ${goods_price}원
+		  	   예매버튼추가예정
 			</div>
 		</div>
 	   <c:if test="${goods_count==8}">
@@ -35,24 +34,24 @@
      </c:if>
   </c:forEach>
 </div>
+<div class="clear"></div>
 <div class="main_book">
 <c:set  var="goods_count" value="0" />
 	<h3>상영 예정작</h3>
 	<button style="float: right;">
 		<a href="#" >더 보기 <img width="23" height="15" src="${contextPath}/resources/image/more.png"></a>
 	</button><br>
-	<c:forEach var="item" items="${goodsMap.newbook }" >
+	<c:forEach var="item" items="${goodsMap.readysc}" >
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
-		  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+		  <a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id}">
 	       <img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 	      </a>
-		 <img width="121" height="154" 
-				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-		<div class="title">${item.goods_title }</div>
+		 <img width="171" height="204" 
+				src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
+		<div class="title">${item.movie_title }</div>
 		<div class="price">
-		    <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
-		       ${goods_price}원
+		    예매버튼
 		  </div>
 	</div>
 	 <c:if test="${goods_count==15}">
@@ -62,7 +61,7 @@
    </c:if>
 	</c:forEach>
 </div>
-
+<div class="clear"></div>
 <div id="ad_main_banner">
 	<ul class="bjqs">	 	
 	  <li><img width="775" height="145" src="${contextPath}/resources/image/cine_event.png"></li>

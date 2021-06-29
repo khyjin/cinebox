@@ -17,7 +17,7 @@ import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 public class FileDownloadController {
-	private static String CURR_IMAGE_REPO_PATH = "c:/project/bookShop01/src/main/webapp/resources/image/shopping/file_repo";
+	private static String CURR_IMAGE_REPO_PATH = "\\Users\\khyji\\git\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
 	
 	@RequestMapping("/download")
 	protected void download(@RequestParam("fileName") String fileName,
@@ -43,11 +43,11 @@ public class FileDownloadController {
 	
 	
 	@RequestMapping("/thumbnails.do")
-	protected void thumbnails(@RequestParam("fileName") String fileName,
-                            	@RequestParam("goods_id") String goods_id,
+	protected void thumbnails(@RequestParam("image_file_name") String fileName,
+                            	@RequestParam("movie_id") String movie_id,
 			                 HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath=CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+fileName;
+		String filePath=CURR_IMAGE_REPO_PATH+"\\"+movie_id+"\\"+fileName;
 		File image=new File(filePath);
 		
 		if (image.exists()) { 
