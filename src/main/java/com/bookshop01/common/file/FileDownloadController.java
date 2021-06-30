@@ -17,14 +17,14 @@ import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 public class FileDownloadController {
-	private static String CURR_IMAGE_REPO_PATH = "\\Users\\khyji\\git\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
+	private static String CURR_IMAGE_REPO_PATH = "\\web\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
 	
 	@RequestMapping("/download")
-	protected void download(@RequestParam("fileName") String fileName,
-		                 	@RequestParam("goods_id") String goods_id,
+	protected void download(@RequestParam("image_file_name") String fileName,
+		                 	@RequestParam("movie_id") String movie_id,
 			                 HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath=CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+fileName;
+		String filePath=CURR_IMAGE_REPO_PATH+"\\"+movie_id+"\\"+fileName;
 		File image=new File(filePath);
 
 		response.setHeader("Cache-Control","no-cache");

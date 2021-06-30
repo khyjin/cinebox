@@ -16,7 +16,7 @@
 	<c:forEach var="item" items="${goodsMap.screening}">
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
-			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.movie_id }">
+			<a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 			</a>
 				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">

@@ -29,15 +29,15 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 	private GoodsService goodsService;
 	
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id,
+	public ModelAndView goodsDetail(@RequestParam("movie_id") String movie_id,
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
-		Map goodsMap=goodsService.goodsDetail(goods_id);
+		Map goodsMap=goodsService.goodsDetail(movie_id);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
-		addGoodsInQuick(goods_id,goodsVO,session);
+		addGoodsInQuick(movie_id,goodsVO,session);
 		return mav;
 	}
 	
@@ -203,31 +203,31 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		
 	}
 	
-	private void addGoodsInQuick(String goods_id,GoodsVO goodsVO,HttpSession session){
+	private void addGoodsInQuick(String movie_id,GoodsVO goodsVO,HttpSession session){
 		boolean already_existed=false;
-		List<GoodsVO> quickGoodsList; //최근 본 상품 저장 ArrayList
-		quickGoodsList=(ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");
+		List<GoodsVO> quickMovieList; //최근 본 상품 저장 ArrayList
+		quickMovieList=(ArrayList<GoodsVO>)session.getAttribute("quickMovieList");
 		
-		if(quickGoodsList!=null){
-			if(quickGoodsList.size() < 4){ //미리 본 상품 리스트에 상품개수가 세개 이하인 경우
-				for(int i=0; i<quickGoodsList.size();i++){
-					GoodsVO _goodsBean=(GoodsVO)quickGoodsList.get(i);
-					if(goods_id.equals(_goodsBean.getGoods_id())){
+		if(quickMovieList!=null){
+			if(quickMovieList.size() < 4){ //미리 본 상품 리스트에 상품개수가 세개 이하인 경우
+				for(int i=0; i<quickMovieList.size();i++){
+					GoodsVO _movieBean=(GoodsVO)quickMovieList.get(i);
+					if(movie_id.equals(_movieBean.getGoods_id())){
 						already_existed=true;
 						break;
 					}
 				}
 				if(already_existed==false){
-					quickGoodsList.add(goodsVO);
+					quickMovieList.add(goodsVO);
 				}
 			}
 			
 		}else{
-			quickGoodsList =new ArrayList<GoodsVO>();
-			quickGoodsList.add(goodsVO);
+			quickMovieList =new ArrayList<GoodsVO>();
+			quickMovieList.add(goodsVO);
 			
 		}
-		session.setAttribute("quickGoodsList",quickGoodsList);
-		session.setAttribute("quickGoodsListNum", quickGoodsList.size());
+		session.setAttribute("quickGoodsList",quickMovieList);
+		session.setAttribute("quickGoodsListNum", quickMovieList.size());
 	}
 }
