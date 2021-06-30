@@ -47,7 +47,7 @@ public class FileDownloadController {
                             	@RequestParam("movie_id") String movie_id,
 			                 HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath=CURR_IMAGE_REPO_PATH+"\\"+movie_id+"image"+"\\"+fileName;
+		String filePath=CURR_IMAGE_REPO_PATH+"\\"+movie_id+"\\"+fileName;
 		File image=new File(filePath);
 		
 		if (image.exists()) { 

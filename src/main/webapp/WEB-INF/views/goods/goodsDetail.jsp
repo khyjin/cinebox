@@ -361,17 +361,7 @@
 		<table>
 			<tbody>
 				<tr>
-<<<<<<< HEAD
-					<td class="fixed">공란</td>
-					<td class="active"><span>공란1</span></td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed">판매가 없음</td>
-					<td class="active"><span >
-					  예매버튼?</span></td>
-=======
 					<td colspan="2" id="fixed">예매율 : 0.0%</td><tr class="dot_line">
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 				</tr>
 				<tr>
 					<td class="fixed">감독 : ${movie.movie_director}</td>
