@@ -107,12 +107,10 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
-		if(imageFileList!= null && imageFileList.size()!=0) {
-			for(ImageFileVO imageFileVO : imageFileList) {
-				imageFileVO.setReg_id(image_admin_id);
-			}
-			newGoodsMap.put("imageFileList", imageFileList);
+		for(int i=0;i<imageFileList.size();i++) {
+			System.out.println("°á°ú : " + imageFileList.get(i));
 		}
+		
 		
 		String message = null;
 		ResponseEntity resEntity = null;
@@ -120,6 +118,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			int movie_id = adminGoodsService.addNewGoods(newGoodsMap);
+			
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getImage_file_name();
