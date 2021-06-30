@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import com.bookshop01.goods.vo.ImageFileVO;
 
 public abstract class BaseController  {
-	private static final String CURR_IMAGE_REPO_PATH = "c:\\web\\bookShop01\\src\\main\\webapp\\resources\\image\\shopping\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "\\web\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
 	
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 		List<ImageFileVO> fileList= new ArrayList<ImageFileVO>();
@@ -33,10 +33,10 @@ public abstract class BaseController  {
 		while(fileNames.hasNext()){
 			ImageFileVO imageFileVO =new ImageFileVO();
 			String fileName = fileNames.next();
-			imageFileVO.setFileType(fileName);
+			imageFileVO.setImage_file_sort(fileName);
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			String originalFileName=mFile.getOriginalFilename();
-			imageFileVO.setFileName(originalFileName);
+			imageFileVO.setImage_file_name(originalFileName);
 			fileList.add(imageFileVO);
 			
 			File file = new File(CURR_IMAGE_REPO_PATH +"\\"+ fileName);

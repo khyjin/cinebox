@@ -6,30 +6,27 @@
 <mapper namespace="mapper.admin.goods">
 <!-- 리절트 맵 정의 -->	
 	<resultMap id="goodsResult" type="goodsVO">
-		<result property="goods_id" column="goods_id" />
-		<result property="goods_title" column="goods_title" />
-		<result property="goods_writer" column="goods_writer" />
-		<result property="goods_price" column="goods_price" />
-		<result property="goods_publisher" column="goods_publisher" />
+		<result property="movie_admin_id" column="movie_admin_id" />
+		<result property="movie_id" column="movie_id" />
+		<result property="movie_title" column="movie_title" />
+		<result property="movie_director" column="movie_director" />
+		<result property="movie_actor" column="movie_actor" />
 		
-		<result property="goods_status" column="goods_status" />
-		<result property="goods_sales_price" column="goods_sales_price" />
-		<result property="goods_published_date" column="goods_published_date" />
-		<result property="goods_total_page" column="goods_total_page" />
-		<result property="goods_isbn" column="goods_isbn" />
-		<result property="goods_delivery_price" column="goods_delivery_price" />
-		<result property="goods_delivery_date" column="goods_delivery_date" />
+		<result property="movie_sort" column="movie_sort" />
+		<result property="movie_runningtime" column="movie_running" />
+		<result property="movie_age_grade" column="movie_age_grade" />
+		<result property="movie_country" column="movie_country" />
+		<result property="movie_content" column="movie_content" />
+		<result property="movie_status" column="movie_status" />
+		<result property="movie_open_date" column="movie_open_date" />
 		
-		<result property="goods_fileName" column="fileName" />
-		<result property="goods_sort" column="goods_sort" />
-		<result property="goods_writer_intro" column="goods_writer_intro" />
-		<result property="goods_intro" column="goods_intro" />
-		<result property="goods_contents_order" column="goods_contents_order" javaType="java.lang.String" jdbcType="CLOB"  />
+		<result property="movie_close_date" column="movie_close_date" />
+		<result property="movie_fileName" column="image_file_name" />
 	</resultMap>	
 
 	<resultMap id="imageResult" type="ImageFileVO">
-	   <result property="goods_id" column="goods_id" />
-	   <result property="fileName" column="fileName" />
+	   <result property="movie_id" column="movie_id" />
+	   <result property="image_number" column="image_number" />
 	   <result property="reg_id" column="reg_id" />
 	   <result property="image_id" column="image_id" />
 	   <result property="fileType" column="fileType" />
@@ -70,75 +67,66 @@
 		
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap>
+	
+	
 	<insert id="insertNewGoods" parameterType="java.util.Map"   >
-		<selectKey resultType="String" keyProperty="goods_id" order="BEFORE">
-	    	select seq_goods_id.nextval from dual
+		<selectKey resultType="int" keyProperty="movie_id" order="BEFORE">
+	    	select movie_seq.nextval from dual
 	    </selectKey>
 	    
 	    <![CDATA[
-		   insert into t_shopping_goods(
-		                goods_id, 
-		                goods_sort,
-                    goods_title,
-                    goods_writer,
-                    goods_publisher,
-										goods_price,
-										goods_sales_price,
-										goods_point,
-										goods_published_date,
-										goods_total_page,
-										goods_isbn,
-										goods_delivery_price,
-										goods_delivery_date,
-										goods_status,
-										goods_writer_intro,
-										goods_intro,
-										goods_publisher_comment,
-										goods_recommendation,
-			              goods_contents_order)
-					  			values(
-					  			      #{goods_id},
-					  			      #{goods_sort},
-					  			      #{goods_title},
-					  			      #{goods_writer},
-					  			     
-					  			      #{goods_publisher },
-					  			      #{goods_price},
-					  			      #{goods_sales_price},
-					  			      #{goods_point},
-					  			      #{goods_published_date},
-					  			      
-					  			      #{goods_total_page},
-					  			      #{goods_isbn },
-					  			      #{goods_delivery_price },
-					  			      #{goods_delivery_date },
-					  			      #{goods_status },
-					  			      #{goods_writer_intro},
-											
-									      #{goods_intro},
-					  			      #{goods_publisher_comment },
-					  			      #{goods_recommendation },	
-					  			      #{goods_contents_order:VARCHAR}
-					 			 )
+		insert into cinebox_movie(
+		    movie_admin_id, 
+		    movie_id,
+			movie_title,
+            movie_director,
+            movie_actor,
+			movie_sort,
+			movie_runningtime,
+			movie_age_grade,
+			movie_country,
+			movie_content,
+			movie_status,
+			movie_open_date,
+			movie_close_date)
+		values(
+			#{movie_admin_id},
+			#{movie_id},
+			#{movie_title},
+			#{movie_director},
+			#{movie_actor},
+			#{movie_sort},
+			#{movie_runningtime},
+			#{movie_age_grade},
+			#{movie_country},
+			#{movie_content},
+			#{movie_status},
+			#{movie_open_date},
+			#{movie_close_date},)
 		]]>
 	</insert> 
+	
+
 		<insert id="insertGoodsImageFile" parameterType="imageFileVO"   >
-		<selectKey resultType="int" keyProperty="image_id" order="BEFORE">
-	    	select seq_image_id.nextval from dual
+		<selectKey resultType="int" keyProperty="image_number" order="BEFORE">
+	    	select image_seq.nextval from dual
 	    </selectKey>
 	    <![CDATA[
-		   insert into t_goods_detail_image (image_id,
-		                                     goods_id,
-																				 fileName,
-																				 fileType,
-																				 reg_id)
-											   					values(#{image_id},
-											   					 			 #{goods_id},
-											   							 	 #{fileName},
-											   								 #{fileType},
-											   								 #{reg_id} )
+	    insert into cinebox_image (
+			image_number,
+			movie_id,
+			image_file_name,
+			image_file_sort,
+			image_admin_id)
+		values(
+			#{image_number},
+			#{movie_id},
+			#{image_file_name},
+			#{image_file_sort},
+			#{image_admin_id})
 		]]>
 	</insert> 
+	
 	<select id="selectNewGoodsList" resultMap="goodsResult"   parameterType="java.util.Map"  >
 	    <![CDATA[
 		  select * from (

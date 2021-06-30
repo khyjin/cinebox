@@ -32,8 +32,8 @@ import com.bookshop01.member.vo.MemberVO;
 @Controller("adminGoodsController")
 @RequestMapping(value="/admin/goods")
 public class AdminGoodsControllerImpl extends BaseController  implements AdminGoodsController{
-	private static final String CURR_IMAGE_REPO_PATH = "c:\\web\\bookShop01\\src\\main\\webapp\\resources\\image\\shopping\\file_repo";
-														//${pageContext.request.contextPath}
+	private static final String CURR_IMAGE_REPO_PATH = "\\web\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
+											
 	@Autowired
 	private AdminGoodsService adminGoodsService;
 	
@@ -87,7 +87,6 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	}
 	
 
-	
 	@RequestMapping(value="/addNewGoods.do" ,method={RequestMethod.POST})
 	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -104,13 +103,13 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMember_id();
+		String image_admin_id = memberVO.getMember_id();
 		
 		
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
 		if(imageFileList!= null && imageFileList.size()!=0) {
 			for(ImageFileVO imageFileVO : imageFileList) {
-				imageFileVO.setReg_id(reg_id);
+				imageFileVO.setReg_id(image_admin_id);
 			}
 			newGoodsMap.put("imageFileList", imageFileList);
 		}
@@ -120,12 +119,12 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
+			int movie_id = adminGoodsService.addNewGoods(newGoodsMap);
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
+					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+movie_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
@@ -136,7 +135,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
+					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					srcFile.delete();
 				}
@@ -151,6 +150,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+	
 	
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView modifyGoodsForm(@RequestParam("goods_id") int goods_id,

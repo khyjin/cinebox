@@ -148,8 +148,8 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 		<table>
 			<tbody>
 				<tr>
-					<td class="fixed">00</td>
-					<td class="active"00><span></span></td>
+					<td class="fixed">공란</td>
+					<td class="active"><span>공란1</span></td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed">판매가 없음</td>
