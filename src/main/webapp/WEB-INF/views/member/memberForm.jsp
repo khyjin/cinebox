@@ -179,9 +179,15 @@ function fn_overlapped(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
+<<<<<<< HEAD
 					<td  class="member_input"><input size="10px"   type="text" name="member_email1" /> @
 						  <select name="member_email2" onChange=""	title="직접입력">
 									<option value="non">직접입력</option>
+=======
+					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" /> 
+						  <select name="email2" onChange=""	title="직접입력">
+									<option value="">직접입력</option>
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="naver.com">naver.com</option>
 									<option value="yahoo.co.kr">yahoo.co.kr</option>

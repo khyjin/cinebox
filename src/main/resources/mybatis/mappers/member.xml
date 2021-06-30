@@ -62,12 +62,12 @@
 	
 	<select id="tels" resultType="memberVO">
 		select * from t_shopping_member 
-			 where tel1 = #{tel1} and  tel2 = #{tel2} and  tel3 = #{tel3}
+			 where member_name =#{member_name} and hp1 = #{hp1} and  hp2 = #{hp2} and  hp3 = #{hp3}
 	</select>
 	
-	<select id="name" resultType="memberVO">
+	<select id="findpw" resultType="memberVO">
 		select * from t_shopping_member 
-			 where member_name = #{member_name}
+			 where member_id=#{member_id} and member_name =#{member_name} and hp1 = #{hp1} and  hp2 = #{hp2} and  hp3 = #{hp3}
 	</select>
 	
 	<!-- 아이디 중복 확인 -->

@@ -23,9 +23,11 @@ public interface MemberController {
 							//overlapped 아이디 중복 체크
 //	HttpEntity<T>(ResponseEntity)-> 전체 뷰말고 들어가있는 값만 가져오기 header, body, statud code 
 	public ModelAndView goid(HttpServletRequest hs) throws Exception;
-	public ModelAndView goidv(Map<String, String> tel, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView goidv(Map<String, String>idsearch, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
-	public ModelAndView goname(HttpServletRequest hs) throws Exception;
-	 public ModelAndView gonamev(@RequestParam Map<String,String> name,HttpServletRequest rq, HttpServletResponse rs) throws Exception;
+	public ModelAndView gopw(HttpServletRequest hs) throws Exception;
+	public ModelAndView gopwv(Map<String, String>pwsearch, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+	
 }
 

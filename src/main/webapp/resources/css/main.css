@@ -43,9 +43,9 @@ header #logo{
 }
 
 header #logo a{
-   color: #ffffff;
-   
+	color: #ffffff;
 }
+
 
 header #head_link {
    font-size: 0.75em; margin-right: 10px; float: right; font-family:"¸¼Àº °íµñ"; padding-top:10px; 
@@ -805,6 +805,38 @@ display:none; position: absolute; left: 830px; top:80px; border: 0.1px  solid #8
 }
 
 .del_row_line{
-   margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;     border-bottom-style: none;border-top-style:solid; border-top-width: 1px;border-top-color:#ffffff;
+	margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;     border-bottom-style: none;border-top-style:solid; border-top-width: 1px;border-top-color:#ffffff;
 }
+section.idresult {
+	 height: 600px;
+     width : 600px;
+}
+
+div.idresult2 { 
+	font-size : 20;
+	font-family : "¸¼Àº °íµñ";
+	padding-top : 30;
+	padding-bottom : 30;
+}
+div.idresultform {
+	font-family : "¸¼Àº °íµñ";
+	font-weight : bold;
+	font-size : 20;
+	padding-bottom : 40;
+}
+
+section.idresult input#pwsearchForm{
+   height: 30px;
+   border: #193a3e;
+   font-size: 12px;
+   width: 100;
+}
+section.idresult input#LoginForm {
+	height: 30px;
+	border : #193a3e;
+	font-size : 12px;
+	width : 100;
+}
+
+  
 
