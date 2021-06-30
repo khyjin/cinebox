@@ -15,12 +15,11 @@ import com.bookshop01.goods.vo.ImageFileVO;
 public class GoodsDAOImpl  implements GoodsDAO{
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	@Override
-	public List<GoodsVO> selectGoodsList(String goodsStatus ) throws DataAccessException {
-		List<GoodsVO> goodsList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsList",goodsStatus);
+	public List<GoodsVO> selectGoodsList(String movie_status) throws DataAccessException {
+		List<GoodsVO> goodsList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsList",movie_status);
 	   return goodsList;	
-     
 	}
 	
 	//IT/인터넷 리스트 나오게 하기
@@ -75,14 +74,15 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	}
 	
 	@Override
-	public GoodsVO selectGoodsDetail(String goods_id) throws DataAccessException{
-		GoodsVO goodsVO=(GoodsVO)sqlSession.selectOne("mapper.goods.selectGoodsDetail",goods_id);
+	public GoodsVO selectGoodsDetail(String movie_id) throws DataAccessException{
+		GoodsVO goodsVO=(GoodsVO)sqlSession.selectOne("mapper.goods.selectGoodsDetail",movie_id);
 		return goodsVO;
 	}
 	
 	@Override
-	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException{
-		List<ImageFileVO> imageList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goods_id);
+	public List<ImageFileVO> selectGoodsDetailImage(String movie_id) throws DataAccessException{
+		List<ImageFileVO> imageList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",movie_id);
+		System.out.println("리스트 확인"+imageList);
 		return imageList;
 	}
 	

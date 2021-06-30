@@ -12,7 +12,7 @@
 <c:when test="${side_menu=='admin_mode' }">
    <li>
 		<H3>주요기능</H3>
-		<ul>
+		<ul id="sidemenu">
 			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">영화</a></li>
 			<li><a href="${contextPath}/admin/order/adminOrderMain.do">예매</a></li>
 			<li><a href="${contextPath}/admin/member/adminMemberMain.do">회원관리</a></li>

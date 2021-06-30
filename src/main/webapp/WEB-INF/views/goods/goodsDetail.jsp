@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="goods"  value="${goodsMap.goodsVO}"  />
+<c:set var="movie"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
  <%
      //치환 변수 선언합니다.
@@ -96,7 +96,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	
 	
 		var total_price,final_total_price;
-		var order_goods_qty=document.getElementById("order_goods_qty");
+		var order_goods_qty=document.getElementById("order_goods_qty");	//주문 수량 select의 id
 		
 		var formObj=document.createElement("form");
 		var i_goods_id = document.createElement("input"); 
@@ -129,92 +129,73 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.submit();
 	}	
 </script>
+
 </head>
 <body>
 	<hgroup>
-		<h1>컴퓨터와 인터넷</h1>
-		<h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
-		<h3>${goods.goods_title }</h3>
-		<h4>${goods.goods_writer} &nbsp; 저| ${goods.goods_publisher}</h4>
+		<h1>영화상세</h1>
+		<h2>${movie.movie_sort }</h2>
+		<h3>${movie.movie_title }</h3>
+		<h4>감독 | ${movie.movie_director} &nbsp; 배우| ${movie.movie_actor}</h4>
 	</hgroup>
 	<div id="goods_image">
 		<figure>
-			<img alt="HTML5 &amp; CSS3"
-				src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
+			<img alt="HTML5 &amp; CSS3" 
+				src="${contextPath}/thumbnails.do?movie_id=${movie.movie_id}&image_file_name=${movie.movie_fileName}">
 		</figure>
 	</div>
 	<div id="detail_table">
 		<table>
 			<tbody>
 				<tr>
-					<td class="fixed">정가</td>
+					<td class="fixed">00</td>
+					<td class="active"00><span></span></td>
+				</tr>
+				<tr class="dot_line">
+					<td class="fixed">판매가 없음</td>
 					<td class="active"><span >
-					   <fmt:formatNumber  value="${goods.goods_price}" type="number" var="goods_price" />
-				         ${goods_price}원
-					</span></td>
+					  예매버튼?</span></td>
+				</tr>
+				<tr>
+					<td class="fixed">1-1</td>
+					<td class="active">1-2</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed">판매가</td>
-					<td class="active"><span >
-					   <fmt:formatNumber  value="${goods.goods_price*0.9}" type="number" var="discounted_price" />
-				         ${discounted_price}원(10%할인)</span></td>
+					<td class="fixed">2-1</td>
+					<td class="fixed">2-2</td>
 				</tr>
 				<tr>
-					<td class="fixed">포인트적립</td>
-					<td class="active">${goods.goods_point}P(10%적립)</td>
+					<td class="fixed">개봉일 ${movie.movie_open_date}</td>
+					<td class="fixed">상영종료일${movie.movie_close_date}</td>
+				</tr>
+				<tr>
+					<td class="fixed">런타임</td>
+					<td class="fixed">${movie.movie_runningtime}분</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed">포인트 추가적립</td>
-					<td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
+					<td class="fixed">제작국가</td>
+					<td class="fixed">${movie.movie_country}</td>
 				</tr>
 				<tr>
-					<td class="fixed">발행일</td>
-					<td class="fixed">
-					   <c:set var="pub_date" value="${goods.goods_published_date}" />
-					   <c:set var="arr" value="${fn:split(pub_date,' ')}" />
-					   <c:out value="${arr[0]}" />
-					</td>
+					<td class="fixed">3-1</td>
+					<td class="fixed"><strong>${movie.movie_status} 개봉상태</strong></td>
 				</tr>
 				<tr>
-					<td class="fixed">페이지 수</td>
-					<td class="fixed">${goods.goods_total_page}쪽</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed">ISBN</td>
-					<td class="fixed">${goods.goods_isbn}</td>
+					<td class="fixed">4-1</td>
+					<td class="fixed">4-2</td>
 				</tr>
 				<tr>
-					<td class="fixed">배송료</td>
-					<td class="fixed"><strong>${goods.goods_delivery_price}원</strong></td>
+					<td class="fixed">5-1</td>
+					<td class="fixed">5-2</td>
 				</tr>
 				<tr>
-					<td class="fixed">배송안내</td>
-					<td class="fixed"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
-						휴일에도 배송받는 Bookshop</TD>
-				</tr>
-				<tr>
-					<td class="fixed">도착예정일</td>
-					<td class="fixed">지금 주문 시 내일 도착 예정</td>
-				</tr>
-				<tr>
-					<td class="fixed">수량</td>
-					<td class="fixed">
-			      <select style="width: 60px;" id="order_goods_qty">
-				      <option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-			     </select>
-					 </td>
+					<td class="fixed">6-1</td>
+					<td class="fixed">6-2</td>
 				</tr>
 			</tbody>
 		</table>
-		<ul>
-			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">구매하기 </a></li>
-			<li><a class="cart" href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
-			
-			<li><a class="wish" href="#">위시리스트</a></li>
+		<ul>			
+			<li><a class="wish" href="#">예매버튼</a></li>
 		</ul>
 	</div>
 	<div class="clear"></div>
@@ -231,30 +212,31 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
 				<h4>책소개</h4>
-				<p>${fn:replace(goods.goods_intro,crcn,br)}</p>
-				<c:forEach var="image" items="${imageList }">
-					<img 
-						src="${contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.fileName}">
+				<p>${fn:replace(movie.movie_content,crcn,br)}</p>
+					
+				<c:forEach var="image" items="${imageList}">
+					<img width="300" height="250" 
+						src="${contextPath}/download.do?movie_id=${movie.movie_id}&image_file_name=${image.image_file_name}">
 				</c:forEach>
 			</div>
 			<div class="tab_content" id="tab2">
 				<h4>저자소개</h4>
 				<p>
-				<div class="writer">저자 : ${goods.goods_writer}</div>
-				 <p>${fn:replace(goods.goods_writer_intro,crcn,br) }</p> 
+				<div class="writer">저자 :</div>
+				 <p>저자이름</p> 
 				
 			</div>
 			<div class="tab_content" id="tab3">
 				<h4>책목차</h4>
-				<p>${fn:replace(goods.goods_contents_order,crcn,br)}</p> 
+				<p></p> 
 			</div>
 			<div class="tab_content" id="tab4">
 				<h4>출판사서평</h4>
-				 <p>${fn:replace(goods.goods_publisher_comment ,crcn,br)}</p> 
+				 <p></p> 
 			</div>
 			<div class="tab_content" id="tab5">
 				<h4>추천사</h4>
-				<p>${fn:replace(goods.goods_recommendation,crcn,br) }</p>
+				<p></p>
 			</div>
 			<div class="tab_content" id="tab6">
 				<h4>리뷰</h4>

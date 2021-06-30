@@ -33,5 +33,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/main/notice.jsp" />
 	</definition>
 	
+	
 	</tiles-definitions>
 
