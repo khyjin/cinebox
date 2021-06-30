@@ -130,6 +130,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	   
 		
 	
+	//회원가입
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
 	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,

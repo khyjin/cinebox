@@ -4,13 +4,15 @@ import org.springframework.stereotype.Component;
 
 @Component("memberVO") //이거 그 자바에서 빈 설정했을 때 골뱅이 빈에서 제일 처음에 설정했었던 어노테이션
 public class MemberVO {
-	private String member_id; // 회원 아이디
-	private String member_pw; //회원 패스워드
-	private String member_name; // 회원 이름
-	private String member_gender; // 회원 성별
-	private String member_birth_y; // 생년
-	private String member_birth_m; // 생월
-	private String member_birth_d; //생일
+	
+	// 북샵 필드
+	//private String member_id; // 회원 아이디
+	//private String member_pw; //회원 패스워드
+	//private String member_name; // 회원 이름
+	//private String member_gender; // 회원 성별
+	//private String member_birth_y; // 생년
+	//private String member_birth_m; // 생월
+	//private String member_birth_d; //생일
 	private String member_birth_gn; // 양력 음력 
 	private String tel1; // 연락처1
 	private String tel2; // 연락처2
@@ -28,6 +30,30 @@ public class MemberVO {
 	private String namujiAddress; // 나머지 주소
 	private String joinDate; // 가입 일자
 	private String del_yn; // 회원 탈퇴
+	
+	
+	//씨네 박스 필드
+	private String member_id; // 회원 아이디
+	private String member_pw; //회원 패스워드
+	private String member_name; // 회원 이름
+	private String member_gender; // 회원 성별
+	private String member_hp1; // 핸드폰1
+	private String member_hp2; // 핸드폰2
+	private String member_hp3; // 핸드폰3
+	private String member_email_yn; // 이메일 수신 여부
+	private String member_email1; //이메일1
+	private String member_email2; // 이메일2
+	private String member_zip; // 우편 번호
+	private String member_roadaddress; // 도로명 주소
+	private String member_jibunaddress; // 지번 주소
+	private String member_namujiaddress; // 나머지 주소
+	private String member_birth_y; // 생년
+	private String member_birth_m; // 생월
+	private String member_birth_d; //생일
+	private String member_joindate; // 가입 일자
+	private String member_del_yn; // 회원 탈퇴 여부
+	private String member_del_date; // 회원 탈퇴
+	private String member_point; // 회원 포인트
 	
 	public String getMember_id() {
 		return member_id;
@@ -56,6 +82,91 @@ public class MemberVO {
 	}
 	
 	
+	public String getMember_hp1() {
+		return member_hp1;
+	}
+	public void setMember_hp1(String member_hp1) {
+		this.member_hp1 = member_hp1;
+	}
+	public String getMember_hp2() {
+		return member_hp2;
+	}
+	public void setMember_hp2(String member_hp2) {
+		this.member_hp2 = member_hp2;
+	}
+	public String getMember_hp3() {
+		return member_hp3;
+	}
+	public void setMember_hp3(String member_hp3) {
+		this.member_hp3 = member_hp3;
+	}
+	public String getMember_email_yn() {
+		return member_email_yn;
+	}
+	public void setMember_email_yn(String member_email_yn) {
+		this.member_email_yn = member_email_yn;
+	}
+	public String getMember_email1() {
+		return member_email1;
+	}
+	public void setMember_email1(String member_email1) {
+		this.member_email1 = member_email1;
+	}
+	public String getMember_email2() {
+		return member_email2;
+	}
+	public void setMember_email2(String member_email2) {
+		this.member_email2 = member_email2;
+	}
+	public String getMember_zip() {
+		return member_zip;
+	}
+	public void setMember_zip(String member_zip) {
+		this.member_zip = member_zip;
+	}
+	public String getMember_roadaddress() {
+		return member_roadaddress;
+	}
+	public void setMember_roadaddress(String member_roadaddress) {
+		this.member_roadaddress = member_roadaddress;
+	}
+	public String getMember_jibunaddress() {
+		return member_jibunaddress;
+	}
+	public void setMember_jibunaddress(String member_jibunaddress) {
+		this.member_jibunaddress = member_jibunaddress;
+	}
+	public String getMember_namujiaddress() {
+		return member_namujiaddress;
+	}
+	public void setMember_namujiaddress(String member_namujiaddress) {
+		this.member_namujiaddress = member_namujiaddress;
+	}
+	
+	public String getMember_joindate() {
+		return member_joindate;
+	}
+	public void setMember_joindate(String member_joindate) {
+		this.member_joindate = member_joindate;
+	}
+	public String getMember_del_yn() {
+		return member_del_yn;
+	}
+	public void setMember_del_yn(String member_del_yn) {
+		this.member_del_yn = member_del_yn;
+	}
+	public String getMember_del_date() {
+		return member_del_date;
+	}
+	public void setMember_del_date(String member_del_date) {
+		this.member_del_date = member_del_date;
+	}
+	public String getMember_point() {
+		return member_point;
+	}
+	public void setMember_point(String member_point) {
+		this.member_point = member_point;
+	}
 	public String getMember_birth_y() {
 		return member_birth_y;
 	}
@@ -80,6 +191,9 @@ public class MemberVO {
 	public void setMember_birth_gn(String member_birth_gn) {
 		this.member_birth_gn = member_birth_gn;
 	}
+	
+	
+	//북샵 필드
 	public String getTel1() {
 		return tel1;
 	}
