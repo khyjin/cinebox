@@ -178,29 +178,23 @@ function fn_overlapped(){
 					</select> - <input size="5px"  type="text" name="member_hp2"> - <input size="5px"  type="text"name="member_hp3"><br> 
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">이메일<br>(e-mail)</td>
-<<<<<<< HEAD
-					<td  class="member_input"><input size="10px"   type="text" name="member_email1" /> @
-						  <select name="member_email2" onChange=""	title="직접입력">
-									<option value="non">직접입력</option>
-=======
-					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" /> 
-						  <select name="email2" onChange=""	title="직접입력">
-									<option value="">직접입력</option>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
-									<option value="hanmail.net">hanmail.net</option>
-									<option value="naver.com">naver.com</option>
-									<option value="yahoo.co.kr">yahoo.co.kr</option>
-									<option value="hotmail.com">hotmail.com</option>
-									<option value="paran.com">paran.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="google.com">google.com</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="empal.com">empal.com</option>
-									<option value="korea.com">korea.com</option>
-									<option value="freechal.com">freechal.com</option>
-							</select><br> <br> <input type="checkbox" name="member_email_yn" value="Y" checked /> cinebox에서 발송하는 e-mail을 수신합니다.</td>
-				</tr>
+               <td class="fixed_join">이메일<br>(e-mail)</td>
+               <td  class="member_input"><input size="10px" type="text" name="member_email1" /> @
+                    <select name="member_email2" onChange=""   title="직접입력">
+                           <option value="non">직접입력</option>
+                           <option value="hanmail.net">hanmail.net</option>
+                           <option value="naver.com">naver.com</option>
+                           <option value="yahoo.co.kr">yahoo.co.kr</option>
+                           <option value="hotmail.com">hotmail.com</option>
+                           <option value="paran.com">paran.com</option>
+                           <option value="nate.com">nate.com</option>
+                           <option value="google.com">google.com</option>
+                           <option value="gmail.com">gmail.com</option>
+                           <option value="empal.com">empal.com</option>
+                           <option value="korea.com">korea.com</option>
+                           <option value="freechal.com">freechal.com</option>
+                     </select><br> <br> <input type="checkbox" name="member_email_yn" value="Y" checked /> cinebox에서 발송하는 e-mail을 수신합니다.</td>
+            </tr>
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
 					<td  class="member_input">
