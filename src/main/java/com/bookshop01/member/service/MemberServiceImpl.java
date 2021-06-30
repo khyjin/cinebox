@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.login(loginMap);
 	}
 	
+	//회원가입
 	@Override
 	public void addMember(MemberVO memberVO) throws Exception{
 		memberDAO.insertNewMember(memberVO);
