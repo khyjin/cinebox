@@ -40,14 +40,11 @@ header #logo{
 }
 
 header #logo a{
-	
+	font-size : 20;
 	color: #ffffff;
 }
 
-.fixed {
-	position:fixed;
-	top:0px;
-}
+
 
 header #head_link {
 	font-size: 0.75em; margin-right: 10px; float: right; font-family:"¸¼Àº °íµñ"; padding-top:10px; 
@@ -74,6 +71,7 @@ header #search .btn1 {
 	border: 1px solid rgb(51, 102, 153); border-image: none; width: 55px; height: 28px; color: rgb(255, 255, 255); margin-left: 2px; background-color: rgb(51, 102, 153);
 }
 aside {
+	
 	width: 205px; float: left;
 }
 nav {
@@ -674,7 +672,7 @@ border: 1.1px solid white; background-color:white; padding:7px; font-family: "¸¼
 background-color: white; color:#679a9e;
 }
 .main_book .book {
-	background-position: right; border: 2px solid rgb(255, 255, 255); border-image: none; width: 188px; height: 250px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat-y;
+   padding-top:20px; padding-bottom:10px; margin: 0px 0px 70px; background-position: right; border: 1px solid rgb(255, 255, 255); border-image: none; width: 188px; height: 250px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat;
 }
 .main_book .book img {
 	margin: 25px 15px 5px;
@@ -714,4 +712,34 @@ display:none; position: absolute; left: 830px; top:80px; border: 0.1px  solid #8
 
 .del_row_line{
 	margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;     border-bottom-style: none;border-top-style:solid; border-top-width: 1px;border-top-color:#ffffff;
+}
+section.idresult {
+	 height: 600px;
+     width : 600px;
+}
+
+div.idresult2 { 
+	font-size : 20;
+	font-family : "¸¼Àº °íµñ";
+	padding-top : 30;
+	padding-bottom : 30;
+}
+div.idresultform {
+	font-family : "¸¼Àº °íµñ";
+	font-weight : bold;
+	font-size : 20;
+	padding-bottom : 40;
+}
+
+section.idresult input#pwsearchForm{
+   height: 30px;
+   border: #193a3e;
+   font-size: 12px;
+   width: 100;
+}
+section.idresult input#LoginForm {
+	height: 30px;
+	border : #193a3e;
+	font-size : 12px;
+	width : 100;
 }

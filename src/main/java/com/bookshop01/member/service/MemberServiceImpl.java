@@ -32,12 +32,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberVO tels(Map tel) throws Exception{
-		return memberDAO.tels(tel);
+	public MemberVO tels(Map idsearch) throws Exception{
+		return memberDAO.tels(idsearch);
 	}
 
 	@Override
-	public MemberVO name(Map name) throws Exception {
-		return memberDAO.names(name);
+	public MemberVO findpw(Map pwsearch) throws Exception {
+		return memberDAO.findpw(pwsearch);
 	}
+
 }

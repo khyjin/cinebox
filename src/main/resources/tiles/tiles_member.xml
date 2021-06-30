@@ -22,13 +22,13 @@
          <put-attribute name="body" value="/WEB-INF/views/member/idsearch.jsp" />
       </definition>
       
-      <definition name="/member/namesearchview" extends="baseLayout">
-         <put-attribute name="title" value="이름으로 아이디 찾기 폼" />
-         <put-attribute name="body" value="/WEB-INF/views/member/namesearchview.jsp" />
+      <definition name="/member/pwsearchview" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기 폼" />
+         <put-attribute name="body" value="/WEB-INF/views/member/pwsearchview.jsp" />
       </definition>
-      <definition name="/member/namesearch" extends="baseLayout">
-         <put-attribute name="title" value="이름으로 아이디 찾기" />
-         <put-attribute name="body" value="/WEB-INF/views/member/namesearch.jsp" />
+      <definition name="/member/pwsearch" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기" />
+         <put-attribute name="body" value="/WEB-INF/views/member/pwsearch.jsp" />
       </definition>
 </tiles-definitions>
 

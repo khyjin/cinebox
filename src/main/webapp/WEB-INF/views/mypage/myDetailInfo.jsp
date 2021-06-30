@@ -182,8 +182,9 @@ function fn_modify_member_info(attribute){
 			
 			value_email1=email1.value;
 			value_email2=email2.value;
+			value_email3=email3.value;
 			value_emailsts_yn=emailsts_yn.checked;
-			value=value_email1+","+value_email2+","+value_emailsts_yn;
+			value=value_email1+","+value_email2+","+value_email3+","+value_emailsts_yn;
 			//alert(value);
 		}else if(attribute=='address'){
 			var zipcode=frm_mod_member.zipcode;
@@ -402,8 +403,8 @@ function fn_modify_member_info(attribute){
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td>
 					   <input type="text" name="email1" size=10 value="${memberInfo.email1 }" /> @ <input type="text" size=10  name="email2" value="${memberInfo.email2 }" /> 
-					   <select name="select_email2" onChange=""  title="직접입력">
-							<option value="non">직접입력</option>
+					   <select name="select_email3" onChange=""  title="직접입력">
+							<option value="">직접입력</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>

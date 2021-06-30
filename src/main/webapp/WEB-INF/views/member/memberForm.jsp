@@ -218,7 +218,7 @@ function fn_overlapped(){
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" /> 
 						  <select name="email2" onChange=""	title="직접입력">
-									<option value="non">직접입력</option>
+									<option value="">직접입력</option>
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="naver.com">naver.com</option>
 									<option value="yahoo.co.kr">yahoo.co.kr</option>

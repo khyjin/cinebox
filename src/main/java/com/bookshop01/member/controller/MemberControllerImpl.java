@@ -69,46 +69,66 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		return mav;
 	}
 	
-	//전화번호 ID 찾기 폼
+	//이름,전화번호 ID 찾기 폼
 	   @RequestMapping(value="/idsearchview.do" ,method = RequestMethod.POST)
-	      public ModelAndView goid(HttpServletRequest hs){
-	         ModelAndView mav = new ModelAndView();
+	      public ModelAndView goid(HttpServletRequest hs) throws Exception{
+	         ModelAndView mav = new ModelAndView();	         
 	         String View= (String) hs.getAttribute("viewName");
-	         mav.setViewName(View);
+	         mav.setViewName(View);	         
+       
 	         return mav;
+	         
 	      }
-	 //전화번호로 id 찾아 결과 출력
+	 //이름,전화번호로 id 찾아 결과 출력
 	   @RequestMapping(value="/idsearch.do" ,method = RequestMethod.POST)
-	     public ModelAndView goidv(@RequestParam Map<String,String> tel,HttpServletRequest rq,
+	     public ModelAndView goidv(@RequestParam Map<String,String> idsearch,HttpServletRequest rq,
 	         HttpServletResponse rs) throws Exception{
-
+		   
 	         ModelAndView mav = new ModelAndView();
 	         String view = (String)rq.getAttribute("viewName");
-	         MemberVO result = memberService.tels(tel);
+	         MemberVO result = memberService.tels(idsearch);
 	         mav.addObject("member",result);
 	         mav.setViewName(view);
+	         
+	         if(result == null)
+	         {	        	 
+	        	String message="가입된 회원이 아닙니다. 회원가입을 해주세요.";
+	 			mav.addObject("message", message);
+	 			mav.setViewName("/member/idsearchview");
+	         }
 	         return mav;
 	      }
 	   
-		//이름으로 ID 찾기 폼
-	   @RequestMapping(value="/namesearchview.do" ,method = RequestMethod.POST)
-	      public ModelAndView goname(HttpServletRequest hs){
+	 //아이디,이름,전화번호로 PW 찾기 폼
+	   @RequestMapping(value="/pwsearchview.do" ,method = RequestMethod.POST)
+	      public ModelAndView gopw(HttpServletRequest hs){
 	         ModelAndView mav = new ModelAndView();
 	         String View= (String) hs.getAttribute("viewName");
 	         mav.setViewName(View);
 	         return mav;
 	      }
-	 //이름으로 id 찾아 결과 출력
-	   @RequestMapping(value="/namesearch.do" ,method = RequestMethod.POST)
-	     public ModelAndView gonamev(@RequestParam Map<String,String> name,HttpServletRequest rq, HttpServletResponse rs) throws Exception{
-
+	   
+	 //아이디,이름,전화번호로 PW 찾아 결과 출력
+	   @RequestMapping(value="/pwsearch.do" ,method = RequestMethod.POST)
+	     public ModelAndView gopwv(@RequestParam Map<String,String> pwsearch,HttpServletRequest rq,
+	         HttpServletResponse rs) throws Exception{
+		   
 	         ModelAndView mav = new ModelAndView();
 	         String view = (String)rq.getAttribute("viewName");
-	         MemberVO result = memberService.name(name);
+	         MemberVO result = memberService.findpw(pwsearch);
 	         mav.addObject("member",result);
 	         mav.setViewName(view);
+	         
+	         if(result == null)
+	         {	        	 
+	        	String message="아이디를 다시 확인해주세요.";
+	 			mav.addObject("message", message);
+	 			mav.setViewName("/member/pwsearchview");
+	         }
 	         return mav;
 	      }
+	   
+		
 	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
@@ -146,6 +166,10 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
+
+
+
+	
 
 	
 	

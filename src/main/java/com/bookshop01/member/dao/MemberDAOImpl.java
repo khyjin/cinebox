@@ -33,15 +33,15 @@ public class MemberDAOImpl  implements MemberDAO{
 	
 	//전화번호로 아이디 찾기
 	@Override
-	public MemberVO tels(Map tel) throws DataAccessException {
-		MemberVO result =  sqlSession.selectOne("mapper.member.tels",tel);
+	public MemberVO tels(Map idsearch) throws DataAccessException {
+		MemberVO result =  sqlSession.selectOne("mapper.member.tels",idsearch);
+		return result;
+	}
+
+	@Override
+	public MemberVO findpw(Map pwsearch) throws DataAccessException {
+		MemberVO result = sqlSession.selectOne("mapper.member.findpw",pwsearch);
 		return result;
 	}
 	
-	//이름으로 아이디 찾기
-	@Override
-	public MemberVO names(Map name) throws DataAccessException {
-		MemberVO result =  sqlSession.selectOne("mapper.member.name",name);
-		return result;
-	}
 }
