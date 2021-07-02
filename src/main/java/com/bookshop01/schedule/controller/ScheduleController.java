@@ -15,6 +15,7 @@ public interface ScheduleController {
 	public ModelAndView addNewSchedule(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
-	public ModelAndView addSchedule(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity addSchedule(ScheduleVO scheduleVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
 
 }
