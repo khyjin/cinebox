@@ -15,6 +15,10 @@
        <put-attribute name="title" value="상품 수정 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/goods/modifyGoodsForm.jsp" />
     </definition>
+    <definition name="/admin/goods/addNewScheduleForm" extends="baseLayout">
+       <put-attribute name="title" value="상영 스케줄링 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/goods/addNewScheduleForm.jsp" />
+    </definition>
 </tiles-definitions>
 
 
