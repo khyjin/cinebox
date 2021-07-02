@@ -34,10 +34,10 @@ public abstract class BaseController  {
 		while(fileNames.hasNext()){
 			ImageFileVO imageFileVO =new ImageFileVO();
 			String fileName = fileNames.next();
-			imageFileVO.setFileType(fileName);
+			imageFileVO.setImage_file_sort(fileName);
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			String originalFileName=mFile.getOriginalFilename();
-			imageFileVO.setFileName(originalFileName);
+			imageFileVO.setImage_file_name(originalFileName);
 			fileList.add(imageFileVO);
 			
 			File file = new File(CURR_IMAGE_REPO_PATH +"\\"+ fileName);

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="/cscenter/cscenterMain" extends="baseLayout">
+       <put-attribute name="title" value="관리자 메인 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/cscenter/cscenterMain.jsp" />
+    </definition>
+    
+    <definition name="/cscenter/lostItemForm" extends="baseLayout">
+    	<put-attribute name="title" value="분실물 문의"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/lostItemForm.jsp"/>
+    </definition>
+
+
+	<definition name="/cscenter/cscenterNotice" extends="baseLayout">
+		<put-attribute name="title" value="공지사항"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/cscenterNotice.jsp"/>
+	</definition>
+	
+	<definition name="/cscenter/noticeRegForm" extends="baseLayout">
+		<put-attribute name="title" value="공지사항"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/noticeRegForm.jsp"/>
+	</definition>
+	
+	<definition name="/cscenter/noticeView" extends="baseLayout">
+		<put-attribute name="title" value="공지사항"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/noticeView.jsp"/>
+	</definition>
+	
+	<definition name="/cscenter/modifyView" extends="baseLayout">
+		<put-attribute name="title" value="공지사항"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/modifyView.jsp"/>
+	</definition>
+</tiles-definitions>
+
+

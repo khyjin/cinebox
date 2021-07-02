@@ -347,21 +347,26 @@
 <body>
 	<hgroup>
 		<h1>영화상세</h1>
-		<hr>	
+			
 	</hgroup>
 	<div id="goods_image">
 		<figure>
 			<img alt="HTML5 &amp; CSS3" 
 				src="${contextPath}/thumbnails.do?movie_id=${movie.movie_id}&image_file_name=${movie.movie_fileName}">
 		</figure>
+		
 	</div>
-	<p>
-	<strong>${movie.movie_title}</strong>
-	<div id="detail_table">
+	<div id="detail_table2">
 		<table>
 			<tbody>
 				<tr>
-					<td colspan="2" id="fixed">예매율 : 0.0%</td><tr class="dot_line">
+					<td class="fixed">${movie.movie_title}</td><td><ul>
+	
+			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">예매</a></li>
+		</ul></td><tr class="dot_line">
+				</tr>
+				<tr>
+					<td colspan="2" class="fixed">예매율 : 0.0%</td><tr class="dot_line">
 				</tr>
 				<tr>
 					<td class="fixed">감독 : ${movie.movie_director}</td>
@@ -379,11 +384,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<ul>
-			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">예매하기 </a></li>
-	
-			
-		</ul>
+		
 	</div>
 	<div class="clear"></div>
 	<!-- 내용 들어 가는 곳 -->
@@ -397,18 +398,16 @@
 	<div id="wrapper">
       <div id="slider-wrap">
          <ul id="slider">
-           
              <c:forEach var="image" items="${imageList}">
             	<li>
                 <div>
                     <span>Steal CUt #1</span>
                 </div> 
-                
+            
 					<img width="300" height="250" 
 						src="${contextPath}/download.do?movie_id=${movie.movie_id}&image_file_name=${image.image_file_name}">
-				 </li>
+				  </li>
 				 </c:forEach>
-               
           </ul>
        
            <!--controls-->
@@ -434,7 +433,7 @@
     max-width: 480px;
     margin: 0 auto; /* 화면 가운데로 */
     background-color: #fff;
-    height: 100%;
+    height: 50%;
     padding: 20px;
     box-sizing: border-box;
 

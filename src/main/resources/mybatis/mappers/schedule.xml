@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.schedule">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="scheduleResult" type="scheduleVO">
+		<result property="movie_id" column="movie_id" />
+		<result property="movie_title" column="movie_title" />
+		<result property="room_number" column="room_number" />
+		<result property="schedule_start_time" column="schedule_start_time" />
+		<result property="schedule_date" column="schedule_date" />
+	</resultMap>
+	<resultMap id="goodsResult" type="goodsVO">
+		<result property="movie_id" column="movie_id" />
+		<result property="movie_title" column="movie_title" />
+		<result property="movie_country" column="movie_country" />
+		<result property="movie_director" column="movie_director" />
+		<result property="movie_actor" column="movie_actor" />
+	
+		<result property="movie_sort" column="movie_sort" />
+		<result property="movie_runningtime" column="movie_runningtime" />
+		<result property="movie_content" column="movie_content" />
+		<result property="movie_status" column="movie_status" />
+		<result property="movie_open_date" column="movie_open_date" />
+		<result property="movie_close_date" column="movie_close_date" />
+		<result property="movie_fileName" column="image_file_name" />
+	</resultMap>	
+	
+	<insert id="insertSchedule"  parameterType="scheduleVO"   >
+	    
+	    <![CDATA[
+		insert into cinebox_schedule(
+		    movie_id,
+			movie_title,
+            room_number,
+            schedule_start_time,
+            schedule_date)
+		values(
+			#{movie_id},
+			#{movie_title},
+			#{room_number},
+			#{schedule_start_time},
+             #{schedule_date})
+		]]>
+	</insert> 
+
+	<select id="selectTitle" resultMap="goodsResult"  resultType="goodsVO">
+	    <![CDATA[
+		    	select * from cinebox_movie
+    	]]>
+	</select>
+</mapper>
+
