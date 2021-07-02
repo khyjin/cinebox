@@ -10,9 +10,7 @@
 
 <div class="main_book">
    <c:set  var="goods_count" value="0" />
-	<h3>예매율 순위</h3><button style="float: right;">
-		<a href="${contextPath}/goods/movieopen.do" id="more">더 보기<img width="23" height="15" src="${contextPath}/resources/image/more.png"></a>
-	</button><br>
+	<h3>예매율 순위&emsp;<a href="${contextPath}/goods/movieopen.do" id="more">더 보기<img width="23" height="15" src="${contextPath}/resources/image/more.png"></a></h3><br>
 	<c:forEach var="item" items="${goodsMap.screening}">
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
@@ -41,10 +39,7 @@
 <div class="clear"></div>
 <div class="main_book">
 <c:set  var="goods_count" value="0" />
-	<h3>상영 예정작</h3>
-	<button style="float: right;">
-		<a href="${contextPath}/goods/moviescheduled.do" id="more">더 보기 <img width="23" height="15" src="${contextPath}/resources/image/more.png"></a>
-	</button><br>
+	<h3>상영 예정작&emsp;<a href="${contextPath}/goods/moviescheduled.do" id="more">더 보기 <img width="23" height="15" src="${contextPath}/resources/image/more.png"></a></h3><br>
 	<c:forEach var="item" items="${goodsMap.readysc}" >
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">

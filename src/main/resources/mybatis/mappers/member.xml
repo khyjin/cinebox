@@ -31,24 +31,7 @@
 		<result property="member_joindate" column="member_joindate" />
 		<result property="member_point" column="member_point" />
 		
-<!--  	<result property="member_birth_gn" column="member_birth_gn" />
-		<result property="tel1" column="tel1" />
-		<result property="tel2" column="tel2" />
-		<result property="tel3" column="tel3" />
-		
-		<result property="hp1" column="hp1" />
-		<result property="hp2" column="hp2" />
-		<result property="hp3" column="hp3" />
- 		<result property="smssts_yn" column="smssts_yn" /> 
-		<result property="email1" column="email1" />
-		<result property="email2" column="email2" />
-		<result property="emailsts_yn" column="emailsts_yn" />
-		
-		<result property="zipcode" column="zipcode" />
-		<result property="roadAddress" column="roadAddress" />
-		<result property="jibunAddress" column="jibunAddress" />
-		<result property="namujiAddress" column="namujiAddress" />
-		<result property="joinDate" column="joinDate" />-->
+	
 	</resultMap>	
 
 	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
@@ -70,17 +53,19 @@
 			 where member_id=#{member_id} and member_name =#{member_name} and member_hp1 = #{member_hp1} and  member_hp2 = #{member_hp2} and  member_hp3 = #{member_hp3}
 	</select>
 	
+	<!-- 아이디 중복 확인 -->
 	<select id="selectOverlappedID" parameterType="String" resultType="String">
 	   select decode(count(*),1, 'true', 0, 'false')
 	   from cinebox_member
+
 	   where member_id = #{member_id}
 	</select>
 	
   <insert id="insertNewMember"  parameterType="memberVO">
   <![CDATA[
     	insert into cinebox_member(member_id,
-                             member_pw,
-                                     member_name,
+									member_pw,
+                             		member_name,
                                      member_gender,
                                      member_birth_y,
                                      member_birth_m,
@@ -96,7 +81,7 @@
                                      member_jibunaddress,
                                      member_namujiaddress,
                                      member_joindate,
-                                     member_point)             
+									 member_point)             
                       values(#{member_id},
                            #{member_pw},
                            #{member_name},

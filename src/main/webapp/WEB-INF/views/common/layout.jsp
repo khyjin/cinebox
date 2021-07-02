@@ -43,8 +43,9 @@
 	});
 	
 </script>
-	<title>${movie.movie_title}</title>
 	
+	<!-- 영화 상세 정보 클릭 시 브라우저 타이틀을 영화 제목으로 표시되게 설정하기 -->
+	<title>${movie.movie_title}</title>	
 </head>
 <body>
 	<div id="outer_wrap">

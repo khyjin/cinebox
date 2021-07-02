@@ -238,7 +238,7 @@ function  calcPeriod(search_period){
 				</td>
 				<td>
 				    <c:set var="pub_date" value="${item.goods_published_date}" />
-					   <c:set var="arr" value="${fn:split(pub_date,' ')}" />
+					  <c:set var="arr" value="${fn:split(pub_date,' ')}" />
 					<strong>
 					   <c:out value="${arr[0]}" />
 					</strong>

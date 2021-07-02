@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+
+</style>
 <meta charset="utf-8">
 <style>
 
@@ -46,9 +49,15 @@ function fn_cancel_order(order_id){
 
 <body>
 <section class="mypage_main">
+<<<<<<< HEAD
 <div class="myInfo">예매 내역
 <a href="${contextPath}/order/orderResult.do"> <img src="${contextPath}/resources/image/btn_more_see.jpg" /></a>
 </div>
+=======
+<h1>최근주문내역
+    <A href="#"> <IMG  src="${contextPath}/resources/image/btn_more_see.jpg">  </A> 
+</h1>
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 <table class="list_view">
 		<tbody align=center >
 			<tr style=background:#e8e8e8 >				

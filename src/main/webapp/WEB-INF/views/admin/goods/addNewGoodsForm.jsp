@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"
 	isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />	
+<c:set var="contextPath"  value="${pageContext.request.contextPath}" />	
 <!DOCTYPE html>
 
 <meta charset="utf-8">
@@ -11,9 +11,9 @@
   var cnt=0;
   function fn_addFile(){
 	  if(cnt == 0){
-		  $("#d_file").append("<br>"+"<input  type='file' name='main_image' id='f_main_image' />");	  
+		  $("#d_file").append("<br>"+"<input  type='file' name='poster' id='f_main_image' />");	  
 	  }else{
-		  $("#d_file").append("<br>"+"<input  type='file' name='detail_image"+cnt+"' />");
+		  $("#d_file").append("<br>"+"<input  type='file' name='sc"+cnt+"' />");
 	  }
   	
   	cnt++;
@@ -43,12 +43,12 @@
 			<tr>
 				<td>장르</td>
 				<td>
-				<label><input name="movie_sort" type="checkbox" value="sf"/>SF</label>
-				<label><input name="movie_sort" type="checkbox" value="horror"/>공포</label>
-				<label><input name="movie_sort" type="checkbox" value="comedy"/>코미디</label>
-				<label><input name="movie_sort" type="checkbox" value="romance"/>로맨스</label>
-				<label><input name="movie_sort" type="checkbox" value="fantasy"/>판타지</label>
-				<label><input name="movie_sort" type="checkbox" value="action"/>액션</label>
+				<label><input name="movie_sort" type="checkbox" value="SF"/>SF</label>
+				<label><input name="movie_sort" type="checkbox" value="공포"/>공포</label>
+				<label><input name="movie_sort" type="checkbox" value="코미디"/>코미디</label>
+				<label><input name="movie_sort" type="checkbox" value="로맨스"/>로맨스</label>
+				<label><input name="movie_sort" type="checkbox" value="판타지"/>판타지</label>
+				<label><input name="movie_sort" type="checkbox" value="액션"/>액션</label>
 				</td>
 			</tr>
 			<tr>
@@ -106,7 +106,7 @@
 			
 			<tr>
 				<td>이미지파일 첨부</td>
-			    <td  align="left"> <input type="button"  value="파일 추가" onClick="fn_addFile()"/>			    
+			    <td> <input type="button"  value="파일 추가" onClick="fn_addFile()"/>			    
 					<div id="d_file">
 				    </div>
 				</td>

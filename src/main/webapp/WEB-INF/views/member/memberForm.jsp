@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-
 
 function execDaumPostcode() {
   new daum.Postcode({
@@ -77,12 +77,12 @@ function fn_overlapped(){
        data: {id:_id},
        success:function (data,textStatus){
           if(data=='false'){
-              alert("사용할 수 있는 ID입니다.");
+              alert("사용 가능한 ID 입니다.");
               $('#btnOverlapped').prop("disabled", true);
               $('#_member_id').prop("disabled", true);
               $('#member_id').val(_id);
           }else{
-             alert("사용할 수 없는 ID입니다.");
+             alert("이미 존재하는 ID 입니다.");
           }
        },
        error:function(data,textStatus){
@@ -92,10 +92,33 @@ function fn_overlapped(){
           //alert("작업을완료 했습니다");
        }
     });  //end ajax    
- }   
+ }
+
+var compare_result = false;
+
+function fn_compare_pw(){
+           var pw1 = $("#member_pw1").val();
+           var pw2 = $("#member_pw2").val();
+           var $s_result = $("#s_result");
+
+           if(pw1 == pw2){
+                      compare_result = true;
+                      $s_result.text("비밀번호가 일치합니다.");
+                      return;
+           }
+           
+           compare_result = false;
+           $s_result.text("비밀번호가 일치하지 않습니다.");
+}
+
+
 </script>
 </head>
 <body>
+<div class="signup">
+<img src="${contextPath}/resources/image/signup_icon.png" width="40" height="40"/>
+회원가입
+</div>
    <form name="memberform" action="${contextPath}/member/addMember.do" method="post">   
    <div id="detail_table">
       <table>
@@ -103,14 +126,20 @@ function fn_overlapped(){
             <tr class="dot_line">
                <td class="fixed_join">새 아이디</td>
                <td class="member_input">
-                 <input type="text" name="_member_id"  id="_member_id"  size="20" />
+                 <input type="text" name="_member_id"  id="_member_id"  size="20"/>
                  <input type="hidden" name="member_id"  id="member_id" />
                  <input type="button"  id="btnOverlapped" value="아이디 중복 확인" onClick="fn_overlapped()">
                </td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">새 비밀번호</td>
-               <td  class="member_input"><input name="member_pw" type="password" size="20" /></td>
+               <td  class="member_input"><input name="member_pw" id="member_pw1" type="password" size="20" /></td>
+            </tr>
+            <tr class="dot_line">
+               <td class="fixed_join">비밀번호 확인</td>
+               <td  class="member_input"><input name="member_pw2" id="member_pw2" type="password" size="20" onKeyUp="fn_compare_pw();"/>
+               &emsp;<span id="s_result" style="font-size: 10px; font-family: 맑은 고딕"> 비밀번호가 일치하지 않습니다.</span>
+               </td>     
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이름</td>
@@ -184,16 +213,14 @@ function fn_overlapped(){
                            <option value="non">직접입력</option>
                            <option value="hanmail.net">hanmail.net</option>
                            <option value="naver.com">naver.com</option>
-                           <option value="yahoo.co.kr">yahoo.co.kr</option>
-                           <option value="hotmail.com">hotmail.com</option>
-                           <option value="paran.com">paran.com</option>
                            <option value="nate.com">nate.com</option>
                            <option value="google.com">google.com</option>
                            <option value="gmail.com">gmail.com</option>
                            <option value="empal.com">empal.com</option>
                            <option value="korea.com">korea.com</option>
                            <option value="freechal.com">freechal.com</option>
-                     </select><br> <br> <input type="checkbox" name="member_email_yn" value="Y" checked /> cinebox에서 발송하는 e-mail을 수신합니다.</td>
+                     </select><br> <br> <input type="checkbox" id="member_email_yn" name="member_email_yn" value="Y" /> cinebox에서 발송하는 e-mail을 수신합니다.
+                                    </td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">주소</td>
@@ -201,8 +228,8 @@ function fn_overlapped(){
                   <input type="text" id="zipcode" name="member_zip" size="7" > <a href="javascript:execDaumPostcode()" id="zip">우편번호검색</a>
                  <br><br>
                  <p> 
-                  지번 주소:<br><input type="text" id="roadAddress"  name="member_roadaddress" size="50"><br><br>
-                 도로명 주소: <input type="text" id="jibunAddress" name="member_jibunaddress" size="50"><br><br>
+                  도로명 주소:<br><input type="text" id="roadAddress"  name="member_roadaddress" size="50"><br><br>
+                 지번 주소: <input type="text" id="jibunAddress" name="member_jibunaddress" size="50"><br><br>
                  나머지 주소: <input type="text"  name="member_namujiaddress" size="50" />
                 <!--   <span id="guide" style="color:#999"></span> -->
                   </p>
@@ -212,10 +239,8 @@ function fn_overlapped(){
       </table>
       </div>
       <div class="clear">
-      <br><br>
-            <input type="submit" id="complate" value="회원가입">
-            <input  type="reset"  value="재입력">
-   </div>
+            <input type="submit" class="complete" value="회원가입" onclick="fc_email_yn()">
+</div>
 </form>   
 </body>
 </html>

@@ -20,26 +20,26 @@
         <li><a href="${contextPath}/goods/movieclosed.do">상영 종료된 영화</a></li>
         </ul>
       </div>
-	<c:forEach var="item" items="${goodsMap.SCI}" >
+	<c:forEach var="item" items="${goodsMap.endsc}">
 	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
-		  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-	       <img class="link"  src="${contextPath}/resources/image/1px.gif"> 
-	      </a>
-		 <img width="171" height="204"
-				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-		<div class="title">${item.goods_title }</div>
-		<div class="price">
-		    <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
-		       ${goods_price}원
-		  </div>
-	</div>
-	 <c:if test="${goods_count==15}">
-     <div class="book">
-       <font size=20> <a href="#">more</a></font>
-     </div>
-   </c:if>
-	</c:forEach>
+			<a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id }">
+			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
+			</a>
+
+				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
+
+			<div class="title">${item.movie_title }</div>
+			<div class="price">
+		  	   예매버튼추가예정
+			</div>
+		</div>
+	   <c:if test="${goods_count==8}">
+         <div class="book">
+           <font size=20> <a href="#">more</a></font>
+         </div>
+     </c:if>
+  </c:forEach>
 </div>
 </section>
 </body>
