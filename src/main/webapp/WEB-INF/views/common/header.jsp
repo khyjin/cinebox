@@ -75,12 +75,12 @@
 		     <c:when test="${isLogOn==true and not empty memberInfo }">
 			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
 			   <li><a href="${contextPath}/cart/myCartList.do">고객센터</a></li>
-			   <li><a href="${contextPath}/mypage/myDetailInfo.do">마이페이지</a></li>
+			   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
 			 </c:when>
 			 <c:otherwise>
 			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
 			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
-			   <li><a href="${contextPath}/main/loading.do">고객센터</a></li>
+			   <li><a href="${contextPath}/main/loading.do">고객센터</a></li><br>
 			 </c:otherwise>
 			</c:choose>
       <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
@@ -91,11 +91,11 @@
 	</div>
 <nav>
 <div id="logo">
-	<a href="${contextPath}/goods/movieopen.do">영화</a>&emsp;&emsp;&emsp;&emsp;
-	<a href="${contextPath}/member/logout.do">예매</a>&emsp;&emsp;&emsp;&emsp;
-	<a href="${contextPath}/main/main.do"><img width="110" height="135" alt="booktopia" src="${contextPath}/resources/image/cinelogo.jpg"></a>&emsp;&emsp;&emsp;&emsp;
-	<a href="${contextPath}/member/logout.do">영화관</a>&emsp;&emsp;&emsp;&emsp;
-	<a href="${contextPath}/member/logout.do">상영시간표</a>&emsp;&emsp;&emsp;&emsp;
+	<a href="${contextPath}/goods/movieopen.do">영화</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+	<a href="${contextPath}/member/logout.do">예매</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+	<a href="${contextPath}/main/main.do"><img width="110" height="135" alt="booktopia" src="${contextPath}/resources/image/cinelogo.jpg"></a>&emsp;&emsp;&emsp;&emsp;&emsp;
+	<a href="${contextPath}/member/logout.do">영화관</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+	<a href="${contextPath}/member/logout.do">상영시간표</a>&emsp;&emsp;&emsp;&emsp;&emsp;
 </div>
 </nav>
 	

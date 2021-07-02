@@ -53,7 +53,7 @@ public class MemberVO {
 	private String member_joindate; // 가입 일자
 	private String member_del_yn; // 회원 탈퇴 여부
 	private String member_del_date; // 회원 탈퇴
-	private String member_point; // 회원 포인트
+	private int member_point; // 회원 포인트
 	
 	public String getMember_id() {
 		return member_id;
@@ -161,10 +161,11 @@ public class MemberVO {
 	public void setMember_del_date(String member_del_date) {
 		this.member_del_date = member_del_date;
 	}
-	public String getMember_point() {
+	
+	public int getMember_point() {
 		return member_point;
 	}
-	public void setMember_point(String member_point) {
+	public void setMember_point(int member_point) {
 		this.member_point = member_point;
 	}
 	public String getMember_birth_y() {

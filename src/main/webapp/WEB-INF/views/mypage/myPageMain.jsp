@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+
+</style>
 <meta charset="utf-8">
 <c:if test="${message=='cancel_order'}">
 	<script>
@@ -40,6 +43,7 @@ function fn_cancel_order(order_id){
 </script>
 </head>
 <body>
+<section class="mypage_main">
 <h1>최근주문내역
     <A href="#"> <IMG  src="${contextPath}/resources/image/btn_more_see.jpg">  </A> 
 </h1>
@@ -189,5 +193,6 @@ function fn_cancel_order(order_id){
    </td>
    </tr>
 </table>
+</section>
 </body>
 </html>
