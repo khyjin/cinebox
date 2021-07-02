@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+
 <script>
 function search_goods_list(fixeSearchPeriod){
 	var formObj=document.createElement("form");
@@ -88,7 +89,9 @@ function  calcPeriod(search_period){
 }
 </script>
 </head>
+
 <body>
+<section class="mypage_main">
 	<H3>상품 조회</H3>
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >
@@ -277,5 +280,6 @@ function  calcPeriod(search_period){
 		<input type="submit" value="상품 등록하기">
 	</form>
 </DIV>
+</section>
 </body>
 </html>

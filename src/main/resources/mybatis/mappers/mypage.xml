@@ -144,5 +144,17 @@
 	   where order_id=#{order_id}
 	</update>
 		
+	<select id="myPoint" resultType="memberVO" parameterType="String">
+		select * from cinebox_member where member_id = #{member_id}
+	</select>
+	
+	<update id="memberDelete" parameterType="String">
+	  <![CDATA[
+		  update cinebox_member 
+		  		set member_del_yn='y',member_del_date=to_date(sysdate) 
+		  where member_id=#{member_id} and member_pw=#{member_pw}
+	  ]]>
+	</update>		
+	
 		
 </mapper>

@@ -19,6 +19,9 @@ a {
 .clear {
    clear: both;
 }
+
+
+
 #outer_wrap {
    margin: 0px auto; padding: 0px; width: 1100px;
 }
@@ -42,8 +45,6 @@ header #logo{
 header #logo a{
 	color: #ffffff;
 }
-
-
 header #head_link {
    font-size: 0.75em; margin-right: 10px; float: right; font-family:"¸¼Àº °íµñ"; padding-top:10px; 
 }
@@ -68,9 +69,7 @@ header #search .main_input {
 header #search .btn1 {
    border: 1px solid rgb(51, 102, 153); border-image: none; width: 55px; height: 28px; color: rgb(255, 255, 255); margin-left: 2px; background-color: rgb(51, 102, 153);
 }
-aside {
-   width: 205px; float: left;
-}
+
 nav {
    margin: 25px 0px 0px 10px; font-family: "¸¼Àº °íµñ", Serif; font-size: 0.8em;
 }
@@ -95,9 +94,7 @@ nav ul li ul li {
 nav ul li ul li a {
    color:black;
 }
-aside #banner {
-   margin: 10px 15px;
-}
+
 #notice {
    margin: 20px 0px 15px 15px; font-size: 0.75em;
 }
@@ -111,7 +108,7 @@ aside #banner {
    background-position: left; padding: 0px 0px 0px 7px; line-height: 1.5em; background-image: url("../imgs/notice_li.gif"); background-repeat: no-repeat;
 }
 article {
-   margin: 20px 0px 0px 15px; width: 775px; float: right;
+   margin: 20px 0px 0px 15px; width: 980px; float: right;
 }
 
 .link {
@@ -200,7 +197,14 @@ article #sorting ul li a {
    padding: 0px 8px; border-right-color: rgb(153, 153, 153); border-right-width: 1px; border-right-style: solid; display: block;
 }
 article table#list_view {
-   width: 100%; color: rgb(51, 51, 51); font-size: 0.75em; margin-top: 20px; border-top-color: rgb(51, 51, 51); border-top-width: 2px; border-top-style: solid; border-collapse: collapse;
+   width: 100%; 
+   color: rgb(51, 51, 51); 
+   font-size: 0.75em; 
+   margin-top: 20px; 
+   border-top-color: rgb(51, 51, 51); 
+   border-top-width: 2px; 
+   border-top-style: solid; 
+   border-collapse: collapse;
 }
 
 
@@ -265,7 +269,7 @@ article ul#page_control li a.no_border {
    border: currentColor; border-image: none; padding-top: 3px;
 }
 .active {
-   color: rgb(255, 0, 0); font-weight: bold;font-size: 0.8em;
+   color: black; font-weight: bold;font-size: 0.8em;
 }
 article ul#page_control li .page_contrl_active {
    background: rgb(255, 255, 255); border: 1px solid rgb(255, 0, 0); border-image: none; color: rgb(255, 0, 0);
@@ -298,30 +302,43 @@ article h4 {
   border-image: none; width: 150px; height: auto; box-shadow: 2px 2px 15px #666;
 }
 #detail_table {
-   width: 590px; font-size: 0.75em; float: left;
+   width: 590px; font-size: 0.75em; text-align: center; padding-top: 50px;
 }
+
 #detail_table table {
-   width: 95%; border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse;
+   width: 90%; border-right-color: #193a3e; border-top-color: #193a3e; border-bottom-color: #193a3e; border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; margin-bottom:50px; font-family:"¸¼Àº °íµñ"; 
 }
-#detail_table table td {
-   padding: 7px 0px 7px 10px;
+#detail_table td  {
+   padding: 15px; font-size: midium;
+}
+
+#zip{
+    color:black; font-size: x-small;
+}
+#detail_table .member_input #btnOverlapped  {
+   font-size: xx-small;
+}
+
+#detail_table .member_input  {
+   font-size: small;
 }
 #detail_table table tr.dot_line {
    border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: dotted;
 }
 
+
 #detail_table table tr.solid_line {
    border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
 }
 #detail_table table td span {
-   font-family: "NanumGothic", Serif; font-size: 1.2em; font-weight: bold;
+   font-family: "¸¼Àº °íµñ", Serif; font-size: 1.2em; font-weight: bold;
 }
 #detail_table table td.fixed {
    width: 110px; font-weight: bold;font-size: 0.8em;
 }
 
 #detail_table table td.fixed_join {
-   width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+   width: 110px; font-weight: bold; color: #ffffff; background:#193a3e; text-align: center;
 }
 
 #detail_table ul {
@@ -360,6 +377,7 @@ article h4 {
 #detail_table ul li a.wish:hover {
    color: rgb(0, 0, 0); background-color: rgb(255, 204, 0);
 }
+
 #container {
    margin: 40px auto; width: 100%;
 }
@@ -470,10 +488,61 @@ footer a {
 footer img {
    margin: 10px 0px 0px 40px; width: 100px; float: left;
 }
+/*==========»çÀÌµå=========*/
+aside{
+   width: 205; 
+   float: left;
+ 
+}
+aside.sidemenu{
+   font-family:"¸¼Àº °íµñ";
+   font-size:12;
+   width : 150;
+   float:left;
 
+}
+
+.sidemenu{
+   padding: 10px 5px; 
+   font-size: 13; 
+   font-family:"¸¼Àº °íµñ";
+   float: left; 
+}
+li.sidemenu h3 {
+	font-family : "¸¼Àº °íµñ";
+	color : #47494d;
+}
+
+/*=======mypage main========*/
+section.mypage_main {
+	width:800;
+	height:600;
+	float:right;
+	margin-top : -300;
+}
+div.myInfo{
+	font-family : "¸¼Àº °íµñ";
+	font-weight : bold;
+	font-size:20;
+	padding: 10;
+}
+div.myInfo tr,td {
+	border-bottom : 1px solid #e8e8e8;
+}
+
+/*========Æ÷ÀÎÆ®========*/
+
+/*========Äü ¸Þ´º========*/
 #sticky {
    /* padding: 10px 5px; border-radius: 10px; top: 115px; width: 82px; font-size: 0.75em; float: right; position: relative; background-color: rgb(153, 153, 153); */
-   padding: 10px 5px; border-radius: 10px; top: 115px; width: 82px; font-size: 0.75em; float: right; position: relative; background-color:#193a3e; 
+   padding: 10px 5px; 
+   border-radius: 10px; 
+   top: 115px; 
+   width: 82px; 
+   font-size: 0.75em; 
+   float: right; 
+   position: relative; 
+   background-color:#193a3e; 
    
 }
 #sticky ul {
@@ -503,15 +572,27 @@ footer img {
 
 
 .list_view {
-   width: 100%; color: rgb(51, 51, 51); font-size: 0.75em; margin-top: 20px; border-top-color: rgb(51, 51, 51); border-top-width: 2px; border-top-style: solid; border-collapse: collapse;
+   width: 100%; 
+   color: rgb(51, 51, 51); 
+   font-size: 0.75em; 
+   margin-top: 20px; 
+   border-top-color: #e8e8e8; 
+   border-top-width: 2px; 
+   border-top-style: solid; 
+   border-collapse: collapse;
 }
 
 .list_view tr {
-   margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px; border-bottom-style: dotted; 
+   margin: 0px; padding: 10px 0px; border-bottom-color: #e8e8e8; border-bottom-width: 1px; 
 }
 
   .list_view td {
-   margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px; border-bottom-style: dotted;
+   margin: 0px; padding: 10px 0px; border-bottom-color: #e8e8e8; border-bottom-width: 1px; color : #193a3e;
+}
+
+.list_view td strong {
+   color : black;
+   font-family:"¸¼Àº °íµñ";
 }
   .list_view h2 {
    padding: 0px 0px 2px; font-size: 1.2em; font-weight: bold;
@@ -555,13 +636,20 @@ footer img {
 
 .detail_table {
    margin: 20px 0px 0px;
+   width: 190px; 
+   font-size: 12; 
+   float: left; 
 }
 
-.detail_table {
-   width: 590px; font-size: 0.75em; float: left;
-}
 .detail_table table {
-   width: 95%; border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse;
+   width: 95%; 
+   border-top-color:#193a3e; 
+   border-bottom-color:#193a3e; 
+   border-top-width: 2px; 
+   border-bottom-width: 1px; 
+   border-top-style: solid; 
+   border-bottom-style: solid; 
+   border-collapse: collapse; 
 }
 .detail_table table td {
    padding: 7px 0px 7px 10px;
@@ -584,7 +672,7 @@ footer img {
 
 
 .detail_table table td.fixed_join {
-   width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+   width: 110px; font-weight: bold; color: #0000cc; background: #e1e1ff; 
 }
 
 .detail_table ul {
@@ -624,8 +712,11 @@ footer img {
    color: rgb(0, 0, 0); background-color: rgb(255, 204, 0);
 }
 
+.detail_table.clear input 
+
+
 /*================Login================*/
-section.loginContent {
+section.LoginContent {
    margin-top: 80px;
    display: flex;
    direction: row;
@@ -634,8 +725,8 @@ section.loginContent {
 
 }
 section.openContent {
-	margin-top: 20px;
-	display: flex;
+   margin-top: 20px;
+   display: flex;
    direction: row;
     height: 600px;
    width : 800px;
@@ -721,7 +812,7 @@ div.searchDiv {
 }
 
 div.searchDiv a {
-	color:#193a3e;
+   color:#193a3e;
 }
 
 label.lbl {
@@ -747,7 +838,7 @@ border: 1.1px solid white; background-color:white; padding:7px; font-family: "¸¼
 background-color: white; color:#679a9e;
 }
 .main_book #more {
-	color: black;
+   color: black;
 }
 .main_book .book {
    padding-top:20px; padding-bottom:10px; margin: 0px 0px 70px; background-position: right; border: 1px solid rgb(255, 255, 255); border-image: none; width: 188px; height: 250px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat;
@@ -786,24 +877,26 @@ display:none; position: absolute; left: 830px; top:80px; border: 0.1px  solid #8
 }
 
 .del_row_line{
-	margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;     border-bottom-style: none;border-top-style:solid; border-top-width: 1px;border-top-color:#ffffff;
+   margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;     border-bottom-style: none;border-top-style:solid; border-top-width: 1px;border-top-color:#ffffff;
 }
+
+/*================Login Result================*/
 section.idresult {
-	 height: 600px;
+    height: 600px;
      width : 600px;
 }
 
 div.idresult2 { 
-	font-size : 20;
-	font-family : "¸¼Àº °íµñ";
-	padding-top : 30;
-	padding-bottom : 30;
+   font-size : 20;
+   font-family : "¸¼Àº °íµñ";
+   padding-top : 30;
+   padding-bottom : 30;
 }
 div.idresultform {
-	font-family : "¸¼Àº °íµñ";
-	font-weight : bold;
-	font-size : 20;
-	padding-bottom : 40;
+   font-family : "¸¼Àº °íµñ";
+   font-weight : bold;
+   font-size : 20;
+   padding-bottom : 40;
 }
 
 section.idresult input#pwsearchForm{
@@ -813,11 +906,10 @@ section.idresult input#pwsearchForm{
    width: 100;
 }
 section.idresult input#LoginForm {
-	height: 30px;
-	border : #193a3e;
-	font-size : 12px;
-	width : 100;
+   height: 30px;
+   border : #193a3e;
+   font-size : 12px;
+   width : 100;
 }
 
   
-

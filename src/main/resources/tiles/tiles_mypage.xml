@@ -19,6 +19,14 @@
        <put-attribute name="title" value="내 정보 상세 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/mypage/myDetailInfo.jsp" />
      </definition>
+     <definition name="/mypage/myPoint" extends="baseLayout">
+       <put-attribute name="title" value="잔여 포인트 확인" />
+       <put-attribute name="body" value="/WEB-INF/views/mypage/myPoint.jsp" />
+     </definition>
+     <definition name="/mypage/memberDelete" extends="baseLayout">
+       <put-attribute name="title" value="회원 탈퇴 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/mypage/memberDelete.jsp" />
+     </definition>
 </tiles-definitions>
 
 

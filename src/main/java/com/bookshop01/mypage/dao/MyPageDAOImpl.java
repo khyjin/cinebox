@@ -45,4 +45,11 @@ public class MyPageDAOImpl implements MyPageDAO{
 	public void updateMyOrderCancel(String order_id) throws DataAccessException{
 		sqlSession.update("mapper.mypage.updateMyOrderCancel",order_id);
 	}
+
+	public MemberVO myPoint(String member_id) throws DataAccessException {
+		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.myPoint",member_id);
+		return memberVO;
+	}
+
+	
 }

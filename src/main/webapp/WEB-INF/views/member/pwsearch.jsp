@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 <title>비밀번호 찾기 결과</title>
 </head>
 <body>
@@ -16,6 +16,6 @@
 	
 	<input id="pwsearchForm" type="button" onclick="location.href='idsearchview.do'" value="아이디 찾기">  
     <input id="LoginForm" type="button" onclick="location.href='loginForm.do'" value="로그인"> 
-	</section>
+</section>
 </body>
 </html>

@@ -17,13 +17,13 @@ window.onload=function()
 }
 
 function result(){
-   alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
+   alert("가입된 회원이 아닙니다. 회원가입을 해주세요.");
 }
 </script>
 </c:if>
 </head>
 <body>
-   <section class="loginContent">
+   <section class="LoginContent">
    <nav></nav>
    <div class="memberLoginContainer">
       <div class="loginButtonContainer">

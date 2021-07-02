@@ -73,7 +73,7 @@ function goodsDetail(){
 <body>    
     <div id="sticky" >
 	<ul>
-		<li><h3>퀵메뉴</h3></li>&emsp;&emsp;
+		<li><h3>CINEBOX</h3></li>&emsp;&emsp;
 		<li><a href="#">
 			공지사항 <img width="20" height="15" src="${contextPath}/resources/image/more2.png"></a></li>&emsp;
 		<li><a href="#">

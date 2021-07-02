@@ -5,7 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:if test='${not empty message }'>
+<script>
+window.onload=function()
+{
+	findId();
+}
+
+function findId(){
+   alert("가입된 회원이 아닙니다. 회원가입을 해주세요.");
+}
+</script>
+</c:if>
 <title>아이디 찾기</title>
 <style>
 section.idcontent {
@@ -82,7 +94,7 @@ div.idsearchForm input#reset {
 <div class="idsearchForm">       
 	<form action="${contextPath}/member/idsearch.do" method="post" onsubmit="return IdSearchCheck()" name="f">
       <input id="name" type="text" name="member_name" size="50" title="이름" placeholder="이름을 입력하세요"><br><br>
-      <select id="hp1" name="hp1">
+      <select id="hp1" name="member_hp1">
 	      <option>010</option>
 	      <option>011</option>
 	      <option>016</option>
@@ -90,8 +102,8 @@ div.idsearchForm input#reset {
 	      <option>018</option>
 	      <option>019</option>
       </select>&emsp;-&emsp;
-      <input id="hp" name="hp2" type="text" size="3" />&emsp;-&emsp;
-      <input id="hp" name="hp3" type="text" size="3" />                                        
+      <input id="hp" name="member_hp2" type="text" size="3" />&emsp;-&emsp;
+      <input id="hp" name="member_hp3" type="text" size="3" />                                        
       <br><br>
       <input id="submit" type="submit" value="찾기">  
       <input id="reset" type="button" onclick="location.href='loginForm.do'" value="취소">     	 
@@ -106,9 +118,9 @@ function IdSearchCheck(){
 		f.member_name.focus();
 		return false;
 	}
-	if (f.hp2.value==""||f.hp3.value==""){
+	if (f.member_hp2.value==""||f.member_hp3.value==""){
 		alert("전화번호를 입력해주세요.");
-		f.hp2.focus();
+		f.member_hp2.focus();
 		return false;
 	}
 		
