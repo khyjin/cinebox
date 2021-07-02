@@ -86,4 +86,11 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		return imageList;
 	}
 	
+	//  영화 리스트 출력
+	@Override
+	public List<GoodsVO> movielist(String movie_status) throws DataAccessException {
+		List<GoodsVO> goodsList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsList",movie_status);
+	   return goodsList;	
+	}
+	
 }

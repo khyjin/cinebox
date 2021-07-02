@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"
 	isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />	
+<c:set var="contextPath"  value="${pageContext.request.contextPath}" />	
 <!DOCTYPE html>
 
 <meta charset="utf-8">

@@ -4,6 +4,14 @@ import org.springframework.stereotype.Component;
 
 @Component("memberVO") //이거 그 자바에서 빈 설정했을 때 골뱅이 빈에서 제일 처음에 설정했었던 어노테이션
 public class MemberVO {
+
+   
+   
+   
+   
+   
+   
+
 	
 	// 북샵 필드
 	//private String member_id; // 회원 아이디
@@ -53,7 +61,7 @@ public class MemberVO {
 	private String member_joindate; // 가입 일자
 	private String member_del_yn; // 회원 탈퇴 여부
 	private String member_del_date; // 회원 탈퇴
-	private String member_point; // 회원 포인트
+	private int member_point; // 회원 포인트
 	
 	public String getMember_id() {
 		return member_id;
@@ -161,10 +169,11 @@ public class MemberVO {
 	public void setMember_del_date(String member_del_date) {
 		this.member_del_date = member_del_date;
 	}
-	public String getMember_point() {
+	
+	public int getMember_point() {
 		return member_point;
 	}
-	public void setMember_point(String member_point) {
+	public void setMember_point(int member_point) {
 		this.member_point = member_point;
 	}
 	public String getMember_birth_y() {
@@ -277,26 +286,26 @@ public class MemberVO {
 	public void setJibunAddress(String jibunAddress) {
 		this.jibunAddress = jibunAddress;
 	}
-    
-	
-	public String getNamujiAddress() {
-		return namujiAddress;
-	}
-	public void setNamujiAddress(String namujiAddress) {
-		this.namujiAddress = namujiAddress;
-	}
-	public String getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-	public String getDel_yn() {
-		return del_yn;
-	}
-	public void setDel_yn(String del_yn) {
-		this.del_yn = del_yn;
-	}
-	
-}
 
+    
+   
+   public String getNamujiAddress() {
+      return namujiAddress;
+   }
+   public void setNamujiAddress(String namujiAddress) {
+      this.namujiAddress = namujiAddress;
+   }
+   public String getJoinDate() {
+      return joinDate;
+   }
+   public void setJoinDate(String joinDate) {
+      this.joinDate = joinDate;
+   }
+   public String getDel_yn() {
+      return del_yn;
+   }
+   public void setDel_yn(String del_yn) {
+      this.del_yn = del_yn;
+   }
+   
+}

@@ -5,7 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:if test='${not empty message }'>
+<script>
+window.onload=function()
+{
+  findPw();
+}
+
+function findPw(){
+   alert("아이디를 다시 확인해주세요.");
+}
+</script>
+</c:if>
 <title>비밀번호 찾기</title>
 <style>
 section.pwcontent {
@@ -91,7 +103,7 @@ div.pwsearchForm input#reset {
 	<form action="${contextPath}/member/pwsearch.do" method="post" onsubmit="return PwSearchCheck()" name="p">
 	  <input id="member_id" type="text" name="member_id" size="50" title="아이디" placeholder="아이디를 입력하세요"><br><br>
       <input id="name" type="text" name="member_name" size="50" title="이름" placeholder="이름을 입력하세요"><br><br>
-      <select id="hp1" name="hp1">
+      <select id="hp1" name="member_hp1">
 	      <option>010</option>
 	      <option>011</option>
 	      <option>016</option>
@@ -99,8 +111,8 @@ div.pwsearchForm input#reset {
 	      <option>018</option>
 	      <option>019</option>
       </select>&emsp;-&emsp;
-      <input id="hp" name="hp2" type="text" size="3" />&emsp;-&emsp;
-      <input id="hp" name="hp3" type="text" size="3" />                                        
+      <input id="hp" name="member_hp2" type="text" size="3" />&emsp;-&emsp;
+      <input id="hp" name="member_hp3" type="text" size="3" />                                        
       <br><br>
       <input id="submit" type="submit" value="찾기">  
       <input id="reset" type="button" onclick="location.href='loginForm.do'" value="취소">     	 
