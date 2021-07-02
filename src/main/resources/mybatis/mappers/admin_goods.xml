@@ -73,7 +73,7 @@
 		<selectKey resultType="int" keyProperty="movie_id" order="BEFORE">
 	    	select movie_seq.nextval from dual
 	    </selectKey>
-	    
+
 	    <![CDATA[
 		insert into cinebox_movie(
 		    movie_admin_id, 
