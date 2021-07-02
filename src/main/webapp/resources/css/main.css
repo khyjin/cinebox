@@ -5,6 +5,7 @@
 * {
    margin: 0px; padding: 0px; vertical-align: middle;
 }
+
 body {
    background-position: top; margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: "Dotum", Arial,serif; font-size: 1em; background-image: url("../imgs/body_back.gif"); background-repeat: repeat-x; background-color: rgb(255, 255, 255);
 }
@@ -19,11 +20,6 @@ a {
    clear: both;
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 #outer_wrap {
    margin: 0px auto; padding: 0px; width: 1100px;
 }
@@ -48,10 +44,7 @@ header #logo{
 header #logo a{
 	color: #ffffff;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 header #head_link {
    font-size: 0.75em; margin-right: 10px; float: right; font-family:"¸¼Àº °íµñ"; padding-top:10px; 
 }
@@ -76,9 +69,7 @@ header #search .main_input {
 header #search .btn1 {
    border: 1px solid rgb(51, 102, 153); border-image: none; width: 55px; height: 28px; color: rgb(255, 255, 255); margin-left: 2px; background-color: rgb(51, 102, 153);
 }
-<<<<<<< HEAD
 
-=======
 aside {
    width: 205px; float: left;
 }
@@ -96,7 +87,6 @@ aside #sidemenu {
 .ticket{
 	color:black;
 }
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 nav {
    margin: 25px 0px 0px 10px; font-family: "¸¼Àº °íµñ", Serif; font-size: 0.8em;
 }
@@ -362,21 +352,12 @@ article h4 {
   border-image: none; width: 150px; height: auto; box-shadow: 2px 2px 15px #666;
 }
 #detail_table {
-<<<<<<< HEAD
-   width: 590px; font-size: 0.75em; text-align: center; padding-top: 50px;
-=======
    width: 590px; font-size: 0.75em; text-align: center; padding-top: 20px;
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 }
 
 #detail_table table {
-<<<<<<< HEAD
-   width: 90%; border-right-color: #193a3e; border-top-color: #193a3e; border-bottom-color: #193a3e; border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; margin-bottom:50px; font-family:"¸¼Àº °íµñ"; 
-=======
    width: 100%; border-right-color: #193a3e; border-top-color: #193a3e; border-bottom-color: #193a3e; border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; margin-bottom:50px; font-family:"¸¼Àº °íµñ"; margin-left:auto; margin-right:auto;
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 }
-<<<<<<< HEAD
 #detail_table td  {
    padding: 15px; font-size: midium;
 }
@@ -390,10 +371,10 @@ article h4 {
 
 #detail_table .member_input  {
    font-size: small;
-=======
+}
+
 #detail_table2 {
    width: 590px; font-size: 0.75em; float: left;
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 }
 #detail_table table,#detail_table2 table {
    width: 90%; border-right-color: #193a3e; border-top-color: #193a3e; border-bottom-color: #193a3e; border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; margin-bottom:50px; font-family:"¸¼Àº °íµñ"; 
@@ -418,30 +399,18 @@ article h4 {
    border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: dotted;
 }
 
-<<<<<<< HEAD
-
-#detail_table table tr.solid_line {
-=======
 #detail_table table tr.solid_line.table td span, #detail_table2 table tr.solid_line.table td span {
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
    border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
 }
-<<<<<<< HEAD
-#detail_table table td span {
-=======
+
 #detail_table table td span,#detail_table2 table td span {
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
    font-family: "¸¼Àº °íµñ", Serif; font-size: 1.2em; font-weight: bold;
 }
 #detail_table table td.fixed,#detail_table2 table td.fixed {
    width: 110px; font-weight: bold;font-size: 0.8em;
 }
 
-<<<<<<< HEAD
-#detail_table table td.fixed_join {
-=======
 #detail_table table td.fixed_join,#detail_table2 table td.fixed_join {
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
    width: 110px; font-weight: bold; color: #ffffff; background:#193a3e; text-align: center;
 }
 
@@ -519,28 +488,6 @@ ul.movietabs li a:hover {
 .movietabcontainer {
    text-transform: uppercase; background: rgb(255, 255, 255); width: 100%; clear: both; border-bottom-color: #193a3e; border-bottom: 105px; float: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 div.openButtonContainer button.openbtn {
 	border: 1.1px solid  #193a3e;
@@ -660,20 +607,8 @@ div.myInfo tr,td {
 /*========Äü ¸Þ´º========*/
 #sticky {
    /* padding: 10px 5px; border-radius: 10px; top: 115px; width: 82px; font-size: 0.75em; float: right; position: relative; background-color: rgb(153, 153, 153); */
-<<<<<<< HEAD
-   padding: 10px 5px; 
-   border-radius: 10px; 
-   top: 115px; 
-   width: 82px; 
-   font-size: 0.75em; 
-   float: right; 
-   position: relative; 
-   background-color:#193a3e; 
-   
-=======
-   padding: 17px 8px; top: 115px; width: 87px; font-size: 0.75em; float: right; position: relative; background-color:#193a3e; 
+	padding: 17px 8px; top: 115px; width: 87px; font-size: 0.75em; float: right; position: relative; background-color:#193a3e; 
    border-radius: 35px 35px 50px 0px / 35px 35px 65px 0px;
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 }
 #sticky ul {
    list-style: none;
@@ -770,26 +705,11 @@ div.myInfo tr,td {
    font-size: 12; 
    float: left; 
 }
-
-<<<<<<< HEAD
-=======
 .detail_table {
    width: 190px; font-size: 0.75em; float: left; 
 }
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 .detail_table table {
-<<<<<<< HEAD
-   width: 95%; 
-   border-top-color:#193a3e; 
-   border-bottom-color:#193a3e; 
-   border-top-width: 2px; 
-   border-bottom-width: 1px; 
-   border-top-style: solid; 
-   border-bottom-style: solid; 
-   border-collapse: collapse; 
-=======
    width: 95%; border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; 
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 }
 .detail_table table td {
    padding: 7px 0px 7px 10px;
@@ -852,10 +772,6 @@ div.myInfo tr,td {
 
 .detail_table.clear input 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 /*================Login================*/
 section.LoginContent {
    margin-top: 80px;
@@ -972,20 +888,9 @@ article h1_TITLE {
 	text-align: center; padding: 10px 5px 45px; color: black; text-transform: uppercase; font-family: "¸¼Àº °íµñ";  font-size: x-large; border-bottom-color: black; border-bottom-width: 1px; border-bottom-style: solid;
 }
 
-<<<<<<< HEAD
-.main_book button {
-border: 1.1px solid white; background-color:white; padding:7px; font-family: "¸¼Àº °íµñ";
-}
-.main_book button:hover {
-background-color: white; color:#679a9e;
-}
-.main_book #more {
-   color: black;
-=======
 .main_book h3 #more {
    float: right;  padding: 10px 5px 45px; color: black; font-family: "¸¼Àº °íµñ";  font-size:small;
 
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 }
 .main_book .book {
    padding-top:20px; padding-bottom:30px; margin: 0px 0px 20px; background-position: right; border: 1px solid rgb(255, 255, 255); border-image: none; width: 188px; height: 250px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat;
