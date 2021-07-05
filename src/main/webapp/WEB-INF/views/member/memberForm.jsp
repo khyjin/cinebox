@@ -161,21 +161,21 @@ function result(){
 <img src="${contextPath}/resources/image/signup_icon.png" width="40" height="40"/>
 회원가입
 </div>
-   <form id="memberform" action="${contextPath}/member/addMember.do" method="post">   
+   <form name="memberform" action="${contextPath}/member/addMember.do" method="post">   
    <div id="detail_table">
       <table>
          <tbody>
             <tr class="dot_line">
                <td class="fixed_join">새 아이디</td>
                <td class="member_input">
-                 <input type="text" name="_member_id"  id="_member_id"  size="20" placeholder="4~10자 이내로 입력"/>
+                 <input type="text" name="_member_id"  id="_member_id"  size="20"/>
                  <input type="hidden" name="member_id"  id="member_id" />
                  <input type="button"  id="btnOverlapped" value="아이디 중복 확인" onClick="fn_overlapped()">
                </td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">새 비밀번호</td>
-               <td  class="member_input"><input name="member_pw" id="member_pw1" type="password" size="20" placeholder="4~15자 이내로 입력"/></td>
+               <td  class="member_input"><input name="member_pw" id="member_pw1" type="password" size="20" /></td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">비밀번호 확인</td>
@@ -185,7 +185,7 @@ function result(){
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이름</td>
-               <td  class="member_input"><input name="member_name" type="text" size="20" placeholder="2~5자 이내로 입력"/></td>
+               <td  class="member_input"><input name="member_name" type="text" size="20" /></td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">성별</td>

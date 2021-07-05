@@ -168,6 +168,15 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		message  = "mod_success";
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-	}	
+	}
+
+	@Override
+	@RequestMapping(value="/myPoint.do" ,method = RequestMethod.GET)
+	public ModelAndView myPoint(HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+
 	
 }

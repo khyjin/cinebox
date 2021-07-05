@@ -4,6 +4,14 @@ import org.springframework.stereotype.Component;
 
 @Component("memberVO") //이거 그 자바에서 빈 설정했을 때 골뱅이 빈에서 제일 처음에 설정했었던 어노테이션
 public class MemberVO {
+
+   
+   
+   
+   
+   
+   
+
 	
 	// 북샵 필드
 	//private String member_id; // 회원 아이디
@@ -278,26 +286,26 @@ public class MemberVO {
 	public void setJibunAddress(String jibunAddress) {
 		this.jibunAddress = jibunAddress;
 	}
-    
-	
-	public String getNamujiAddress() {
-		return namujiAddress;
-	}
-	public void setNamujiAddress(String namujiAddress) {
-		this.namujiAddress = namujiAddress;
-	}
-	public String getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-	public String getDel_yn() {
-		return del_yn;
-	}
-	public void setDel_yn(String del_yn) {
-		this.del_yn = del_yn;
-	}
-	
-}
 
+    
+   
+   public String getNamujiAddress() {
+      return namujiAddress;
+   }
+   public void setNamujiAddress(String namujiAddress) {
+      this.namujiAddress = namujiAddress;
+   }
+   public String getJoinDate() {
+      return joinDate;
+   }
+   public void setJoinDate(String joinDate) {
+      this.joinDate = joinDate;
+   }
+   public String getDel_yn() {
+      return del_yn;
+   }
+   public void setDel_yn(String del_yn) {
+      this.del_yn = del_yn;
+   }
+   
+}

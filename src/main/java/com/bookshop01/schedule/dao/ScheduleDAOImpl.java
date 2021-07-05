@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 
@@ -21,14 +22,13 @@ public class ScheduleDAOImpl implements ScheduleDAO{
 	@Override
 	public List<GoodsVO> selectTitle() throws DataAccessException {
 		List<GoodsVO> titleList=(ArrayList)sqlSession.selectList("mapper.schedule.selectTitle");
-	
 	   return titleList;	
 	}
 	
-
+	
 	@Override
-	public void insertDAO(Map<String, String> scheduleMap) throws DataAccessException {
-		sqlSession.insert("mapper.schedule.insertSchedule",scheduleMap);
+	public void insertDAO(ScheduleVO schedulVO) throws DataAccessException {
+		sqlSession.insert("mapper.schedule.insertSchedule",schedulVO);
 		
 	}
 }

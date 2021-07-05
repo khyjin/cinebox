@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.dao.ScheduleDAO;
 import com.bookshop01.schedule.vo.ScheduleVO;
@@ -21,18 +22,15 @@ public class ScheduleServiceImpl implements ScheduleService{
 	
 	@Override
 	public List<GoodsVO> selectTitle() throws Exception {
-	
 		List<GoodsVO> titleList=scheduleDAO.selectTitle();
 		return titleList;
 	}
 	
 	
 	@Override
-	public void addSchedule(Map<String, String> scheduleMap) throws Exception{
-		scheduleDAO.insertDAO(scheduleMap);
+	public void addSchedule(ScheduleVO scheduleVO) throws Exception{
+		scheduleDAO.insertDAO(scheduleVO);
 		
 	}
-
 	
-
 }

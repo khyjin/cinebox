@@ -5,7 +5,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="movie"  value="${goodsMap.goodsVO}"  />
+<c:set var="movie" value="${goodsMap.goodsVO }"/>
 <%
   request.setCharacterEncoding("utf-8");
 %>
@@ -43,6 +43,7 @@
 	});
 	
 </script>
+	
 	<!-- 영화 상세 정보 클릭 시 브라우저 타이틀을 영화 제목으로 표시되게 설정하기 -->
 	<title>${movie.movie_title}</title>	
 </head>
@@ -52,19 +53,28 @@
 			<header>
 				   <tiles:insertAttribute name="header" />
 			</header>
-			<div class="clear"></div>
-			  <aside>
-				 <tiles:insertAttribute name="side" />
-			</aside> 
+			
+				<div class="clear"></div>
+			<aside>
+			 	<tiles:insertAttribute name="side" />
+			</aside>
 			<article>
 			 	<tiles:insertAttribute name="body" />
 			</article>
-			<div class="clear"></div>
+			
+				<div class="clear"></div>
+			
 			<footer>
         		<tiles:insertAttribute name="footer" />
         	</footer>
+        	
 		</div>
-		 <tiles:insertAttribute name="quickMenu" />
+		
+		 
+		 	<tiles:insertAttribute name="quickMenu" />
+		 
+		 
+				
     </div>        	
 </body>      
         

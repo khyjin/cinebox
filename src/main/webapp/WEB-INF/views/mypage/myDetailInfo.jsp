@@ -202,7 +202,8 @@ function fn_modify_member_info(attribute){
 <body>
 <section class="mypage_main">
 	<div class="detailinfo">
-	<img src="${contextPath}/resources/image/modify_icon.png" width="40" height="40"/> 기본 정보</div>
+	<img src="${contextPath}/resources/image/modify_icon.png" width="40" height="40"/> 기본 정보
+	</div>
 <form name="frm_mod_member" class="mod_member">	
 	<div id="detail_table">
 		<table>
