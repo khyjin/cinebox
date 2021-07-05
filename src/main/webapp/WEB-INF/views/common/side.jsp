@@ -5,9 +5,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-	
-	
-	
 <nav>
 <ul>
 <c:choose>
@@ -43,8 +40,6 @@
 		</ul>
 	</li>
 </c:when>
-<<<<<<< HEAD
-=======
 
 <c:when test="${side_menu=='cscenter'}">
 <c:choose>
@@ -59,7 +54,6 @@
 			<li><a href="${contextPath}/cscenter/lostItemBoard.do">분실물 문의 확인</a></li>
 			<li><a href="#">단체/대관 문의 확인</a></li>
    	   		<li class="no_line"><a href="#">전체 게시글 확인</a></li>
-
 			<br>
 			<li>
 				<img width="150" height="90" src="${contextPath}/resources/image/call_center_logo.jpg">
@@ -86,13 +80,9 @@
 	</c:otherwise>
 	</c:choose>
 </c:when>
-
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 </c:choose>
 </ul>
 </nav>
-<<<<<<< HEAD
-=======
 
 <!-- 고객센터 적용 -->
 <script type="text/javascript">
@@ -135,5 +125,4 @@ function fn_send_rental(){
 }
 </script>
 <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 </html>

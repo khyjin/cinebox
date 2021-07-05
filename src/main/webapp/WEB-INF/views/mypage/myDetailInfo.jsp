@@ -8,7 +8,9 @@
 <html>
 <head>
 <style type="text/css">
-
+#detail_table table {
+width:100%;
+}
 </style>
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -60,7 +62,7 @@
                     document.getElementById('guide').innerHTML = '';
                 }
             }
-        }).open();
+        }).close();
     }
 
    
@@ -187,11 +189,13 @@ function fn_modify_member_info(attribute){
 				alert("에러가 발생했습니다."+data);
 			},
 			complete : function(data, textStatus) {
-				window.location.href = "http://localhost:8282/bookshop01/main/main.do";
+				window.location.href = "myDetailInfo.do";
 				
 			}
 		}); //end ajax
 }
+
+
 </script>
 </head>
 
@@ -319,10 +323,10 @@ function fn_modify_member_info(attribute){
 					    <input type="text" name="member_email2" size=10 value="${memberInfo.member_email2 }"><Br><br> 
 					<c:choose> 
 					   <c:when test="${memberInfo.member_email_yn=='true' }">
-					     <input type="checkbox" name="member_email_yn"  value="Y" checked /> cinebox에서 발송하는 e-mail을 수신합니다.
+					   <input type="checkbox" name="member_email_yn"  value="Y"  /> cinebox에서 발송하는 e-mail을 수신합니다.
 						</c:when>
 						<c:otherwise>
-						  <input type="checkbox" name="member_email_yn"  value="N"  /> cinebox에서 발송하는 e-mail을 수신합니다.
+					     <input type="checkbox" name="member_email_yn"  value="N" checked /> cinebox에서 발송하는 e-mail을 수신합니다.
 						</c:otherwise>
 					 </c:choose>
 					</td>
@@ -348,7 +352,7 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">포인트</td>
 					<td class="member_input">
-					   <input type="text" id="point" name="member_point" size=10 value="${memberInfo.member_point }" disabled> 원</a>
+					   <input type="text" id="point" name="member_point" size=5 value="${memberInfo.member_point }" disabled> 원
 					  <br>	  
 					</td>
 					<td></td>

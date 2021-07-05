@@ -74,22 +74,13 @@
 		   <c:choose>
 		     <c:when test="${isLogOn==true and not empty memberInfo }">
 			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
-<<<<<<< HEAD
-			   <li><a href="${contextPath}/cart/myCartList.do">고객센터</a></li>
-			   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
-=======
 			   <li><a href="${contextPath}/cscenter/cscenterMain.do">고객센터</a></li>
-			   <li><a href="${contextPath}/mypage/myDetailInfo.do">마이페이지</a></li>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
+			   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
 			 </c:when>
 			 <c:otherwise>
 			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
 			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
-<<<<<<< HEAD
-			   <li><a href="${contextPath}/main/loading.do">고객센터</a></li><br>
-=======
 			   <li><a href="${contextPath}/cscenter/cscenterMain.do">고객센터</a></li>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 			 </c:otherwise>
 			</c:choose>
       <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  

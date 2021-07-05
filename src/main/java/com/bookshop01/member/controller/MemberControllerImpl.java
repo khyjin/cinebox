@@ -92,9 +92,9 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	         mav.setViewName(view);
 	         
 	         if(result == null)
-	         {	        	 
+	         {	        	         	 
 	        	String message="가입된 회원이 아닙니다. 회원가입을 해주세요.";
-	 			mav.addObject("message", message);
+	 			mav.addObject("message", message);	   
 	 			mav.setViewName("/member/idsearchview");
 	         }
 	         return mav;
@@ -152,7 +152,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		}
 		catch (Exception e) {
 			message  = "<script>";
-		    message +=" alert('모든 정보를 입력해주세요');";
 		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
 		    message += " </script>";
 		    e.printStackTrace();
