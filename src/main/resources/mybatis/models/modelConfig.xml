@@ -10,12 +10,8 @@
     <typeAlias type="com.bookshop01.cart.vo.CartVO" alias="cartVO" />
     <typeAlias type="com.bookshop01.order.vo.OrderVO" alias="orderVO" />
     <typeAlias type="com.bookshop01.mypage.vo.MyPageVO" alias="mypageVO" />
-
 	<typeAlias type="com.bookshop01.cscenter.vo.CscenterVO" alias="cscenterVO"/>
-    
-
-    <typeAlias type="com.bookshop01.schedule.vo.ScheduleVO" alias="ScheduleVO" />
-
+    <typeAlias type="com.bookshop01.schedule.vo.ScheduleVO" alias="scheduleVO" />
   </typeAliases>
 </configuration>
 

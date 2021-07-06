@@ -7,15 +7,34 @@
 <title>Insert title here</title>
 </head>
 <style>
-  table {
-    width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  tr td {
-   border-bottom : 1px solid #444444;
-    padding: 10px;
-  }
+.blueone {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.blueone th {
+	padding: 10px;
+	color: #168;
+	border-bottom: 3px solid #168;
+	font-size: small;
+	text-align: left;
+}
+
+.blueone td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.blueone tr:hover td {
+	color: #004;
+}
+
+#button0 {
+	background-color: #193a3e;
+	color: white;
+	border: none;
+	padding: 6px 6px;
+}
 
 </style>
 <body>
@@ -28,7 +47,7 @@
 	빠르고 정확한 답변을 위해 분실물에 대한 정보를 자세히 작성해주세요.<br>
 	단순 분실물 문의 외 문의나 불편사항은 이메일 문의로 작성 부탁드립니다.</font><br><br>
 	
-<table>
+<table class="blueone">
 <form>
 	<tbody>
 		<tr>
@@ -76,7 +95,7 @@
 			<td></td><td></td><td></td>
 			<td>
 			<input type="reset" value="취소">
-			<input type="submit" value="등록하기" size="20"></td>
+			<input id="button0" type="submit" value="등록하기" size="20"></td>
 		</tr>
 	</tbody>
 </form>

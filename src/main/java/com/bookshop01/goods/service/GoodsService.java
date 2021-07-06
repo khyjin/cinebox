@@ -18,4 +18,5 @@ public interface GoodsService {
 	public Map<String, List<GoodsVO>> listGoodshistory() throws Exception;
 	public List<String> keywordSearch(String keyword) throws Exception;
 	public List<GoodsVO> searchGoods(String searchWord) throws Exception;
+	
 }

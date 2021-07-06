@@ -34,6 +34,7 @@
 
 <BODY>
 <form action="${contextPath}/admin/goods/addNewGoods.do" method="post"  enctype="multipart/form-data">
+<input type="hidden" name="member_id" value="${memberInfo.member_id}">
 		<h1>새상품 등록창</h1>
 <div class="tab_container">
 	<!-- 내용 들어 가는 곳 -->
@@ -91,7 +92,8 @@
 				<td>
 					<input type="radio" name="movie_status" value="readysc" checked="checked">상영예정
 					<input type="radio" name="movie_status" value="screening">상영중
-					<input type="radio" name="movie_status" value="endsc">상영종료				
+					<input type="radio" name="movie_status" value="endsc">상영종료		
+					<input type="radio" name="movie_status"	value="undecided">예정미정	
 				</td>
 			</tr>
 
@@ -106,7 +108,7 @@
 			
 			<tr>
 				<td>이미지파일 첨부</td>
-			    <td> <input type="button"  value="파일 추가" onClick="fn_addFile()"/>			    
+			    <td><input type="button"  value="파일 추가" onClick="fn_addFile()"/>			    
 					<div id="d_file">
 				    </div>
 				</td>
