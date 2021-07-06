@@ -13,7 +13,7 @@ import com.bookshop01.schedule.vo.ScheduleVO;
 public interface ScheduleDAO {
 	
 		public List<GoodsVO> selectTitle() throws DataAccessException;
-		public void insertDAO(Map<String, String> scheduleMap)throws DataAccessException;
+		public void insertDAO(ScheduleVO scheduleVO) throws DataAccessException;
 
 		
 	

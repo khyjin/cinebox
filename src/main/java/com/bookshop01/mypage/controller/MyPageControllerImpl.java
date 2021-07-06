@@ -135,29 +135,22 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			memberMap.put("member_birth_y",val[0]);
 			memberMap.put("member_birth_m",val[1]);
 			memberMap.put("member_birth_d",val[2]);
-			memberMap.put("member_birth_gn",val[3]);
-		}else if(attribute.equals("tel")){
-			val=value.split(",");
-			memberMap.put("tel1",val[0]);
-			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
 		}else if(attribute.equals("hp")){
 			val=value.split(",");
-			memberMap.put("hp1",val[0]);
-			memberMap.put("hp2",val[1]);
-			memberMap.put("hp3",val[2]);
-			memberMap.put("smssts_yn", val[3]);
+			memberMap.put("member_hp1",val[0]);
+			memberMap.put("member_hp2",val[1]);
+			memberMap.put("member_hp3",val[2]);
 		}else if(attribute.equals("email")){
 			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
+			memberMap.put("member_email1",val[0]);
+			memberMap.put("member_email2",val[1]);
+			memberMap.put("member_email_yn", val[2]);
 		}else if(attribute.equals("address")){
 			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
-			memberMap.put("roadAddress",val[1]);
-			memberMap.put("jibunAddress", val[2]);
-			memberMap.put("namujiAddress", val[3]);
+			memberMap.put("member_zip",val[0]);
+			memberMap.put("member_roadaddress",val[1]);
+			memberMap.put("member_jibunaddress", val[2]);
+			memberMap.put("member_namujiaddress", val[3]);
 		}else {
 			memberMap.put(attribute,value);	
 		}
@@ -175,6 +168,15 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		message  = "mod_success";
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-	}	
+	}
+
+	@Override
+	@RequestMapping(value="/myPoint.do" ,method = RequestMethod.GET)
+	public ModelAndView myPoint(HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+
 	
 }

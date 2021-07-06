@@ -87,6 +87,30 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMap;
 	}
 	
+	//상영 중인 영화 리스트
+	public Map<String, List<GoodsVO>> movieopenlist() throws Exception {
+		Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
+		List<GoodsVO> goodsList=goodsDAO.movielist("screening");
+		goodsMap.put("screening",goodsList);
+		return goodsMap;
+	}
+	
+	//상영 예정인 영화 리스트
+		public Map<String, List<GoodsVO>> moviereadylist() throws Exception {
+			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
+			List<GoodsVO> goodsList=goodsDAO.movielist("readysc");
+			goodsMap.put("readysc",goodsList);
+			return goodsMap;
+	}
+	
+	//상영 종료된 영화 리스트
+		public Map<String, List<GoodsVO>> movieendlist() throws Exception {
+			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
+			List<GoodsVO> goodsList=goodsDAO.movielist("endsc");
+			goodsMap.put("endsc",goodsList);
+			return goodsMap;
+	}	
+	
 	public List<String> keywordSearch(String keyword) throws Exception {
 		List<String> list=goodsDAO.selectKeywordSearch(keyword);
 		return list;

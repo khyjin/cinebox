@@ -5,15 +5,12 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-	
-	
-	
 <nav>
 <ul>
 <c:choose>
 <c:when test="${side_menu=='admin_mode' }">
-   <li>
-		<H3>주요기능</H3>
+   <li class="sidemenu">
+     <H3>주요기능</H3>
 		<ul id="sidemenu">
 			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">영화</a></li>
 			<li><a href="${contextPath}/admin/order/adminOrderMain.do">예매</a></li>
@@ -23,23 +20,26 @@
 		</ul>
 	</li>
 </c:when>
+
+
+
 <c:when test="${side_menu=='my_page' }">
-	<li>
-		<h3>주문내역</h3>
-		<ul>
-			<li><a href="${contextPath}/mypage/listMyOrderHistory.do">주문내역/배송 조회</a></li>
-			<li><a href="#">반품/교환 신청 및 조회</a></li>
-			<li><a href="#">취소 주문 내역</a></li>
-			<li><a href="#">세금 계산서</a></li>
-		</ul>
+	<li class=sidemenu>
+		<a href="${contextPath}/order/orderResult.do"><h3>나의 예매 내역</h3></a>		
 	</li>
-	<li>
-		<h3>정보내역</h3>
+	<li id="sidemenu">
+		<h3>회원 정보</h3>
 		<ul>
-			<li><a href="${contextPath}/mypage/myDetailInfo.do">회원정보관리</a></li>
-			<li><a href="#">나의 주소록</a></li>
-			<li><a href="#">개인정보 동의내역</a></li>
-			<li><a href="#">회원탈퇴</a></li>
+			<li><a href="${contextPath}/mypage/myDetailInfo.do">나의 정보 수정</a></li>
+			<li><a href="${contextPath}/mypage/myPoint.do">잔여 포인트 확인</a></li>	
+			<li><a href="#">내 후기평</a></li>
+			<li><a href="${contextPath}/mypage/memberDelete.do">회원탈퇴</a></li>
+		</ul>
+	</li>	
+	<li class="sidemenu">
+		<h3>나의 문의 내역</h3>
+		<ul>
+			<li><a href="${contextPath}/mypage/myDetailInfo.do">1:1 문의</a></li>
 		</ul>
 	</li>
 </c:when>
@@ -57,7 +57,6 @@
 			<li><a href="${contextPath}/admin/cscenter/lostItemBoard.do">분실물 문의 확인</a></li>
 			<li><a href="#">단체/대관 문의 확인</a></li>
    	   		<li class="no_line"><a href="#">전체 게시글 확인</a></li>
-
 			<br>
 			<li>
 				<img width="150" height="90" src="${contextPath}/resources/image/call_center_logo.jpg">

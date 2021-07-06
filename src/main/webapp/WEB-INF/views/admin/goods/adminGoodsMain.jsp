@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<<<<<<< HEAD
 <style type="text/css">
 
 #button0{ background-color:#193a3e;}
@@ -37,6 +38,7 @@ color: black;
 }
 
 </style>
+
 <script>
 function search_goods_list(fixeSearchPeriod){
 	var formObj=document.createElement("form");
@@ -127,8 +129,11 @@ function delete_check(deleteId) {
 
 </script>
 </head>
+
 <body>
 	<H3>영화 조회</H3>
+<section class="mypage_main">
+	<H3>상품 조회</H3>
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >
 			<TBODY>
@@ -284,8 +289,24 @@ function delete_check(deleteId) {
 				</form>
 				</td>
 				<td>
+
 					<button id="button0">
 						<a href="${contextPath}/admin/goods/modifyGoodsForm.do?movie_id=${item.movie_id}">수정</a>
+
+				    <c:set var="pub_date" value="${item.goods_published_date}" />
+					  <c:set var="arr" value="${fn:split(pub_date,' ')}" />
+					<strong>
+					   <c:out value="${arr[0]}" />
+					</strong>
+				</td>
+				<td>
+					<button>
+						<a href="${pageContext.request.contextPath}/admin/goods/deleteNewGoods.do?goods_id=${item.goods_id}">삭제</a>
+					</button>
+				</td>
+				<td>
+					<button>
+						<a href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}">수정</a>
 					</button>
 				</td>
 			</TR>
@@ -326,5 +347,6 @@ function delete_check(deleteId) {
 		<input type="submit" value="상품 등록하기">
 	</form>
 </DIV>
+</section>
 </body>
 </html>

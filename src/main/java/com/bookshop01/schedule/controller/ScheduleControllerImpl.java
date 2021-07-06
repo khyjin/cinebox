@@ -1,6 +1,7 @@
 package com.bookshop01.schedule.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.admin.goods.service.AdminGoodsService;
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
@@ -34,43 +36,48 @@ public class ScheduleControllerImpl extends BaseController  implements ScheduleC
 	@Autowired
 	private ScheduleService scheduleService;
 	
+	//스케줄 폼으로 가기
 	@Override
 	@RequestMapping("/addNewSchedule.do")
 	public ModelAndView addNewSchedule(HttpServletRequest request,HttpServletResponse response)  throws Exception {
 		
 		ModelAndView mav=new ModelAndView();
 		String viewName=(String)request.getAttribute("viewName");
-		
-		List<GoodsVO> titleList=scheduleService.selectTitle();
+		mav.setViewName(viewName);
+		List<GoodsVO> titleList=new ArrayList<GoodsVO>();
+		titleList=scheduleService.selectTitle();
 		mav.addObject("titleList",titleList);
 		
-		//PrintWriter pr=response.getWriter();
-		//pr.print(titleList);
-		mav.setViewName(viewName);
 		return mav;
 		
 	}
-	
+	//상영시간표 입력하기
 	@Override
-	@RequestMapping(value="/addSchedule.do" ,method = RequestMethod.GET)
-	public ModelAndView addSchedule(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	
-	
-	ModelAndView mav = new ModelAndView();
-	Map<String,String> scheduleMap=new HashMap<String,String>();
-	String movie_id=request.getParameter("movie_id");
-	String movie_title=request.getParameter("movie_title");
-	String room_number=request.getParameter("room_number");
-	String scheule_start_time=request.getParameter("scheule_start_time");
-	String schedule_date=request.getParameter("schedule_date");
-	scheduleMap.put("movie_id", movie_id);
-	scheduleMap.put("movie_title", movie_title);
-	scheduleMap.put("room_number", room_number);
-	scheduleMap.put("scheule_start_time", scheule_start_time);
-	scheduleMap.put("schedule_date", schedule_date);
-	
-	scheduleService.addSchedule(scheduleMap);
-	mav.setViewName("redirect:/admin/member/adminMemberMain.do");
-	return mav;
+	@RequestMapping(value="/addSchedule.do")
+	public ResponseEntity addSchedule(@ModelAttribute("ScheduleVO") ScheduleVO scheduleVO, HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+		
+		try {
+			scheduleService.addSchedule(scheduleVO);
+			message  = "<script>";
+			message +=" alert('글 등록을 완료했습니다.');";
+			message += " location.href='"+request.getContextPath()+"/schedule/addNewScheduleForm.do';";
+			message += " </script>";
+		} catch (Exception e) {
+			message  = "<script>";
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += " location.href='"+request.getContextPath()+"/schedule/addNewScheduleForm.do';";
+		    message += " </script>";
+			e.printStackTrace();
+		}
+		
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 }

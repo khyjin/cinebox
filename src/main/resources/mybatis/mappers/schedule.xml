@@ -42,11 +42,11 @@
 			#{movie_title},
 			#{room_number},
 			#{schedule_start_time},
-             #{schedule_date})
+             to_date(#{schedule_date},'yyyy-mm-dd'))
 		]]>
 	</insert> 
 
-	<select id="selectTitle" resultMap="goodsResult"  resultType="goodsVO">
+	<select id="selectTitle" resultMap="goodsResult">
 	    <![CDATA[
 		    	select * from cinebox_movie
     	]]>

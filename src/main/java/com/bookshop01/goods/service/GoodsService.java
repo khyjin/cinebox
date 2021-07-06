@@ -10,6 +10,9 @@ public interface GoodsService {
 	
 	public Map<String,List<GoodsVO>> listGoods() throws Exception;
 	public Map goodsDetail(String _goods_id) throws Exception;
+	public Map<String, List<GoodsVO>> movieopenlist() throws Exception;
+	public Map<String, List<GoodsVO>> moviereadylist() throws Exception;
+	public Map<String, List<GoodsVO>> movieendlist() throws Exception;
 	public Map<String,List<GoodsVO>> listGoodssort() throws Exception;
 	public Map<String,List<GoodsVO>> listGoodsmoney() throws Exception;
 	public Map<String,List<GoodsVO>> listGoodsuni() throws Exception;
