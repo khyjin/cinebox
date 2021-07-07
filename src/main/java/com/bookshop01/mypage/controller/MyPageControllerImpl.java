@@ -177,6 +177,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
+	
 
 	
 }

@@ -1,6 +1,7 @@
 package com.bookshop01.mypage.dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,6 @@ public class MyPageDAOImpl implements MyPageDAO{
 		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.myPoint",member_id);
 		return memberVO;
 	}
-
+	
 	
 }

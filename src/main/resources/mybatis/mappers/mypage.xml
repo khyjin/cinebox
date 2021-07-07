@@ -42,6 +42,8 @@
 	</resultMap> 
 
 	
+	
+	
 	 <select id="selectMyOrderGoodsList" resultMap="orderGoodsResult"  parameterType="String"  >
 	    <![CDATA[
 			select * from t_shopping_order
@@ -142,7 +144,6 @@
 		  		set member_del_yn='y',member_del_date=to_date(sysdate) 
 		  where member_id=#{member_id} and member_pw=#{member_pw}
 	  ]]>
-	</update>		
-	
+	</update>	
 		
 </mapper>

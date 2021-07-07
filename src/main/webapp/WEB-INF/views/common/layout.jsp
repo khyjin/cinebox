@@ -27,11 +27,11 @@
 	// 슬라이드 
 	$(document).ready(function() {
 		$('#ad_main_banner').bjqs({
-			'width' : 734,
-			'height' : 148,
+			'width' : 970,
+			'height' : 160,
 			'showMarkers' : true,
 			'showControls' : false,
-			'centerMarkers' : false
+			'centerMarkers' : false,
 		});
 	});
 	// 스티키 		

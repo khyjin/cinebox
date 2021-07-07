@@ -51,5 +51,7 @@ public class MyPageServiceImpl  implements MyPageService{
 	public MemberVO myPoint(String member_id) throws Exception {
 		return myPageDAO.myPoint(member_id);
 	}
+	
+
 
 }

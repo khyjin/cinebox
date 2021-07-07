@@ -8,7 +8,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-
+<style type="text/css">
+section.admin_mypage_main {
+   width:800;
+   height:600;
+   float:right;
+   margin-top : -190;
+   }
+</style>
 <script>
 function search_goods_list(fixeSearchPeriod){
 	var formObj=document.createElement("form");
@@ -91,7 +98,7 @@ function  calcPeriod(search_period){
 </head>
 
 <body>
-<section class="mypage_main">
+<section class="admin_mypage_main">
 	<H3>상품 조회</H3>
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >

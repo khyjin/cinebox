@@ -32,7 +32,7 @@
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">나의 정보 수정</a></li>
 			<li><a href="${contextPath}/mypage/myPoint.do">잔여 포인트 확인</a></li>	
-			<li><a href="#">내 후기평</a></li>
+			<li><a href="${contextPath}/mypage/myReviewList.do">내 후기평</a></li>
 			<li><a href="${contextPath}/mypage/memberDelete.do">회원탈퇴</a></li>
 		</ul>
 	</li>	
