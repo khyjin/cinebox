@@ -7,7 +7,7 @@
 }
 
 body {
-   background-position: top; margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: "Dotum", Arial,serif; font-size: 1em; background-image: url("../imgs/body_back.gif"); background-repeat: repeat-x; background-color: rgb(255, 255, 255);
+   background-position: top; margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: "Dotum", Arial,serif; font-size: 1em; background-image: url("../imgs/body_back.gif"); background-repeat: repeat-x; background-color: #ecf0f1;
 }
 img {
    border: currentColor; border-image: none;
@@ -137,10 +137,10 @@ table {
 }
 
 .complete {
-	height: 50px; font-size: 1rem; font-weight: bold; background-color: #e8e8e8; border: 1px solid #e8e8e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
+	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:215px;
 }
 .back {
-	height: 50px; font-size: 1rem; font-weight: bold; background-color: #e8e8e8; border: 1px solid #e8e8e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
+	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #e8e8e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
 }
 .mod_member {
 padding-left: 70px;
@@ -225,7 +225,7 @@ section.mypage_main {
 	font-family : "¸¼Àº °íµñ";
 	font-weight : bold;
 	padding : 20;
-	padding-left : 190;
+	padding-left : 390px;
 }
 .detailinfo {
      font-size : 32;
@@ -392,7 +392,7 @@ article h4 {
    font-size: xx-small;
 }
 
-#detail_table .member_input  {
+#detail_table .member_input {
    font-size: small;
 }
 #detail_table table tr.dot_line,#detail_table2 table tr.dot_line {
@@ -474,19 +474,21 @@ ul.tabs li.active a:hover {
 }
 
 ul.movietabs {
-   list-style: none; margin: 0px; padding: 0px; width: 100%; height: 32px; border-bottom-color: #193a3e; border-bottom-width: 1px; border-bottom-style: solid; float: left;
+   list-style: none; margin: 0px; padding: 11px; width: 100%; height: 22px; border-bottom-color: #193a3e; border-bottom-width: 1px; padding-left:0px; border-bottom-style: solid; float: left;
 }
 ul.movietabs li {
-   border-width: 1px;  border-style: solid; border-color: #193a3e; margin: 0px 1px; padding: 0px; border-image: none; height: 31px; line-height: 31px; overflow: hidden; float: left;  background-color: #193a3e;
+   border-width: 1px;  border-style: solid; border-color: #193a3e; padding: 1px; border-image: none; height: 30px; line-height: 31px; overflow: hidden; float: left;  background-color: #193a3e;
 }
 ul.movietabs li a {
-   padding: 0px 20px;  color: #ffffff; font-size: 13px; font-weight: bold; text-decoration: none; display: block; font-family: "¸¼Àº °íµñ";
+   padding: 0px 50px;  color: #ffffff; font-size: 15px; font-weight: bold; text-decoration: none; display: block; font-family: "¸¼Àº °íµñ";
 }
 ul.movietabs li a:hover {
-   background-color: #2d676e;
+   background-color: #ecf0f1;
+   color: #193a3e;
 }
+
 .movietabcontainer {
-   text-transform: uppercase; background: rgb(255, 255, 255); width: 100%; clear: both; border-bottom-color: #193a3e; border-bottom: 105px; float: left;
+   text-transform: uppercase;  width: 100%; clear: both; border-bottom-color: #193a3e; border-bottom: 1px; float: left; height: 50px; 
 }
 
 div.openButtonContainer button.openbtn {
@@ -794,6 +796,7 @@ div.memberLoginContainer {
    flex-shrink: 1;
    width: 500px;
    padding-bottom: 100px;
+   padding-left: 220px;
 }
 div.loginButtonContainer {
    border-bottom: 2px solid #193a3e;
@@ -893,10 +896,14 @@ article h1_TITLE {
 
 }
 .main_book .book {
-   padding-top:20px; padding-bottom:30px; margin: 0px 0px 20px; background-position: right; border: 1px solid rgb(255, 255, 255); border-image: none; width: 188px; height: 250px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat;
+   padding-top:20px; padding-bottom:30px; margin: 0px 0px 0px; background-position: right; border: 1px solid rgb(236, 240, 241); border-image: none; width: 188px; height: 290px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat; overflow: hidden; 
 }
+
 .main_book .book img {
-   margin: 25px 15px 5px;
+   margin: 25px 15px 5px; transition: all 0.2s linear;
+}
+.main_book .book:hover img {
+	transform:scale(1.1);
 }
 .main_book .no_back.book {
    background-image: none;
@@ -905,19 +912,16 @@ article h1_TITLE {
    margin: 0px; padding: 2px 0px;
 }
 .main_book .book .title {
-   margin: 0px; padding: 2px 0px;
+   margin: 0px; padding: 2px 0px; font-weight: bold; padding-top:13px; font-size:15px;
 }
 .main_book .book .writer {
    margin: 0px; padding: 2px 0px;
 }
 .main_book .book .price {
-   margin: 0px; padding: 2px 0px;
+   margin: 0px; padding: 0px 0px;
 }
 .main_book .book .sort {
    margin-top: 4px;
-}
-.main_book .book .title {
-   font-weight: bold;
 }
 #suggest{
 display:none; position: absolute; left: 830px; top:80px; border: 0.1px  solid #87cb42; z-index:3;font-weight: bold;background-color:#ffffff;    

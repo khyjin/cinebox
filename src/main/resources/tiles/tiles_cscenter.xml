@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
     <definition name="/cscenter/cscenterMain" extends="baseLayout">
-       <put-attribute name="title" value="관리자 메인 페이지" />
+       <put-attribute name="title" value="고객센터 메인 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/cscenter/cscenterMain.jsp" />
     </definition>
     
@@ -19,20 +19,23 @@
     	<put-attribute name="body" value="/WEB-INF/views/cscenter/cscenterNotice.jsp"/>
 	</definition>
 	
-	<definition name="/cscenter/noticeRegForm" extends="baseLayout">
-		<put-attribute name="title" value="공지사항"/>
-    	<put-attribute name="body" value="/WEB-INF/views/cscenter/noticeRegForm.jsp"/>
-	</definition>
+	
 	
 	<definition name="/cscenter/noticeView" extends="baseLayout">
 		<put-attribute name="title" value="공지사항"/>
     	<put-attribute name="body" value="/WEB-INF/views/cscenter/noticeView.jsp"/>
 	</definition>
 	
-	<definition name="/cscenter/modifyView" extends="baseLayout">
-		<put-attribute name="title" value="공지사항"/>
-    	<put-attribute name="body" value="/WEB-INF/views/cscenter/modifyView.jsp"/>
+	
+		<definition name="/cscenter/faqBoard" extends="baseLayout">
+		<put-attribute name="title" value="자주하는 질문"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/faqBoard.jsp"/>
 	</definition>
+
+	<definition name="/cscenter/qnaForm" extends="baseLayout">
+		<put-attribute name="title" value="1:1문의"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/qnaForm.jsp"/>
+	</definition>	
 </tiles-definitions>
 
 

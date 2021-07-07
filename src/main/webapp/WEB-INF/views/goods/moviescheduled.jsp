@@ -6,12 +6,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.main_book{
+	padding:10px;
+}
+.main_book h3{
+	border:0;
+	padding: 5px 5px 45px;
+	text-align: center;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <section class="openContent">
 <div class="main_book" >
+<h3>상영 예정인 영화</h3>
 <c:set  var="goods_count" value="0" />
 <div class="movietabcontainer" id="moviecontainer">
 		<ul class="movietabs">
@@ -30,6 +41,7 @@
 				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
 			<div class="title">${item.movie_title }</div>
+			<div class="date">개봉일&emsp;<fmt:formatDate value="${item.movie_open_date}" pattern="yy-MM-dd"/></div>
 			<div class="price">
 		  	   예매버튼추가예정
 			</div>

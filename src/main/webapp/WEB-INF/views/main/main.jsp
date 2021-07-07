@@ -17,9 +17,7 @@
 			<a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 			</a>
-
 				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
-
 			<div class="title">${item.movie_title }</div>
 			<div class="price">
 		  	   예매버튼추가예정
@@ -65,6 +63,7 @@
 		<li><img width="775" height="145" src="${contextPath}/resources/image/cine_event3.png"></li> 
 	</ul>
 </div>
+
 
 
 

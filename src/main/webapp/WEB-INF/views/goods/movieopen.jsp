@@ -6,18 +6,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.main_book{
+	padding:10px;
+}
+.main_book h3{
+	border:0;
+	padding: 5px 5px 45px;
+	text-align: center;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <section class="openContent">
 <div class="main_book" >
+<h3>현재 상영 중인 영화</h3>
 <c:set  var="goods_count" value="0" />
 <div class="movietabcontainer" id="moviecontainer">
 		<ul class="movietabs">
         <li><a href="${contextPath}/goods/movieopen.do">현재 상영 중인 영화</a></li>
          <li><a href="${contextPath}/goods/moviescheduled.do">상영 예정인 영화</a></li>
         <li><a href="${contextPath}/goods/movieclosed.do">상영 종료된 영화</a></li>
+        
         </ul>
       </div>
 	<c:forEach var="item" items="${goodsMap.screening}">

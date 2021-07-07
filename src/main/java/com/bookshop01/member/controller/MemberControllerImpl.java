@@ -152,7 +152,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		}
 		catch (Exception e) {
 			message  = "<script>";
-		    message +=" alert('모든 정보를 입력해주세요');";
 		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
 		    message += " </script>";
 		    e.printStackTrace();
