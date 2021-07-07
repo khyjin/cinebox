@@ -101,8 +101,8 @@
 			#{movie_country},
 			#{movie_content},
 			#{movie_status},
-			#{movie_open_date},
-			#{movie_close_date},)
+			to_date(#{movie_open_date},'YYYY-MM-DD'),
+			to_date(#{movie_close_date},'YYYY-MM-DD'))
 		]]>
 	</insert> 
 	

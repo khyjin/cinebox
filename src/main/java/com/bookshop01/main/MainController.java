@@ -62,5 +62,15 @@ public class MainController extends BaseController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value= "/main/test.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session;
+		ModelAndView mav=new ModelAndView();
+		String viewName=(String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		
+		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoods();
+		mav.addObject("goodsMap", goodsMap);
+		return mav;
+	}
 }

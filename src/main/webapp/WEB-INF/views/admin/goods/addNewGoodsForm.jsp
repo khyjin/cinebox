@@ -30,9 +30,9 @@
 		 }
 	}
 </script>    
-</head>
+</head><BODY>
+<section class="mypage_main">
 
-<BODY>
 <form action="${contextPath}/admin/goods/addNewGoods.do" method="post"  enctype="multipart/form-data">
 		<h1>새상품 등록창</h1>
 <div class="tab_container">
@@ -133,4 +133,5 @@
 	 </table>
 </center>	 
 </div>
-</form>	 
+</form>	
+</section> </body>

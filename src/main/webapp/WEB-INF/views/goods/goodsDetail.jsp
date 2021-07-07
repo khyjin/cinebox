@@ -15,7 +15,11 @@
 %>  
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<head>
 <style>
+body, hmtl{background: #ecf0f1;}
+
 #layer {
 	z-index: 2;
 	position: absolute;
@@ -40,6 +44,7 @@
 	z-index: 4;
 	float: right;
 }
+
 </style>
 <script type="text/javascript">
 	function add_cart(goods_id) {
@@ -95,254 +100,238 @@
 		} 
 	}	
 </script>
+<style>
+#slide {
+  position: relative;
+  overflow: hidden;
+  width: 500px;
+  height: 400px;
+  margin :auto;
+}
 
-<!-- 스틸컷 제이쿼리 시작 -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
+#slide .cnt > li {
+  position: absolute;
+  top: 0;
+  left: 500px;
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 300px;
+  color: #fff;
+}
 
-<style>/*GLOBALS*/
-	*{margin:0; padding:0; list-style:none;}
-	a{text-decoration:none; color:#666;}
-	a:hover{color:#1bc1a3;}
-	body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;}
-	
-	#wrapper{
-	  width:600px;
-	  margin:50px auto;
-	  height:400px;
-	  position:relative;
-	  color:#fff;
-	  text-shadow:rgba(0,0,0,0.1) 2px 2px 0px;  
-	}
-	
-	#slider-wrap{
-	  width:600px;
-	  height:400px;
-	  position:relative;
-	  overflow:hidden;
-	}
-	
-	#slider-wrap ul#slider{
-	  width:100%;
-	  height:100%;
-	  
-	  position:absolute;
-	  top:0;
-	  left:0;   
-	}
-	
-	#slider-wrap ul#slider li{
-	  float:left;
-	  position:relative;
-	  width:600px;
-	  height:400px; 
-	}
-	
-	#slider-wrap ul#slider li > div{
-	  position:absolute;
-	  top:20px;
-	  left:35px;  
-	}
-	
-	#slider-wrap ul#slider li > div h3{
-	  font-size:36px;
-	  text-transform:uppercase; 
-	}
-	
-	#slider-wrap ul#slider li > div span{
-	  font-family: Neucha, Arial, sans serif;
-	  font-size:21px;
-	}
-	
-	#slider-wrap ul#slider li img{
-	  display:block;
-	  width:100%;
-	  height: 100%;
-	}
-	
-	/*btns*/
-	.btns{
-	  position:absolute;
-	  width:50px;
-	  height:60px;
-	  top:50%;
-	  margin-top:-25px;
-	  line-height:57px;
-	  text-align:center;
-	  cursor:pointer; 
-	  background:rgba(0,0,0,0.1);
-	  z-index:100;
-	  
-	  
-	  -webkit-user-select: none;  
-	  -moz-user-select: none; 
-	  -khtml-user-select: none; 
-	  -ms-user-select: none;
-	  
-	  -webkit-transition: all 0.1s ease;
-	  -moz-transition: all 0.1s ease;
-	  -o-transition: all 0.1s ease;
-	  -ms-transition: all 0.1s ease;
-	  transition: all 0.1s ease;
-	}
-	
-	.btns:hover{
-	  background:rgba(0,0,0,0.3); 
-	}
-	
-	#next{right:-50px; border-radius:7px 0px 0px 7px;}
-	#previous{left:-50px; border-radius:0px 7px 7px 7px;}
-	#counter{
-	  top: 30px; 
-	  right:35px; 
-	  width:auto;
-	  position:absolute;
-	}
-	
-	#slider-wrap.active #next{right:0px;}
-	#slider-wrap.active #previous{left:0px;}
+#slide .btn > button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  padding: 5px;
+  background-color: #fff;
+}
 
-	/*bar*/
-	#pagination-wrap{
-	  min-width:20px;
-	  margin-top:350px;
-	  margin-left: auto; 
-	  margin-right: auto;
-	  height:15px;
-	  position:relative;
-	  text-align:center;
-	}
-	
-	#pagination-wrap ul {
-	  width:100%;
-	}
-	
-	#pagination-wrap ul li{
-	  margin: 0 4px;
-	  display: inline-block;
-	  width:5px;
-	  height:5px;
-	  border-radius:50%;
-	  background:#fff;
-	  opacity:0.5;
-	  position:relative;
-	  top:0;  
-	}
-	
-	#pagination-wrap ul li.active{
-	  width:12px;
-	  height:12px;
-	  top:3px;
-	  opacity:1;
-	  box-shadow:rgba(0,0,0,0.1) 1px 1px 0px; 
-	}
-	
-	/*Header*/
-	h1, h2{text-shadow:none; text-align:center;}
-	h1{ color: #666; text-transform:uppercase;  font-size:36px;}
-	h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; margin-bottom:30px;} 
-	
-	/*ANIMATION*/
-	#slider-wrap ul, #pagination-wrap ul li{
-	  -webkit-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-	  -moz-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-	  -o-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-	  -ms-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-	  transition: all 0.3s cubic-bezier(1,.01,.32,1); 
-	}</style>
-	   <script>//current position
-	   var pos = 0;
-	 //number of slides
-	 var totalSlides = $('#slider-wrap ul li').length;
-	 //get the slide width
-	 var sliderWidth = $('#slider-wrap').width();
+#slide .btn .prev {
+  left: 5px;
+}
 
+#slide .btn .next {
+  right: 5px;
+}
 
- $(document).ready(function(){
-   
-   /*****************
-    BUILD THE SLIDER
-   *****************/
-   //set width to be 'x' times the number of slides
-   $('#slider-wrap ul#slider').width(sliderWidth*totalSlides);
-   
-     //next slide  
-   $('#next').click(function(){
-     slideRight();
-   });
-   
-   //previous slide
-   $('#previous').click(function(){
-     slideLeft();
-   });
-   
-   /*************************
-    //*> OPTIONAL SETTINGS
-   ************************/
-   //automatic slider
-   var autoSlider = setInterval(slideRight, 3000);
-   
-   //for each slide 
-   $.each($('#slider-wrap ul li'), function() { 
+#slide .auto > button {
+  display: none;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  border: 0;
+  padding: 5px;
+  background-color: #fff;
+}
 
-    //create a pagination
-      var li = document.createElement('li');
-      $('#pagination-wrap ul').append(li);    
-   });
-   
-   //counter
-   countSlides();
-   
-   //pagination
-   pagination();
-   
-   //hide/show controls/btns when hover
-   //pause automatic slide when hover
-   $('#slider-wrap').hover(
-     function(){ $(this).addClass('active'); clearInterval(autoSlider); }, 
-     function(){ $(this).removeClass('active'); autoSlider = setInterval(slideRight, 3000); }
-   );
- });//DOCUMENT READY
-   
- /***********
-  SLIDE LEFT
- ************/
- function slideLeft(){
-   pos--;
-   if(pos==-1){ pos = totalSlides-1; }
-   $('#slider-wrap ul#slider').css('left', -(sliderWidth*pos));  
-   
-   //*> optional
-   countSlides();
-   pagination();
- }
+#slide .indi {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
- /************
-  SLIDE RIGHT
- *************/
- function slideRight(){
-   pos++;
-   if(pos==totalSlides){ pos = 0; }
-   $('#slider-wrap ul#slider').css('left', -(sliderWidth*pos)); 
-   
-   //*> optional 
-   countSlides();
-   pagination();
- }
- 
- /************************
-  //*> OPTIONAL SETTINGS
- ************************/
- function countSlides(){
-   $('#counter').html(pos+1 + ' / ' + totalSlides);
- }
+#slide .indi:after {
+  content: "";
+  display: block;
+  clear: both;
+}
 
- function pagination(){
-   $('#pagination-wrap ul li').removeClass('active');
-   $('#pagination-wrap ul li:eq('+pos+')').addClass('active');
- }
- </script>
+#slide .indi > li {
+  float: left;
+  margin-left: 5px;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: #fff;
+}
+
+#slide .indi > li.on {
+  opacity: 1;
+}
+
+#slide .indi > li:first-child {
+  margin-left: 0;
+}
+/*btns*/
+.btns{
+  position:absolute;
+  width:50px;
+  height:60px;
+  top:50%;
+  margin-top:-25px;
+  line-height:57px;
+  text-align:center;
+  cursor:pointer; 
+  background:rgba(0,0,0,0.1);
+  z-index:100;
+  
+  
+  -webkit-user-select: none;  
+  -moz-user-select: none; 
+  -khtml-user-select: none; 
+  -ms-user-select: none;
+  
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  -ms-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+.btns:hover{
+  background:rgba(0,0,0,0.3); 
+}
+</style>
+<script>
+window.addEventListener("load", function () {
+	  var MOVEING_PX = 4,
+	    AUTO_TIME = 2000,
+	    slide = document.getElementById("slide"),
+	    indi = document.createElement("ul"),
+	    slideCnt = slide.getElementsByClassName("cnt"),
+	    slideCntItem = slideCnt[0].getElementsByTagName("li"),
+	    prevBtn = slide.getElementsByClassName("prev"),
+	    nextBtn = slide.getElementsByClassName("next"),
+	    playBtn = slide.getElementsByClassName("play"),
+	    stopBtn = slide.getElementsByClassName("stop"),
+	    playSet = null,
+	    before = 0,
+	    after = 0,
+	    moveIng = false;
+
+	  // init
+	  slideCntItem[0].style.left = 0;
+	  playBtn[0].style.display = "block";
+	  var indi = document.createElement("ul");
+	  for (var i = 0; i < slideCntItem.length; i++) {
+	    indi.innerHTML += "<li></li>";
+	  }
+	  indi.classList.add("indi");
+	  indi.children[0].classList.add("on");
+	  slide.append(indi);
+
+	  for (var j = 0; j < indi.children.length; j++) {
+	    indiClick(j);
+	  }
+
+	  // initEvnet
+	  nextBtn[0].addEventListener("click", function (e) {
+	    if (!moveIng) {
+	      after++;
+	      if (after >= slideCntItem.length) {
+	        after = 0;
+	      }
+	      move(after, before, "next");
+	      before = after;
+	    }
+	  });
+
+	  prevBtn[0].addEventListener("click", function (e) {
+	    if (!moveIng) {
+	      after--;
+	      if (after < 0) {
+	        after = slideCntItem.length - 1;
+	      }
+	      move(after, before);
+	      before = after;
+	    }
+	  });
+
+	  playBtn[0].addEventListener("click", function () {
+	    playBtn[0].style.display = "none";
+	    stopBtn[0].style.display = "block";
+	    playSet = setInterval(function () {
+	      if (!moveIng) {
+	        after++;
+	        if (after >= slideCntItem.length) {
+	          after = 0;
+	        }
+	        move(after, before, "next");
+	        before = after;
+	      }
+	    }, AUTO_TIME);
+	  });
+
+	  stopBtn[0].addEventListener("click", function () {
+	    playBtn[0].style.display = "block";
+	    stopBtn[0].style.display = "none";
+	    clearInterval(playSet);
+	  });
+
+	  function indiClick(target) {
+	    indi.children[target].addEventListener("click", function () {
+	      if (!moveIng) {
+	        after = target;
+	        if (after > before) {
+	          move(after, before, "next");
+	        } else if (after < before) {
+	          move(after, before);
+	        }
+	        before = after;
+	      }
+	    });
+	  }
+
+	  function move(after, before, type) {
+	    var nextX = type === "next" ? slide.offsetWidth : slide.offsetWidth * -1,
+	      prevX = 0,
+	      set = null;
+	    set = setInterval(function () {
+	      moveIng = true;
+	      if (type === "next") {
+	        nextX -= MOVEING_PX;
+	        slideCntItem[after].style.left = nextX + "px";
+	        if (nextX <= 0) {
+	          clearInterval(set);
+	          nextX = slide.offsetWidth;
+	          moveIng = false;
+	        }
+	        prevX -= MOVEING_PX;
+	      } else {
+	        nextX += MOVEING_PX;
+	        slideCntItem[after].style.left = nextX + "px";
+	        if (nextX >= 0) {
+	          clearInterval(set);
+	          nextX = slide.offsetWidth * -1;
+	          moveIng = false;
+	        }
+	        prevX += MOVEING_PX;
+	      }
+	      slideCntItem[before].style.left = prevX + "px";
+	    });
+	    indi.children[before].classList.remove("on");
+	    indi.children[after].classList.add("on");
+	  }
+	});
+</script>
+
 </head>
 <body>
 	<hgroup>
@@ -393,46 +382,36 @@
 	<h4>${movie.movie_content}</h4>
 	<hr>
 	<p>
-	<div class="clear">
+	<div class="clear"></div>
 	<strong>스틸컷</strong>
-	<div id="wrapper">
-      <div id="slider-wrap">
-         <ul id="slider">
-             <c:forEach var="image" items="${imageList}">
-            	<li>
-                <div>
-                    <span>Steal CUt #1</span>
-                </div> 
-            
-					<img width="300" height="250" 
-						src="${contextPath}/download.do?movie_id=${movie.movie_id}&image_file_name=${image.image_file_name}">
-				  </li>
-				 </c:forEach>
-          </ul>
-       
-           <!--controls-->
-          <div class="btns" id="next"><i class="fa fa-arrow-right"></i></div>
-          <div class="btns" id="previous"><i class="fa fa-arrow-left"></i></div>
-          <div id="counter"></div>
-          
-          <div id="pagination-wrap">
-            <ul>
-            </ul>
-          </div>
-      		</div>
-  	 	</div>			
+	<div>
+	
 	</div>
+    <div id="slide">
+  <ul class="cnt"><c:forEach var="image" items="${imageList}">
+	<li><img class="slide1" width="500" height="320" src="${contextPath}/download.do?movie_id=${movie.movie_id}&image_file_name=${image.image_file_name}"/>
+	 </li></c:forEach>
+  </ul>
+  <div class="btn">
+    <button type="button" class="prev">prev</button>
+    <button type="button" class="next">next</button>
+  </div>
+  <div class="auto">
+    <button type="button" class="stop">stop</button>
+    <button type="button" class="play">play</button>
+  </div>
+</div>
+       
 	<hr>
 	<div class="clear">
 	<strong>리뷰</strong>
-	
 	<style>
 
 /* 별점 css  레이아웃 외곽 너비 400px 제한*/
 .wrap{
     max-width: 480px;
     margin: 0 auto; /* 화면 가운데로 */
-    background-color: #fff;
+    background-color: #ECF0F1;
     height: 50%;
     padding: 20px;
     box-sizing: border-box;
@@ -462,11 +441,11 @@
     z-index: 10;
     width: 60px;
     height: 60px;
-    background-image: url('${contextPath}/resources/image/starrate.png');
+    background-image: url('${contextPath}/resources/image/hh.png');
     background-repeat: no-repeat;
     background-size: 60px 60px;
     cursor: pointer;
-    background-color:#f0f0f0;
+    background-color:#fff;
 }
 .rating .rate_radio:checked + label {
     background-color:  #ff1493;

@@ -28,13 +28,13 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	
 	@Override
 	public int addNewGoods(Map newGoodsMap) throws Exception{
-		int movie_id = adminGoodsDAO.insertNewGoods(newGoodsMap);
+		int goods_id = adminGoodsDAO.insertNewGoods(newGoodsMap);
 		ArrayList<ImageFileVO> imageFileList = (ArrayList)newGoodsMap.get("imageFileList");
 		for(ImageFileVO imageFileVO : imageFileList) {
-			imageFileVO.setMovie_id(movie_id);;
+			imageFileVO.setGoods_id(goods_id);
 		}
 		adminGoodsDAO.insertGoodsImageFile(imageFileList);
-		return movie_id;
+		return goods_id;
 	}
 	
 	@Override
