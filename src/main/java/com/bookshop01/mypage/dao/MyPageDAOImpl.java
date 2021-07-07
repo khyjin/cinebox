@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop01.cart.vo.CartVO;
 import com.bookshop01.member.vo.MemberVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
 
 @Repository("myPageDAO")
@@ -52,5 +54,10 @@ public class MyPageDAOImpl implements MyPageDAO{
 		return memberVO;
 	}
 	
-	
+	@Override
+	public List<MyPageVO> myReviewList(String member_id) throws DataAccessException {
+		List<MyPageVO> myReviewList = sqlSession.selectList("mapper.mypage.myReviewList",member_id);
+		return myReviewList;
+	}
+
 }

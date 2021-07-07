@@ -14,32 +14,28 @@
 		<result property="member_birth_m" column="member_birth_m" />
 		<result property="member_birth_d" column="member_birth_d" />
 		
-		<result property="member_birth_gn" column="member_birth_gn" />
-		<result property="tel1" column="tel1" />
-		<result property="tel2" column="tel2" />
-		<result property="tel3" column="tel3" />
+		<result property="member_hp1" column="member_hp1"/> 
+		<result property="member_hp2" column="member_hp2"/> 
+		<result property="member_hp3" column="member_hp3"/> 
 		
-		<result property="hp1" column="hp1" />
-		<result property="hp2" column="hp2" />
-		<result property="hp3" column="hp3" />
-		<result property="smssts_yn" column="smssts_yn" />
-		<result property="email1" column="email1" />
-		<result property="email2" column="email2" />
-		<result property="emailsts_yn" column="emailsts_yn" />
+		<result property="member_email_yn" column="member_email_yn"/> 
+		<result property="member_email1" column="member_email1"/> 
+		<result property="member_email2" column="member_email2"/> 
 		
-		<result property="zipcode" column="zipcode" />
-		<result property="roadAddress" column="roadAddress" />
-		<result property="jibunAddress" column="jibunAddress" />
-		<result property="namujiAddress" column="namujiAddress" />
-		<result property="joinDate" column="joinDate" />
-		<result property="del_yn" column="del_yn" />
+		<result property="member_zip" column="member_zip" />
+		<result property="member_roadaddress" column="member_roadaddress" />
+		<result property="member_jibunaddress" column="member_jibunaddress" />
+		<result property="member_namujiaddress" column="member_namujiaddress" />
+		
+		<result property="member_joindate" column="member_joindate" />
+		<result property="member_point" column="member_point" />
 	</resultMap>
 <select id="listMember" resultMap="memberResult"   parameterType="java.util.HashMap"  >
 		  select * from (
 			    select rowNum as recNum,t.*
 			       from (
-			              select  *  from t_shopping_member 
-			              where to_char(joinDate,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
+			              select  *  from cinebox_member 
+			              where to_char(member_joinDate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
 			                <if test="search_type=='member_id'">
 			                  AND member_id=#{search_word}
 			                </if>
@@ -49,11 +45,11 @@
 			                <if test="search_type=='member_hp_num'">
 			                   AND hp1||hp2||hp3=#{search_word} 
 			                </if>
-			              order by joinDate desc
+			              order by member_joinDate desc
 					    ) t
 				)							
 			where				
-		recNum between (#{chapter}-1)*100+ (#{pageNum}-1)*10+1 and (#{chapter}-1)*100+(#{pageNum})*10				        
+		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
 	</select>
 	
     <select id="memberDetail" resultMap="memberResult"   parameterType="String"  >
@@ -131,5 +127,11 @@
 		where 
 		member_id=#{member_id}
 	</update>	
+	
+	<delete id="deletemember" parameterType="String">
+	  delete from cinebox_member
+	  where
+	  member_id=#{member_id}
+	</delete>
 </mapper>
 

@@ -35,29 +35,36 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 											// id 비밀번호 저장하기
 	public ModelAndView login(@RequestParam Map<String, String> loginMap,
-			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception 
+	{
 		ModelAndView mav = new ModelAndView();
 		 memberVO=memberService.login(loginMap); //dto에다가 아이디,패스워드를 저장
 		if(memberVO!= null && memberVO.getMember_id()!=null){ //dto가 널값이 아니고 가져온 아이디가 널이 아니라면
 			HttpSession session=request.getSession(); // 받은 세션(아이디, 패스워드) 가져오기
-			session=request.getSession();
-			session.setAttribute("isLogOn", true); //로그인 상태 true로 두기
-			session.setAttribute("memberInfo",memberVO); //vo에서 넘어온 회원정보를 추가
-			
-			String action=(String)session.getAttribute("action"); // 로그인 후 주문 상태라면 계속 주문
-			if(action!=null && action.equals("/order/orderEachGoods.do")){ //세션이 널이거나 주문 상태가 아니라면
-				mav.setViewName("forward:"+action);
-			}else{
-				mav.setViewName("redirect:/main/main.do");	// 메인 화면 띄우기
-			}
-			
-		}else{ //위에서 말하는 조건이 아니라면 실행
+			session=request.getSession();												
+						
+				if(memberVO.getMember_del_yn().equals("true")) {
+					session.setAttribute("isLogOn", false); 
+					session.setAttribute("memberInfo",memberVO);
+					String message="탈퇴한 회원입니다.";
+					mav.addObject("message",message);
+					mav.setViewName("/member/loginForm");
+				}//if끝		
+				else {
+					session.setAttribute("isLogOn", true); //로그인 상태 true로 두기
+					session.setAttribute("memberInfo",memberVO); //vo에서 넘어온 회원정보를 추가			
+					mav.setViewName("redirect:/main/main.do");	// 메인 화면 띄우기		
+				}//else끝
+		}//if끝
+		
+		else{ //위에서 말하는 조건이 아니라면 실행			
 			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
 			mav.addObject("message", message);
 			mav.setViewName("/member/loginForm");
-		}
+		}//else끝	
 		return mav;
-	}
+		
+		}//함수 끝
 	
 	@Override
 	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)

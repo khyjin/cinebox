@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
 import com.bookshop01.order.vo.OrderVO;
@@ -34,22 +36,29 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 		
 	@Override
-	public List<GoodsVO>selectNewGoodsList(Map condMap) throws DataAccessException {
-		ArrayList<GoodsVO>  goodsList=(ArrayList)sqlSession.selectList("mapper.admin.goods.selectNewGoodsList",condMap);
-		return goodsList;
+	public List<GoodsVO> selectNewGoodsList(Map condMap,Criteria cri) throws DataAccessException {
+		Map<String, Object> map = new HashedMap();
+
+		ArrayList<GoodsVO>  movieList=(ArrayList)sqlSession.selectList("mapper.admin.goods.selectNewGoodsList", cri);
+		return movieList;
 	}
 	
 	@Override
-	public GoodsVO selectGoodsDetail(int goods_id) throws DataAccessException{
+	public int listCount() throws DataAccessException {
+		return sqlSession.selectOne("mapper.admin.goods.listCount");
+	}
+	
+	@Override
+	public GoodsVO selectGoodsDetail(int movie_id) throws DataAccessException{
 		GoodsVO goodsBean = new GoodsVO();
-		goodsBean=(GoodsVO)sqlSession.selectOne("mapper.admin.goods.selectGoodsDetail",goods_id);
+		goodsBean=(GoodsVO)sqlSession.selectOne("mapper.admin.goods.selectGoodsDetail",movie_id);
 		return goodsBean;
 	}
 	
 	@Override
-	public List selectGoodsImageFileList(int goods_id) throws DataAccessException {
+	public List selectGoodsImageFileList(int movie_id) throws DataAccessException {
 		List imageList=new ArrayList();
-		imageList=(List)sqlSession.selectList("mapper.admin.goods.selectGoodsImageFileList",goods_id);
+		imageList=(List)sqlSession.selectList("mapper.admin.goods.selectGoodsImageFileList",movie_id);
 		return imageList;
 	}
 	
@@ -68,7 +77,7 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 		int image_id;
 		for(int i=0; i<fileList.size();i++){
 			ImageFileVO bean=(ImageFileVO) fileList.get(i);
-			image_id=bean.getImage_id();
+			image_id=bean.getImage_number();
 			sqlSession.delete("mapper.admin.goods.deleteGoodsImage",image_id);	
 		}
 	}
@@ -96,8 +105,9 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 
 	@Override
-	public void deleteNewGoods(int goods_id) throws DataAccessException {
-		sqlSession.delete("mapper.admin.goods.deleteNewGoods",goods_id);	
+	public void deleteMovie(int movie_id) throws DataAccessException {
+		sqlSession.delete("mapper.admin.goods.deleteMovie", movie_id);	
+
 		
 	}
 

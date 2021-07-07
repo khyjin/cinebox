@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	isELIgnored="false" %>
+	pageEncoding="utf-8"	isELIgnored="false" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-  <c:set var="titleList" value="${titleList}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,37 +16,10 @@
 /*datepicer input 롤오버 시 손가락 모양 표시*/
 .hasDatepicker{cursor: pointer;}
 </style>
+
 </head>
-<body>
-    일자: <input type="text" id="datepicker">
- 
-    <script>
-        $(function() {
-            //input을 datepicker로 선언
-            $("#datepicker").datepicker({
-                dateFormat: 'yy-mm-dd' //Input Display Format 변경
-                ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-                ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
-                ,changeYear: true //콤보박스에서 년 선택 가능
-                ,changeMonth: true //콤보박스에서 월 선택 가능                
-                ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-                ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-                ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-                ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
-                ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
-                ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
-                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
-                ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-                ,minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-                ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
-            });                    
-            
-            //초기값을 오늘 날짜로 설정
-            $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-        });
-    </script>
-   
+<body>  
+
 <script type="text/javascript">
 
 function addRow(){
@@ -56,55 +27,58 @@ function addRow(){
 	var table = document.getElementsByTagName('table')[0],
 	  rows = table.getElementsByTagName('tr'),
 	  text = 'textContent' in document ? 'textContent' : 'innerText';
-
+	
 	for (var i = 0, len = rows.length; i < len; i++) {
 	  rows[i].children[0][text] = i;
+	
 	}
 	
 	var objRow; 
 	objRow= document.all("scheduledata").insertRow();
 	
 	var cell_no = objRow.insertCell();
-	cell_no.innerHTML = '<input name="movie_id" type="text" size="10" value=""/>';
+	cell_no.innerHTML = i;
 	
-   
- 	var cell_date = objRow.insertCell();
-	cell_date.innerHTML = '<input name="schedule_date" type="date" value=""/>';
-	
+	var cell_date = objRow.insertCell();
+	cell_date.innerHTML = '<input type="date" name="schedule_date">';
+ 	
 	var cell_title = objRow.insertCell();
-	cell_title.innerHTML =  '<select name="room_number">'
+	cell_title.innerHTML =  '<select name="room_number" >'
 							+'<option value="none">==선택==</option>'
-							+'<option value="1">1</option>'
-							+'<option value="2">2</option>'
-							+'<option value="3">3</option>'
+							+'<option value="1">1관</option>'
+							+'<option value="2">2관</option>'
+							+'<option value="3">3관</option>'
 							+'</select>';
 												
 
 	var cell_number = objRow.insertCell();
-	cell_number.innerHTML = '<select name="movie_title" id="selectBox" style="width:80px;" class="select_02">'
-							+'<c:forEach var="titleList" items="${titleList}" varStatus="i">'
-							+'<option value="${titleList.movie_title}">${titleList.movie_title}</option>'
+	cell_number.innerHTML = '<c:if test="${!empty goodsMap}" >'
+							+'<select name="movie_title" style="width:80px;" class="select_02">'
+							+'<option value="none">==선택==</option>'
+							+'<c:forEach  var="item" items="${goodsMap.screening}">'
+							+'<option value="${item.movie_title}">${item.movie_title}</option>'
 							+'</c:forEach>'
-							+'</select>';
-						
+							+'<c:forEach  var="item" items="${goodsMap.readysc}">'
+							+'<option value="${item.movie_title}">${item.movie_title}</option>'
+							+'</c:forEach>'
+							+'</select>'
+							+'</c:if>';
 							
 	var cell_start = objRow.insertCell();
-	cell_start.innerHTML = '<select name="schedule_start_time">'
+	cell_start.innerHTML = '<select name="schedule_start_time" >'
 							+'<option value="none">==선택==</option>'
 							+'<option value="11:00">11:00</option>'
 							+'<option value="14:00">14:00</option>'
 							+'<option value="17:00">17:00</option>'
 							+'</select>';
-	
-
+ 
 }
 
 function deleteRow(rownum){
 	  
 	}
-</script>
+	</script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 .cal_top{
     text-align: center;
@@ -225,30 +199,36 @@ table.calendar td{
     }
 </script>
  <style>
- <!--테이블 스타일-->
- table {
-  border-collapse: separate;
-  border-spacing: 1px;
-  text-align: left;
-  line-height: 1.5;
-  border-top: 1px solid #ccc;
-  margin: 20px 10px;
+body {
+   background: #fff;
 }
+
+table {
+   border-collapse: collapse;
+   width: 100%;
+   font-size: small;
+}
+
 table th {
-  width: 150px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
-  background: #efefef;
+   padding: 10px;
+   color: #168;
+   border-bottom: 3px solid #168;
+   text-align: left;
 }
+
 table td {
-  width: 350px;
-  padding: 10px;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
+   color: #669;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
 }
- </style>
+
+table tr:hover td {
+   color: #004;
+}
+</style>
+ 
+
+ 
 <h1>영화 상영 스케줄</h1>
 
 <div id="container">
@@ -258,20 +238,20 @@ table td {
 	</ul>
 	<div class="tab_container" id="container">
 	<div class="tab_content" id="tab1">
-	<div class="writer">상영시간표 생성하기</div>//영화 아이디 hidden, 상영종료시간은 입력할 때 런타임 계산해서 넣기 
-		<form action="${contextPath}/schedule/addSchedule.do" method="get">
+	<div class="writer">상영시간표 생성하기</div>
+		<form action="${contextPath}/schedule/addSchedule.do" method="post">
 			<table>
 				<thead>
 				<tr>
-					<th>movie_id</th>
+					<th>NO.</th>
 					<th>상영날짜</th>
 					<th>상영관</th>
 					<th>영화명</th>
 					<th>시작시간</th>
 				</tr>
 				</thead>
-			<tbody id="scheduledata"/>
-
+				
+			 <tbody id="scheduledata"/> 
 			</table>	
 
 		<div class="clear"></div>
@@ -279,7 +259,7 @@ table td {
 		<input type="button" id="addBtn" value="행추가" onclick="addRow()">
 		<input type="button" value="맨 끝행삭제" onclick="deleteRow('-1')">
 		<input type="button" value="앞 행삭제" onclick="deleteRow('0')">
-		<input type="submit" value="등록하기">
+		<input type="submit" value="send">
 		</form>
 	</div>
 	

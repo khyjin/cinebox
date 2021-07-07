@@ -54,4 +54,10 @@ public class MyPageServiceImpl  implements MyPageService{
 	
 
 
+	@Override
+	public List<MyPageVO> myReviewList(String member_id) throws Exception {		
+		return myPageDAO.myReviewList(member_id);
+	}
+
+
 }

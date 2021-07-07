@@ -1,12 +1,12 @@
-@font-face {
-   font-family: NanumGothic;
+@font-face { 
+   font-family: "¸¼Àº °íµñ";
    src: local("?"), url(../imgs/nanum.woff) format("woff"), url(../imgs/nanum.ttf) format("truetype");
 }
 * {
    margin: 0px; padding: 0px; vertical-align: middle;
 }
 body {
-   background-position: top; margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: "Dotum", Arial,serif; font-size: 1em; background-image: url("../imgs/body_back.gif"); background-repeat: repeat-x; background-color: #ecf0f1;
+   background-position: top; margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: "Dotum", Arial,serif; font-size: 1em; background-image: url("../imgs/body_back.gif"); background-repeat: repeat-x; background-color:#ecf0f1;
 }
 img {
    border: currentColor; border-image: none;
@@ -123,7 +123,7 @@ nav ul li ul li a {
    background-position: left; padding: 0px 0px 0px 7px; line-height: 1.5em; background-image: url("../imgs/notice_li.gif"); background-repeat: no-repeat;
 }
 article {
-   margin: 20px 0px 0px 15px; width: 980px; float: right;
+   margin: 20px 0px 0px 15px; width: 980px; height:auto; float: right;
 }
 
 .link {
@@ -212,7 +212,6 @@ section#new_book #book .price {
 section#new_book #book .price span {
    color: rgb(51, 51, 51); font-weight: normal; text-decoration: line-through;
 }
-
 .signup {
      font-size : 32;
 	font-family : "¸¼Àº °íµñ";
@@ -331,7 +330,9 @@ article h4 {
 }
 #goods_image {
    float: left; margin: 10px 0px 0px;
+   margin: 10px 0px 0px;
 }
+
 #goods_image figure {
    padding: 0px 30px 0px 0px; width: auto; text-align: center;
 }
@@ -355,15 +356,17 @@ article h4 {
    font-size: small;
 }
 
+#detail_table td {
+   padding: 15px; font-size: midium;
+}
+
 #detail_table2 {
    width: 590px; font-size: 0.75em; float: left; margin: 10px 0px 0px;
 }
 #detail_table2 table {
    width: 90%; border-right-color: #193a3e; border-top-color: #193a3e; border-bottom-color: #193a3e; border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; margin-bottom:50px; font-family:"¸¼Àº °íµñ"; 
 }
-#detail_table td  {
-   padding: 15px; font-size: midium;
-}
+
 #detail_table2 td  {
    padding: 10px; font-size: midium;
 }
@@ -497,7 +500,7 @@ div.openButtonContainer button.closedbtn {
 }
 
 .tab_container {
-   background: rgb(255, 255, 255); width: 100%; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
+   background: rgb(255, 255, 255); width: 100%; height:900; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
 }
 .tab_content {
    padding: 10px 10px 20px; line-height: 1.8em; font-size: 0.75em; min-height: 400px;
@@ -564,8 +567,9 @@ section.mypage_main {
 	width:800;
 	height:600;
 	float:right;
-	margin-top : -300;
+	margin-top : -280;
 }
+
 div.myInfo{
 	font-family : "¸¼Àº °íµñ";
 	font-weight : bold;
@@ -676,8 +680,16 @@ div.myInfo{
    font-size: 12; 
    float: left; 
 }
+
 .detail_table table {
-   width: 95%; border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; border-collapse: collapse; 
+   width: 95%; 
+   border-top-color: rgb(51, 51, 51); 
+   border-bottom-color: rgb(51, 51, 51); 
+   border-top-width: 2px; 
+   border-bottom-width: 1px; 
+   border-top-style: solid; 
+   border-bottom-style: solid; 
+   border-collapse: collapse; 
 }
 .detail_table table td {
    padding: 7px 0px 7px 10px;

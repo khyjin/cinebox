@@ -4,6 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.admin.goods">
+	
 <!-- 리절트 맵 정의 -->	
 	<resultMap id="goodsResult" type="goodsVO">
 		<result property="movie_admin_id" column="movie_admin_id" />
@@ -27,9 +28,10 @@
 	<resultMap id="imageResult" type="ImageFileVO">
 	   <result property="movie_id" column="movie_id" />
 	   <result property="image_number" column="image_number" />
-	   <result property="reg_id" column="reg_id" />
-	   <result property="image_id" column="image_id" />
-	   <result property="fileType" column="fileType" />
+	   <result property="image_admin_id" column="image_admin_id" />
+	   <result property="image_file_name" column="image_file_name" />
+	   <result property="image_file_sort" column="image_file_sort" />
+	   <result property="image_reg_date" column="image_reg_date"/>
 	</resultMap>
 	
 	<resultMap id="orderGoodsResult" type="OrderVO">
@@ -70,7 +72,7 @@
 	
 	
 	<insert id="insertNewGoods" parameterType="java.util.Map"   >
-		<selectKey resultType="int" keyProperty="movie_id" order="BEFORE">
+		<selectKey resultType="String" keyProperty="movie_id" order="BEFORE">
 	    	select movie_seq.nextval from dual
 	    </selectKey>
 
@@ -90,25 +92,25 @@
 			movie_open_date,
 			movie_close_date)
 		values(
-			#{movie_admin_id},
-			#{movie_id},
-			#{movie_title},
-			#{movie_director},
-			#{movie_actor},
-			#{movie_sort},
-			#{movie_runningtime},
-			#{movie_age_grade},
-			#{movie_country},
-			#{movie_content},
-			#{movie_status},
-			#{movie_open_date},
-			#{movie_close_date},)
+			#{movie_admin_id,jdbcType=VARCHAR},
+			#{movie_id,jdbcType=INTEGER},
+			#{movie_title,jdbcType=VARCHAR},
+			#{movie_director,jdbcType=VARCHAR},
+			#{movie_actor,jdbcType=VARCHAR},
+			#{movie_sort,jdbcType=VARCHAR},
+			#{movie_runningtime,jdbcType=VARCHAR},
+			#{movie_age_grade,jdbcType=VARCHAR},
+			#{movie_country,jdbcType=VARCHAR},
+			#{movie_content,jdbcType=VARCHAR},
+			#{movie_status,jdbcType=VARCHAR},
+			to_date(#{movie_open_date,jdbcType=DATE},'YYYY-MM-DD'),
+			to_date(#{movie_close_date,jdbcType=DATE},'YYYY-MM-DD'))
 		]]>
 	</insert> 
 	
 
 		<insert id="insertGoodsImageFile" parameterType="imageFileVO"   >
-		<selectKey resultType="int" keyProperty="image_number" order="BEFORE">
+		<selectKey resultType="Integer" keyProperty="image_number" order="BEFORE">
 	    	select image_seq.nextval from dual
 	    </selectKey>
 	    <![CDATA[
@@ -117,43 +119,50 @@
 			movie_id,
 			image_file_name,
 			image_file_sort,
-			image_admin_id)
+			image_admin_id,
+			image_reg_date)
 		values(
-			#{image_number},
-			#{movie_id},
-			#{image_file_name},
-			#{image_file_sort},
-			#{image_admin_id})
+			#{image_number,jdbcType=INTEGER},
+			#{movie_id,jdbcType=INTEGER},
+			#{image_file_name,jdbcType=VARCHAR},
+			#{image_file_sort,jdbcType=VARCHAR},
+			#{image_admin_id,jdbcType=VARCHAR},
+			sysdate)
 		]]>
 	</insert> 
 	
 	<select id="selectNewGoodsList" resultMap="goodsResult"   parameterType="java.util.Map"  >
 	    <![CDATA[
 		  select * from (
-			   select rowNum as recNum,
-			   		  goods_id,
-			          goods_title,
-			          goods_writer,
-			          goods_publisher,
-			          goods_sales_price,
-			          to_char(goods_creDate,'YYYY-MM-DD')  as goods_creDate,
-			          to_char(goods_published_date,'YYYY-MM-DD') as goods_published_date
+			   select rowNum as rnum,
+			   		  movie_id,
+			          movie_title,
+			          movie_director,
+			          movie_sort,
+			          movie_status,
+			          to_char(movie_open_date,'YYYY-MM-DD')  as movie_open_date,
+			          to_char(movie_close_date,'YYYY-MM-DD') as movie_close_date
 			       from (
-			             select  goods_id,
-			             		 goods_title,
-			             		 goods_writer,
-			             		 goods_publisher,
-			             		 goods_sales_price,
-			             		 goods_creDate,
-			             		 goods_published_date
-			              from t_shopping_goods 
-			                where  to_char(goods_creDate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
-			               order by goods_creDate desc
+			            select  movie_id,
+			         	movie_title,
+						movie_director,
+			         	movie_sort,
+			          	movie_open_date,
+			          	movie_close_date,
+			          	movie_status
+			            from cinebox_movie
+						order by movie_open_date desc
 					    )
 				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+			where rnum between #{rowStart} and #{rowEnd}		        
     	]]>
+	</select>
+	
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		select count(movie_id)
+		from cinebox_movie where movie_id>0
+	]]>
 	</select>
 	
 	<select id="selectOrderGoodsList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
@@ -275,10 +284,10 @@
 	  image_id=#{image_id}
 	</delete>
 	
-	<delete id="deleteNewGoods" parameterType="int">
-	  delete from T_SHOPPING_GOODS
+	<delete id="deleteMovie" parameterType="int">
+	  delete from cinebox_movie
 	  where
-	  goods_id=#{goods_id}
+	  movie_id=#{movie_id}
 	</delete>
 	
 	<update id="updateOrderGoods" parameterType="java.util.HashMap" >

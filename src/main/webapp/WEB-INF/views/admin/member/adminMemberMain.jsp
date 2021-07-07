@@ -218,7 +218,15 @@ function fn_detail_search(){
     formObj.submit();
 	
 }
+
+function delete_check() {
+	   return confirm("회원이 영구적으로 삭제됩니다. \n정말 삭제하시겠습니까?");
+	   
+	}
 </script>
+<style>
+#button0{ background-color:#193a3e;}
+</style>
 </head>
 <body>
 	<H3>회원 조회</H3>
@@ -429,6 +437,7 @@ function fn_detail_search(){
 				<td>주소</td>
 				<td>가입일</td>
 				<td>탈퇴여부</td>
+				<td>비고</td>
 			</tr>
    <c:choose>
      <c:when test="${empty member_list}">			
@@ -440,7 +449,7 @@ function fn_detail_search(){
 	 </c:when>
 	 <c:otherwise>
 	     <c:forEach var="item" items="${member_list}" varStatus="item_num">
-	            <tr >       
+	            <tr>       
 					<td width=10%>
 					
 					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">
@@ -451,27 +460,31 @@ function fn_detail_search(){
 					  <strong>${item.member_name}</strong><br>
 					</td>
 					<td width=10% >
-					  <strong>${item.hp1}-${item.hp2}-${item.hp3}</strong><br>
+					  <strong>${item.member_hp1}-${item.member_hp2}-${item.member_hp3}</strong><br>
 					</td>
-					<td width=50%>
-					  <strong>${item.roadAddress}</strong><br>
-					  <strong>${item.jibunAddress}</strong><br>
-					  <strong>${item.namujiAddress}</strong><br>
+					<td width=30%>
+					  <strong>${item.member_roadaddress}</strong><br>
+					  <strong>${item.member_jibunaddress}</strong><br>
+					  <strong>${item.member_namujiaddress}</strong><br>
 					</td>
 					<td width=10%>
-					   <c:set var="join_date" value="${item.joinDate}" />
+					   <c:set var="join_date" value="${item.member_joindate}" />
 					   <c:set var="arr" value="${fn:split(join_date,' ')}" />
 					   <strong><c:out value="${arr[0]}" /></strong>
 				    </td>
 				    <td width=10%>
 				       <c:choose>
-				         <c:when test="${item.del_yn=='N' }">
+				         <c:when test="${item.member_del_yn=='N' }">
 				           <strong>활동중</strong>  
 				         </c:when>
 				         <c:otherwise>
 				           <strong>탈퇴</strong>
 				         </c:otherwise>
 				       </c:choose>
+				    </td>
+				    <td width=20%>
+				    <button id="button0"><a href="${pageContext.request.contextPath}/mypage/modifyMyInfo.do?member_id=${item.member_id}">수정</a></button>
+				    <button id="button0"><a href="${pageContext.request.contextPath}/admin/member/realdelmember.do?member_id=${item.member_id}" onclick="return delete_check()">삭제</a></button>
 				    </td>
 				</tr>
 		</c:forEach>
@@ -480,13 +493,14 @@ function fn_detail_search(){
          <tr>
              <td colspan=8 class="fixed">
                  <c:forEach   var="page" begin="1" end="10" step="1" >
-		         <c:if test="${chapter >1 && page==1 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter-1}&pageNum=${(chapter-1)*10 +1 }">&nbsp;pre &nbsp;</a>
+		         <c:if test="${section >1 && page==1 }">
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
 		         </c:if>
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter}&pageNum=${page}">${(chapter-1)*10 +page } </a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
 		         <c:if test="${page ==10 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter+1}&pageNum=${chapter*10+1}">&nbsp; next</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
 		         </c:if> 
+		         
 	      		</c:forEach> 
            </td>
         </tr>  		   
@@ -498,17 +512,18 @@ function fn_detail_search(){
  <c:when test="${not empty order_goods_list }">	
    <DIV id="page_wrap">
 		 <c:forEach   var="page" begin="1" end="10" step="1" >
-		         <c:if test="${chapter >1 && page==1 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter-1}&pageNum=${(chapter-1)*10 +1 }">&nbsp;pre &nbsp;</a>
+		         <c:if test="${section >1 && page==1 }">
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
 		         </c:if>
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter}&pageNum=${page}">${(chapter-1)*10 +page } </a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
 		         <c:if test="${page ==10 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter+1}&pageNum=${chapter*10+1}">&nbsp; next</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
 		         </c:if> 
 	      </c:forEach> 
 	</DIV>	
  </c:when>
 </c:choose>
+
 </body>
 </html>
 

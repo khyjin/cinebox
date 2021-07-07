@@ -4,18 +4,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <!DOCTYPE html >
 <html>
 <head>
 <meta charset="utf-8">
+
 <style type="text/css">
 section.admin_mypage_main {
-   width:800;
-   height:600;
-   float:right;
-   margin-top : -190;
-   }
+	width:800;
+	height:600;
+	float:right;
+	margin-top : -190;
+	}
+#button0{ background-color:#193a3e;}
+
+.idx{
+color: black;
+}
+
+.idxn{
+	list-style: none; 
+	float: left; 
+	padding: 10px;
+}
+
+.paging{
+	color: black;
+}
+
+.paging1{
+	color: blue;
+	text-decoration: underline;
+}
+
+.paging2{
+	color: black;
+}
+
 </style>
+
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 <script>
 function search_goods_list(fixeSearchPeriod){
 	var formObj=document.createElement("form");
@@ -94,24 +123,38 @@ function  calcPeriod(search_period){
 	//alert(beginDate+","+endDate);
 	return beginDate+","+endDate;
 }
+
+
+function delete_check(deleteId) {
+	if(confirm("삭제하시겠습니까?") == true){
+		location.href="${contextPath}/admin/goods/deleteNewGoods.do?movie_id="+deleteId.value;
+	}else{
+		return;
+	}
+}
+
 </script>
 </head>
 
 <body>
 <section class="admin_mypage_main">
+<<<<<<< HEAD
 	<H3>상품 조회</H3>
+=======
+	<H3>영화 조회</H3>
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >
 			<TBODY>
-				<TR >
+				<!-- <TR >
 					<TD>
 						<input type="radio" name="r_search"  checked/> 등록일로조회 &nbsp;&nbsp;&nbsp;
 						<input type="radio" name="r_search" />상세조회 &nbsp;&nbsp;&nbsp;
 					</TD>
-				</TR>
+				</TR> -->
 				<TR >
 					<TD>
-					  <select name="curYear">
+				개봉일  <select name="curYear">
 					    <c:forEach   var="i" begin="0" end="5">
 					      <c:choose>
 					        <c:when test="${endYear==endYear-i}">
@@ -173,17 +216,17 @@ function  calcPeriod(search_period){
 				</TR>
 				<tr>
 				  <td>
-				    <select name="search_condition" disabled >
-						<option value="전체" checked>전체</option>
+<!-- 				    <select name="search_condition">
+						<option value="" checked>전체</option>
 						<option value="제품번호">상품번호</option>
 						<option value="제품이름">상품이름</option>
 						<option value="제조사">제조사</option>
-					</select>
-					<input  type="text"  size="30"  disabled/>  
-					<input   type="button"  value="조회" disabled/>
+					</select> -->
+					<input  type="text"  size="30"/>  
+					<input   type="button"  value="조회"/>
 				  </td>
 				</tr>
-				<tr>
+<!-- 			<tr>
 				  <td>
 					조회한 기간:<input  type="text"  size="4" value="${beginYear}" />년
 							<input  type="text"  size="4" value="${beginMonth}"/>월	
@@ -193,7 +236,7 @@ function  calcPeriod(search_period){
 							<input  type="text"  size="4" value="${endMonth }"/>월	
 							 <input  type="text"  size="4" value="${endDay }"/>일							 
 				  </td>
-				</tr>
+				</tr> -->
 			</TBODY>
 		</TABLE>
 		<DIV class="clear">
@@ -203,13 +246,13 @@ function  calcPeriod(search_period){
 <TABLE class="list_view">
 		<TBODY align=center >
 			<tr style="background:#33ff00" >
-				<td>상품번호</td>
-				<td>상품이름</td>
-				<td>저자</td>
-				<td>출판사</td>
-				<td>상품가격</td>
-				<td>입고일자</td>
-				<td>출판일</td>
+				<td>영화번호</td>
+				<td>영화</td>
+				<td>감독</td>
+				<td>장르</td>
+				<td>개봉일</td>
+				<td>종료일</td>
+				<td>개봉상태</td>
 				<td>삭제</td>
 				<td>수정</td>
 			</tr>
@@ -222,28 +265,43 @@ function  calcPeriod(search_period){
 		     </TR>
 	 </c:when>
 	 <c:otherwise>
-     <c:forEach var="item" items="${newGoodsList }">
+	 <form method="get">
+     <c:forEach var="item" items="${newGoodsList}" varStatus="status">
 			 <TR>       
 				<TD>
-				  <strong>${item.goods_id}</strong>
+				  <strong>${item.movie_id}</strong>
 				</TD>
 				<TD >
-				    <strong>${item.goods_title } </strong>
+				    <strong>${item.movie_title } </strong>
 				 </a> 
 				</TD>
 				<TD>
-				<strong>${item.goods_writer }</strong> 
+				<strong>${item.movie_director}</strong> 
 				</TD>
-				<TD >
-				   <strong>${item.goods_publisher }</strong> 
+				<TD>
+				   <strong>${item.movie_sort}</strong> 
 				</TD>
 				<td>
-				  <strong>${item.goods_sales_price }</strong>
+				  <strong>${item.movie_open_date }</strong>
 				</td>
 				<td>
-				 <strong>${item.goods_credate }</strong> 
+				 <strong>${item.movie_close_date }</strong> 
+				</td>
+				<c:choose>
+					<c:when test="${item.movie_status=='readysc'}"><td>상영예정</td></c:when>
+					<c:when test="${item.movie_status=='screening'}"><td>상영중</td></c:when>
+					<c:otherwise><td>상영종료</td></c:otherwise>
+				</c:choose>
+				<td>
+					<input type="hidden" value="${item.movie_id}" name="deleteId${status.index}">
+					<input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">
+				</form>
 				</td>
 				<td>
+
+					<button id="button0">
+						<a href="${contextPath}/admin/goods/modifyGoodsForm.do?movie_id=${item.movie_id}">수정</a>
+
 				    <c:set var="pub_date" value="${item.goods_published_date}" />
 					  <c:set var="arr" value="${fn:split(pub_date,' ')}" />
 					<strong>
@@ -266,19 +324,30 @@ function  calcPeriod(search_period){
   </c:choose>
            <tr>
              <td colspan=8 class="fixed">
-                 <c:forEach   var="page" begin="1" end="10" step="1" >
-		         <c:if test="${section >1 && page==1 }">
-		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; &nbsp;</a>
-		         </c:if>
-		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-		         <c:if test="${page ==10 }">
-		          <a href="${contextPath}/admin/goods/adminGooodsMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
-		         </c:if> 
-	      		</c:forEach> 
+  <ul>
+  <!-- 페이지 블럭 -->
+    <c:if test="${pageMaker.prev}">
+    	<li class="idxn"><a class="paging" href="${pageMaker.makeQuery(pageMaker.startPage - 1)}"> << 이전 </a></li>
+    </c:if> 
+
+    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+    	<c:choose>
+    		<c:when test="${pageMaker.cri.page==idx}">
+    			<font size=+1>
+    			<li class="idxn"><a class="paging1" href="${pageMaker.makeQuery(idx)}">${idx}</a></li></font>
+    		</c:when>
+    		<c:otherwise>
+    			<li class="idxn"><a class="paging2" href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    		</c:otherwise>
+    	</c:choose>
+    </c:forEach>
+    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+    	<li class="idxn"><a class="paging" href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음 >></a></li>
+    </c:if> 
+  </ul>
      
-		</TBODY>
-		
-	</TABLE>
+</TBODY>
+</TABLE>
 	<DIV class="clear"></DIV>
 	<br><br><br>
 <H3>상품등록하기</H3>

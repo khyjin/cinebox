@@ -1,13 +1,14 @@
 package com.bookshop01.schedule.vo;
 
-import java.util.Date;
-
 public class ScheduleVO {
 	private String movie_id; //영화번호
 	private String movie_title; //영화제목
 	private String room_number; //상영관 번호
 	private String schedule_start_time; //상영시작시간
 	private String schedule_date; //상영날짜
+
+	
+	
 	public String getMovie_id() {
 		return movie_id;
 	}

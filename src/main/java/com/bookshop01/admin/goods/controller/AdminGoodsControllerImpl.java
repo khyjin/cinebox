@@ -25,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.admin.goods.service.AdminGoodsService;
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.cscenter.vo.Criteria;
+import com.bookshop01.cscenter.vo.PageMaker;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
 import com.bookshop01.member.vo.MemberVO;
@@ -34,14 +36,14 @@ import com.bookshop01.member.vo.MemberVO;
 public class AdminGoodsControllerImpl extends BaseController  implements AdminGoodsController{
 
 	private static final String CURR_IMAGE_REPO_PATH = "\\web\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
-														//${pageContext.request.contextPath}
-
+	
 	@Autowired
 	private AdminGoodsService adminGoodsService;
 	
+	//영화 관리 메인
 	@RequestMapping(value="/adminGoodsMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
-			                           HttpServletRequest request, HttpServletResponse response)  throws Exception {
+			                           HttpServletRequest request, HttpServletResponse response, Criteria cri)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
@@ -70,8 +72,14 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
-		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
+		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap, cri);
 		mav.addObject("newGoodsList", newGoodsList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(adminGoodsService.listCount());
+		
+		mav.addObject("pageMaker", pageMaker);
 		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
@@ -82,13 +90,13 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		mav.addObject("endMonth",endDate2[1]);
 		mav.addObject("endDay",endDate2[2]);
 		
-		mav.addObject("section", section);
-		mav.addObject("pageNum", pageNum);
+//		mav.addObject("section", section);
+//		mav.addObject("pageNum", pageNum);
 		return mav;
 		
 	}
 	
-
+	//상영예정,상영종료,상영중 영화 등록
 	@RequestMapping(value="/addNewGoods.do" ,method={RequestMethod.POST})
 	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -109,8 +117,11 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
-		for(int i=0;i<imageFileList.size();i++) {
-			System.out.println("결과 : " + imageFileList.get(i));
+		if(imageFileList!= null && imageFileList.size()!=0) {
+			for(ImageFileVO imageFileVO : imageFileList) {
+				imageFileVO.setImage_admin_id(image_admin_id);
+			}
+			newGoodsMap.put("imageFileList", imageFileList);
 		}
 		
 		
@@ -151,6 +162,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+	
 	
 	
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
@@ -214,14 +226,14 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				for(ImageFileVO imageFileVO : imageFileList) {
 					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
 					image_id = Integer.parseInt((String)goodsMap.get("image_id"));
-					imageFileVO.setGoods_id(goods_id);
-					imageFileVO.setImage_id(image_id);
-					imageFileVO.setReg_id(reg_id);
+					imageFileVO.setMovie_id(goods_id);
+					imageFileVO.setImage_number(image_id);
+					imageFileVO.setImage_admin_id(reg_id);
 				}
 				
 			    adminGoodsService.modifyGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
+					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
@@ -230,7 +242,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
+					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					srcFile.delete();
 				}
@@ -269,13 +281,13 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			if(imageFileList!= null && imageFileList.size()!=0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
 					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
-					imageFileVO.setGoods_id(goods_id);
-					imageFileVO.setReg_id(reg_id);
+					imageFileVO.setMovie_id(goods_id);
+					imageFileVO.setImage_admin_id(reg_id);
 				}
 				
 			    adminGoodsService.addNewGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
+					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
@@ -284,7 +296,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
+					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					srcFile.delete();
 				}
@@ -309,10 +321,11 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		}
 	}
 
+	//등록된 영화 삭제
 	@Override
 	@RequestMapping("/deleteNewGoods.do")
-	public String deleteNewGoods(@RequestParam("goods_id") int good_id) throws Exception {
-		adminGoodsService.deleteNewGoods(good_id);
+	public String deleteNewGoods(@RequestParam("movie_id") int movie_id) throws Exception {
+		adminGoodsService.deleteMovie(movie_id);
 		return "redirect:/admin/goods/adminGoodsMain.do";
 	}
 

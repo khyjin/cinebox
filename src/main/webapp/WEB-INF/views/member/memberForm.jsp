@@ -54,9 +54,7 @@ function execDaumPostcode() {
           document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
       } else {
           document.getElementById('guide').innerHTML = '';
-      }
-      
-     
+      }           
     }
   }).open();
 }
@@ -263,6 +261,7 @@ function result(){
                            <option value="korea.com">korea.com</option>
                            <option value="freechal.com">freechal.com</option>
                      </select><br> <br> <input type="checkbox" id="member_email_yn" name="member_email_yn" value="Y" checked="checked"/> cinebox에서 발송하는 e-mail을 수신합니다.
+
                                     </td>
             </tr>
             <tr class="dot_line">

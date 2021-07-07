@@ -6,6 +6,14 @@
 <html>
 <head>
 <meta  charset="utf-8">
+<style type="text/css">
+section.admin_mypage_main {
+	width:800;
+	height:600;
+	float:right;
+	margin-top : -190;
+	}
+</style>
 <c:choose>
 <c:when test='${not empty order_goods_list}'>
 <script  type="text/javascript">
@@ -267,9 +275,10 @@ function fn_detail_search(){
 </script>
 </head>
 <body>
+<section class="admin_mypage_main">
 	<H3>주문 조회</H3>
 	<form name="frm_delivery_list" action="${contextPath }/admin/admin.do" method="post">	
-		<table   >
+		<table>
 			<tbody>
 				<tr>
 					<td>
@@ -588,6 +597,7 @@ function fn_detail_search(){
 	</table>
   </form>   	
 	<div class="clear"></div>
+	</section>
 </body>
 </html>
 

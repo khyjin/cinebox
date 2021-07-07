@@ -28,10 +28,11 @@ public abstract class BaseController  {
 
 	private static final String CURR_IMAGE_REPO_PATH = "\\web\\cinebox\\src\\main\\webapp\\resources\\movieImage\\file_repo";
 
-	
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+		
 		List<ImageFileVO> fileList= new ArrayList<ImageFileVO>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
+		
 		while(fileNames.hasNext()){
 			ImageFileVO imageFileVO =new ImageFileVO();
 			String fileName = fileNames.next();

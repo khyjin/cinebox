@@ -40,7 +40,6 @@
 		
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap> 
-
 	
 	
 	
@@ -116,6 +115,12 @@
 			      <if test=" member_namujiaddress!='' and member_namujiaddress!=null">
 			         member_namujiaddress=#{member_namujiaddress}
 			      </if>
+			      <if test=" member_del_yn!='' and member_del_yn!=null">			      	 
+			         member_del_yn=#{member_del_yn,jdbcType=VARCHAR}, member_del_date=to_date(sysdate)
+			      </if>
+			      <!-- <if test=" member_del_date!='' and member_del_date!=null">
+			         member_del_date=to_date(sysdate)
+			      </if> -->
 			   </set>
 		where 
 		member_id=#{member_id}
@@ -145,5 +150,10 @@
 		  where member_id=#{member_id} and member_pw=#{member_pw}
 	  ]]>
 	</update>	
+	
+	<select id="myReviewList" resultType="myPageVO" parameterType="String">
+		select * from cinebox_review
+	</select>
+	
 		
 </mapper>

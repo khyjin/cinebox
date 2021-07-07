@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin.cscenter">
+<resultMap type="cscenterVO" id="cscenterResult">
+	<result property="cscenter_content" column="cscenter_content"/>
+	<result property="cscenter_group" column="cscenter_group"/>
+	<result property="cscenter_hit" column="cscenter_hit"/>
+	<result property="cscenter_indent" column="cscenter_indent"/>
+	<result property="cscenter_number" column="cscenter_number"/>
+	<result property="cscenter_reg_date" column="cscenter_reg_date"/>
+	<result property="cscenter_type" column="cscenter_type"/>
+	<result property="cscenter_step" column="cscenter_step"/>
+	<result property="cscenter_title" column="cscenter_title"/>
+	<result property="member_id" column="member_id"/>
+</resultMap>
+
+<!-- 공지사항 입력 -->
+<insert id="insertNewNotice" parameterType="cscenterVO">
+<selectKey keyProperty="cscenter_number" resultType="int" order="BEFORE">
+	select cscenter_seq.nextval from dual
+</selectKey>
+<![CDATA[
+	insert into cinebox_cscenter (cscenter_number,
+								  member_id,
+								  cscenter_title,
+								  cscenter_content,
+								  cscenter_hit,
+								  cscenter_group,
+								  cscenter_step,
+								  cscenter_indent,
+								  cscenter_type,
+								  cscenter_headline)
+						values (#{cscenter_number},
+								#{member_id},
+								#{cscenter_title},
+								#{cscenter_content},
+								'0',
+								#{cscenter_number},
+								'0',
+								'0',
+								#{cscenter_type},
+								#{cscenter_headline})
+]]>
+</insert>
+
+<!-- 수정폼 출력 -->
+<select id="selectModify" resultMap="cscenterResult">
+	select * from cinebox_cscenter
+	where cscenter_number = #{cscenter_number}
+</select>
+
+<!-- 수정 -->
+<update id="updateNotice">
+	update cinebox_cscenter
+	set cscenter_title = #{cscenter_title},
+	cscenter_content = #{cscenter_content},
+	cscenter_reg_date = SYSDATE,
+	cscenter_type = #{cscenter_type}
+	where cscenter_number =#{cscenter_number}
+	and member_id =#{member_id}
+</update>
+
+<!-- 삭제 -->
+<delete id="deleteNoticeByNumber" parameterType="int">
+	delete from cinebox_cscenter where cscenter_number = #{cscenter_number}
+</delete>
+
+
+
+<!-- 게시판 출력 +페이징 처리-->
+	
+<select id="selectBoard" resultMap="cscenterResult">
+	<![CDATA[
+	select member_id, 
+	cscenter_number, cscenter_title,
+	cscenter_reg_date, cscenter_headline,
+	cscenter_type from(
+		select member_id, cscenter_number, cscenter_title,
+		cscenter_reg_date, cscenter_headline, cscenter_type, cscenter_group, cscenter_step,
+		row_number() over(order by cscenter_group desc, cscenter_step asc) as rnum
+		from cinebox_cscenter where cscenter_type='qna' or cscenter_type='qna_re') 
+		where rnum between #{rowStart} and #{rowEnd}
+		order by cscenter_group desc, cscenter_step asc
+		]]>
+</select>
+
+<select id="listCount" resultType="int">
+	<![CDATA[
+		select count(cscenter_number)
+		from cinebox_cscenter where cscenter_number>0 and cscenter_type='qna'
+	]]>
+</select>
+<!-- 페이징 처리 end -->
+
+<!-- 문의글 확인 -->
+<select id="selectContent" resultMap="cscenterResult">
+	<![CDATA[
+		select * from cinebox_cscenter
+		where cscenter_number = #{cscenter_number}
+	]]>
+</select>
+
+<!-- 답글입력 -->
+<insert id="insertReply" parameterType="cscenterVO">
+
+	insert into cinebox_cscenter (cscenter_number,
+	member_id,
+	cscenter_title,
+	cscenter_content,
+	cscenter_hit,
+	cscenter_group,
+	cscenter_step,
+	cscenter_indent,
+	cscenter_type,
+	cscenter_headline)
+	values (cscenter_seq.nextval,
+	#{member_id},
+	#{cscenter_title},
+	#{cscenter_content},
+	'0',
+	<choose>
+		<when test="cscenter_number==cscenter_group">
+			#{cscenter_number}
+		</when>
+		<otherwise>
+			#{cscenter_group}
+		</otherwise>
+	</choose>
+	,
+	'1',
+	'1',
+	#{cscenter_type},
+	#{cscenter_headline})
+
+</insert>
+</mapper>

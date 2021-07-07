@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bookshop01.admin.goods.dao.AdminGoodsDAO;
+import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
 import com.bookshop01.order.vo.OrderVO;
@@ -31,16 +32,21 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		int movie_id = adminGoodsDAO.insertNewGoods(newGoodsMap);
 		ArrayList<ImageFileVO> imageFileList = (ArrayList)newGoodsMap.get("imageFileList");
 		for(ImageFileVO imageFileVO : imageFileList) {
-			imageFileVO.setMovie_id(movie_id);;
+			imageFileVO.setMovie_id(movie_id);
 		}
 		adminGoodsDAO.insertGoodsImageFile(imageFileList);
 		return movie_id;
 	}
 	
 	@Override
-	public List<GoodsVO> listNewGoods(Map condMap) throws Exception{
-		return adminGoodsDAO.selectNewGoodsList(condMap);
+	public List<GoodsVO> listNewGoods(Map condMap, Criteria cri) throws Exception{
+		return adminGoodsDAO.selectNewGoodsList(condMap, cri);
 	}
+	
+	public int listCount() throws Exception{
+		return adminGoodsDAO.listCount();
+	}
+	
 	@Override
 	public Map goodsDetail(int goods_id) throws Exception {
 		Map goodsMap = new HashMap();
@@ -86,8 +92,8 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	}
 
 	@Override
-	public void deleteNewGoods(int goods_id) throws Exception {
-		adminGoodsDAO.deleteNewGoods(goods_id);
+	public void deleteMovie(int movie_id) throws Exception {
+		adminGoodsDAO.deleteMovie(movie_id);
 	}
 
 	

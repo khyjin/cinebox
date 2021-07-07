@@ -7,51 +7,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<style>
-table {
-	font-family:"맑은 고딕";
-	font-size: small;
-}
-</style>
 
-
-<c:if test="${message=='cancel_order'}">
-   <script>
-   window.onload=function()
-   {
-     init();
-   }
-   
-   function init(){
-      alert("주문을 취소했습니다.");
-   }
-   </script>
-</c:if>
-<script>
-function fn_cancel_order(order_id){
-   var answer=confirm("주문을 취소하시겠습니까?");
-   if(answer==true){
-      var formObj=document.createElement("form");
-      var i_order_id = document.createElement("input"); 
-       
-       i_order_id.name="order_id";
-       i_order_id.value=order_id;
-      
-       formObj.appendChild(i_order_id);
-       document.body.appendChild(formObj); 
-       formObj.method="post";
-       formObj.action="${contextPath}/mypage/cancelMyOrder.do";
-       formObj.submit();   
-   }
-}
-</script>
 </head>
 
 <body>
 <section class="mypage_main">
-<div class="myInfo">예매 내역
-<a href="${contextPath}/order/orderResult.do"> <img width="15px" height="15px" src="${contextPath}/resources/image/more5.png" /></a>
-</div>
+<div class="myInfo">예매 내역</div>
 <table class="list_view">
       <tbody align=center >
          <tr style=background:#e8e8e8 >            
@@ -60,7 +21,6 @@ function fn_cancel_order(order_id){
             <td>매수</td> <!-- ticket_adult/child -->
             <td>관람일</td> <!-- ticket_movie_day -->
             <td>결제일</td> <!-- ticket_reservation_day -->
-            <td>취소</td>
          </tr>
       <c:choose>
          <c:when test="${ empty myOrderList  }">
@@ -76,18 +36,7 @@ function fn_cancel_order(order_id){
          <c:forEach var="item" items="${myOrderList }"  varStatus="i">
          
           <c:choose> 
-              <c:when test="${ pre_order_id != item.order_id}">
-                <c:choose>
-                 <c:when test="${item.delivery_state=='delivery_prepared' }">
-                   <tr  bgcolor="lightgreen">    
-                 </c:when>
-                 <c:when test="${item.delivery_state=='finished_delivering' }">
-                   <tr  bgcolor="lightgray">    
-                 </c:when>
-                 <c:otherwise>
-                   <tr  bgcolor="orange">   
-                 </c:otherwise>
-               </c:choose> 
+              <c:when test="${ pre_order_id != item.order_id}">               
             <tr>  
             
              <td> <!-- 1.결제일 -->
@@ -114,18 +63,7 @@ function fn_cancel_order(order_id){
                                    
            <td> <!-- 5.관람일 -->
                <span>${item.ticket_movie_day} </span>
-             </td>
-             
-             <td> <!-- 6.취소 -->
-           <c:choose>
-            <c:when test="${item.delivery_state=='delivery_prepared'}">
-                <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소"  />
-            </c:when>
-            <c:otherwise>
-               <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소" disabled />
-            </c:otherwise>
-           </c:choose>
-          </td>
+             </td>                          
              
       <!-- <td align="left">  bookshop 주문상품 
             <strong>
@@ -136,10 +74,6 @@ function fn_cancel_order(order_id){
              </c:forEach>
             </strong>
           </td>-->
-          
-          
-         
-          
          </tr>
          
           <c:set  var="pre_order_id" value="${item.order_id}" />
@@ -156,9 +90,9 @@ function fn_cancel_order(order_id){
 
 
 <div class="myInfo">나의 정보
-    <a href="${contextPath}/mypage/myDetailInfo.do"> <img width="15px" height="15px" src="${contextPath}/resources/image/more5.png" />  </a>
+    <a href="${contextPath}/mypage/myDetailInfo.do"> <img src="${contextPath}/resources/image/btn_more_see.jpg" />  </a>
 </div>
-<table border="0" width=100% cellpadding=50 cellspacing=20 >
+<table border="0" width=100% cellpadding=50 cellspacing=20 font-family="맑은 고딕">
    <tr>
        <td>이름</td>
        <td><strong>${memberInfo.member_name }</strong></td>

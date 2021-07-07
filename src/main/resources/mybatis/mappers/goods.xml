@@ -11,7 +11,8 @@
 		<result property="movie_country" column="movie_country" />
 		<result property="movie_director" column="movie_director" />
 		<result property="movie_actor" column="movie_actor" />
-	
+		
+		<result property="movie_age_grade" column="movie_age_grade"/>
 		<result property="movie_sort" column="movie_sort" />
 		<result property="movie_runningtime" column="movie_runningtime" />
 		<result property="movie_content" column="movie_content" />
