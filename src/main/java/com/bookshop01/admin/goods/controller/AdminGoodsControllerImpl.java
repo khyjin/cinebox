@@ -102,13 +102,26 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String imageFileName=null;
-		
+
 		Map newGoodsMap = new HashMap();
 		Enumeration enu=multipartRequest.getParameterNames();
 		while(enu.hasMoreElements()){
+
 			String name=(String)enu.nextElement();
+			if(name.equals("movie_sort")) {
+				String value1[] = multipartRequest.getParameterValues(name);
+				String value2 = value1[0];
+				for(int i=1; i<value1.length;i++) {
+					value2 = value2+","+value1[i];
+				}
+				newGoodsMap.put(name,value2);
+			}else {
 			String value=multipartRequest.getParameter(name);
 			newGoodsMap.put(name,value);
+			}		
+			
+			
+			
 		}
 		
 		HttpSession session = multipartRequest.getSession();
@@ -305,16 +318,15 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		}
 	}
 
+	//이미지파일 삭제
 	@Override
 	@RequestMapping(value="/removeGoodsImage.do" ,method={RequestMethod.POST})
-	public void  removeGoodsImage(@RequestParam("goods_id") int goods_id,
-			                      @RequestParam("image_id") int image_id,
-			                      @RequestParam("imageFileName") String imageFileName,
+	public void  removeGoodsImage(int movie_id, int image_number, String image_file_name,
 			                      HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		
-		adminGoodsService.removeGoodsImage(image_id);
+		adminGoodsService.removeGoodsImage(image_number);
 		try{
-			File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+imageFileName);
+			File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+movie_id+"\\"+image_file_name);
 			srcFile.delete();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -326,6 +338,8 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	@RequestMapping("/deleteNewGoods.do")
 	public String deleteNewGoods(@RequestParam("movie_id") int movie_id) throws Exception {
 		adminGoodsService.deleteMovie(movie_id);
+		
+		
 		return "redirect:/admin/goods/adminGoodsMain.do";
 	}
 

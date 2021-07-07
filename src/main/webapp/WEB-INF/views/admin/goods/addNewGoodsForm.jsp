@@ -31,10 +31,14 @@
 	}
 </script>    
 </head>
-
-<BODY>
+<<style>
+.admin_bg{
+	background-color: white;
+}
+</style>
+<BODY class="admin_bg">
 <form action="${contextPath}/admin/goods/addNewGoods.do" method="post"  enctype="multipart/form-data">
-<input type="hidden" name="member_id" value="${memberInfo.member_id}">
+<input type="hidden" name="movie_admin_id" value="${memberInfo.member_id}">
 		<h1>새상품 등록창</h1>
 <div class="tab_container">
 	<!-- 내용 들어 가는 곳 -->
@@ -124,15 +128,16 @@
 		</div>
 	</div>
 	<div class="clear"></div>
-<center>	
-	 <table>
+	
+	 <table style="text-align: center;">
+	 <tbody>
 	 	<tr>
 			<td align=center>
-			<!--   <input  type="submit" value="상품 등록하기"> --> 
 			<input  type="button" value="상품 등록하기"  onClick="fn_add_new_goods(this.form)">
 			</td>
 		</tr>
-	 </table>
-</center>	 
+	</tbody>
+	 </table>	 
 </div>
-</form>	 
+</form>
+</BODY>	 

@@ -9,10 +9,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<<<<<<< HEAD
 <style type="text/css">
 
-#button0{ background-color:#193a3e;}
+#button0{ background-color:#193a3e;
+}
 
 .idx{
 color: black;
@@ -35,6 +35,9 @@ color: black;
 
 .paging2{
 	color: black;
+}
+.admin_bg{
+	background-color: white;
 }
 
 </style>
@@ -130,10 +133,15 @@ function delete_check(deleteId) {
 </script>
 </head>
 
-<body>
-	<H3>영화 조회</H3>
+<body class="admin_bg">
+<H3>상품등록하기</H3>
+<DIV id="search">
+	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
+		<input type="submit" value="상품 등록하기">
+	</form>
+</DIV>
 <section class="mypage_main">
-	<H3>상품 조회</H3>
+	<H3>영화 조회</H3>
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >
 			<TBODY>
@@ -142,7 +150,7 @@ function delete_check(deleteId) {
 						<input type="radio" name="r_search"  checked/> 등록일로조회 &nbsp;&nbsp;&nbsp;
 						<input type="radio" name="r_search" />상세조회 &nbsp;&nbsp;&nbsp;
 					</TD>
-				</TR> -->
+				</TR> 
 				<TR >
 					<TD>
 				개봉일  <select name="curYear">
@@ -204,7 +212,7 @@ function delete_check(deleteId) {
 					</a>
 					&nbsp;까지 조회
 					</TD>
-				</TR>
+				</TR>-->
 				<tr>
 				  <td>
 <!-- 				    <select name="search_condition">
@@ -244,8 +252,8 @@ function delete_check(deleteId) {
 				<td>개봉일</td>
 				<td>종료일</td>
 				<td>개봉상태</td>
-				<td>삭제</td>
 				<td>수정</td>
+				<td>삭제</td>
 			</tr>
    <c:choose>
      <c:when test="${empty newGoodsList }">			
@@ -256,7 +264,7 @@ function delete_check(deleteId) {
 		     </TR>
 	 </c:when>
 	 <c:otherwise>
-	 <form method="get">
+<form>
      <c:forEach var="item" items="${newGoodsList}" varStatus="status">
 			 <TR>       
 				<TD>
@@ -264,7 +272,6 @@ function delete_check(deleteId) {
 				</TD>
 				<TD >
 				    <strong>${item.movie_title } </strong>
-				 </a> 
 				</TD>
 				<TD>
 				<strong>${item.movie_director}</strong> 
@@ -284,33 +291,22 @@ function delete_check(deleteId) {
 					<c:otherwise><td>상영종료</td></c:otherwise>
 				</c:choose>
 				<td>
-					<input type="hidden" value="${item.movie_id}" name="deleteId${status.index}">
-					<input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">
-				</form>
+					<button id="button0" onclick="location.href='${contextPath}/admin/goods/modifyGoodsForm.do?movie_id=${item.movie_id}'">
+						수정</button>
+					
 				</td>
 				<td>
+					<input type="hidden" value="${item.movie_id}" name="deleteId${status.index}">
+					<input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">				
 
-					<button id="button0">
-						<a href="${contextPath}/admin/goods/modifyGoodsForm.do?movie_id=${item.movie_id}">수정</a>
-
-				    <c:set var="pub_date" value="${item.goods_published_date}" />
+<!--  			    <c:set var="pub_date" value="${item.goods_published_date}" />
 					  <c:set var="arr" value="${fn:split(pub_date,' ')}" />
 					<strong>
-					   <c:out value="${arr[0]}" />
-					</strong>
-				</td>
-				<td>
-					<button>
-						<a href="${pageContext.request.contextPath}/admin/goods/deleteNewGoods.do?goods_id=${item.goods_id}">삭제</a>
-					</button>
-				</td>
-				<td>
-					<button>
-						<a href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}">수정</a>
-					</button>
+					   <c:out value="${arr[0]}" />	
+					</strong>-->
 				</td>
 			</TR>
-	</c:forEach>
+	</c:forEach></form>
 	</c:otherwise>
   </c:choose>
            <tr>
