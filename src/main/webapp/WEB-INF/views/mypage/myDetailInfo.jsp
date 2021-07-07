@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	isELIgnored="false"%> 
+	pageEncoding="utf-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html >
 <html>
 <head>
+<style type="text/css">
+section.mydetail_main {
+	width:800;
+	height:1200;
+	float:right;
+	margin-top : -280;
+}
+#detail_table table {
+width:100%;
+}
+</style>
 
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -100,8 +110,11 @@ function fn_modify_member_info(attribute){
 					value=gender[i].value;
 					break;
 				} 
-			}
-			
+			}			
+		}else if(attribute=='del'){
+			var del_yn=frm_mod_member.member_del_yn;
+			value_del_yn=del_yn.checked;
+			value=value_del_yn;
 		}else if(attribute=='member_birth'){
 			var birth_y=frm_mod_member.member_birth_y;
 			var birth_m=frm_mod_member.member_birth_m;
@@ -194,7 +207,7 @@ function fn_modify_member_info(attribute){
 </head>
 
 <body>
-<section class="mypage_main">
+<section class="mydetail_main">
 	<div class="detailinfo">
 	<img src="${contextPath}/resources/image/modify_icon.png" width="40" height="40"/> 기본 정보
 	</div>
@@ -360,6 +373,22 @@ function fn_modify_member_info(attribute){
 					</td>
 					<td></td>
 				</tr>
+				<tr class="dot_line">
+					<td class="fixed_join">탈퇴</td>
+					<td class="member_input">										  
+					  <c:choose> 
+					   <c:when test="${memberInfo.member_del_yn=='true'}">
+					     <input type="checkbox" name="member_del_yn"  value="Y"/> 체크하면 탈퇴됩니다.
+						</c:when>
+						<c:otherwise>
+						  <input type="checkbox" name="member_del_yn"  value="N" /> 체크하면 탈퇴됩니다.
+						</c:otherwise>
+					 </c:choose>					  <br>					  
+					</td>
+					<td>
+						<label><input type="button" value="탈퇴하기" onClick="fn_modify_member_info('del')" />	</label>				
+					</td>
+				</tr>				
 			</tbody>
 		</table>
 		</div>

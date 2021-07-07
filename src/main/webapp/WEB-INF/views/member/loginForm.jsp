@@ -2,25 +2,23 @@
    pageEncoding="utf-8"
     isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<c:if test='${not empty message }'>
-<script>
-window.onload=function()
-{
-  result();
-}
 
-function result(){
-   alert("가입된 회원이 아닙니다. 회원가입을 해주세요.");
-}
+<script>
+    $(function(){
+        var responseMessage = "<c:out value="${message}" />";
+        if(responseMessage != ""){
+            alert(responseMessage)
+        }
+    }) 
 </script>
-</c:if>
+
+
 </head>
 <body>
    <section class="LoginContent">
@@ -31,7 +29,7 @@ function result(){
       </div>
 
       <div class="loginFormDiv">         
-         <form action="${contextPath}/member/login.do" class="loginForm" method="post">
+         <form action="${contextPath}/member/login.do" class="loginForm" method="post" onsubmit="return LoginCheck()" name="l">
          <!--  <label for="member_id" class="lbl">아이디</label>-->
             <input type="text" name="member_id" size="50" title="아이디" placeholder="아이디"><br><br>
          <!--  <label for="member_pw" class="lbl">비밀번호</label>   -->
@@ -50,5 +48,20 @@ function result(){
       </div> 
     </div>  
 </section>
+<script>
+function LoginCheck(){
+	if (l.member_id.value==""){
+		alert("아이디를 입력해주세요.");
+		l.member_id.focus();
+		return false;
+	}
+	if (l.member_pw.value==""){
+		alert("비밀번호를 입력해주세요.");
+		l.member_pw.focus();
+		return false;
+	}
+		
+}
+</script>
 </body>
 </html>

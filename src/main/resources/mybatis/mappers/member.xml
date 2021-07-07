@@ -30,6 +30,7 @@
 		
 		<result property="member_joindate" column="member_joindate" />
 		<result property="member_point" column="member_point" />
+		<result property="member_del_yn" column="member_del_yn" />
 		
 	
 	</resultMap>	
@@ -50,7 +51,7 @@
 	
 	<select id="findpw" resultType="memberVO">
 		select * from cinebox_member 
-			 where member_id=#{member_id} and member_name =#{member_name} and member_hp1 = #{member_hp1} and  member_hp2 = #{member_hp2} and  member_hp3 = #{member_hp3}
+			 where member_id=#{member_id} and member_name =#{member_name} and member_email1 = #{member_email1} and  member_email2 = #{member_email2}
 	</select>
 	
 	<!-- 아이디 중복 확인 -->
@@ -80,7 +81,8 @@
                                      member_roadaddress,
                                      member_jibunaddress,
                                      member_namujiaddress,
-                                     member_joindate,
+                                     member_joindate,  
+                                     member_del_yn,                                  
 									 member_point)             
                       values(#{member_id},
                            #{member_pw},
@@ -100,6 +102,7 @@
                                     #{member_jibunaddress},
                                     #{member_namujiaddress},
                                     to_date(sysdate),
+                                    'N',
                                     1000
                                     )
                                   

@@ -12,7 +12,6 @@
 <ul>
 <c:choose>
 <c:when test="${side_menu=='admin_mode' }">
-<<<<<<< HEAD
    <li class="sidemenu">
      <H3>주요기능</H3>
 		<ul id="sidemenu">
@@ -29,15 +28,14 @@
 
 <c:when test="${side_menu=='my_page' }">
 	<li class=sidemenu>
-		<a href="${contextPath}/order/orderResult.do"><h3>나의 예매 내역</h3></a>		
+		<a href="${contextPath}/mypage/myPageMain.do"><h3>나의 예매 내역</h3></a>		
 	</li>
 	<li id="sidemenu">
 		<h3>회원 정보</h3>
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">나의 정보 수정</a></li>
 			<li><a href="${contextPath}/mypage/myPoint.do">잔여 포인트 확인</a></li>	
-			<li><a href="#">내 후기평</a></li>
-			<li><a href="${contextPath}/mypage/memberDelete.do">회원탈퇴</a></li>
+			<li><a href="${contextPath}/mypage/myReviewList.do">내 후기평</a></li>
 		</ul>
 	</li>	
 	<li class="sidemenu">

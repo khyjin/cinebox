@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.service.MyPageService;
+import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
 
 @Controller("myPageController")
@@ -151,6 +153,9 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			memberMap.put("member_roadaddress",val[1]);
 			memberMap.put("member_jibunaddress", val[2]);
 			memberMap.put("member_namujiaddress", val[3]);
+		}else if(attribute.equals("del")){
+			val=value.split(",");
+			memberMap.put("member_del_yn", val[0]);
 		}else {
 			memberMap.put(attribute,value);	
 		}
@@ -176,6 +181,20 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/myReviewList.do",method=RequestMethod.GET)
+	public ModelAndView myReviewList(String member_id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session=request.getSession();
+		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		List<MyPageVO> myReviewList=myPageService.myReviewList(member_id);		
+		mav.addObject("myReviewList", myReviewList);
+		return mav;				
 	}
 
 	

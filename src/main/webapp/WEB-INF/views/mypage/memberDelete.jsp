@@ -7,16 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
+<script>
+	$(document).ready(function(){
+		$("#memDel_btn").click(function(){
+			document.form1.action = "${contextPath}/mypage/memberDelete.do";
+			document.form1.submit();			
+		});		
+	});
+
+
+</script>
 </head>
 <body>
-회원탈퇴<p>
-비밀번호 확인<p>
-고객님의 개인정보 보호를 위한 절차이오니, 로그인 시 사용하는 비밀번호를 입력해 주세요.<p>
-<form action="${contextPath}/mypage/memberDelete.do" method="post">
+회원탈퇴<br>
+
+<form name="form1" method="post">
 아이디 ${memberInfo.member_id} <p>
-비밀번호 <input type="password" name="member_pw"><p>
-<input type="submit" value="확인">
-<input id="reset" type="button" onclick="location.href='myPageMain.do'" value="취소">
+정말 탈퇴하시겠습니까? YES <input type="checkbox" name="member_del_yn"  value="y" /><p>
+탈퇴일 : ${member_del_date} <p>
+
+
+<input type="button" value="탈퇴하기" id="memDel_btn">
 </form>
 </body>
 </html>
