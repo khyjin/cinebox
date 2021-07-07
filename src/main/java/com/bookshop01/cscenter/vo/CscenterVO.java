@@ -16,6 +16,31 @@ public class CscenterVO {
 	private int cscenter_step;
 	private String cscenter_title;
 	private String member_id;
+	private String cscenter_headline;
+	
+	
+	public CscenterVO(String cscenter_content, int cscenter_group, int cscenter_hit, int cscenter_indent,
+			int cscenter_number, Date cscenter_reg_date, String cscenter_type, int cscenter_step, String cscenter_title,
+			String member_id, String cscenter_headline) {
+		super();
+		this.cscenter_content = cscenter_content;
+		this.cscenter_group = cscenter_group;
+		this.cscenter_hit = cscenter_hit;
+		this.cscenter_indent = cscenter_indent;
+		this.cscenter_number = cscenter_number;
+		this.cscenter_reg_date = cscenter_reg_date;
+		this.cscenter_type = cscenter_type;
+		this.cscenter_step = cscenter_step;
+		this.cscenter_title = cscenter_title;
+		this.member_id = member_id;
+		this.cscenter_headline = cscenter_headline;
+	}
+	public String getCscenter_headline() {
+		return cscenter_headline;
+	}
+	public void setCscenter_headline(String cscenter_headline) {
+		this.cscenter_headline = cscenter_headline;
+	}
 	public String getCscenter_content() {
 		return cscenter_content;
 	}
@@ -78,21 +103,21 @@ public class CscenterVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public CscenterVO(String cscenter_content, int cscenter_group, int cscenter_hit, int cscenter_indent,
-			int cscenter_number, Date cscenter_reg_date, String cscenter_type, int cscenter_step, String cscenter_title,
-			String member_id) {
-		super();
-		this.cscenter_content = cscenter_content;
-		this.cscenter_group = cscenter_group;
-		this.cscenter_hit = cscenter_hit;
-		this.cscenter_indent = cscenter_indent;
-		this.cscenter_number = cscenter_number;
-		this.cscenter_reg_date = cscenter_reg_date;
-		this.cscenter_type = cscenter_type;
-		this.cscenter_step = cscenter_step;
-		this.cscenter_title = cscenter_title;
-		this.member_id = member_id;
-	}
+//	public CscenterVO(String cscenter_content, int cscenter_group, int cscenter_hit, int cscenter_indent,
+//			int cscenter_number, Date cscenter_reg_date, String cscenter_type, int cscenter_step, String cscenter_title,
+//			String member_id) {
+//		super();
+//		this.cscenter_content = cscenter_content;
+//		this.cscenter_group = cscenter_group;
+//		this.cscenter_hit = cscenter_hit;
+//		this.cscenter_indent = cscenter_indent;
+//		this.cscenter_number = cscenter_number;
+//		this.cscenter_reg_date = cscenter_reg_date;
+//		this.cscenter_type = cscenter_type;
+//		this.cscenter_step = cscenter_step;
+//		this.cscenter_title = cscenter_title;
+//		this.member_id = member_id;
+//	}
 	public CscenterVO() {
 		super();
 	}

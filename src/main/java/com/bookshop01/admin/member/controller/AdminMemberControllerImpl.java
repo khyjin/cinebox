@@ -96,11 +96,11 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 			memberMap.put("member_birth_m",val[1]);
 			memberMap.put("member_birth_d",val[2]);
 			memberMap.put("member_birth_gn",val[3]);
-		}else if(mod_type.equals("tel")){
+		/*}else if(mod_type.equals("tel")){
 			val=value.split(",");
 			memberMap.put("tel1",val[0]);
 			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
+			memberMap.put("tel3",val[2]);*/
 			
 		}else if(mod_type.equals("hp")){
 			val=value.split(",");
@@ -115,7 +115,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 			memberMap.put("emailsts_yn", val[2]);
 		}else if(mod_type.equals("address")){
 			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
+			memberMap.put("zip",val[0]);
 			memberMap.put("roadAddress",val[1]);
 			memberMap.put("jibunAddress", val[2]);
 			memberMap.put("namujiAddress", val[3]);
@@ -142,6 +142,12 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		mav.setViewName("redirect:/admin/member/adminMemberMain.do");
 		return mav;
 		
+	}
+	@Override
+	@RequestMapping("/realdelmember.do")
+	public String realdelmember(@RequestParam("member_id") String member_id) throws Exception {
+		adminMemberService.deletemember(member_id);
+		return "redirect:/admin/member/adminMemberMain.do";
 	}
 		
 }

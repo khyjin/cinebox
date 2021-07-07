@@ -166,7 +166,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		
 		session=request.getSession();
 		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.movieendlist();
+		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssci();
 		mav.addObject("goodsMap", goodsMap);
 		return mav;
 	}

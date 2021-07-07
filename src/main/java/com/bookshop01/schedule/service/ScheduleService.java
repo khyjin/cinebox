@@ -1,5 +1,6 @@
 package com.bookshop01.schedule.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,9 +10,6 @@ import com.bookshop01.schedule.vo.ScheduleVO;
 
 public interface ScheduleService {
 
-	public List<GoodsVO> selectTitle() throws Exception;
-
-	public void addSchedule(Map<String, String> scheduleMap) throws Exception;
-
+	public void addSchedule(HashMap<String,String> schedulemap) throws Exception;
 
 }

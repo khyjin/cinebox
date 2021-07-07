@@ -6,20 +6,22 @@
 <!DOCTYPE html >
 <html>
 <head>
+<style type="text/css">
+#detail_table{
+	padding-left:185px;
+}
+</style>
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-
 function execDaumPostcode() {
   new daum.Postcode({
     oncomplete: function(data) {
       // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
       // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
       // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
       var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
       var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-
       // 법정동명이 있을 경우 추가한다. (법정리는 제외)
       // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
       if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
@@ -37,18 +39,15 @@ function execDaumPostcode() {
       if(fullRoadAddr !== ''){
         fullRoadAddr += extraRoadAddr;
       }
-
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
       document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
       document.getElementById('roadAddress').value = fullRoadAddr;
       document.getElementById('jibunAddress').value = data.jibunAddress;
-
       // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
       if(data.autoRoadAddress) {
         //예상되는 도로명 주소에 조합형 주소를 추가한다.
         var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
         document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-
       } else if(data.autoJibunAddress) {
           var expJibunAddr = data.autoJibunAddress;
           document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
@@ -58,7 +57,6 @@ function execDaumPostcode() {
     }
   }).open();
 }
-
 function fn_overlapped(){
    
     var _id=$("#_member_id").val();
@@ -90,14 +88,11 @@ function fn_overlapped(){
        }
     });  //end ajax    
  }
-
 var compare_result = false;
-
 function fn_compare_pw(){
            var pw1 = $("#member_pw1").val();
            var pw2 = $("#member_pw2").val();
            var $s_result = $("#s_result");
-
            if(pw1 == pw2){
                       compare_result = true;
                       $s_result.text("비밀번호가 일치합니다.");
@@ -108,7 +103,55 @@ function fn_compare_pw(){
            $s_result.text("비밀번호가 일치하지 않습니다.");
 }
 
-
+function result(){
+	
+	var pw1 = $("#member_pw1").val();
+    var pw2 = $("#member_pw2").val();
+    var id = $("#member_id").val();
+    var name = $("#member_name").val();
+    var hp2 = $("#member_hp2").val();
+    var hp3 = $("#member_hp3").val();
+    var email1 = $("#member_email1").val();
+    var roadaddress = $("#roadaddress").val();
+    var jibunaddress = $("#jibunaddress").val();
+    
+		if(pw1 !== pw2) {
+			   alert("비밀번호가 일치하지 않습니다.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(id==""||id==null) {
+			alert("아이디는 필수 입력 항목입니다.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(4>id.length ||id.length >10) {
+			alert("아이디는 4~10자 이내로 입력해주세요.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(pw1==""||pw1==null) {
+			alert("패스워드는 필수 입력 항목입니다.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(4>pw1.length ||pw1.length >15) {
+			alert("패스워드는 4~15자 이내로 입력해주세요.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(2>name.length ||name.length>5||name==null||name=="") {
+			alert("이름은 2~5자 이내로 입력해주세요.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(hp2==""||hp2==null||hp3==""||hp3==null) {
+			alert("연락처는 필수 입력 항목입니다.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(email1==""||email1==null) {
+			alert("이메일은 필수 입력 항목입니다.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(roadAddress==""||roadAddress==null||jibunAddress==""||jibunAddress==null) {
+			alert("주소는 필수 입력 항목입니다.");
+			   window.location.href = "/memberForm.do";
+		}
+	}
 </script>
 </head>
 <body>
@@ -236,7 +279,7 @@ function fn_compare_pw(){
       </table>
       </div>
       <div class="clear">
-            <input type="submit" class="complete" value="회원가입" onclick="fc_email_yn()">
+            <input type="submit" class="complete" value="회원가입" onclick="result()">
 </div>
 </form>   
 </body>

@@ -33,7 +33,6 @@
 		   <img width="45" height="45" src="${contextPath}/resources/image/top3.png">
 		  </a></li>&emsp;
 	</ul>&emsp;
-
 </div>
 </body>
 </html>
