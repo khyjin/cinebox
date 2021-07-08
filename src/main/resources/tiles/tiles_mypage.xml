@@ -27,7 +27,7 @@
        <put-attribute name="title" value="내 후기평 확인" />
        <put-attribute name="body" value="/WEB-INF/views/mypage/myReviewList.jsp" />
      </definition>
-    
+ 
     
      
 </tiles-definitions>

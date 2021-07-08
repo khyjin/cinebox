@@ -197,6 +197,4 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		mav.addObject("myReviewList", myReviewList);
 		return mav;				
 	}
-
-	
 }

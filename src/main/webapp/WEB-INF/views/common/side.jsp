@@ -13,10 +13,10 @@
      <H3>주요기능</H3>
 		<ul id="sidemenu">
 			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">영화</a></li>
-			<li><a href="${contextPath}/admin/order/adminOrderMain.do">예매</a></li>
+			<li><a href="${contextPath}/ticket/reservarion.do">예매</a></li>
 			<li><a href="${contextPath}/admin/member/adminMemberMain.do">회원관리</a></li>
-			<li><a href="${contextPath}/main/test.do">영화스케줄</a></li>
-			<li><a href="#">게시판관리</a></li>
+			<li><a href="${contextPath}/main/schedule.do">영화스케줄</a></li>
+			<li><a href="${contextPath}/schedule/selectSchedule.do">상영시간표</a></li>
 		</ul>
 	</li>
 </c:when>

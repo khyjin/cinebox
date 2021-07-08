@@ -44,7 +44,6 @@ color: black;
 
 </style>
 
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 <script>
 function search_goods_list(fixeSearchPeriod){
 	var formObj=document.createElement("form");
@@ -138,11 +137,7 @@ function delete_check(deleteId) {
 
 <body>
 <section class="admin_mypage_main">
-<<<<<<< HEAD
-	<H3>상품 조회</H3>
-=======
 	<H3>영화 조회</H3>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >
 			<TBODY>
