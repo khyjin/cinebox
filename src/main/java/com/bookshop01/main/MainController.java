@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.schedule.vo.ScheduleVO;
 
 @Controller("mainController")
 @EnableAspectJAutoProxy
@@ -62,9 +63,9 @@ public class MainController extends BaseController {
 		return mav;
 	}
 	
-	@RequestMapping(value= "/main/test.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value= "/main/schedule.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
+		
 		ModelAndView mav=new ModelAndView();
 		String viewName=(String)request.getAttribute("viewName");
 		mav.setViewName(viewName);

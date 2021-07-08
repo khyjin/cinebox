@@ -15,11 +15,15 @@
 .ui-datepicker-trigger{cursor: pointer;}
 /*datepicer input 롤오버 시 손가락 모양 표시*/
 .hasDatepicker{cursor: pointer;}
+/**/
+section.admin_mypage_main {
+   width:800;
+   height:800;
+   float:right;
+   margin-top : -190;
+   }
+
 </style>
-
-</head>
-<body>  
-
 <script type="text/javascript">
 
 function addRow(){
@@ -77,8 +81,7 @@ function addRow(){
 function deleteRow(rownum){
 	  
 	}
-	</script>
-
+</script>
 <style type="text/css">
 .cal_top{
     text-align: center;
@@ -98,7 +101,6 @@ table.calendar td{
     width: 100px;
 }
 </style>
-
 <script type="text/javascript">  
     var today = null;
     var year = null;
@@ -226,19 +228,19 @@ table tr:hover td {
    color: #004;
 }
 </style>
- 
-
- 
+</head>
+<body> 
+<section class="admin_mypage_main">
 <h1>영화 상영 스케줄</h1>
 
 <div id="container">
 	<ul class="tabs">
-		<li><a href="#tab1">입력하기</a></li>
-		<li><a href="#tab2">상영시간표</a></li>
+	
+		<li><a href="#tab1">상영시간표 입력하기</a></li>
+		<li><a href="#tab2">상영 일정</a></li>
 	</ul>
-	<div class="tab_container" id="container">
+<!-- 입력 -->	
 	<div class="tab_content" id="tab1">
-	<div class="writer">상영시간표 생성하기</div>
 		<form action="${contextPath}/schedule/addSchedule.do" method="post">
 			<table>
 				<thead>
@@ -250,19 +252,21 @@ table tr:hover td {
 					<th>시작시간</th>
 				</tr>
 				</thead>
-				
 			 <tbody id="scheduledata"/> 
 			</table>	
 
 		<div class="clear"></div>
-		
+		<br>
 		<input type="button" id="addBtn" value="행추가" onclick="addRow()">
 		<input type="button" value="맨 끝행삭제" onclick="deleteRow('-1')">
 		<input type="button" value="앞 행삭제" onclick="deleteRow('0')">
 		<input type="submit" value="send">
 		</form>
 	</div>
+<!-- 출력 -->	
 	
+	
+<!-- 일정 -->	
 	<div class="tab_content" id="tab2">
 		<div class="cal_top">
         <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
@@ -274,6 +278,7 @@ table tr:hover td {
     </div>
 	</div>
 	</div>
-</div>
+
+</section>
 </body>
 </html>
