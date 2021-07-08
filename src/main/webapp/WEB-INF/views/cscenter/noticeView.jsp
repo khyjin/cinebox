@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <style>
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 body {
 	background: #fff;
 }
@@ -44,7 +50,7 @@ body {
 </style>
 
 <body>
-
+<section class="admin_mypage_main">
 	<div>
 <c:choose>
 	<c:when test="${viewList.cscenter_type=='faq'}">
@@ -109,5 +115,6 @@ body {
 			}
 		}
 	</script>
+	</section>
 </body>
 </html>

@@ -9,11 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <style>
-section.mypoint {
-	height : 600;
-	width : 800;
-	float : right;
-}
+
 div.checkPoint {
 	font-family : "맑은 고딕";
 	font-weight : bold;
@@ -30,7 +26,7 @@ table#point {
 <title>Insert title here</title>
 </head>
 <body>
-<section class="mypoint">
+<section class="mypage_main">
 <div class="checkPoint">
 <img src="${contextPath}/resources/image/coinlogo.jpg" width="70" height="70"/>
  CINEBOX 포인트 

@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <style>
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280; : -190;
+   }
 body {
 	background: #fff;
 }
@@ -44,6 +50,7 @@ body {
 
 </style>
 <body>
+<section class="admin_mypage_main">
 <div>
 <c:choose>
 <c:when test="${reg_form=='faq' }">
@@ -115,5 +122,6 @@ body {
 </form>
 </table>
 </div>
+</section>
 </body>
 </html>

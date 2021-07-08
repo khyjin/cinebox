@@ -17,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,7 @@ import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.PageMaker;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.member.vo.MemberVO;
 
 @Controller("adminGoodsController")
@@ -177,28 +179,28 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	}
 	
 	
-	
+	@Override
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView modifyGoodsForm(@RequestParam("goods_id") int goods_id,
+	public ModelAndView modifyGoodsForm(@RequestParam("movie_id") int movie_id,
 			                            HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
-		Map goodsMap=adminGoodsService.goodsDetail(goods_id);
+		System.out.println("movieId="+movie_id);
+		Map goodsMap=adminGoodsService.goodsDetail(movie_id);
 		mav.addObject("goodsMap",goodsMap);
 		
 		return mav;
 	}
 	
 	@RequestMapping(value="/modifyGoodsInfo.do" ,method={RequestMethod.POST})
-	public ResponseEntity modifyGoodsInfo( @RequestParam("goods_id") String goods_id,
+	public ResponseEntity modifyGoodsInfo( @RequestParam("movie_id") String movie_id,
 			                     @RequestParam("attribute") String attribute,
 			                     @RequestParam("value") String value,
 			HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		//System.out.println("modifyGoodsInfo");
 		
 		Map<String,String> goodsMap=new HashMap<String,String>();
-		goodsMap.put("goods_id", goods_id);
+		goodsMap.put("movie_id", movie_id);
 		goodsMap.put(attribute, value);
 		adminGoodsService.modifyGoodsInfo(goodsMap);
 		
@@ -228,27 +230,27 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMember_id();
+		String image_admin_id = memberVO.getMember_id();
 		
 		List<ImageFileVO> imageFileList=null;
-		int goods_id=0;
-		int image_id=0;
+		int movie_id=0;
+		int image_number=0;
 		try {
 			imageFileList =upload(multipartRequest);
 			if(imageFileList!= null && imageFileList.size()!=0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
-					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
-					image_id = Integer.parseInt((String)goodsMap.get("image_id"));
-					imageFileVO.setMovie_id(goods_id);
-					imageFileVO.setImage_number(image_id);
-					imageFileVO.setImage_admin_id(reg_id);
+					movie_id = Integer.parseInt((String)goodsMap.get("movie_id"));
+					image_number = Integer.parseInt((String)goodsMap.get("image_number"));
+					imageFileVO.setMovie_id(movie_id);
+					imageFileVO.setImage_number(image_number);
+					imageFileVO.setImage_admin_id(image_admin_id);
 				}
 				
 			    adminGoodsService.modifyGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+movie_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
@@ -285,24 +287,24 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMember_id();
+		String image_admin_id= memberVO.getMember_id();
 		
 		List<ImageFileVO> imageFileList=null;
-		int goods_id=0;
+		int movie_id=0;
 		try {
 			imageFileList =upload(multipartRequest);
 			if(imageFileList!= null && imageFileList.size()!=0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
-					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
-					imageFileVO.setMovie_id(goods_id);
-					imageFileVO.setImage_admin_id(reg_id);
+					movie_id = Integer.parseInt((String)goodsMap.get("movie_id"));
+					imageFileVO.setMovie_id(movie_id);
+					imageFileVO.setImage_admin_id(image_admin_id);
 				}
 				
 			    adminGoodsService.addNewGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getImage_file_name();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+movie_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
@@ -321,9 +323,8 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	//이미지파일 삭제
 	@Override
 	@RequestMapping(value="/removeGoodsImage.do" ,method={RequestMethod.POST})
-	public void  removeGoodsImage(int movie_id, int image_number, String image_file_name,
+	public void  removeGoodsImage(@RequestParam("movie_id") int movie_id, @RequestParam("image_number") int image_number, @RequestParam("image_file_name") String image_file_name,
 			                      HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		
 		adminGoodsService.removeGoodsImage(image_number);
 		try{
 			File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+movie_id+"\\"+image_file_name);
@@ -341,6 +342,19 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		
 		return "redirect:/admin/goods/adminGoodsMain.do";
+	}
+
+	@Override
+	public ModelAndView searchMovie(@ModelAttribute("scri") SearchCriteria scri,HttpServletRequest request) throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("", adminGoodsService.movieSearch(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminGoodsService.listCount(scri));
+		
+		return mav;
 	}
 
 	

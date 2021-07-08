@@ -58,9 +58,9 @@
 <div class="clear"></div>
 <div id="ad_main_banner">
 	<ul class="bjqs">	 	
-	  <li><img width="775" height="145" src="${contextPath}/resources/image/cine_event.png"></li>
-		<li><img width="775" height="145" src="${contextPath}/resources/image/cine_event2.png"></li>
-		<li><img width="775" height="145" src="${contextPath}/resources/image/cine_event3.png"></li> 
+	  <li><img width="970" height="160" src="${contextPath}/resources/image/cine_event.png"></li>
+		<li><img width="970" height="160" src="${contextPath}/resources/image/cine_event2.png"></li>
+		<li><img width="970" height="160" src="${contextPath}/resources/image/cine_event3.png"></li> 
 	</ul>
 </div>
 

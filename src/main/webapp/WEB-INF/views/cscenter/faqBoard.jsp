@@ -8,16 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-tr td {
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 
 .btitle {
 	color: black;
@@ -82,6 +78,7 @@ body {
 
 </head>
 <body>
+<section class="admin_mypage_main">
 	<h1>자주찾는 질문</h1>
 	<div>
 		<table class="blueone">
@@ -145,5 +142,6 @@ body {
 			</ul>
 		</div>
 	</div>
+	</section>
 </body>
 </html>

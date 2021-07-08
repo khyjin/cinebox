@@ -11,7 +11,20 @@
 <meta charset="utf-8">
 <style type="text/css">
 
-#button0{ background-color:#193a3e;
+section.admin_mypage_main {
+   width:800;
+   height:800;
+   float:right;
+   margin-top : -190;
+   }
+	
+#button0{ 
+background-color: #168;
+color: white;
+border-radius: 50;
+border-style: none;
+width: 40;
+height: 22;
 }
 
 .idx{
@@ -40,7 +53,37 @@ color: black;
 	background-color: white;
 }
 
+body {
+   background: #fff;
+}
+
+.movielist {
+   border-collapse: collapse;
+   width: 100%;
+   font-size: small;
+}
+
+.movielist th {
+   padding: 10px;
+   color: #168;
+   border-bottom: 3px solid #168;
+   text-align: center;
+}
+
+.movielist td {
+   color: #669;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
+}
+
+.movielist tr:hover td {
+   color: #004;
+}
+.modia{
+   color: #669;
+}
 </style>
+
 
 <script>
 function search_goods_list(fixeSearchPeriod){
@@ -133,127 +176,46 @@ function delete_check(deleteId) {
 </script>
 </head>
 
+
 <body class="admin_bg">
-<H3>상품등록하기</H3>
-<DIV id="search">
+<section class="admin_mypage_main">
+
+	<h1>영화 조회</h1>
+	<br>
+<div style="float: right; width: 40%">
+	<form  method="post">	
+		<TABLE cellpadding="10" cellspacing="10">
+			<TBODY>
+				<tr>
+				  <td>
+					<input  type="text"  size="30"/>  
+					<input  type="button"  value=" 조회 "/>
+				  </td>
+				</tr>
+			</TBODY>
+		</TABLE>
+	</form>
+</div>
+	
+
+<DIV id="search" style="float: left; width: 40%; margin: 10">
+
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
 		<input type="submit" value="상품 등록하기">
 	</form>
 </DIV>
-<section class="mypage_main">
-	<H3>영화 조회</H3>
-	<form  method="post">	
-		<TABLE cellpadding="10" cellspacing="10"  >
-			<TBODY>
-				<!-- <TR >
-					<TD>
-						<input type="radio" name="r_search"  checked/> 등록일로조회 &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="r_search" />상세조회 &nbsp;&nbsp;&nbsp;
-					</TD>
-				</TR> 
-				<TR >
-					<TD>
-				개봉일  <select name="curYear">
-					    <c:forEach   var="i" begin="0" end="5">
-					      <c:choose>
-					        <c:when test="${endYear==endYear-i}">
-					          <option value="${endYear}" selected>${endYear}</option>
-					        </c:when>
-					        <c:otherwise>
-					          <option value="${endYear-i }">${endYear-i }</option>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>
-					</select>년 <select name="curMonth" >
-						 <c:forEach   var="i" begin="1" end="12">
-					      <c:choose>
-					        <c:when test="${endMonth==i }">
-					          <option value="${i }"  selected>${i }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <option value="${i }">${i }</option>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>					
-					</select>월
-					
-					 <select name="curDay">
-					  <c:forEach   var="i" begin="1" end="31">
-					      <c:choose>
-					        <c:when test="${endDay==i}">
-					          <option value="${i }"  selected>${i }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <option value="${i }">${i }</option>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>	
-					</select>일  &nbsp;이전&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a href="javascript:search_goods_list('today')">
-					   <img   src="${contextPath}/resources/image/btn_search_one_day.jpg">
-					</a>
-					<a href="javascript:search_goods_list('one_week')">
-					   <img   src="${contextPath}/resources/image/btn_search_1_week.jpg">
-					</a>
-					<a href="javascript:search_goods_list('two_week')">
-					   <img   src="${contextPath}/resources/image/btn_search_2_week.jpg">
-					</a>
-					<a href="javascript:search_goods_list('one_month')">
-					   <img   src="${pageContext.request.contextPath}/resources/image/btn_search_1_month.jpg">
-					</a>
-					<a href="javascript:search_goods_list('two_month')">
-					   <img   src="${contextPath}/resources/image/btn_search_2_month.jpg">
-					</a>
-					<a href="javascript:search_goods_list('three_month')">
-					   <img   src="${contextPath}/resources/image/btn_search_3_month.jpg">
-					</a>
-					<a href="javascript:search_goods_list('four_month')">
-					   <img   src="${contextPath}/resources/image/btn_search_4_month.jpg">
-					</a>
-					&nbsp;까지 조회
-					</TD>
-				</TR>-->
-				<tr>
-				  <td>
-<!-- 				    <select name="search_condition">
-						<option value="" checked>전체</option>
-						<option value="제품번호">상품번호</option>
-						<option value="제품이름">상품이름</option>
-						<option value="제조사">제조사</option>
-					</select> -->
-					<input  type="text"  size="30"/>  
-					<input   type="button"  value="조회"/>
-				  </td>
-				</tr>
-<!-- 			<tr>
-				  <td>
-					조회한 기간:<input  type="text"  size="4" value="${beginYear}" />년
-							<input  type="text"  size="4" value="${beginMonth}"/>월	
-							 <input  type="text"  size="4" value="${beginDay}"/>일	
-							 &nbsp; ~
-							<input  type="text"  size="4" value="${endYear }" />년 
-							<input  type="text"  size="4" value="${endMonth }"/>월	
-							 <input  type="text"  size="4" value="${endDay }"/>일							 
-				  </td>
-				</tr> -->
-			</TBODY>
-		</TABLE>
-		<DIV class="clear">
-	</DIV>
-</form>	
-<DIV class="clear"></DIV>
-<TABLE class="list_view">
+<br>
+<TABLE class="movielist">
 		<TBODY align=center >
-			<tr style="background:#33ff00" >
-				<td>영화번호</td>
-				<td>영화</td>
-				<td>감독</td>
-				<td>장르</td>
-				<td>개봉일</td>
-				<td>종료일</td>
-				<td>개봉상태</td>
-				<td>수정</td>
-				<td>삭제</td>
+			<tr>
+				<th>영화번호</th>
+				<th>영화</th>
+				<th>장르</th>
+				<th>개봉일</th>
+				<th>종료일</th>
+				<th>개봉상태</th>
+				<th>수정</th>
+				<th>삭제</th>
 			</tr>
    <c:choose>
      <c:when test="${empty newGoodsList }">			
@@ -271,10 +233,7 @@ function delete_check(deleteId) {
 				  <strong>${item.movie_id}</strong>
 				</TD>
 				<TD >
-				    <strong>${item.movie_title } </strong>
-				</TD>
-				<TD>
-				<strong>${item.movie_director}</strong> 
+				    <strong><a class="modia" href="${contextPath}/admin/goods/modifyGoodsForm.do?movie_id=${item.movie_id}">${item.movie_title}</a></strong>
 				</TD>
 				<TD>
 				   <strong>${item.movie_sort}</strong> 
@@ -291,19 +250,12 @@ function delete_check(deleteId) {
 					<c:otherwise><td>상영종료</td></c:otherwise>
 				</c:choose>
 				<td>
-					<button id="button0" onclick="location.href='${contextPath}/admin/goods/modifyGoodsForm.do?movie_id=${item.movie_id}'">
-						수정</button>
-					
+<!-- 					<input type="button"  id="button0" onclick="modify_form(deleteId${status.index})" value="수정"> -->
+						
 				</td>
 				<td>
 					<input type="hidden" value="${item.movie_id}" name="deleteId${status.index}">
 					<input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">				
-
-<!--  			    <c:set var="pub_date" value="${item.goods_published_date}" />
-					  <c:set var="arr" value="${fn:split(pub_date,' ')}" />
-					<strong>
-					   <c:out value="${arr[0]}" />	
-					</strong>-->
 				</td>
 			</TR>
 	</c:forEach></form>
@@ -337,12 +289,6 @@ function delete_check(deleteId) {
 </TABLE>
 	<DIV class="clear"></DIV>
 	<br><br><br>
-<H3>상품등록하기</H3>
-<DIV id="search">
-	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
-		<input type="submit" value="상품 등록하기">
-	</form>
-</DIV>
 </section>
 </body>
 </html>

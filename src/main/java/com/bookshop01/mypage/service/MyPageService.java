@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bookshop01.member.vo.MemberVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
 
 public interface MyPageService{
@@ -15,4 +16,5 @@ public interface MyPageService{
 	public void cancelOrder(String order_id) throws Exception;
 	public MemberVO myDetailInfo(String member_id) throws Exception;
 	public MemberVO myPoint(String member_id) throws Exception;
+	public List<MyPageVO> myReviewList(String member_id) throws Exception;
 }

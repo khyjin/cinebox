@@ -87,31 +87,32 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		//장바구니 갯수만큼 반복하기
-		for(int i=0; i<cart_goods_qty.length;i++){
-			String[] cart_goods=cart_goods_qty[i].split(":"); // :으로 결합된 상품번호와 주문 수량 분리
-			for(int j = 0; j< myGoodsList.size();j++) {
-				GoodsVO goodsVO = myGoodsList.get(j); // 장바구니 목록에서 차레로 GoodsVO를 가져오기
-				int goods_id = goodsVO.getGoods_id(); // 상품번호 가져오기
+//		for(int i=0; i<cart_goods_qty.length;i++){
+//			String[] cart_goods=cart_goods_qty[i].split(":"); // :으로 결합된 상품번호와 주문 수량 분리
+//			for(int j = 0; j< myGoodsList.size();j++) {
+//				GoodsVO goodsVO = myGoodsList.get(j); // 장바구니 목록에서 차레로 GoodsVO를 가져오기
+//				int goods_id = goodsVO.getGoods_id(); // 상품번호 가져오기
 				
 				//전송된 상품번호와 GoodVO의 상품 번호와 같다면
-				if(goods_id==Integer.parseInt(cart_goods[0])) {
-					OrderVO _orderVO=new OrderVO();
-					String goods_title=goodsVO.getGoods_title();
-					int goods_sales_price=goodsVO.getGoods_sales_price();
-					String goods_fileName=goodsVO.getGoods_fileName();
-					_orderVO.setGoods_id(goods_id);
-					_orderVO.setGoods_title(goods_title);
-					_orderVO.setGoods_sales_price(goods_sales_price);
-					_orderVO.setGoods_fileName(goods_fileName);
-					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
-					myOrderList.add(_orderVO);
-					break;
-				}
-			}
-		}
-		session.setAttribute("myOrderList", myOrderList);
-		session.setAttribute("orderer", memberVO);
+//				if(goods_id==Integer.parseInt(cart_goods[0])) {
+//					OrderVO _orderVO=new OrderVO();
+//					String goods_title=goodsVO.getGoods_title();
+//					int goods_sales_price=goodsVO.getGoods_sales_price();
+//					String goods_fileName=goodsVO.getGoods_fileName();
+//					_orderVO.setGoods_id(goods_id);
+//					_orderVO.setGoods_title(goods_title);
+//					_orderVO.setGoods_sales_price(goods_sales_price);
+//					_orderVO.setGoods_fileName(goods_fileName);
+//					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
+//					myOrderList.add(_orderVO);
+//					break;
+//				}
+//			}
+//		}
+//		session.setAttribute("myOrderList", myOrderList);
+//		session.setAttribute("orderer", memberVO);
 		return mav;
+
 	}	
 	
 	@RequestMapping(value="/payToOrderGoods.do" ,method = RequestMethod.POST)
