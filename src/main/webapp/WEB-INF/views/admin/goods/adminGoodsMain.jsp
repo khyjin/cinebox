@@ -13,7 +13,7 @@
 <style type="text/css">
 section.admin_mypage_main {
 	width:800;
-	height:600;
+	height:800;
 	float:right;
 	margin-top : -190;
 	}
@@ -134,7 +134,6 @@ function delete_check(deleteId) {
 
 </script>
 </head>
-
 <body>
 <section class="admin_mypage_main">
 	<H3>영화 조회</H3>

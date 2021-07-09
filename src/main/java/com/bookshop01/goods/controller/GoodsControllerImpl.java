@@ -1,6 +1,7 @@
 package com.bookshop01.goods.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.member.vo.MemberVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 
 import net.sf.json.JSONObject;
 
@@ -166,7 +174,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		
 		session=request.getSession();
 		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssci();
+		Map<String,List<GoodsVO>> goodsMap=goodsService.movieendlist();
 		mav.addObject("goodsMap", goodsMap);
 		return mav;
 	}
@@ -230,4 +238,48 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		session.setAttribute("quickGoodsList",quickMovieList);
 		session.setAttribute("quickGoodsListNum", quickMovieList.size());
 	}
+
+	@Override
+	@RequestMapping(value="/myReview.do", method = RequestMethod.POST)
+	public ResponseEntity myReview(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+		
+		String member_id = request.getParameter("member_id");
+		String review_content = request.getParameter("review_content");
+		String movie_title = request.getParameter("movie_title");
+		String[] review_score = request.getParameterValues("review_score"); 
+		
+		HashMap<String,String> reviewmap = new HashMap<String,String>();		
+		int review_score2=0;
+												
+			for(int i=0;i<review_score.length;i++) {
+				review_score2 += Integer.parseInt(review_score[i]);			
+			}						
+				reviewmap.put("member_id",member_id);
+				reviewmap.put("review_content",review_content);
+				reviewmap.put("movie_title",movie_title);
+				reviewmap.put("review_score",Integer.toString(review_score2));
+				
+			try {
+				goodsService.myReview(reviewmap);
+				message  = "<script>";
+				message +=" alert('작성을 완료했습니다.');";
+				message += " location.href='"+request.getContextPath()+"/main/main.do';";
+				message += " </script>";
+			} catch (Exception e) {
+				message  = "<script>";
+			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+			    message += " location.href='"+request.getContextPath()+"/goods/goodsDetail.do';";
+			    message += " </script>";
+				e.printStackTrace();
+			}
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;		
+	}	
 }

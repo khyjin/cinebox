@@ -142,7 +142,7 @@
 	</select>
 	
 	<select id="myReviewList" resultType="myPageVO" parameterType="String">
-		select * from cinebox_review
+		select * from cinebox_review where member_id =#{member_id}
 	</select>
 	
 		

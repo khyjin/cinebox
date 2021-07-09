@@ -13,6 +13,7 @@
 	<typeAlias type="com.bookshop01.cscenter.vo.CscenterVO" alias="cscenterVO"/>
     <typeAlias type="com.bookshop01.schedule.vo.ScheduleVO" alias="scheduleVO" />
   </typeAliases>
+ 
 </configuration>
 
 

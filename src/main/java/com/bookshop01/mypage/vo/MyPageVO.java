@@ -8,8 +8,8 @@ public class MyPageVO {
 	private String endDate;
 	private String review_content;
 	private int review_number;
-	private int review_score;
-	private int movie_id;
+	private String review_score;
+	private String movie_title;
 	private Date review_reg_date;
 
 	
@@ -44,17 +44,17 @@ public class MyPageVO {
 	public void setReview_number(int review_number) {
 		this.review_number = review_number;
 	}
-	public int getReview_score() {
+	public String getReview_score() {
 		return review_score;
 	}
-	public void setReview_score(int review_score) {
+	public void setReview_score(String review_score) {
 		this.review_score = review_score;
 	}
-	public int getMovie_id() {
-		return movie_id;
+	public String getMovie_title() {
+		return movie_title;
 	}
-	public void setMovie_id(int movie_id) {
-		this.movie_id = movie_id;
+	public void setMovie_title(String movie_title) {
+		this.movie_title = movie_title;
 	}
 	public Date getReview_reg_date() {
 		return review_reg_date;

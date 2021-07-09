@@ -67,7 +67,7 @@ width:100%;
                     document.getElementById('guide').innerHTML = '';
                 }
             }
-        }).close();
+        }).open();
     }
 
    

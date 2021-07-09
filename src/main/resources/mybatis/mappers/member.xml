@@ -101,7 +101,7 @@
                                     #{member_roadaddress},
                                     #{member_jibunaddress},
                                     #{member_namujiaddress},
-                                    to_date(sysdate),
+                                    to_char(sysdate,'YYYY-MM-DD'),
                                     'N',
                                     1000
                                     )

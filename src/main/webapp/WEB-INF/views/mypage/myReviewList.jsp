@@ -13,18 +13,17 @@
 <table class="list_view">
       <tbody align=center >
          <tr style=background:#e8e8e8 >  
-            <td>영화</td>          
-            <td>평점</td>
+            <td>영화명</td>                      
             <td>한줄평</td>
-            <td>작성자</td>
+            <td>평점</td>
             <td>작성일자</td> 
-            <td>취소</td>
+            <td>삭제</td>
          </tr>
          <c:choose>
          	<c:when test="${ empty myReviewList  }">
         <tr>
           <td colspan=5 class="fixed">
-              <strong>고객님의 후기평이 존재하지 않습니다.</strong>
+              <strong>${memberInfo.member_id}님의 후기평이 존재하지 않습니다.</strong>
           </td>
         </tr>
         	</c:when>
@@ -32,27 +31,22 @@
          <c:forEach var="item" items="${myReviewList }"  varStatus="i">
             <tr>  
              <td> <!-- 1.영화 -->
-           <!-- <span>${item.pay_order_time }</span></td> bookshop 주문일자 -->            
-               <span><!-- ${item.ticket_reservation_day} --> ${item.movie_id} </span>
-             </td>       
+               <span> ${item.movie_title} </span>
+             </td>                                   
                 
-             <td> <!-- 2.평점 -->
-             <span>${item.review_score}</span>
-           </td>   
-                
-             <td align="left"> <!-- 3.한줄평 -->
+             <td align="left"> <!-- 2.한줄평 -->
                 ${item.review_content}
              </td>
              
-             <td> <!-- 4.작성자 -->
-             ${item.member_id}
-             </td>
-                                   
+              <td> <!-- 3.평점 -->
+             <span>${item.review_score}점</span>
+             </td>      
+                             
            <td> <!-- 5.작성일자 -->
                <span>${item.review_reg_date} </span>
              </td>
              
-           <td> <!-- 6.취소 -->           
+           <td> <!-- 6.삭제 -->           
            </td>  
                                    
          </tr>
