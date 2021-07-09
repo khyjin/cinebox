@@ -41,6 +41,8 @@
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap> 
 	
+	
+	
 	 <select id="selectMyOrderGoodsList" resultMap="orderGoodsResult"  parameterType="String"  >
 	    <![CDATA[
 			select * from t_shopping_order
@@ -124,9 +126,9 @@
 		member_id=#{member_id}
 	</update>
 	
-	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
+	<select id="selectMyDetailInfo" resultType="memberVO"  parameterType="String"  >
 	    <![CDATA[
-			select * from t_shopping_member 
+			select * from cinebox_member 
 			where member_id=#{member_id}
     	]]>
 	</select>	
@@ -140,6 +142,14 @@
 	<select id="myPoint" resultType="memberVO" parameterType="String">
 		select * from cinebox_member where member_id = #{member_id}
 	</select>
+	
+	<update id="memberDelete" parameterType="String">
+	  <![CDATA[
+		  update cinebox_member 
+		  		set member_del_yn='y',member_del_date=to_date(sysdate) 
+		  where member_id=#{member_id} and member_pw=#{member_pw}
+	  ]]>
+	</update>	
 	
 	<select id="myReviewList" resultType="myPageVO" parameterType="String">
 		select * from cinebox_review where member_id =#{member_id}

@@ -182,6 +182,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
+	
 
 	@Override
 	@RequestMapping(value="/myReviewList.do",method=RequestMethod.GET)
@@ -198,6 +199,4 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		mav.addObject("myReviewList", myReviewList);
 		return mav;				
 	}
-
-	
 }

@@ -1,6 +1,7 @@
 package com.bookshop01.mypage.dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class MyPageDAOImpl implements MyPageDAO{
 	}
 	
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException{
-		MemberVO memberVO=(MemberVO)sqlSession.selectOne("mapper.mypage.selectMyDetailInfo",member_id);
+		MemberVO memberVO=(MemberVO) sqlSession.selectOne("mapper.mypage.selectMyDetailInfo",member_id);
 		return memberVO;
 		
 	}
@@ -52,14 +53,11 @@ public class MyPageDAOImpl implements MyPageDAO{
 		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.myPoint",member_id);
 		return memberVO;
 	}
-
+	
 	@Override
 	public List<MyPageVO> myReviewList(String member_id) throws DataAccessException {
 		List<MyPageVO> myReviewList = sqlSession.selectList("mapper.mypage.myReviewList",member_id);
 		return myReviewList;
 	}
 
-	
-
-	
 }

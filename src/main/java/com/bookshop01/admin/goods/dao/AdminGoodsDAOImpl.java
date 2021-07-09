@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.order.vo.OrderVO;
 
 @Repository("adminGoodsDAO")
@@ -68,8 +69,8 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 	
 	@Override
-	public void deleteGoodsImage(int image_id) throws DataAccessException{
-		sqlSession.delete("mapper.admin.goods.deleteGoodsImage",image_id);
+	public void deleteGoodsImage(int image_number) throws DataAccessException{
+		sqlSession.delete("mapper.admin.goods.deleteGoodsImage",image_number);
 	}
 	
 	@Override
@@ -109,6 +110,16 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 		sqlSession.delete("mapper.admin.goods.deleteMovie", movie_id);	
 
 		
+	}
+
+	@Override
+	public List<GoodsVO> movieSearchList(SearchCriteria scri) throws DataAccessException {
+		return sqlSession.selectList("mapper.admin.goods.movieSearchList", scri);
+	}
+
+	@Override
+	public int listCount(SearchCriteria scri) throws DataAccessException {
+		return sqlSession.selectOne("mapper.admin.goods.listCount",scri);
 	}
 
 

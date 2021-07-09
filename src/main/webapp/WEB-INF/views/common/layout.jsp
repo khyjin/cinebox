@@ -31,7 +31,7 @@
 			'height' : 160,
 			'showMarkers' : true,
 			'showControls' : false,
-			'centerMarkers' : false
+			'centerMarkers' : false,
 		});
 	});
 	// 스티키 		

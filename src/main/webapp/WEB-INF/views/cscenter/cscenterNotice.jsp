@@ -15,6 +15,12 @@ $(".hover").mouseleave(
 		);
 </script>
 <style>
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 body {
 	background: #fff;
 }
@@ -80,6 +86,7 @@ body {
 
 </head>
 <body>
+<section class="admin_mypage_main">
 	<h1>공지사항</h1>
 <div>
 <table class="blueone">
@@ -135,5 +142,6 @@ body {
   </ul>
 </div>
 </div>
+</section>
 </body>
 </html>

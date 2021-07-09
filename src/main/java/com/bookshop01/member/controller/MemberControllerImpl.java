@@ -31,6 +31,32 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	@Autowired
 	private MemberVO memberVO;
 	
+	
+	@RequestMapping(value="/loginForm.do")
+	public ModelAndView loginform(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		session.removeAttribute("side_menu");
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/memberForm.do")
+	public ModelAndView memberjoinForm(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		session.removeAttribute("side_menu");
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	
+	
+	
+	
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 											// id 비밀번호 저장하기

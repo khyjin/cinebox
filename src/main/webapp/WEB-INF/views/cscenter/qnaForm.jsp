@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <style>
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 table {
 	width: 100%;
 	border-top: 1px solid #444444;
@@ -48,6 +54,7 @@ body {
 }
 </style>
 <body>
+<section class="admin_mypage_main">
 <div>
 	<hgroup>
 		<h1>1:1문의</h1>
@@ -105,5 +112,6 @@ body {
 </table>
 </form>
 </div>
+</section>
 </body>
 </html>

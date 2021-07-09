@@ -5,9 +5,13 @@
 <tiles-definitions>
     
    
-      <definition name="/main/test" extends="baseLayout">
+      <definition name="/main/schedule" extends="baseLayout">
        <put-attribute name="title" value="상영 스케줄링 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/schedule/addNewScheduleForm.jsp" />
+    </definition>
+     <definition name="/schedule/selectSchedule" extends="baseLayout">
+       <put-attribute name="title" value="상영 스케줄링 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/schedule/scheduleDetail.jsp" />
     </definition>
 </tiles-definitions>
 

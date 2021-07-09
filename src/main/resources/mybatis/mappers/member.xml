@@ -96,7 +96,7 @@
                                     #{member_hp3},
                                     #{member_email1},
                                     #{member_email2},
-                                    #{member_email_yn},
+                                    #{member_email_yn, jdbcType=VARCHAR},
                                     #{member_zip},
                                     #{member_roadaddress},
                                     #{member_jibunaddress},

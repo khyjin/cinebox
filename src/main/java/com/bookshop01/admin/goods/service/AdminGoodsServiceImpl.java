@@ -18,6 +18,7 @@ import com.bookshop01.admin.goods.dao.AdminGoodsDAO;
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.order.vo.OrderVO;
 
 
@@ -48,17 +49,17 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	}
 	
 	@Override
-	public Map goodsDetail(int goods_id) throws Exception {
+	public Map goodsDetail(int movie_id) throws Exception {
 		Map goodsMap = new HashMap();
-		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(goods_id);
-		List imageFileList =adminGoodsDAO.selectGoodsImageFileList(goods_id);
+		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(movie_id);
+		List imageFileList =adminGoodsDAO.selectGoodsImageFileList(movie_id);
 		goodsMap.put("goods", goodsVO);
 		goodsMap.put("imageFileList", imageFileList);
 		return goodsMap;
 	}
 	@Override
-	public List goodsImageFile(int goods_id) throws Exception{
-		List imageList =adminGoodsDAO.selectGoodsImageFileList(goods_id);
+	public List goodsImageFile(int movie_id) throws Exception{
+		List imageList =adminGoodsDAO.selectGoodsImageFileList(movie_id);
 		return imageList;
 	}
 	
@@ -82,8 +83,8 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	}
 	
 	@Override
-	public void removeGoodsImage(int image_id) throws Exception{
-		adminGoodsDAO.deleteGoodsImage(image_id);
+	public void removeGoodsImage(int image_number) throws Exception{
+		adminGoodsDAO.deleteGoodsImage(image_number);
 	}
 	
 	@Override
@@ -94,6 +95,16 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	@Override
 	public void deleteMovie(int movie_id) throws Exception {
 		adminGoodsDAO.deleteMovie(movie_id);
+	}
+
+	@Override
+	public List<GoodsVO> movieSearch(SearchCriteria scri) throws Exception {
+		return adminGoodsDAO.movieSearchList(scri);
+	}
+
+	@Override
+	public int listCount(SearchCriteria scri) throws Exception {
+		return adminGoodsDAO.listCount(scri);
 	}
 
 	

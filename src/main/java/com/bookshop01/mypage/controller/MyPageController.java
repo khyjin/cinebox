@@ -22,4 +22,5 @@ public interface MyPageController {
 					            HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView myPoint(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView myReviewList(@RequestParam("member_id")String member_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	
 	}

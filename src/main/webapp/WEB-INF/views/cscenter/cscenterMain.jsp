@@ -12,6 +12,12 @@
 <title>Insert title here</title>
 </head>
 <style>
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 .imgtb {
 	padding-left: 50px;
 	text-align: center;
@@ -37,6 +43,7 @@ table .notice1 {
 }
 </style>
 <body>
+<section class="admin_mypage_main">
 <div>
 	<hgroup>
 		<h1>고객센터</h1>
@@ -97,6 +104,7 @@ table .notice1 {
 	</div>
 	
 </div>
+</section>
 </body>
 <script type="text/javascript">
 function fn_send_qna() {

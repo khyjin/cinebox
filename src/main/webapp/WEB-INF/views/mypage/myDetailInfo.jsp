@@ -16,6 +16,10 @@ section.mydetail_main {
 #detail_table table {
 width:100%;
 }
+.mypage_main {
+height:600;
+
+}
 </style>
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

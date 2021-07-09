@@ -9,6 +9,7 @@
 <style type="text/css">
 #detail_table{
 	padding-left:185px;
+	
 }
 </style>
 <meta charset="utf-8">
@@ -81,7 +82,7 @@ function fn_overlapped(){
           }
        },
        error:function(data,textStatus){
-          alert("에러가 발생했습니다.");ㅣ
+          alert("아이디 중복 검사는 필수 항목입니다.");ㅣ
        },
        complete:function(data,textStatus){
           //alert("작업을완료 했습니다");
@@ -166,14 +167,14 @@ function result(){
             <tr class="dot_line">
                <td class="fixed_join">새 아이디</td>
                <td class="member_input">
-                 <input type="text" name="_member_id"  id="_member_id"  size="20"/>
+                 <input type="text" name="_member_id"  id="_member_id"  size="20" placeholder="4~10자 이내로 입력"/>
                  <input type="hidden" name="member_id"  id="member_id" />
-                 <input type="button"  id="btnOverlapped" value="아이디 중복 확인" onClick="fn_overlapped()">
+                 <input type="button"  id="btnOverlapped" value="아이디 중복 확인" onClick="fn_overlapped()" >
                </td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">새 비밀번호</td>
-               <td  class="member_input"><input name="member_pw" id="member_pw1" type="password" size="20" /></td>
+               <td  class="member_input"><input name="member_pw" id="member_pw1" type="password" size="20" placeholder="4~15자 이내로 입력"/></td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">비밀번호 확인</td>
@@ -183,7 +184,7 @@ function result(){
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이름</td>
-               <td  class="member_input"><input name="member_name" type="text" size="20" /></td>
+               <td  class="member_input"><input name="member_name" type="text" size="20" placeholder="2~5자 이내로 입력"/></td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">성별</td>
@@ -259,7 +260,8 @@ function result(){
                            <option value="empal.com">empal.com</option>
                            <option value="korea.com">korea.com</option>
                            <option value="freechal.com">freechal.com</option>
-                     </select><br> <br> <input type="checkbox" id="member_email_yn" name="member_email_yn" value="Y" checked/> cinebox에서 발송하는 e-mail을 수신합니다.
+                     </select><br> <br> <input type="checkbox" id="member_email_yn" name="member_email_yn" value="Y" checked="checked"/> cinebox에서 발송하는 e-mail을 수신합니다.
+
                                     </td>
             </tr>
             <tr class="dot_line">
