@@ -151,9 +151,33 @@
 	  ]]>
 	</update>	
 	
+	<!-- 내 후기평 목록 출력 -->
 	<select id="myReviewList" resultType="myPageVO" parameterType="String">
-		select * from cinebox_review
+		select * from cinebox_review where member_id=#{member_id} 
 	</select>
 	
-		
+	<!-- 내 후기평 삭제 -->
+	<delete id="deletemyReview" parameterType="int">
+	delete from cinebox_review where review_number = #{review_number}
+	</delete>
+	
+	<!-- 나의 1:1 문의 내역 출력 -->
+	<select id="myQnaList" resultType="cscenterVO" parameterType="String">
+		select * from cinebox_cscenter where member_id=#{member_id} 
+	</select>
+	
+	<!-- 나의 1:1 문의 내역 수정 -->
+	<update id="myQnaModify">
+	   update cinebox_cscenter
+			   set cscenter_content=#{cscenter_content},
+			         cscenter_title=#{cscenter_title},
+			         cscenter_type=#{cscenter_type},
+			         cscenter_headline=#{cscenter_headline}
+			         where cscenter_number=#{cscenter_number}
+	</update>
+	
+	<!-- 나의 1:1 문의 내역 수정폼 -->
+	<select id="myQnaModifyview" resultType="cscenterVO" parameterType="int">
+		select * from cinebox_cscenter where cscenter_number=#{cscenter_number} 
+	</select>
 </mapper>

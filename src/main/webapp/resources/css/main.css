@@ -138,7 +138,7 @@ table {
 	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:215px;
 }
 .back {
-	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #e8e8e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px; 
+	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px; 
 }
 .mod_member {
 padding-left: 70px;
@@ -634,6 +634,7 @@ div.myInfo{
    color : black;
    font-family:"¸¼Àº °íµñ";
 }
+
   .list_view h2 {
    padding: 0px 0px 2px; font-size: 1.2em; font-weight: bold;
 }
@@ -874,7 +875,7 @@ article h1_TITLE {
 
 }
 .main_book .book {
-   padding-top:20px; padding-bottom:30px; margin: 0px 0px 0px; background-position: right; border: 1px solid rgb(236, 240, 241); border-image: none; width: 188px; height: 290px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat; overflow: hidden; 
+   padding-top:20px; padding-bottom:30px; margin: 0px 0px 0px; background-position: right; border: 1px solid #ecf0f1; border-image: none; width: 190px; height: 310px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat; 
 }
 
 .main_book .book img {

@@ -166,7 +166,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		
 		session=request.getSession();
 		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssci();
+		Map<String,List<GoodsVO>> goodsMap=goodsService.movieendlist();
 		mav.addObject("goodsMap", goodsMap);
 		return mav;
 	}
@@ -229,5 +229,14 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		}
 		session.setAttribute("quickGoodsList",quickMovieList);
 		session.setAttribute("quickGoodsListNum", quickMovieList.size());
+	}
+	
+	//¿¬½À
+	@RequestMapping(value="/NewFile.do" ,method = RequestMethod.GET)
+	public ModelAndView NewFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+		
 	}
 }

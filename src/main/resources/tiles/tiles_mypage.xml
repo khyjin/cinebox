@@ -27,8 +27,14 @@
        <put-attribute name="title" value="내 후기평 확인" />
        <put-attribute name="body" value="/WEB-INF/views/mypage/myReviewList.jsp" />
      </definition>
-    
-    
+    <definition name="/mypage/myQnaList" extends="baseLayout">
+       <put-attribute name="title" value="나의 1:1 문의내역 확인" />
+       <put-attribute name="body" value="/WEB-INF/views/mypage/myQnaList.jsp" />
+     </definition>
+    <definition name="/mypage/myQnaModifyview" extends="baseLayout">
+       <put-attribute name="title" value="나의 1:1 문의내역 수정" />
+       <put-attribute name="body" value="/WEB-INF/views/mypage/myQnaModifyview.jsp" />
+     </definition>
      
 </tiles-definitions>
 

@@ -32,13 +32,13 @@
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">나의 정보 수정</a></li>
 			<li><a href="${contextPath}/mypage/myPoint.do">잔여 포인트 확인</a></li>	
-			<li><a href="${contextPath}/mypage/myReviewList.do">내 후기평</a></li>
+			<li><a href="${contextPath}/mypage/myReviewList.do">나의 관람평</a></li>
 		</ul>
 	</li>	
 	<li class="sidemenu">
 		<h3>나의 문의 내역</h3>
 		<ul>
-			<li><a href="${contextPath}/mypage/myDetailInfo.do">1:1 문의</a></li>
+			<li><a href="${contextPath}/mypage/myQnaList.do">1:1 문의</a></li>
 		</ul>
 	</li>
 </c:when>

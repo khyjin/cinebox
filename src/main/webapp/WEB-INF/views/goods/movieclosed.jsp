@@ -12,7 +12,7 @@
 }
 .main_book h3{
 	border:0;
-	padding: 5px 5px 45px;
+	padding: 5px 5px 5px;
 	text-align: center;
 }
 </style>
@@ -41,9 +41,7 @@
 				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
 			<div class="title">${item.movie_title }</div>
-			<div class="price">
-		  	   예매버튼추가예정
-			</div>
+			<div class="score">평점 0.0</div>
 		</div>
 	   <c:if test="${goods_count==8}">
          <div class="book">

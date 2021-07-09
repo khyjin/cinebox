@@ -113,8 +113,8 @@ function result(){
     var hp2 = $("#member_hp2").val();
     var hp3 = $("#member_hp3").val();
     var email1 = $("#member_email1").val();
-    var roadaddress = $("#roadaddress").val();
-    var jibunaddress = $("#jibunaddress").val();
+    var roadaddress = $("#roadAddress").val();
+    var jibunaddress = $("#jibunAddress").val();
     
 		if(pw1 !== pw2) {
 			   alert("비밀번호가 일치하지 않습니다.");
@@ -136,7 +136,11 @@ function result(){
 			alert("패스워드는 4~15자 이내로 입력해주세요.");
 			   window.location.href = "/memberForm.do";
 		}
-		else if(2>name.length ||name.length>5||name==null||name=="") {
+		else if(name==null||name=="") {
+			alert("이름은 필수 입력 항목입니다.");
+			   window.location.href = "/memberForm.do";
+		}
+		else if(2>name.length ||name.length>5) {
 			alert("이름은 2~5자 이내로 입력해주세요.");
 			   window.location.href = "/memberForm.do";
 		}
@@ -184,7 +188,7 @@ function result(){
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이름</td>
-               <td  class="member_input"><input name="member_name" type="text" size="20" placeholder="2~5자 이내로 입력"/></td>
+               <td  class="member_input"><input name="member_name" id="member_name" type="text" size="20" placeholder="2~5자 이내로 입력"/></td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">성별</td>
@@ -245,7 +249,7 @@ function result(){
                      <option value="017">017</option>
                      <option value="018">018</option>
                      <option value="019">019</option>
-               </select> - <input size="5px"  type="text" name="member_hp2"> - <input size="5px"  type="text"name="member_hp3"><br> 
+               </select> - <input size="5px"  type="text" name="member_hp2" id="member_hp2"> - <input size="5px"  type="text"name="member_hp3" id="member_hp3"><br> 
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이메일<br>(e-mail)</td>
@@ -262,7 +266,7 @@ function result(){
                            <option value="freechal.com">freechal.com</option>
                      </select><br> <br> <input type="checkbox" id="member_email_yn" name="member_email_yn" value="Y" checked="checked"/> cinebox에서 발송하는 e-mail을 수신합니다.
 
-                                    </td>
+            </td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">주소</td>
@@ -271,8 +275,8 @@ function result(){
                  <br><br>
                  <p> 
                   도로명 주소:<br><input type="text" id="roadAddress"  name="member_roadaddress" size="50"><br><br>
-                 지번 주소: <input type="text" id="jibunAddress" name="member_jibunaddress" size="50"><br><br>
-                 나머지 주소: <input type="text"  name="member_namujiaddress" size="50" />
+                 지번 주소: <br><input type="text" id="jibunAddress" name="member_jibunaddress" size="50"><br><br>
+                 나머지 주소:<br> <input type="text"  name="member_namujiaddress" size="50" />
                 <!--   <span id="guide" style="color:#999"></span> -->
                   </p>
                </td>
