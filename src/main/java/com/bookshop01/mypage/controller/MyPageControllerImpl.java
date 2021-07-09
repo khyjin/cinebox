@@ -196,7 +196,9 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			throws Exception {	
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		member_id=memberVO.getMember_id();
+		HttpSession session=request.getSession();
+		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		member_id = memberVO.getMember_id();
 		List<MyPageVO> myReviewList=myPageService.myReviewList(member_id);		
 		mav.addObject("myReviewList", myReviewList);
 		return mav;				

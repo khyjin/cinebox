@@ -38,6 +38,7 @@
 
 </style>
 <body>
+<section class="admin_mypage_main">
 <div>
 	<hgroup>
 		<h1>분실물 문의</h1>
@@ -101,5 +102,6 @@
 </form>
 </table>
 </div>
+</section>
 </body>
 </html>

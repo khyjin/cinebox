@@ -23,10 +23,10 @@ public interface MyPageController {
 					            @RequestParam("value")  String value,
 					            HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView myPoint(HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView myReviewList(String member_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public String deletemyReview(@RequestParam("review_number") int review_number) throws Exception;
 	public ModelAndView myQnaList(String member_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView myQnaModifyview(@RequestParam("cscenter_number")  int cscenter_number, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity myQnaModify(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
-}
+	public ModelAndView myReviewList(String member_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	}

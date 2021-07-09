@@ -126,9 +126,9 @@
 		member_id=#{member_id}
 	</update>
 	
-	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
+	<select id="selectMyDetailInfo" resultType="memberVO"  parameterType="String"  >
 	    <![CDATA[
-			select * from t_shopping_member 
+			select * from cinebox_member 
 			where member_id=#{member_id}
     	]]>
 	</select>	

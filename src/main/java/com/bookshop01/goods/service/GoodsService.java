@@ -1,10 +1,12 @@
 package com.bookshop01.goods.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 
 public interface GoodsService {
 	
@@ -21,5 +23,5 @@ public interface GoodsService {
 	public Map<String, List<GoodsVO>> listGoodshistory() throws Exception;
 	public List<String> keywordSearch(String keyword) throws Exception;
 	public List<GoodsVO> searchGoods(String searchWord) throws Exception;
-	
+	public void myReview(HashMap<String,String> reviewmap) throws Exception;
 }

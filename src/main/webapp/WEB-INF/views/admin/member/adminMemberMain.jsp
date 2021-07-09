@@ -225,11 +225,44 @@ function delete_check() {
 	}
 </script>
 <style>
+section.admin_mypage_main {
+   width:800;
+   height:800;
+   float:right;
+   margin-top : -190;
+   }
+body {
+   background: #fff;
+}
+.list_view {
+   border-collapse: collapse;
+   width: 100%;
+   font-size: small;
+}
+
+.list_view th {
+   padding: 10px;
+   color: #168;
+   border-bottom: 3px solid #168;
+   text-align: center;
+}
+
+.list_view td {
+   color: #669;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
+}
+
+.list_view tr:hover td {
+   color: #004;
+}
 #button0{ background-color:#193a3e;}
 </style>
 </head>
 <body>
-	<H3>회원 조회</H3>
+<section class="admin_mypage_main">
+
+	<H1>회원 조회</H1>
 	<form name="frm_delivery_list" >	
 		<table cellpadding="10" cellspacing="10"  >
 			<tbody>
@@ -419,7 +452,7 @@ function delete_check() {
 						<option value="member_addr">회원주소</option>
 					</select>
 					<input  type="text"  size="30" name="t_search_word" disabled />  
-					<input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()" disabled  />
+					<input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()"  />
 				  </td>
 				</tr>				
 			</tbody>
@@ -430,14 +463,14 @@ function delete_check() {
 <div class="clear"></div>
 <table class="list_view">
 		<tbody align=center >
-			<tr align=center bgcolor="#ffcc00">
-				<td class="fixed" >회원아이디</td>
-				<td class="fixed">회원이름</td>
-				<td>휴대폰번호</td>
-				<td>주소</td>
-				<td>가입일</td>
-				<td>탈퇴여부</td>
-				<td>비고</td>
+			<tr>
+				<th class="fixed" >ID</th>
+				<th class="fixed">이름</th>
+				<th>휴대폰번호</th>
+				<th>주소</th>
+				<th>가입일</th>
+				<th>탈퇴여부</th>
+				<th>비고</th>
 			</tr>
    <c:choose>
      <c:when test="${empty member_list}">			
@@ -450,24 +483,23 @@ function delete_check() {
 	 <c:otherwise>
 	     <c:forEach var="item" items="${member_list}" varStatus="item_num">
 	            <tr>       
-					<td width=10%>
-					
+					<td width=5%>
 					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">
 					     <strong>${item.member_id}</strong>
 					  </a>
 					</td>
-					<td width=10%>
+					<td width=5%>
 					  <strong>${item.member_name}</strong><br>
 					</td>
-					<td width=10% >
+					<td width=15% >
 					  <strong>${item.member_hp1}-${item.member_hp2}-${item.member_hp3}</strong><br>
 					</td>
-					<td width=30%>
+					<td width=40%>
 					  <strong>${item.member_roadaddress}</strong><br>
 					  <strong>${item.member_jibunaddress}</strong><br>
 					  <strong>${item.member_namujiaddress}</strong><br>
 					</td>
-					<td width=10%>
+					<td width=15%>
 					   <c:set var="join_date" value="${item.member_joindate}" />
 					   <c:set var="arr" value="${fn:split(join_date,' ')}" />
 					   <strong><c:out value="${arr[0]}" /></strong>
@@ -482,8 +514,9 @@ function delete_check() {
 				         </c:otherwise>
 				       </c:choose>
 				    </td>
-				    <td width=20%>
-				    <button id="button0"><a href="${pageContext.request.contextPath}/mypage/modifyMyInfo.do?member_id=${item.member_id}">수정</a></button>
+				    
+				    <td width=10%>
+				    <button id="button0"><a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">수정</a></button>
 				    <button id="button0"><a href="${pageContext.request.contextPath}/admin/member/realdelmember.do?member_id=${item.member_id}" onclick="return delete_check()">삭제</a></button>
 				    </td>
 				</tr>
@@ -523,7 +556,7 @@ function delete_check() {
 	</DIV>	
  </c:when>
 </c:choose>
-
+</section>
 </body>
 </html>
 

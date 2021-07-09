@@ -15,17 +15,25 @@
 <table class="list_view">
       <tbody align=center >
          <tr style=background:#e8e8e8 >  
+<<<<<<< HEAD
             <td><strong>영화</strong></td>          
             <td><strong>평점</strong></td>
             <td><strong>한줄평</strong></td>
             <td><strong>작성일자</strong></td> 
             <td><strong>삭제</strong></td>
+=======
+            <td>영화명</td>                      
+            <td>한줄평</td>
+            <td>평점</td>
+            <td>작성일자</td> 
+            <td>삭제</td>
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
          </tr>
          <c:choose>
          	<c:when test="${ empty myReviewList  }">
         <tr>
           <td colspan=5 class="fixed">
-              <strong>고객님의 후기평이 존재하지 않습니다.</strong>
+              <strong>${memberInfo.member_id}님의 후기평이 존재하지 않습니다.</strong>
           </td>
         </tr>
         	</c:when>
@@ -41,10 +49,17 @@
 			}
 		</script>
             <tr>  
+<<<<<<< HEAD
              <td> <!-- 1.영화 -->    
                <span> ${item.movie_title} </span>
              </td>       
+=======
+             <td> <!-- 1.영화 -->
+               <span> ${item.movie_title} </span>
+             </td>                                   
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
                 
+<<<<<<< HEAD
              <td> <!-- 2.평점 -->
              <span>${item.review_score}</span>
            </td>   
@@ -53,12 +68,26 @@
                 <span>${item.review_content}</span>
              </td>
                                    
+=======
+             <td align="left"> <!-- 2.한줄평 -->
+                ${item.review_content}
+             </td>
+             
+              <td> <!-- 3.평점 -->
+             <span>${item.review_score}점</span>
+             </td>      
+                             
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
            <td> <!-- 5.작성일자 -->
                <span>${item.review_reg_date} </span>
              </td>
              
+<<<<<<< HEAD
            <td> <!-- 6.삭제 -->  
                <button onclick="delete_review()">삭제</button>
+=======
+           <td> <!-- 6.삭제 -->           
+>>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
            </td>  
                                    
          </tr>

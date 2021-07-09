@@ -1,6 +1,7 @@
 package com.bookshop01.goods.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 
 @Repository("goodsDAO")
 public class GoodsDAOImpl  implements GoodsDAO{
@@ -92,5 +94,10 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		List<GoodsVO> goodsList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsList",movie_status);
 	   return goodsList;	
 	}
-	
+
+	@Override
+	public void myReview(HashMap<String,String> reviewmap) throws Exception {
+		sqlSession.insert("mapper.goods.myReview",reviewmap);
+	}
+
 }

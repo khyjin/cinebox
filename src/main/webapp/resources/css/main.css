@@ -427,7 +427,7 @@ article h4 {
 }
 
 #container {
-   margin: 40px auto; width: 100%;
+   margin: 40px auto; width: 100%; background-color : #ecf0f1;
 }
 ul.tabs {
    list-style: none; margin: 0px; padding: 0px; width: 100%; height: 32px; border-bottom-color: rgb(255, 0, 0); border-bottom-width: 1px; border-bottom-style: solid; float: left;
@@ -500,7 +500,7 @@ div.openButtonContainer button.closedbtn {
 }
 
 .tab_container {
-   background: rgb(255, 255, 255); width: 100%; height:900; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
+   background: #ecf0f1; width: 100%; height:auto; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
 }
 .tab_content {
    padding: 10px 10px 20px; line-height: 1.8em; font-size: 0.75em; min-height: 400px;
@@ -526,6 +526,7 @@ footer {
 footer table {   
    float: left;
    padding-top:5;
+   margin-top:-20px;
 }
 footer a {
    padding: 5px; 

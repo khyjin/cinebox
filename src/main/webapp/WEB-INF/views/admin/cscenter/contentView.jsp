@@ -10,6 +10,12 @@
 <title>Insert title here</title>
 </head>
 <style>
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 .btd {
 
 	font-size: large;
@@ -52,6 +58,7 @@ body {
 </style>
 
 <body>
+<section class="admin_mypage_main">
 <div>
 	<hgroup>
 		<h1>1:1문의 답변 작성</h1>
@@ -95,5 +102,6 @@ body {
 
 
 </div>
+</section>
 </body>
 </html>

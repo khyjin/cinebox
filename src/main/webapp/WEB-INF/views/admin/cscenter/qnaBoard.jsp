@@ -10,16 +10,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-tr td {
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
+section.admin_mypage_main {
+   width:780;
+   height:800;
+   float:right;
+   margin-top : -280;
+   }
 
 .btitle1 {
 	color: silver;
@@ -82,7 +78,7 @@ body {
 
 </head>
 <body>
-
+<section class="admin_mypage_main">
 	<div>
 		<table class="blueone">
 			<thead>
@@ -155,5 +151,6 @@ body {
 		</div>
 
 	</div>
+	</section>
 </body>
 </html>

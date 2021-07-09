@@ -41,7 +41,7 @@ public class MyPageDAOImpl implements MyPageDAO{
 	}
 	
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException{
-		MemberVO memberVO=(MemberVO)sqlSession.selectOne("mapper.mypage.selectMyDetailInfo",member_id);
+		MemberVO memberVO=(MemberVO) sqlSession.selectOne("mapper.mypage.selectMyDetailInfo",member_id);
 		return memberVO;
 		
 	}

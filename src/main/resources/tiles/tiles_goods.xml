@@ -62,11 +62,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/goods/movieclosed.jsp" />
 	</definition>
 	
-	<!-- 좌석 페이지 테스트 -->
-	<definition name="/goods/NewFile" extends="baseLayout">
-		<put-attribute name="title" value="좌석 페이지 테스트" />
-		<put-attribute name="body" value="/WEB-INF/views/goods/NewFile.jsp" />
-	</definition>
 	
 	
 </tiles-definitions>

@@ -190,98 +190,78 @@
  
 
 	
-	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
+	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="int"  >
 	    <![CDATA[
-		     select g.*,to_char(g.goods_published_date,'YYYY-MM-DD') as goods_published_date, d.fileName from t_shopping_goods g, t_goods_detail_image d
-	        where g.goods_id=d.goods_id
-	        and d.filetype='main_image'
-	        and g.goods_id=#{goods_id}
-	        order by g.goods_id
+		    select g.*,to_char(g.movie_open_date,'YYYY-MM-DD') as movie_open_date, d.image_file_name 
+		    from cinebox_movie g, cinebox_image d
+	        where g.movie_id=#{movie_id}
+	        and d.image_file_sort='poster'
+	        and g.movie_id=d.movie_id
+
     	]]>
 	</select>
 	<select id="selectGoodsImageFileList" resultMap="imageResult"   parameterType="String"  >
 	    <![CDATA[
-		    	select * from  t_goods_detail_image 
+		    	select * from  cinebox_image 
 		    	where  
-			    goods_id=#{goods_id}
-			    order by image_id asc
+			    movie_id=#{movie_id}
+			    order by image_number asc
     	]]>
 	</select>	
 	
 	
 <update id="updateGoodsInfo" parameterType="java.util.HashMap" >
-	   update t_shopping_goods
+	   update cinebox_movie
 	    <set> 
-	      <if test=" goods_sort!='' and goods_sort!=null">
-	        goods_sort=#{goods_sort},
+	      <if test="movie_sort!='' and movie_sort!=null">
+	        movie_sort=#{movie_sort},
 	      </if>
-	      <if test=" goods_title!='' and goods_title!=null">
-	        goods_title=#{goods_title},
+	      <if test="movie_title!='' and movie_title!=null">
+	        movie_title=#{movie_title},
 	      </if>
-	      <if test=" goods_writer!='' and goods_writer!=null">
-	        goods_writer=#{goods_writer},
+	      <if test="movie_director!='' and movie_director!=null">
+	        movie_director=#{movie_director},
 	      </if>
-	      <if test=" goods_publisher!='' and goods_publisher!=null">
-	        goods_publisher=#{goods_publisher},
+	      <if test="movie_actor!='' and movie_actor!=null">
+	        movie_actor=#{movie_actor},
 	      </if>
-	      <if test=" goods_price!='' and goods_price!=null">
-	        goods_price=#{goods_price},
+	      <if test="movie_runningtime!='' and movie_runningtime!=null">
+	        movie_runningtime=#{movie_runningtime},
 	      </if>
-	      <if test=" goods_published_date!='' and goods_published_date!=null">
-	        goods_published_date=#{goods_published_date},
+	      <if test="movie_age_grade!='' and movie_age_grade!=null">
+	        movie_age_grade=#{movie_age_grade},
 	      </if>
-	      <if test=" goods_sales_price!='' and goods_sales_price!=null">
-	        goods_sales_price=#{goods_sales_price},
+	      <if test="movie_country!='' and movie_country">
+	        movie_country=#{movie_country},
 	      </if>
-	      <if test=" goods_point!='' and goods_point!=null">
-	        goods_point=#{goods_point},
+	      <if test="movie_content!='' and movie_content!=null">
+	        movie_content=#{movie_content},
 	      </if>
-	      <if test=" goods_page_total!='' and goods_page_total!=null">
-	        goods_page_total=#{goods_page_total},
+	      <if test="movie_status!='' and movie_status!=null">
+	        movie_status=#{movie_status},
 	      </if>
-	      <if test=" goods_isbn!='' and goods_isbn!=null">
-	        goods_isbn=#{goods_isbn},
+	      <if test="movie_open_date!='' and movie_open_date!=null">
+	        movie_open_date=#{movie_open_date},
 	      </if>
-	      <if test=" goods_delivery_price!='' and goods_delivery_price!=null">
-	        goods_delivery_price=#{goods_delivery_price},
-	      </if>
-	      <if test=" goods_delivery_date!='' and goods_delivery_date!=null">
-	        goods_delivery_date=#{goods_delivery_date},
-	      </if>
-	      <if test=" goods_status!='' and goods_status!=null">
-	        goods_status=#{goods_status},
-	      </if>
-	      <if test=" goods_writer_intro!='' and goods_writer_intro!=null">
-	        goods_writer_intro=#{goods_writer_intro},
-	      </if>
-	      <if test=" goods_intro!='' and goods_intro!=null">
-	        goods_intro=#{goods_intro},
-	      </if>
-	      <if test=" publisher_comment!='' and publisher_comment!=null">
-	        publisher_comment=#{publisher_comment},
-	      </if>
-	      <if test=" recommendation!='' and recommendation!=null">
-	        recommendation=#{recommendation},
-	      </if>
-	      <if test=" goods_contents_order!='' and goods_contents_order!=null">
-	        goods_contents_order=#{goods_contents_order:VARCHAR}
+	      <if test="movie_close_date!='' and movie_close_date!=null">
+	        movie_close_date=#{movie_close_date},
 	      </if>
 	     </set>
 	    where 
-	    goods_id=#{goods_id}
-	
+	    movie_id=#{movie_id}
 	</update>	
+	
 	<update id="updateGoodsImage" parameterType="imageFileVO">
-		update t_goods_detail_image
-		set fileName=#{fileName}
+		update cinebox_image
+		set image_file_name=#{image_file_name}
 		where	 
-		goods_id=#{goods_id} and image_id=#{image_id}
+		movie_id=#{movie_id} and image_number=#{image_number}
 	</update>
 	
 	<delete id="deleteGoodsImage" parameterType="String">
-	  delete from t_goods_detail_image
+	  delete from cinebox_image
 	  where
-	  image_id=#{image_id}
+	  image_number=#{image_number}
 	</delete>
 	
 	<delete id="deleteMovie" parameterType="int">
@@ -303,6 +283,7 @@
 	    where 
 	    order_id=#{order_id}
 	</update>
-			
+
+		
 </mapper>
 
