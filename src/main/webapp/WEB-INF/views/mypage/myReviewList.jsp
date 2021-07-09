@@ -14,20 +14,12 @@
 <div class="myInfo">내 후기평</div>
 <table class="list_view">
       <tbody align=center >
-         <tr style=background:#e8e8e8 >  
-<<<<<<< HEAD
-            <td><strong>영화</strong></td>          
-            <td><strong>평점</strong></td>
+         <tr style=background:#e8e8e8 >
+            <td><strong>영화명</strong></td>                      
             <td><strong>한줄평</strong></td>
+            <td><strong>평점</strong></td>
             <td><strong>작성일자</strong></td> 
             <td><strong>삭제</strong></td>
-=======
-            <td>영화명</td>                      
-            <td>한줄평</td>
-            <td>평점</td>
-            <td>작성일자</td> 
-            <td>삭제</td>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
          </tr>
          <c:choose>
          	<c:when test="${ empty myReviewList  }">
@@ -48,18 +40,11 @@
 				}
 			}
 		</script>
-            <tr>  
-<<<<<<< HEAD
-             <td> <!-- 1.영화 -->    
-               <span> ${item.movie_title} </span>
-             </td>       
-=======
+            <tr>
              <td> <!-- 1.영화 -->
                <span> ${item.movie_title} </span>
-             </td>                                   
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
-                
-<<<<<<< HEAD
+             </td>
+             
              <td> <!-- 2.평점 -->
              <span>${item.review_score}</span>
            </td>   
@@ -67,29 +52,16 @@
              <td align="left"> <!-- 3.한줄평 -->
                 <span>${item.review_content}</span>
              </td>
-                                   
-=======
-             <td align="left"> <!-- 2.한줄평 -->
-                ${item.review_content}
-             </td>
              
               <td> <!-- 3.평점 -->
              <span>${item.review_score}점</span>
-             </td>      
-                             
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
+             </td>
+             
            <td> <!-- 5.작성일자 -->
                <span>${item.review_reg_date} </span>
              </td>
-             
-<<<<<<< HEAD
            <td> <!-- 6.삭제 -->  
-               <button onclick="delete_review()">삭제</button>
-=======
-           <td> <!-- 6.삭제 -->           
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
-           </td>  
-                                   
+               <button onclick="delete_review()">삭제</button>                 
          </tr>
       </c:forEach>
      </c:otherwise> 

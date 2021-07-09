@@ -90,11 +90,7 @@
 
 
 <div class="myInfo">나의 정보
-<<<<<<< HEAD
-    <a href="${contextPath}/mypage/myDetailInfo.do"> <img width= 20 height= 20  src="${contextPath}/resources/image/more5.png" />  </a>
-=======
     <a href="${contextPath}/mypage/myDetailInfo.do"> <img width="20" height="20" src="${contextPath}/resources/image/more5.png" />  </a>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 </div>
 <table border="0" width=100% cellpadding=50 cellspacing=20 font-family="맑은 고딕">
    <tr>
