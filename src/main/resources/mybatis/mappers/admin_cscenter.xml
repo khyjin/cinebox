@@ -74,14 +74,18 @@
 	
 <select id="selectBoard" resultMap="cscenterResult">
 	<![CDATA[
-	select member_id, 
-	cscenter_number, cscenter_title,
-	cscenter_reg_date, cscenter_headline,
-	cscenter_type from(
-		select member_id, cscenter_number, cscenter_title,
-		cscenter_reg_date, cscenter_headline, cscenter_type, cscenter_group, cscenter_step,
+	select * from(
+		select member_id, 
+		cscenter_number, 
+		cscenter_title,
+		cscenter_reg_date, 
+		cscenter_headline, 
+		cscenter_type, 
+		cscenter_group, 
+		cscenter_step,
 		row_number() over(order by cscenter_group desc, cscenter_step asc) as rnum
-		from cinebox_cscenter where cscenter_type='qna' or cscenter_type='qna_re') 
+		from cinebox_cscenter 
+		where cscenter_type='qna' or cscenter_type='qna_re') cs
 		where rnum between #{rowStart} and #{rowEnd}
 		order by cscenter_group desc, cscenter_step asc
 		]]>
@@ -90,7 +94,9 @@
 <select id="listCount" resultType="int">
 	<![CDATA[
 		select count(cscenter_number)
-		from cinebox_cscenter where cscenter_number>0 and cscenter_type='qna'
+		from cinebox_cscenter 
+		where cscenter_number>0 
+		and cscenter_type='qna' or cscenter_type='qna_re'
 	]]>
 </select>
 <!-- 페이징 처리 end -->

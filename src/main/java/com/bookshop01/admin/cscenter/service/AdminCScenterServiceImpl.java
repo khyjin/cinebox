@@ -11,6 +11,7 @@ import com.bookshop01.admin.cscenter.dao.AdminCScenteDAO;
 import com.bookshop01.cscenter.dao.CScenterDAO;
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 @Service("adminCScenterService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -46,15 +47,15 @@ public class AdminCScenterServiceImpl implements AdminCScenterService{
 	
 //게시물 목록조회	
 	@Override
-	public List<CscenterVO> boardList(Criteria cri) throws Exception {
+	public List<CscenterVO> boardList(SearchCriteria scri) throws Exception {
 		
-		return adminCScenterDAO.selectBoard(cri);
+		return adminCScenterDAO.selectBoard(scri);
 	}
 
 //게시물 총 갯수
 	@Override
-	public int listCount() throws Exception {
-		return adminCScenterDAO.listCount();
+	public int listCount(SearchCriteria scri) throws Exception {
+		return adminCScenterDAO.listCount(scri);
 	}
 
 

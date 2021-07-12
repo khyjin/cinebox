@@ -5,7 +5,7 @@
 <tiles-definitions>
     
    
-      <definition name="/ticket/reservarion" extends="baseLayout">
+      <definition name="/ticket/reservartion" extends="baseLayout">
        <put-attribute name="title" value="영화 예매 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/ticket/reservation.jsp" />
     </definition>

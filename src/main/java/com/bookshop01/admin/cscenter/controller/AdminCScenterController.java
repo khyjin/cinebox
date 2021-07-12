@@ -12,9 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 public interface AdminCScenterController {
-	public String qnaList(HttpServletRequest request, Criteria cri, Model model) throws Exception;
+	public String qnaList(HttpServletRequest request, SearchCriteria scri, Model model) throws Exception;
 	public ResponseEntity noticeReg(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView modifyView(@RequestParam("cscenter_number") int cscenter_number, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity modifyNotice(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletResponse response, HttpServletRequest request) throws Exception;
@@ -22,4 +23,5 @@ public interface AdminCScenterController {
 	
 	public ModelAndView contentView(@RequestParam("cscenter_number") int cscenter_number, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity replyWrite(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }

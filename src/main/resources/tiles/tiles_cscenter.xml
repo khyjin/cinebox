@@ -8,9 +8,9 @@
        <put-attribute name="body" value="/WEB-INF/views/cscenter/cscenterMain.jsp" />
     </definition>
     
-    <definition name="/cscenter/lostItemForm" extends="baseLayout">
-    	<put-attribute name="title" value="분실물 문의"/>
-    	<put-attribute name="body" value="/WEB-INF/views/cscenter/lostItemForm.jsp"/>
+    <definition name="/cscenter/rentalForm" extends="baseLayout">
+    	<put-attribute name="title" value="대관 문의"/>
+    	<put-attribute name="body" value="/WEB-INF/views/cscenter/rentalForm.jsp"/>
     </definition>
 
 

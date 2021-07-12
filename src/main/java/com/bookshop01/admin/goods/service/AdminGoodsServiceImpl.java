@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bookshop01.admin.goods.dao.AdminGoodsDAO;
 import com.bookshop01.cscenter.vo.Criteria;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.order.vo.OrderVO;
 
 
@@ -98,16 +98,15 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	}
 
 	@Override
-	public List<GoodsVO> movieSearch(SearchCriteria scri) throws Exception {
-		return adminGoodsDAO.movieSearchList(scri);
+	public List<GoodsVO> searchMovie(SearchCriteria scri) throws Exception {
+		
+		return adminGoodsDAO.selectSearch(scri);
 	}
-
-	@Override
-	public int listCount(SearchCriteria scri) throws Exception {
-		return adminGoodsDAO.listCount(scri);
-	}
-
 	
+	@Override
+	public int listCount2(SearchCriteria scri) {
+		return adminGoodsDAO.listCount2(scri);
+	}
 
 	
 }

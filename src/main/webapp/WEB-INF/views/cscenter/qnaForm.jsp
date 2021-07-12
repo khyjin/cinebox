@@ -53,6 +53,18 @@ body {
 	color: #004;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+var str ="빠르고 정확한 답변을 위해 분실물에 대한 정보, 분실날짜, 분실시간(영화시간)등을 자세히 작성해주세요.";
+function lostItem(){
+	$("#textstr").text(str);
+}
+
+function otherast(){
+	$("#textstr").empty();
+}
+
+</script>
 <body>
 <section class="admin_mypage_main">
 <div>
@@ -85,10 +97,11 @@ body {
 		<tr>
 			<td>문의유형</td>
 			<td colspan="3">
-				<input type="radio" name="cscenter_headline" value="문의">문의&emsp;
-				<input type="radio" name="cscenter_headline" value="불만">불만&emsp;
-				<input type="radio" name="cscenter_headline" value="칭찬">칭찬&emsp;
-				<input type="radio" name="cscenter_headline" value="제안">제안&emsp;
+				<input type="radio" name="cscenter_headline" value="문의" onclick="otherast()">문의&emsp;
+				<input type="radio" name="cscenter_headline" value="불만" onclick="otherast()">불만&emsp;
+				<input type="radio" name="cscenter_headline" value="칭찬" onclick="otherast()">칭찬&emsp;
+				<input type="radio" name="cscenter_headline" value="제안" onclick="otherast()">제안&emsp;
+				<input type="radio" name="cscenter_headline" value="분실물" onclick="lostItem()">분실물&emsp;
 				
 			</td>
 		</tr>
@@ -98,7 +111,7 @@ body {
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td colspan="3"><textarea rows="15" cols="80" name="cscenter_content"></textarea></td>
+			<td colspan="3"><textarea rows="15" cols="80" name="cscenter_content" id="textstr"></textarea></td>
 		</tr>
 		
 		<tr>

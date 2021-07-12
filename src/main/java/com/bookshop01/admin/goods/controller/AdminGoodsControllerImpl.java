@@ -28,9 +28,9 @@ import com.bookshop01.admin.goods.service.AdminGoodsService;
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.PageMaker;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.member.vo.MemberVO;
 
 @Controller("adminGoodsController")
@@ -345,19 +345,26 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	}
 
 	@Override
-	public ModelAndView searchMovie(@ModelAttribute("scri") SearchCriteria scri,HttpServletRequest request) throws Exception {
+	@RequestMapping(value="/searchMovie.do", method = RequestMethod.GET)
+	public ModelAndView searchMovie(@ModelAttribute("scri") SearchCriteria scri, HttpServletRequest request) throws Exception  {
+		HttpSession session=request.getSession();
+		session=request.getSession();
+		session.setAttribute("side_menu", "admin_mode"); //마이페이지 사이드 메뉴로 설정한다.
+		
+		List<GoodsVO> newGoodsList = adminGoodsService.searchMovie(scri);
+		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("", adminGoodsService.movieSearch(scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminGoodsService.listCount(scri));
+		pageMaker.setTotalCount(adminGoodsService.listCount2(scri));
 		
+		mav.addObject("pageMaker", pageMaker);
+		mav.addObject("newGoodsList", newGoodsList);
 		return mav;
 	}
 
-	
 	
 
 }

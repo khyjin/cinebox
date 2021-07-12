@@ -109,7 +109,7 @@ body {
 	<script type="text/javascript">
 		function delete_check() {
 			if (confirm("삭제하시겠습니까?") == true) {
-				location.href = '${contextPath}/admin/cscenter/deleteNotice.do?cscenter_number=${viewList.cscenter_number}';
+				location.href = '${contextPath}/admin/cscenter/deleteNotice.do?cscenter_number=${viewList.cscenter_number}&cscenter_type=${viewList.cscenter_type}';
 			} else {
 				return;
 			}

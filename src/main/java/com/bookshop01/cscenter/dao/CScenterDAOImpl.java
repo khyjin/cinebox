@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 @Repository("CScenterDAO")
 public class CScenterDAOImpl implements CScenterDAO {
@@ -23,12 +24,12 @@ public class CScenterDAOImpl implements CScenterDAO {
 	}
 	
 	@Override
-	public List<CscenterVO> selectNotice(Criteria cri) throws DataAccessException {
-		return sqlSession.selectList("mapper.cscenter.selectNotice",cri);
+	public List<CscenterVO> selectNotice(SearchCriteria scri) throws DataAccessException {
+		return sqlSession.selectList("mapper.cscenter.selectNotice",scri);
 	}
 	
-	public List<CscenterVO> selectFaq(Criteria cri) throws DataAccessException {
-		return sqlSession.selectList("mapper.cscenter.selectFaq",cri);
+	public List<CscenterVO> selectFaq(SearchCriteria scri) throws DataAccessException {
+		return sqlSession.selectList("mapper.cscenter.selectFaq",scri);
 	}
 
 	@Override
@@ -54,8 +55,8 @@ public class CScenterDAOImpl implements CScenterDAO {
 	}
 
 	@Override
-	public int listCount(String cscenter_type) throws DataAccessException {
-		return sqlSession.selectOne("mapper.cscenter.listCount",cscenter_type);
+	public int listCount(SearchCriteria scri) throws DataAccessException {
+		return sqlSession.selectOne("mapper.cscenter.listCount",scri);
 	}
 
 

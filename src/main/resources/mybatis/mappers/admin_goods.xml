@@ -283,7 +283,47 @@
 	    where 
 	    order_id=#{order_id}
 	</update>
-
+	
+	<select id="selectSearch" resultMap="goodsResult">
+		<![CDATA[
+		select * from (
+			select
+			row_number() over(order by movie_open_date desc) as rnum,
+			movie_id,
+			movie_title,
+			movie_director,
+			movie_sort,
+			movie_status,
+			movie_actor,
+			to_char(movie_open_date,'YYYY-MM-DD')  as movie_open_date,
+			to_char(movie_close_date,'YYYY-MM-DD') as movie_close_date
+		 	from cinebox_movie
+		 	where 1=1 
+		 	]]>
+		 	<include refid="search"></include>
+		 	) cm
+			where rnum between #{rowStart} and #{rowEnd}
+			order by movie_open_date desc
 		
+	</select>
+	<select id="listCount2" resultType="int">
+		<![CDATA[
+		select count(movie_id) from cinebox_movie
+		where 1=1 ]]>
+		<include refid="search"></include>
+		and movie_id>0
+	</select>
+	
+	
+	<sql id="search">
+		<if test="keyword != null">
+			<if test="searchType == 't'.toString()">and movie_title like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'd'.toString()">and movie_director like '%'||#{keyword}||'%'</if>
+		 	<if test="searchType == 'a'.toString()">and movie_actor like '%'||#{keyword}||'%'</if>
+		</if>
+	</sql>
+
+	
+	
 </mapper>
 

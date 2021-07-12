@@ -19,6 +19,15 @@ public class CscenterVO {
 	private String cscenter_headline;
 	
 	
+	public CscenterVO(String cscenter_content, String cscenter_type, String cscenter_title, String member_id,
+			String cscenter_headline) {
+		super();
+		this.cscenter_content = cscenter_content;
+		this.cscenter_type = cscenter_type;
+		this.cscenter_title = cscenter_title;
+		this.member_id = member_id;
+		this.cscenter_headline = cscenter_headline;
+	}
 	public CscenterVO(String cscenter_content, int cscenter_group, int cscenter_hit, int cscenter_indent,
 			int cscenter_number, Date cscenter_reg_date, String cscenter_type, int cscenter_step, String cscenter_title,
 			String member_id, String cscenter_headline) {

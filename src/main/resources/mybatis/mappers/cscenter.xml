@@ -41,8 +41,14 @@
 <select id="selectNotice" resultMap="cscenterResult">
 	<![CDATA[
 	select * from(
-		select member_id, cscenter_number, cscenter_title,
-		cscenter_reg_date, cscenter_headline, cscenter_type, cscenter_group, cscenter_step,cscenter_hit,
+		select member_id, 
+		cscenter_number, 
+		cscenter_title,
+		cscenter_reg_date, 
+		cscenter_headline, 
+		cscenter_type, 
+		cscenter_group, 
+		cscenter_step,cscenter_hit,
 		row_number() over(order by cscenter_group desc, cscenter_step asc) as rnum
 		from cinebox_cscenter where cscenter_type='notice') 
 		where rnum between #{rowStart} and #{rowEnd}
@@ -65,7 +71,7 @@
 <select id="listCount" resultType="int">
 	<![CDATA[
 		select count(cscenter_number)
-		from cinebox_cscenter where cscenter_number>0 and cscenter_type=#{cscenter_type}
+		from cinebox_cscenter where cscenter_number>0 and cscenter_type=#{searchType}
 	]]>
 </select>
 
@@ -106,5 +112,6 @@
 								#{cscenter_headline}
 								,'0','0','0')
 </insert>
+
 
 </mapper>

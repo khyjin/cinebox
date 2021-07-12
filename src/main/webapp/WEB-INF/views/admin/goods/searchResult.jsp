@@ -82,6 +82,8 @@ body {
 .modia{
    color: #669;
 }
+
+
 </style>
 
 <script>
@@ -114,13 +116,18 @@ function delete_check(deleteId) {
 <body class="admin_bg">
 <section class="admin_mypage_main">
 	<br>
-<div style="float: left; width: 40%">
+<div style="float: left; width: 60%;">
 	<h1>영화 조회</h1>
 	<form  method="get" action="${contextPath}/admin/goods/searchMovie.do">	
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>
 				<tr>
-				  <td>
+				  <td style="text-align: left;">
+				  	<select name="searchType">
+				  		<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>영화</option>
+				  		<option value="d"<c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>감독</option>
+				  		<option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>배우</option>
+				  	</select>
 					<input name="keyword" id="keywordInput" type="text"  size="30"/>  
 					<input type="submit"  value="영화찾기"/>
 				  </td>
@@ -131,7 +138,7 @@ function delete_check(deleteId) {
 </div>
 	
 
-<DIV id="search" style="float: right; width: 40%; margin: 10; text-align: right;">
+<DIV id="search" style="float: right; width: 30%; margin: 10; text-align: right;">
 	<p>
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
 		<input type="submit" value="상품 등록하기">
@@ -191,6 +198,7 @@ function delete_check(deleteId) {
   </c:choose>
            <tr>
              <td colspan=8 class="fixed">
+
   <ul>
   <!-- 페이지 블럭 -->
     <c:if test="${pageMaker.prev}">
