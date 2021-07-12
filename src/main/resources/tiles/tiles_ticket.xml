@@ -10,6 +10,13 @@
        <put-attribute name="body" value="/WEB-INF/views/ticket/reservation.jsp" />
     </definition>
    
+   
+	<!-- 좌석 페이지 테스트 -->
+	<definition name="/ticket/NewFile" extends="baseLayout">
+		<put-attribute name="title" value="좌석 페이지 테스트" />
+		<put-attribute name="body" value="/WEB-INF/views/ticket/NewFile.jsp" />
+	</definition>
+   
 </tiles-definitions>
 
 

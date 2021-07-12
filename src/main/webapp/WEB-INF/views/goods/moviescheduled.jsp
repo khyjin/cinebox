@@ -12,8 +12,38 @@
 }
 .main_book h3{
 	border:0;
-	padding: 5px 5px 45px;
+	padding: 5px 5px 5px;
 	text-align: center;
+	padding-left:20px;
+
+}
+.myButton {
+	box-shadow:inset 0px 0px 0px 0px #155961;
+	background:linear-gradient(to bottom, #1e4a4f 5%, #1c4145 100%);
+	background-color:#1e4a4f;
+	border:2px solid #20494d;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:'맑은 고딕';
+	font-size:small;
+	font-weight:bold;
+	padding:2px 40px;
+	text-decoration:none;
+	text-shadow:2px 0px 0px #08383d;
+	margin-bottom:5px;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #1c4145 5%, #1e4a4f 100%);
+	background-color:#1c4145;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.title{
+	margin-top:10px;
 }
 </style>
 <meta charset="UTF-8">
@@ -37,14 +67,11 @@
 			<a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 			</a>
-
 				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
 			<div class="title">${item.movie_title }</div>
 			<div class="date">개봉일&emsp;<fmt:formatDate value="${item.movie_open_date}" pattern="yy-MM-dd"/></div>
-			<div class="price">
-		  	   예매버튼추가예정
-			</div>
+			<a href="#" class="myButton">예매하기</a>
 		</div>
 	   <c:if test="${goods_count==8}">
          <div class="book">

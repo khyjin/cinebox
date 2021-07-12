@@ -90,7 +90,7 @@
 
 
 <div class="myInfo">나의 정보
-    <a href="${contextPath}/mypage/myDetailInfo.do"> <img src="${contextPath}/resources/image/btn_more_see.jpg" />  </a>
+    <a href="${contextPath}/mypage/myDetailInfo.do"> <img width="20" height="20" src="${contextPath}/resources/image/more5.png" />  </a>
 </div>
 <table border="0" width=100% cellpadding=50 cellspacing=20 font-family="맑은 고딕">
    <tr>

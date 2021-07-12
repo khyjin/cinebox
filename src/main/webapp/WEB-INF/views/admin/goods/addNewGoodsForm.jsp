@@ -18,10 +18,8 @@
 			$("#d_file").append(
 					"<br>" + "<input  type='file' name='sc"+cnt+"' />");
 		}
-
 		cnt++;
 	}
-
 	function fn_add_new_goods(obj) {
 		fileName = $('#f_main_image').val();
 		if (fileName != null && fileName != undefined) {
@@ -41,7 +39,6 @@ section.admin_mypage_main {
 	float: right;
 	margin-top: -190;
 }
-
 .admin_bg {
 	background-color: white;
 }
@@ -151,4 +148,3 @@ section.admin_mypage_main {
 	</section>
 </BODY>
 </body>
-

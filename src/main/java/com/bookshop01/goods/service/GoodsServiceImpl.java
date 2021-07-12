@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bookshop01.goods.dao.GoodsDAO;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 
 @Service("goodsService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -119,6 +120,11 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<GoodsVO> searchGoods(String searchWord) throws Exception{
 		List goodsList=goodsDAO.selectGoodsBySearchWord(searchWord);
 		return goodsList;
+	}
+
+	@Override
+	public void myReview(HashMap<String,String> reviewmap) throws Exception {
+		goodsDAO.myReview(reviewmap);
 	}
 
 	

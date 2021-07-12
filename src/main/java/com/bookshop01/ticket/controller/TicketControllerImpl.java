@@ -48,6 +48,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		
 	}
 	
+
 	//임의로 추가/////////////
 	@Override
 	@ResponseBody
@@ -84,5 +85,16 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		System.out.println("상영시간 : "+schedule_start_time);
 		System.out.println("상영관 : "+room_number);
 	}
+
+	//연습
+	@RequestMapping(value="/NewFile.do" ,method = RequestMethod.GET)
+	public ModelAndView NewFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+		
+	}
+	
+
 	
 }

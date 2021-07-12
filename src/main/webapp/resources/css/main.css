@@ -138,7 +138,7 @@ table {
 	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:215px;
 }
 .back {
-	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #e8e8e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px; 
+	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px; 
 }
 .mod_member {
 padding-left: 70px;
@@ -427,7 +427,7 @@ article h4 {
 }
 
 #container {
-   margin: 40px auto; width: 100%;
+   margin: 40px auto; width: 100%; background-color : #ecf0f1;
 }
 ul.tabs {
    list-style: none; margin: 0px; padding: 0px; width: 100%; height: 32px; border-bottom-color: rgb(255, 0, 0); border-bottom-width: 1px; border-bottom-style: solid; float: left;
@@ -500,7 +500,7 @@ div.openButtonContainer button.closedbtn {
 }
 
 .tab_container {
-   background: rgb(255, 255, 255); width: 100%; height:900; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
+   background: #ecf0f1; width: 100%; height:auto; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
 }
 .tab_content {
    padding: 10px 10px 20px; line-height: 1.8em; font-size: 0.75em; min-height: 400px;
@@ -635,6 +635,7 @@ div.myInfo{
    color : black;
    font-family:"¸¼Àº °íµñ";
 }
+
   .list_view h2 {
    padding: 0px 0px 2px; font-size: 1.2em; font-weight: bold;
 }
@@ -875,7 +876,7 @@ article h1_TITLE {
 
 }
 .main_book .book {
-   padding-top:20px; padding-bottom:30px; margin: 0px 0px 0px; background-position: right; border: 1px solid rgb(236, 240, 241); border-image: none; width: 188px; height: 290px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat; overflow: hidden; 
+   padding-top:20px; padding-bottom:30px; margin: 0px 0px 0px; background-position: right; border: 1px solid #ecf0f1; border-image: none; width: 190px; height: 310px; text-align: center; float: left; background-image: url("../imgs/vline_grey.gif"); background-repeat: repeat; 
 }
 
 .main_book .book img {

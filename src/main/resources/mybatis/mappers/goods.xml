@@ -124,5 +124,26 @@
 		]]>
 	</select>
 	
+	<insert id="myReview" parameterType="java.util.Map">
+		<![CDATA[
+		insert into cinebox_review (
+									review_number,
+									member_id,									
+									review_content,	
+									movie_title,								
+									review_score,									
+									review_reg_date
+									)
+							values (
+									review_seq.nextval,
+									#{member_id},
+									#{review_content},
+									#{movie_title},									
+									#{review_score},									
+									to_date(sysdate)
+									)
+							
+]]>
+	</insert>
 
 </mapper>
