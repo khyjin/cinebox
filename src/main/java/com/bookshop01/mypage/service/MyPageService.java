@@ -22,4 +22,5 @@ public interface MyPageService{
 	public List<CscenterVO> myQnaList(String member_id) throws Exception;
 	public void myQnaModify(CscenterVO cscenter) throws Exception;
 	public List<CscenterVO> myQnaModifyview(int cscenter_number) throws Exception;
+	public void deletemyQna(int cscenter_number) throws Exception;
 }

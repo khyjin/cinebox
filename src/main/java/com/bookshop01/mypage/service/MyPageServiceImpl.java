@@ -81,5 +81,10 @@ public class MyPageServiceImpl  implements MyPageService{
 	public List<CscenterVO> myQnaModifyview(int cscenter_number) throws Exception {		
 		return myPageDAO.myQnaModifyview(cscenter_number);
 	}
+	
+	@Override
+	public void deletemyQna(int cscenter_number) throws Exception {
+		myPageDAO.deletemyQna(cscenter_number);
+	}
 
 }

@@ -10,7 +10,7 @@
     <div id="sticky" >
 	<ul>
 		<li><h3>CINEBOX</h3></li>&emsp;
-		<li><a href="#">
+		<li><a href="${contextPath}/cscenter/cscenterNotice.do">
 			공지사항 <img width="20" height="15" src="${contextPath}/resources/image/more2.png"></a></li>
 		<li><a href="#">
 		   상영시간표  <img width="15" height="10" src="${contextPath}/resources/image/more2.png">
@@ -20,13 +20,13 @@
 		 </a></li>
 		<li><a>공유하기</a>
 			<img width="15" height="20" src="${contextPath}/resources/image/more3.png"></li>
-		<li><a href="#">
+		<li><a href="https://www.facebook.com">
 		   <img	width="52" height="52" src="${contextPath}/resources/image/facebook_icon2.png">
 		</a></li>&emsp;
-		<li><a href="#">
+		<li><a href="https://www.instagram.com">
 		   <img width="33" height="33" src="${contextPath}/resources/image/instagram_icon.png">
 		</a></li>
-		<li><a href="#">
+		<li><a href="https://www.twitter.com">
 		   <img width="35" height="35" src="${contextPath}/resources/image/twitter_icon2.png">
 		</a></li>&emsp;&emsp;&emsp;
 		 <li><a href="#"  id="top">

@@ -29,4 +29,5 @@ public interface MyPageController {
 	public ResponseEntity myQnaModify(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 	public ModelAndView myReviewList(String member_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public String deletemyQna(@RequestParam("cscenter_number") int cscenter_number) throws Exception;
 	}

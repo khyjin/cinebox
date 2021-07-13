@@ -11,10 +11,10 @@
     </definition>
    
    
-	<!-- 좌석 페이지 테스트 -->
-	<definition name="/ticket/NewFile" extends="baseLayout">
-		<put-attribute name="title" value="좌석 페이지 테스트" />
-		<put-attribute name="body" value="/WEB-INF/views/ticket/NewFile.jsp" />
+	<!-- 좌석 페이지 -->
+	<definition name="/ticket/seat" extends="baseLayout">
+		<put-attribute name="title" value="좌석 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/ticket/seat.jsp" />
 	</definition>
    
 </tiles-definitions>

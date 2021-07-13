@@ -39,7 +39,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 	}
 	
 	//¿¬½À
-	@RequestMapping(value="/NewFile.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/seat.do" ,method = RequestMethod.GET)
 	public ModelAndView NewFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);

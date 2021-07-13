@@ -17,7 +17,7 @@ public interface MemberController {
 	public ModelAndView login(@RequestParam Map<String, String> loginMap,HttpServletRequest request, HttpServletResponse response) throws Exception;
 															//loginMap에 id,pw가 들어간다
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity  addMember(@ModelAttribute("member") MemberVO member,
+	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity   overlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
 							//overlapped 아이디 중복 체크

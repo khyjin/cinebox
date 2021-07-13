@@ -83,4 +83,10 @@ public class MyPageDAOImpl implements MyPageDAO{
 		List<CscenterVO> myQnaList = sqlSession.selectList("mapper.mypage.myQnaModifyview",cscenter_number);
 		return myQnaList;
 	}
+	
+	@Override
+	public void deletemyQna(int cscenter_number) throws DataAccessException {
+		sqlSession.delete("mapper.mypage.deletemyQna", cscenter_number);	
+	}
+	
 }
