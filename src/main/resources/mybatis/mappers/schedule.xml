@@ -85,7 +85,8 @@
 		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
 		order by room_number, schedule_start_time
 		]]>
-	</select>
+	</select> 
+	
 	<update id="modifySchedule" parameterType="java.util.HashMap">
 		 
 		 update cinebox_schedule 
