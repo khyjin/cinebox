@@ -7,9 +7,19 @@ public class ScheduleVO {
 	private String schedule_start_time; //상영시작시간
 	private String schedule_date; //상영날짜
 	private int schedule_id; //스케줄번호
+	private String movie_age_grade;
 	
 	
 	
+	
+	
+	
+	public String getMovie_age_grade() {
+		return movie_age_grade;
+	}
+	public void setMovie_age_grade(String movie_age_grade) {
+		this.movie_age_grade = movie_age_grade;
+	}
 	public int getSchedule_id() {
 		return schedule_id;
 	}

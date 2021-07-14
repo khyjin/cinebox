@@ -41,7 +41,6 @@ public class TicketControllerImpl extends BaseController implements TicketContro
       String viewName=(String)request.getAttribute("viewName");
       mav.setViewName(viewName);
       
-//      List<GoodsVO> list = ticketService.listGoods();
       List<ScheduleVO> list = ticketService.listMovieTitle();
       mav.addObject("list", list);
       return mav;

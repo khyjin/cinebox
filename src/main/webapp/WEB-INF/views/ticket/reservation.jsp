@@ -145,7 +145,22 @@ table td {
 	<tbody>
 		<c:forEach var="list" items="${list}">
 		<tr>
-		 <td id="choiceA"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">${list.movie_title}</a></td>
+		 <td id="choiceA"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">
+		 	<c:choose>
+		 		<c:when test="${list.movie_age_grade=='전체관람가'}">
+		 			<img src="${contextPath}/resources/image/allage.png" width="20" height="20">
+		 		</c:when>
+		 		<c:when test="${list.movie_age_grade=='12세이상관람가'}">
+		 			<img src="${contextPath}/resources/image/12.png" width="20" height="20">
+		 		</c:when>
+		 		<c:when test="${list.movie_age_grade=='15세이상관람가'}">
+		 			<img src="${contextPath}/resources/image/15.png" width="20" height="20">
+		 		</c:when>
+		 		<c:otherwise>
+		 			<img src="${contextPath}/resources/image/18.png" width="20" height="20">
+		 		</c:otherwise>
+		 	</c:choose>
+		 	${list.movie_title}</a></td>
 		</tr>
 		</c:forEach>
 	</tbody>

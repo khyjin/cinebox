@@ -27,7 +27,7 @@ public class OrderDAOImpl implements OrderDAO {
 		//주문 목록에서 차례대로 OrderVO를 가져와서 주문 번호 설정
 		for(int i=0; i<myOrderList.size();i++){
 			OrderVO orderVO =(OrderVO)myOrderList.get(i);
-			orderVO.setOrder_id(order_id);
+	//		orderVO.setOrder_id(order_id);
 			sqlSession.insert("mapper.order.insertNewOrder",orderVO);
 		}
 		

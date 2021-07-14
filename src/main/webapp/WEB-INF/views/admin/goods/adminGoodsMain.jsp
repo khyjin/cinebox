@@ -74,83 +74,6 @@ body {
 </style>
 
 <script>
-function search_goods_list(fixeSearchPeriod){
-	var formObj=document.createElement("form");
-	var i_fixedSearch_period = document.createElement("input");
-	i_fixedSearch_period.name="fixedSearchPeriod";
-	i_fixedSearch_period.value=searchPeriod;
-    formObj.appendChild(i_fixedSearch_period);
-    document.body.appendChild(formObj); 
-    formObj.method="get";
-    formObj.action="${contextPath}/admin/goods/adminGoodsMain.do";
-    formObj.submit();
-}
-
-function  calcPeriod(search_period){
-	var dt = new Date();
-	var beginYear,endYear;
-	var beginMonth,endMonth;
-	var beginDay,endDay;
-	var beginDate,endDate;
-	
-	endYear = dt.getFullYear();
-	endMonth = dt.getMonth()+1;
-	endDay = dt.getDate();
-	if(search_period=='today'){
-		beginYear=endYear;
-		beginMonth=endMonth;
-		beginDay=endDay;
-	}else if(search_period=='one_week'){
-		beginYear=dt.getFullYear();
-		beginMonth=dt.getMonth()+1;
-		dt.setDate(endDay-7);
-		beginDay=dt.getDate();
-		
-	}else if(search_period=='two_week'){
-		beginYear = dt.getFullYear();
-		beginMonth = dt.getMonth()+1;
-		dt.setDate(endDay-14);
-		beginDay=dt.getDate();
-	}else if(search_period=='one_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-1);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}else if(search_period=='two_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-2);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}else if(search_period=='three_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-3);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}else if(search_period=='four_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-4);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}
-	
-	if(beginMonth <10){
-		beginMonth='0'+beginMonth;
-		if(beginDay<10){
-			beginDay='0'+beginDay;
-		}
-	}
-	if(endMonth <10){
-		endMonth='0'+endMonth;
-		if(endDay<10){
-			endDay='0'+endDay;
-		}
-	}
-	endDate=endYear+'-'+endMonth +'-'+endDay;
-	beginDate=beginYear+'-'+beginMonth +'-'+beginDay;
-	//alert(beginDate+","+endDate);
-	return beginDate+","+endDate;
-}
-
 function delete_check(deleteId) {
 	if(confirm("삭제하시겠습니까?") == true){
 		location.href="${contextPath}/admin/goods/deleteNewGoods.do?movie_id="+deleteId.value;
@@ -171,8 +94,6 @@ function delete_check(deleteId) {
 <div style="float: left; width: 40%">
 	<h1>영화 조회</h1>
 	<form  method="get" action="${contextPath}/admin/goods/searchMovie.do">	
-<div style="float: right; width: 40%">
-	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>
 				<tr>
