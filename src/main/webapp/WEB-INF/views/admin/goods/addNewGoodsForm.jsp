@@ -60,12 +60,22 @@ section.admin_mypage_main {
 				<table>
 					<tr>
 						<td>장르</td>
-						<td><label><input name="movie_sort" type="checkbox" value="SF" />SF</label> 
-						<label><input name="movie_sort" type="checkbox" value="공포" />공포</label> 
-						<label><input name="movie_sort" type="checkbox" value="코미디" />코미디</label> 
-						<label><input name="movie_sort" type="checkbox" value="로맨스" />로맨스</label>
-						<label><input name="movie_sort" type="checkbox" value="판타지" />판타지</label> 
-						<label><input name="movie_sort" type="checkbox" value="액션" />액션</label></td>
+						<td>
+							<label><input name="movie_sort" type="checkbox" value="SF" />SF</label> 
+							<label><input type="checkbox" value="공포" name="movie_sort">공포</label>			
+							<label><input type="checkbox" value="코미디" name="movie_sort">코미디</label>					
+							<label><input type="checkbox" value="로맨스" name="movie_sort">로맨스</label>					
+							<label><input type="checkbox" value="판타지" name="movie_sort">판타지</label>					
+							<label><input type="checkbox" value="액션" name="movie_sort">액션</label>					
+							<label><input type="checkbox" value="미스테리" name="movie_sort">미스테리</label>					
+							<p>
+							<label><input type="checkbox" value="애니메이션" name="movie_sort">애니메이션</label>
+							<label><input type="checkbox" value="드라마" name="movie_sort">드라마</label>					
+							<label><input type="checkbox" value="전쟁" name="movie_sort">전쟁</label>
+							<label><input type="checkbox" value="멜로" name="movie_sort">멜로</label>				
+							<label><input type="checkbox" value="스릴러" name="movie_sort">스릴러</label>				
+							<label><input type="checkbox" value="범죄" name="movie_sort">범죄</label>
+						</td>
 					</tr>
 					<tr>
 						<td>영화이름</td>

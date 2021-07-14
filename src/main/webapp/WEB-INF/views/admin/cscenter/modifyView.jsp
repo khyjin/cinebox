@@ -52,15 +52,21 @@ body {
 <body>
 <section class="admin_mypage_main">
 <div>
-	<hgroup>
+<c:choose>
+	<c:when test="${ulist.cscenter_type=='faq'}">
+		<h1>자주찾는 질문 수정</h1>
+	</c:when>
+	<c:otherwise>
 		<h1>공지사항 수정</h1>
-	</hgroup>
+	</c:otherwise>
+</c:choose>
+
 	<br><br>
 <form action="${contextPath}/admin/cscenter/modifyNotice.do" method="get">	
 <table class="blueone">
-	<input type="hidden" name="cscenter_number" value="${ulist.cscenter_number}">
-	<input type="hidden" name="member_id" value="${memberInfo.member_id}">
-	<input type="hidden" name="cscenter_type" value="${ulist.cscenter_type}">
+	<input type="hidden" name="cscenter_number" value="${ulist.cscenter_number}"/>
+	<input type="hidden" name="member_id" value="${memberInfo.member_id}"/>
+	<input type="hidden" name="cscenter_type" value="${ulist.cscenter_type}"/>
 	<tbody>
 		<tr>
 		

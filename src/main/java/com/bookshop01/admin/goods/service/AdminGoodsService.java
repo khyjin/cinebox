@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataAccessException;
 
 import com.bookshop01.cscenter.vo.Criteria;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.order.vo.OrderVO;
 
 public interface AdminGoodsService {
@@ -29,6 +29,6 @@ public interface AdminGoodsService {
 	public void deleteMovie(int goods_id) throws Exception;
 	public int listCount() throws Exception;
 	
-	public List<GoodsVO> movieSearch(SearchCriteria scri) throws Exception;
-	public int listCount(SearchCriteria scri) throws Exception;
+	public List<GoodsVO> searchMovie(SearchCriteria scri) throws Exception;
+	public int listCount2(SearchCriteria scri) throws Exception;
 }

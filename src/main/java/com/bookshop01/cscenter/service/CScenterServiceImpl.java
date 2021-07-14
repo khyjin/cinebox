@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bookshop01.cscenter.dao.CScenterDAO;
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 @Service("cscenterService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -22,19 +23,19 @@ public class CScenterServiceImpl implements CScenterService {
 	private CScenterDAO cscenterDAO;
 	
 	@Override
-	public List<CscenterVO> noticeList(Criteria cri) throws Exception {
-		return cscenterDAO.selectNotice(cri);
+	public List<CscenterVO> noticeList(SearchCriteria scri) throws Exception {
+		return cscenterDAO.selectNotice(scri);
 	}
 	
 	@Override
-	public List<CscenterVO> faqList(Criteria cri) throws Exception {
-		return cscenterDAO.selectFaq(cri);
+	public List<CscenterVO> faqList(SearchCriteria scri) throws Exception {
+		return cscenterDAO.selectFaq(scri);
 	}
 	
 	//°Ô½Ã¹° ÃÑ °¹¼ö
 	@Override
-	public int listCount(String cscenter_type) throws Exception {
-		return cscenterDAO.listCount(cscenter_type);
+	public int listCount(SearchCriteria scri) throws Exception {
+		return cscenterDAO.listCount(scri);
 	}
 	
 	@Override

@@ -11,8 +11,6 @@ public class MyPageVO {
 	private String review_score;
 	private String movie_title;
 	private Date review_reg_date;
-
-	
 	
 	public String getMember_id() {
 		return member_id;
@@ -62,6 +60,9 @@ public class MyPageVO {
 	public void setReview_reg_date(Date review_reg_date) {
 		this.review_reg_date = review_reg_date;
 	}
+
+	
+	
 	
 	
 

@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop01.cart.vo.CartVO;
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
@@ -59,5 +60,33 @@ public class MyPageDAOImpl implements MyPageDAO{
 		List<MyPageVO> myReviewList = sqlSession.selectList("mapper.mypage.myReviewList",member_id);
 		return myReviewList;
 	}
-
+	
+	@Override
+	public void deletemyReview(int review_number) throws DataAccessException {
+		sqlSession.delete("mapper.mypage.deletemyReview", review_number);	
+	}
+	
+	@Override
+	public List<CscenterVO> myQnaList(String member_id) throws DataAccessException {
+		List<CscenterVO> myQnaList = sqlSession.selectList("mapper.mypage.myQnaList",member_id);
+		return myQnaList;
+	}
+	
+	@Override
+	public void myQnaModify(CscenterVO cscenterVO) throws DataAccessException {
+		sqlSession.update("mapper.mypage.myQnaModify", cscenterVO);
+	}
+	
+	
+	@Override
+	public List<CscenterVO> myQnaModifyview(int cscenter_number) throws DataAccessException {
+		List<CscenterVO> myQnaList = sqlSession.selectList("mapper.mypage.myQnaModifyview",cscenter_number);
+		return myQnaList;
+	}
+	
+	@Override
+	public void deletemyQna(int cscenter_number) throws DataAccessException {
+		sqlSession.delete("mapper.mypage.deletemyQna", cscenter_number);	
+	}
+	
 }

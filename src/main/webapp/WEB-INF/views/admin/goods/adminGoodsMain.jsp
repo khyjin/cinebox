@@ -85,6 +85,7 @@ function search_goods_list(fixeSearchPeriod){
     formObj.action="${contextPath}/admin/goods/adminGoodsMain.do";
     formObj.submit();
 }
+
 function  calcPeriod(search_period){
 	var dt = new Date();
 	var beginYear,endYear;
@@ -149,6 +150,7 @@ function  calcPeriod(search_period){
 	//alert(beginDate+","+endDate);
 	return beginDate+","+endDate;
 }
+
 function delete_check(deleteId) {
 	if(confirm("삭제하시겠습니까?") == true){
 		location.href="${contextPath}/admin/goods/deleteNewGoods.do?movie_id="+deleteId.value;
@@ -165,14 +167,17 @@ function delete_check(deleteId) {
 
 	<h1>영화 조회</h1>
 	<br>
+<div style="float: left; width: 40%">
+	<h1>영화 조회</h1>
+	<form  method="get" action="${contextPath}/admin/goods/searchMovie.do">	
 <div style="float: right; width: 40%">
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>
 				<tr>
 				  <td>
-					<input  type="text"  size="30"/>  
-					<input  type="button"  value=" 조회 "/>
+					<input name="keyword" id="keywordInput" type="text"  size="30"/>  
+					<input type="submit"  value="영화찾기"/>
 				  </td>
 				</tr>
 			</TBODY>
@@ -181,8 +186,8 @@ function delete_check(deleteId) {
 </div>
 	
 
-<DIV id="search" style="float: left; width: 40%; margin: 10">
-
+<DIV id="search" style="float: right; width: 40%; margin: 10; text-align: right;">
+	<p>
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
 		<input type="submit" value="상품 등록하기">
 	</form>
@@ -197,7 +202,6 @@ function delete_check(deleteId) {
 				<th>개봉일</th>
 				<th>종료일</th>
 				<th>개봉상태</th>
-				<th>수정</th>
 				<th>삭제</th>
 			</tr>
    <c:choose>
@@ -233,10 +237,6 @@ function delete_check(deleteId) {
 					<c:otherwise><td>상영종료</td></c:otherwise>
 				</c:choose>
 				<td>
-<!-- 					<input type="button"  id="button0" onclick="modify_form(deleteId${status.index})" value="수정"> -->
-						
-				</td>
-				<td>
 					<input type="hidden" value="${item.movie_id}" name="deleteId${status.index}">
 					<input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">				
 				</td>
@@ -249,22 +249,22 @@ function delete_check(deleteId) {
   <ul>
   <!-- 페이지 블럭 -->
     <c:if test="${pageMaker.prev}">
-    	<li class="idxn"><a class="paging" href="${pageMaker.makeQuery(pageMaker.startPage - 1)}"> << 이전 </a></li>
+    	<li class="idxn"><a class="paging" href="${pageMaker.makeSearch(pageMaker.startPage - 1)}"> << 이전 </a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
     	<c:choose>
     		<c:when test="${pageMaker.cri.page==idx}">
     			<font size=+1>
-    			<li class="idxn"><a class="paging1" href="${pageMaker.makeQuery(idx)}">${idx}</a></li></font>
+    			<li class="idxn"><a class="paging1" href="${pageMaker.makeSearch(idx)}">${idx}</a></li></font>
     		</c:when>
     		<c:otherwise>
-    			<li class="idxn"><a class="paging2" href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    			<li class="idxn"><a class="paging2" href="${pageMaker.makeSearch(idx)}">${idx}</a></li>
     		</c:otherwise>
     	</c:choose>
     </c:forEach>
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li class="idxn"><a class="paging" href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음 >></a></li>
+    	<li class="idxn"><a class="paging" href="${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음 >></a></li>
     </c:if> 
   </ul>
      

@@ -2,12 +2,16 @@ package com.bookshop01.admin.member.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bookshop01.admin.member.dao.AdminMemberDAO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
+import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
 
 
@@ -34,6 +38,17 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public void deletemember(String member_id) throws Exception {
 		adminMemberDAO.deleteNewGoods(member_id);
 		
+	}
+
+	@Override
+	public List<MemberVO> searchMember(SearchCriteria scri) throws Exception {
+		
+		return adminMemberDAO.selectSearch(scri);
+	}
+	
+	@Override
+	public int listCount2(SearchCriteria scri) {
+		return adminMemberDAO.listCount2(scri);
 	}
 	
 }

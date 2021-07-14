@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,6 @@ import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.vo.MyPageVO;
-
-import net.sf.json.JSONObject;
 
 @Controller("goodsController")
 @RequestMapping(value="/goods")
@@ -254,7 +253,11 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 			}
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;		
-	}	
+	}
+
+
+	
+	
 //	private void addGoodsInQuick(String movie_id,GoodsVO goodsVO,HttpSession session){
 //		boolean already_existed=false;
 //		List<GoodsVO> quickMovieList; //최근 본 상품 저장 ArrayList

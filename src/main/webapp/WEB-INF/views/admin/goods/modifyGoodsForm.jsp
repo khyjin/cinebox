@@ -16,14 +16,17 @@ section.admin_mypage_main {
 	float: right;
 	margin-top: -190;
 }
+.admin_bg {
+	background-color: white;
+}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function fn_modify_goods(movie_id, attribute){
 	var frm_mod_goods=document.frm_mod_goods;
 	var value="";
-	var sort_value=[];
-	
+	var sort_value= [];
 	if(attribute=='title'){
 		value=frm_mod_goods.movie_title.value;
 	}else if(attribute=='movie_title'){
@@ -46,8 +49,11 @@ function fn_modify_goods(movie_id, attribute){
 		value=frm_mod_goods.movie_open_date.value;
 	}else if(attribute=='movie_close_date'){
 		value=frm_mod_goods.movie_close_date.value;
-	}else if(attribute=='movie_sort'){
-		value=frm_mod_goods.movie_sort.value;
+	}else if(attribute=='movie_sort'){	
+		$("input[name='movie_sort']:checked").each(function(i){
+			sort_value.push($(this).val());
+		});
+		value=sort_value.join();
 	}
 
 	$.ajax({
@@ -92,7 +98,7 @@ function readURL(input,preview) {
   function fn_addFile(){
 	  $("#d_file").append("<br>"+"<input  type='file' name='still"+cnt+"' id='still"+cnt+"'  onchange=readURL(this,'previewImage"+cnt+"') />");
 	  $("#d_file").append("<img  id='previewImage"+cnt+"'   width=200 height=200  />");
-	  $("#d_file").append("<input  type='button' value='추가'  onClick='addNewImageFile('still"+cnt+"','${imageFileList[0].movie_id}','still')'  />");
+	  $("#d_file").append("<input type='button' value='추가'  onClick=addNewImageFile('still"+cnt+"','${imageFileList[0].movie_id}') />");
 	  cnt++;
   }
 
@@ -116,13 +122,13 @@ function readURL(input,preview) {
 	       }
  	});
  }
-  function addNewImageFile(fileId, movie_id, image_File_sort){
+  function addNewImageFile(fileId, movie_id){
 	     alert(fileId);
 		  var form = $('#FILE_FORM')[0];
 	      var formData = new FormData(form);
 	      formData.append("uploadFile", $('#'+fileId)[0].files[0]);
 	      formData.append("movie_id", movie_id);
-	      formData.append("image_file_sort", image_file_sort);
+	      formData.append("image_file_sort", "still");
 	      
 	      $.ajax({
 	          url: '${contextPath}/admin/goods/addNewGoodsImage.do',
@@ -161,16 +167,16 @@ function readURL(input,preview) {
  }
 </script>
 </head>
-<BODY>
+<BODY class="admin_bg">
 <section class="admin_mypage_main">
 <form  name="frm_mod_goods"  method=post >
-	<div id="container">
+	<div id="container" >
 	<ul class="tabs">
 			<li><A href="#tab1">영화정보</A></li>
 			<li><A href="#tab2">영화이미지</A></li>
 	</ul>
 	</div>
-	<div class="tab_container" id="container">
+	<div class="tab_container" id="container" style="background-color: white;">
 	<div class="tab_content" id="tab1">
 		<table>
 			<tbody>
@@ -232,7 +238,7 @@ function readURL(input,preview) {
 						<c:otherwise><input type="checkbox" value="범죄" name="movie_sort">범죄</c:otherwise>
 					</c:choose>
 					</td>
-					<td><input type="button" value="수정반영"></td>
+					<td><input type="button" value="수정반영" onclick="fn_modify_goods('${goods.movie_id}','movie_sort')"></td>
 				</tr>
 				<tr>
 					<td>영화이름</td>

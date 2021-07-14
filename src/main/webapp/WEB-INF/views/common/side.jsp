@@ -13,12 +13,10 @@
      <H3>주요기능</H3>
 		<ul id="sidemenu">
 
-			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">영화조회</a></li>
+			<li><a href="${contextPath}/admin/goods/searchMovie.do">영화조회</a></li>
 			<li><a href="${contextPath}/admin/order/adminOrderMain.do">예매관리</a></li>
-			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">영화</a></li>
-			<li><a href="${contextPath}/ticket/reservarion.do">예매</a></li>
 			<li><a href="${contextPath}/admin/member/adminMemberMain.do">회원관리</a></li>
-			<li><a href="${contextPath}/main/schedule.do">영화스케줄</a></li>
+			<li><a href="${contextPath}/schedule/addNewScheduleForm.do">영화스케줄</a></li>
 			<li><a href="${contextPath}/schedule/selectSchedule.do">상영시간표</a></li>
 		</ul>
 	</li>
@@ -35,13 +33,13 @@
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">나의 정보 수정</a></li>
 			<li><a href="${contextPath}/mypage/myPoint.do">잔여 포인트 확인</a></li>	
-			<li><a href="${contextPath}/mypage/myReviewList.do">내 후기평</a></li>
+			<li><a href="${contextPath}/mypage/myReviewList.do">나의 관람평</a></li>
 		</ul>
 	</li>	
 	<li class="sidemenu">
 		<h3>나의 문의 내역</h3>
 		<ul>
-			<li><a href="${contextPath}/mypage/myDetailInfo.do">1:1 문의</a></li>
+			<li><a href="${contextPath}/mypage/myQnaList.do">1:1 문의</a></li>
 		</ul>
 	</li>
 </c:when>
@@ -87,17 +85,6 @@
 
 <!-- 고객센터 적용 -->
 <script type="text/javascript">
-function fn_send_lostitem(){
-	var _isLogOn=document.getElementById("isLogOn");
-	var isLogOn=_isLogOn.value;
-	
-	 if(isLogOn=="false" || isLogOn=='' ){
-		alert("로그인 후 문의가 가능합니다!!!");
-		location.href='${contextPath}/member/loginForm.do';
-	}
-	 else
-		location.href='${contextPath}/cscenter/lostItemForm.do';
-}	
 
 function fn_send_qna() {
 	var _isLogOn = document.getElementById("isLogOn");

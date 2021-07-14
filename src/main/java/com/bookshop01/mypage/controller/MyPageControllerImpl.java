@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.service.MyPageService;
 import com.bookshop01.mypage.vo.MyPageVO;
@@ -34,6 +35,9 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Autowired
 	private MemberVO memberVO;
+	
+	@Autowired
+	private CscenterVO cscenterVO;
 	
 	@Override
 	@RequestMapping(value="/myPageMain.do" ,method = RequestMethod.GET)
@@ -183,15 +187,15 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		return mav;
 	}
 	
-
+	
+	
+	// 나의 관람평 리스트 출력
 	@Override
 	@RequestMapping(value="/myReviewList.do",method=RequestMethod.GET)
 	public ModelAndView myReviewList(String member_id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
+			throws Exception {	
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		member_id = memberVO.getMember_id();
@@ -199,4 +203,77 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		mav.addObject("myReviewList", myReviewList);
 		return mav;				
 	}
+	
+	//나의 관람평 삭제
+		@Override
+		@RequestMapping("/deletemyReview.do")
+		public String deletemyReview(@RequestParam("review_number") int review_number) throws Exception {
+			myPageService.deletemyReview(review_number);
+			return "redirect:/mypage/myReviewList.do";
+		}
+		
+	// 나의 1:1 문의 내역 리스트 출력
+		@Override
+		@RequestMapping(value="/myQnaList.do",method=RequestMethod.GET)
+		public ModelAndView myQnaList(String member_id, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			String viewName=(String)request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView(viewName);
+			member_id=memberVO.getMember_id();
+			List<CscenterVO> myQnaList=myPageService.myQnaList(member_id);		
+			mav.addObject("myQnaList", myQnaList);
+			return mav;				
+		}
+		
+	// 나의 1:1 문의 내역 수정 폼
+		
+		@Override
+		@RequestMapping(value="/myQnaModifyview.do",method=RequestMethod.GET)
+		public ModelAndView myQnaModifyview(@RequestParam("cscenter_number") int cscenter_number, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			String viewName=(String)request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView(viewName);
+			List<CscenterVO> myQnaList=myPageService.myQnaModifyview(cscenter_number);		
+			mav.addObject("myQnaList", myQnaList);
+			return mav;				
+		}
+	
+	// 나의 1:1 문의 내역 수정
+		@Override
+		@RequestMapping(value = "/myQnaModify.do")
+		public ResponseEntity myQnaModify(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			response.setContentType("text/html; charset=UTF-8");
+			request.setCharacterEncoding("utf-8");
+			String message = null;
+			ResponseEntity resEntity = null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+			
+			try {
+				myPageService.myQnaModify(cscenterVO);
+				message  = "<script>";
+				message +=" alert('글 수정을 완료했습니다.');";
+				message += " location.href='"+request.getContextPath()+"/mypage/myQnaList.do';";
+				message += " </script>";
+			} catch (Exception e) {
+				message  = "<script>";
+			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+			    message += " location.href='"+request.getContextPath()+"/mypage/myQnaList.do';";
+			    message += " </script>";
+				e.printStackTrace();
+			}
+			
+			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEntity;
+		}
+		
+	//나의 1:1 문의 삭제
+		@Override
+		@RequestMapping("/deletemyQna.do")
+		public String deletemyQna(@RequestParam("cscenter_number") int cscenter_number) throws Exception {
+			myPageService.deletemyQna(cscenter_number);
+			return "redirect:/mypage/myQnaList.do";
+		}
+		
 }

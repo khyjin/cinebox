@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 @Repository("adminCScenterDAO")
 public class AdminCScenterDAOImpl implements AdminCScenteDAO{
@@ -37,14 +38,14 @@ public class AdminCScenterDAOImpl implements AdminCScenteDAO{
 	}
 
 	@Override
-	public List<CscenterVO> selectBoard(Criteria cri) throws DataAccessException {
+	public List<CscenterVO> selectBoard(SearchCriteria scri) throws DataAccessException {
 	//	return sqlSession.selectList("mapper.admin.cscenter.selectBoard",cscenter_type);
-		return sqlSession.selectList("mapper.admin.cscenter.selectBoard", cri);
+		return sqlSession.selectList("mapper.admin.cscenter.selectBoard", scri);
 	}
 	
 	@Override
-	public int listCount() throws Exception {
-		return sqlSession.selectOne("mapper.admin.cscenter.listCount");
+	public int listCount(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne("mapper.admin.cscenter.listCount", scri);
 	}
 
 	@Override

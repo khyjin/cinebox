@@ -113,44 +113,51 @@ function result(){
     var hp2 = $("#member_hp2").val();
     var hp3 = $("#member_hp3").val();
     var email1 = $("#member_email1").val();
-    var roadaddress = $("#roadaddress").val();
-    var jibunaddress = $("#jibunaddress").val();
+    var roadaddress = $("#roadAddress").val();
+    var jibunaddress = $("#jibunAddress").val();
     
 		if(pw1 !== pw2) {
 			   alert("비밀번호가 일치하지 않습니다.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(id==""||id==null) {
 			alert("아이디는 필수 입력 항목입니다.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(4>id.length ||id.length >10) {
 			alert("아이디는 4~10자 이내로 입력해주세요.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(pw1==""||pw1==null) {
 			alert("패스워드는 필수 입력 항목입니다.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(4>pw1.length ||pw1.length >15) {
 			alert("패스워드는 4~15자 이내로 입력해주세요.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
-		else if(2>name.length ||name.length>5||name==null||name=="") {
+		else if(name==null||name=="") {
+			alert("이름은 필수 입력 항목입니다.");
+			   window.location.href = "${contextPath}/member/memberForm.do";
+		}
+		else if(2>name.length ||name.length>5) {
 			alert("이름은 2~5자 이내로 입력해주세요.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(hp2==""||hp2==null||hp3==""||hp3==null) {
 			alert("연락처는 필수 입력 항목입니다.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(email1==""||email1==null) {
 			alert("이메일은 필수 입력 항목입니다.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
 		}
 		else if(roadAddress==""||roadAddress==null||jibunAddress==""||jibunAddress==null) {
 			alert("주소는 필수 입력 항목입니다.");
-			   window.location.href = "/memberForm.do";
+			   window.location.href = "${contextPath}/member/memberForm.do";
+		}
+		else {
+			window.location.href = "${contextPath}/member/addMember.do";
 		}
 	}
 </script>
@@ -160,7 +167,7 @@ function result(){
 <img src="${contextPath}/resources/image/signup_icon.png" width="40" height="40"/>
 회원가입
 </div>
-   <form name="memberform" action="${contextPath}/member/addMember.do" method="post">   
+   <form name="memberform" method="post">   
    <div id="detail_table">
       <table>
          <tbody>
@@ -184,7 +191,7 @@ function result(){
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이름</td>
-               <td  class="member_input"><input name="member_name" type="text" size="20" placeholder="2~5자 이내로 입력"/></td>
+               <td  class="member_input"><input name="member_name" id="member_name" type="text" size="20" placeholder="2~5자 이내로 입력"/></td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">성별</td>
@@ -245,7 +252,7 @@ function result(){
                      <option value="017">017</option>
                      <option value="018">018</option>
                      <option value="019">019</option>
-               </select> - <input size="5px"  type="text" name="member_hp2"> - <input size="5px"  type="text"name="member_hp3"><br> 
+               </select> - <input size="5px"  type="text" name="member_hp2" id="member_hp2"> - <input size="5px"  type="text"name="member_hp3" id="member_hp3"><br> 
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이메일<br>(e-mail)</td>
@@ -262,7 +269,7 @@ function result(){
                            <option value="freechal.com">freechal.com</option>
                      </select><br> <br> <input type="checkbox" id="member_email_yn" name="member_email_yn" value="Y" checked="checked"/> cinebox에서 발송하는 e-mail을 수신합니다.
 
-                                    </td>
+            </td>
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">주소</td>
@@ -271,8 +278,8 @@ function result(){
                  <br><br>
                  <p> 
                   도로명 주소:<br><input type="text" id="roadAddress"  name="member_roadaddress" size="50"><br><br>
-                 지번 주소: <input type="text" id="jibunAddress" name="member_jibunaddress" size="50"><br><br>
-                 나머지 주소: <input type="text"  name="member_namujiaddress" size="50" />
+                 지번 주소: <br><input type="text" id="jibunAddress" name="member_jibunaddress" size="50"><br><br>
+                 나머지 주소:<br> <input type="text"  name="member_namujiaddress" size="50" />
                 <!--   <span id="guide" style="color:#999"></span> -->
                   </p>
                </td>
@@ -281,7 +288,7 @@ function result(){
       </table>
       </div>
       <div class="clear">
-            <input type="submit" class="complete" value="회원가입" onclick="result()">
+            <input type="button" class="complete" value="회원가입" onclick="result()">
 </div>
 </form>   
 </body>

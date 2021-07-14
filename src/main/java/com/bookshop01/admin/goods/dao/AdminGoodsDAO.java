@@ -6,9 +6,9 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.bookshop01.cscenter.vo.Criteria;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.order.vo.OrderVO;
 
 public interface AdminGoodsDAO {
@@ -27,7 +27,7 @@ public interface AdminGoodsDAO {
 	
 	public int listCount() throws DataAccessException;
 	
-	public List<GoodsVO> movieSearchList(SearchCriteria scri) throws DataAccessException;
-	public int listCount(SearchCriteria scri) throws DataAccessException;
+	public List<GoodsVO> selectSearch(SearchCriteria scri) throws DataAccessException;
+	public int listCount2(SearchCriteria scri) throws DataAccessException;
 	
 }

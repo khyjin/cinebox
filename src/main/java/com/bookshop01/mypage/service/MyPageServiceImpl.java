@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.dao.MyPageDAO;
 import com.bookshop01.mypage.vo.MyPageVO;
@@ -58,6 +60,31 @@ public class MyPageServiceImpl  implements MyPageService{
 	public List<MyPageVO> myReviewList(String member_id) throws Exception {		
 		return myPageDAO.myReviewList(member_id);
 	}
-
+	
+	@Override
+	public void deletemyReview(int review_number) throws Exception {
+		myPageDAO.deletemyReview(review_number);
+	}
+	
+	@Override
+	public List<CscenterVO> myQnaList(String member_id) throws Exception {		
+		return myPageDAO.myQnaList(member_id);
+	}
+	
+	@Override
+	public void myQnaModify(CscenterVO cscenter) throws Exception {
+		myPageDAO.myQnaModify(cscenter);
+		
+	}
+	
+	@Override
+	public List<CscenterVO> myQnaModifyview(int cscenter_number) throws Exception {		
+		return myPageDAO.myQnaModifyview(cscenter_number);
+	}
+	
+	@Override
+	public void deletemyQna(int cscenter_number) throws Exception {
+		myPageDAO.deletemyQna(cscenter_number);
+	}
 
 }

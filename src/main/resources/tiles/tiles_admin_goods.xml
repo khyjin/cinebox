@@ -19,6 +19,12 @@
        <put-attribute name="title" value="상영 스케줄링 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/goods/addNewScheduleForm.jsp" />
     </definition>
+    
+    <definition name="/admin/goods/searchMovie" extends="baseLayout">
+       <put-attribute name="title" value="검색결과" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/goods/searchResult.jsp" />
+    </definition>
+    
 </tiles-definitions>
 
 

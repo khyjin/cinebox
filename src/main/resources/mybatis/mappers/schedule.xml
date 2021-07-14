@@ -11,6 +11,7 @@
 		<result property="room_number" column="room_number" />
 		<result property="schedule_start_time" column="schedule_start_time" />
 		<result property="schedule_date" column="schedule_date" />
+		<result property="schedule_id" column="schedule_id" />
 	</resultMap>
 	<resultMap id="goodsResult" type="goodsVO">
 		<result property="movie_id" column="movie_id" />
@@ -37,13 +38,15 @@
 			movie_title,
             room_number,
             schedule_start_time,
-            schedule_date)
+            schedule_date,
+            schedule_id)
 		values(
 			(select movie_id from cinebox_movie where movie_title=#{movie_title}),
 			#{movie_title},
 			#{room_number},
 			#{schedule_start_time},
-            to_date(#{schedule_date},'yyyy-MM-dd') )
+            to_date(#{schedule_date},'yyyy-MM-dd'),
+             schedule_seq.nextval )
 		]]>
 	</insert> 
 <select id="selectSchedule" resultType="scheduleVO"   >
@@ -51,6 +54,67 @@
         select * from cinebox_schedule
 	    ]]>
 	</select>
+	<!-- select s.*,m.movie_runningtime from cinebox_schedule s,cinebox_movie m
+        where s.movie_id = m.movie_id-->
+        
+		<select id="listGoods" resultType="goodsVO"  >
+        <![CDATA[
+       select * from cinebox_movie where movie_status='screening' or movie_status='readysc'
+	    ]]>
+	</select>
+<!-- 임시 -->	
+	<select id="reservationSchedule" resultType="scheduleVO"   >
+        <![CDATA[
+        select distinct movie_title, movie_id  from cinebox_schedule
+	    ]]>
+	</select>
 	
+	<select id="selectDate" resultMap="scheduleResult" parameterType="int">
+		<![CDATA[
+		select distinct movie_id, schedule_date from cinebox_schedule
+		where movie_id=#{movie_id} 
+		and schedule_date between to_char(sysdate) and to_char(sysdate+7)
+		order by schedule_date
+		]]>
+		
+	</select>
+	
+	<select id="selectTime" resultMap="scheduleResult" parameterType="java.util.Map">
+		<![CDATA[
+		select schedule_start_time,room_number from cinebox_schedule
+		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
+		order by room_number, schedule_start_time
+		]]>
+	</select>
+	<update id="modifySchedule" parameterType="java.util.HashMap">
+		 
+		 update cinebox_schedule 
+			   <set>
+				  <if test=" movie_title!='' and movie_title!=null">
+			         movie_title=#{movie_title},
+			         movie_id=(select movie_id from cinebox_movie where movie_title=#{movie_title}),
+			      </if>
+			      <if test=" room_number!='' and room_number!=null">
+			         room_number=#{room_number},
+			      </if>
+			      <if test=" schedule_start_time!='' and schedule_start_time!=null">			      	 
+			         schedule_start_time=#{schedule_start_time,jdbcType=VARCHAR},
+			      </if>
+			      <if test=" schedule_date!='' and schedule_date!=null">
+			         schedule_date=to_date(#{schedule_date},'yyyy-MM-dd')
+			      </if>
+			   </set>
+		where 
+		schedule_id=#{schedule_id}
+		
+	</update>
+	<delete id="deleteSchedule" parameterType="int">
+	  delete from cinebox_schedule
+	  where
+	  schedule_id=#{schedule_id}
+	</delete>
+
+	
+<!-- 임시 -->	
 </mapper>
 

@@ -5,15 +5,18 @@
 <tiles-definitions>
     
    
+
       <definition name="/ticket/reservation" extends="baseLayout">
        <put-attribute name="title" value="영화 예매 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/ticket/reservation.jsp" />
       </definition>
-      
-      <definition name="/ticket/seat" extends="baseLayout">
-       <put-attribute name="title" value="영화 좌석 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/ticket/seat.jsp" />
-      </definition>
+
+   
+	<!-- 좌석 페이지 -->
+	<definition name="/ticket/seat" extends="baseLayout">
+		<put-attribute name="title" value="좌석 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/ticket/seat.jsp" />
+	</definition>
    
 </tiles-definitions>
 
