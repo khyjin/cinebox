@@ -14,8 +14,7 @@ public class TicketVO {
 	private String ticket_end_time; //상영끝시간
 	private String ticket_movie_day; //상영일
 	private String room_number; //상영관번호
-	private String seat_number1; //좌석이름 영문
-	private String seat_number2; //좌석이름 숫자
+	private String seat_number; //좌석이름
 	private String ticket_reservation_date; //예매시간
 	private String member_id; //회원아이디
 	
@@ -97,17 +96,11 @@ public class TicketVO {
 	public void setRoom_number(String room_number) {
 		this.room_number = room_number;
 	}
-	public String getSeat_number1() {
-		return seat_number1;
+	public String getSeat_number() {
+		return seat_number;
 	}
-	public void setSeat_number1(String seat_number1) {
-		this.seat_number1 = seat_number1;
-	}
-	public String getSeat_number2() {
-		return seat_number2;
-	}
-	public void setSeat_number2(String seat_number2) {
-		this.seat_number2 = seat_number2;
+	public void setSeat_number(String seat_number) {
+		this.seat_number = seat_number;
 	}
 	public String getTicket_reservation_date() {
 		return ticket_reservation_date;

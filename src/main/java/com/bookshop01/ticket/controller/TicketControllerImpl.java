@@ -71,8 +71,10 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		return map;
 	}
 	
-	@RequestMapping(value="/seat.do", method=RequestMethod.GET)
-	public void printSeat(HttpServletRequest request) {
+	@RequestMapping(value="/room1.do" ,method = RequestMethod.GET)
+	public ModelAndView printSeat1(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
@@ -84,13 +86,44 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		System.out.println("상영날짜 : "+schedule_date);
 		System.out.println("상영시간 : "+schedule_start_time);
 		System.out.println("상영관 : "+room_number);
+		return mav;
+		
 	}
 
-	//연습
-	@RequestMapping(value="/seat.do" ,method = RequestMethod.GET)
-	public ModelAndView NewFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/room2.do" ,method = RequestMethod.GET)
+	public ModelAndView printSeat2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		String movie_id = request.getParameter("movie_id");
+		String movie_title = request.getParameter("movie_title");
+		String schedule_date = request.getParameter("schedule_date");
+		String schedule_start_time = request.getParameter("schedule_start_time");
+		String room_number = request.getParameter("room_number");
+		
+		System.out.println("영화번호 : "+movie_id);
+		System.out.println("영화제목 : "+movie_title);
+		System.out.println("상영날짜 : "+schedule_date);
+		System.out.println("상영시간 : "+schedule_start_time);
+		System.out.println("상영관 : "+room_number);
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/room3.do" ,method = RequestMethod.GET)
+	public ModelAndView printSeat3(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		String movie_id = request.getParameter("movie_id");
+		String movie_title = request.getParameter("movie_title");
+		String schedule_date = request.getParameter("schedule_date");
+		String schedule_start_time = request.getParameter("schedule_start_time");
+		String room_number = request.getParameter("room_number");
+		
+		System.out.println("영화번호 : "+movie_id);
+		System.out.println("영화제목 : "+movie_title);
+		System.out.println("상영날짜 : "+schedule_date);
+		System.out.println("상영시간 : "+schedule_start_time);
+		System.out.println("상영관 : "+room_number);
 		return mav;
 		
 	}

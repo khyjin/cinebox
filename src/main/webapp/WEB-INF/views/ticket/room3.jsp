@@ -68,8 +68,8 @@ body {
 }
 
 .seat {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     margin-right: 4px;
     margin-top: 4px;
 }
@@ -112,15 +112,15 @@ function selectOnChange(e) {
 	const childpay = Number(num2)*10000;
 	const totalpay = adultpay+childpay;
 	
-	if(value>4) {
-		alert("관람 인원 4명 초과 시 예매 불가 입니다.");
-		location.href = "${contextPath}/ticket/seat.do";
-	}
-	
 	if(Number(num1)==0&&Number(num2)==0) {
 		alert("관람 인원은 1명 이상부터 예매 가능합니다.")
 	}
 	
+	if(value>8) {
+	      alert("관람 인원 8명 초과 시 예매 불가 입니다.");
+	      location.href = "${contextPath}/ticket/room3.do";
+	   }
+
 	document.getElementById('result').innerText = value;
 	
 	document.getElementById('total_pay').innerText = totalpay;
@@ -137,22 +137,45 @@ function selectOnChange(e) {
 		location.href = "${contextPath}/member/loginForm.do";
 	</script>
 </c:if>
-<h1>좌석 선택</h1>
-<br><br><br><br>
+<h1>상영관 3관</h1>
+<br><br>
+<div id="seat_table">
+<table>
+<tr class="dot_line">
+	<td  class="fixed_join">인원 체크</td>
+	<td>일반&emsp;<select name="ticket_adult" id="select_box1" onchange="selectOnChange(this)">
+    	                       <option value="0">0</option>
+        	                   <option value="1">1</option>
+            	               <option value="2">2</option>
+                	           <option value="3">3</option>
+                    	       <option value="4">4</option>
+                    	       <option value="5">5</option>
+            	               <option value="6">6</option>
+                	           <option value="7">7</option>
+                    	       <option value="8">8</option>
+                    	 </select></td>
+	<td>청소년&emsp;<select name="ticket_child" id="select_box2" onchange="selectOnChange(this)">
+    	                       <option value="0">0</option>
+        	                   <option value="1">1</option>
+            	               <option value="2">2</option>
+                	           <option value="3">3</option>
+                    	       <option value="4">4</option>
+                    	       <option value="5">5</option>
+            	               <option value="6">6</option>
+                	           <option value="7">7</option>
+                    	       <option value="8">8</option>
+                     	</select></td>
+</tr>
+<tr class="dot_line">
+	<td  class="fixed_join">총 인원 수</td>
+	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="result" style="display:inline;"></div>명</td>
+</tr>
+</table>
+<br><br>
 <div id="screen">SCREEN</div>
 <br><br>
 <div class="seat-wrapper"></div>
-<br><br> 
-<div id="pay_table">
-<table style="float: left;">
-<tr class="dot_line" style=" font-size: xx-small; color: red;">
-	<th class="fixed_join">일반:</th><td style="font-weight: bold;">12000원</td>
-	<th class="fixed_join">청소년:</th><td style="font-weight: bold;">10000원</td>
-	<th class="fixed_join">최대 인원 제한 수:</th><td style="font-weight: bold;">4명</td>
-</tr>
-</table>
-</div>
-<div id="seat_table">
+<br><br><br><br>
 <script>
     let test = [];
     let selectedSeats = new Array();
@@ -161,10 +184,10 @@ function selectOnChange(e) {
     let clicked = "";
     let div = "";
 
-    for (let seat_number1 = 1; seat_number1 < 8; seat_number1++) {
+    for (let seat_number1 = 1; seat_number1 <= 8; seat_number1++) {
         div = document.createElement("div");
         seatWrapper.append(div);
-        for (let seat_number2 = 1; seat_number2 < 15; seat_number2++) {
+        for (let seat_number2 = 1; seat_number2 <= 15; seat_number2++) {
             const input = document.createElement('input');
             input.type = "button";
             input.name = "seats"
@@ -179,7 +202,7 @@ function selectOnChange(e) {
 
                 //click class가 존재할때(제거해주는 toggle)
                 if (input.classList.contains("clicked")) {
-                    input.classList.remove("clicked");
+                	input.classList.remove("clicked");
                     clicked = document.querySelectorAll(".clicked");
                     selectedSeats.splice(selectedSeats.indexOf(e.target.value), 1);
                     clicked.forEach((data) => {
@@ -187,7 +210,7 @@ function selectOnChange(e) {
                     });
                     //click class가 존재하지 않을때 (추가해주는 toggle)
                 } else {
-                    input.classList.add("clicked");
+                	input.classList.add("clicked");
                     clicked = document.querySelectorAll(".clicked");
                     clicked.forEach((data) => {
                         selectedSeats.push(data.value);
@@ -204,67 +227,51 @@ function selectOnChange(e) {
                 	var count = 0;
                 	
                 	count++;
-                    
-                    if(value<count) {
+                	
+                	if(value<=count) {
                     	alert("인원 체크 후 좌석 선택 가능합니다.");
-                    	location.href = "${contextPath}/ticket/seat.do";
-                    	return;
+                		location.href = "${contextPath}/ticket/room3.do";
                     }
                  }
+                
             })
-        }
+         }
     }
+
+    $(document).ready(function() {
+        $( 'button' ).click( function() {
+             $( 'div' ).remove('#seat');
+           });
+        }); 
+  
 
     function mapping(input, seat_number1, seat_number2) {
         if (seat_number1 === 1) {
-            input.value = "A" + seat_number2;
+        	input.value = "A" + seat_number2;
         } else if (seat_number1 === 2) {
-            input.value = "B" + seat_number2;
+        	input.value = "B" + seat_number2;
         } else if (seat_number1 === 3) {
-            input.value = "C" + seat_number2;
+        	input.value = "C" + seat_number2;
         } else if (seat_number1 === 4) {
-            input.value = "D" + seat_number2;
+        	input.value = "D" + seat_number2;
         } else if (seat_number1 === 5) {
-            input.value = "E" + seat_number2;
+        	input.value = "E" + seat_number2;
         } else if (seat_number1 === 6) {
-            input.value = "F" + seat_number2;
+        	input.value = "F" + seat_number2;
         } else if (seat_number1 === 7) {
-            input.value = "G" + seat_number2;
+        	input.value = "G" + seat_number2;
         } else if (seat_number1 === 8) {
-            input.value = "H" + seat_number2;
+        	input.value = "H" + seat_number2;
         } else if (seat_number1 === 9) {
-            input.value = "I" + seat_number2;
+        	input.value = "I" + seat_number2;
         } else if (seat_number1 === 10) {
-            input.value = "J" + seat_number2;
+        	input.value = "J" + seat_number2;
         }
     }
 </script>
 <form action="" method="get">
-<table>
-<tr class="dot_line">
-	<td  class="fixed_join">인원 체크</td>
-	<td>일반&emsp;<select name="ticket_adult" id="select_box1" onchange="selectOnChange(this)">
-    	                       <option value="0">0</option>
-        	                   <option value="1">1</option>
-            	               <option value="2">2</option>
-                	           <option value="3">3</option>
-                    	       <option value="4">4</option>
-                    	 </select></td>
-	<td>청소년&emsp;<select name="ticket_child" id="select_box2" onchange="selectOnChange(this)">
-    	                       <option value="0">0</option>
-        	                   <option value="1">1</option>
-            	               <option value="2">2</option>
-                	           <option value="3">3</option>
-                    	       <option value="4">4</option>
-                     	</select></td>
-</tr>
-<tr class="dot_line">
-	<td  class="fixed_join">총 인원 수</td>
-	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="result" style="display:inline;"></div>명</td>
-</tr>
 
-</table>
-<table id="seat_table">
+<table>
 <tr class="dot_line">
    <td  class="fixed_join">영화 제목</td>
    <td style="font-size:15px; font-weight: bold;">${movie_title}</td>
@@ -283,11 +290,14 @@ function selectOnChange(e) {
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>
-	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원</td>
+	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원
+	<input type="hidden" id="total_pay" name="pay_total_price"></td>
+	
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
-	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div></td>
+	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
+	<input type="hidden" id="seat" name="seat_number"><button id="btn">X</button></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
