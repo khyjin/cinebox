@@ -127,7 +127,7 @@ table tr:hover td {
 </script>
 </head>
 <body>
-<section class="admin_mypage_main">
+
 <h1>상영시간표</h1>
 <br/>
 <div style="overflow:auto; width:30%; height:300px; padding:10px; float: left;">	
@@ -182,6 +182,6 @@ table tr:hover td {
 </form>
 </div>
 
-</section>
+
 </body>
 </html>

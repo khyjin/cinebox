@@ -311,7 +311,7 @@
 		select count(movie_id) from cinebox_movie
 		where 1=1 ]]>
 		<include refid="search"></include>
-		and movie_id>0
+		and to_number(movie_id)>0
 	</select>
 	
 	

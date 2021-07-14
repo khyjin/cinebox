@@ -11,7 +11,10 @@ section.mydetail_main {
 	width:800;
 	height:1200;
 	float:right;
-	margin-top : -280;
+	margin-top : -180;
+}
+body {
+   background: #fff;
 }
 #detail_table table {
 width:100%;
@@ -204,7 +207,7 @@ function fn_modify_member_info(member_id,mod_type){
 				alert("에러가 발생했습니다."+data);
 			},
 			complete : function(data, textStatus) {
-				window.location.href = "${contextPath}/admin/member/modifyMemberInfo.do";
+				window.location.href = "${contextPath}/admin/member/memberDetail.do?member_id=${member_info.member_id}";
 				
 			}
 		}); //end ajax
@@ -216,9 +219,7 @@ function fn_modify_member_info(member_id,mod_type){
 
 <body>
 <section class="mydetail_main">
-	<div class="detailinfo">
-	 기본 정보이동
-	</div>
+	<h1>회원 정보 수정</h1>
 <form name="frm_mod_member" class="mod_member">	
 	<div id="detail_table">
 		<table>

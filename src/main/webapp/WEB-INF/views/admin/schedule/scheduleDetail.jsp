@@ -8,7 +8,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>상영시간표</title>
+<title>상영시간표 수정하기</title>
  <style>
  section.admin_mypage_main {
    width:800;
@@ -45,7 +45,7 @@ table tr:hover td {
 </style>
 </head>
 <body>
-<section class="admin_mypage_main">
+
 <h1>상영시간표</h1>
 <br/>
 <table>
@@ -71,6 +71,6 @@ table tr:hover td {
 		</c:forEach>
 	</tbody>
 </table>	
-</section>
+
 </body>
 </html>

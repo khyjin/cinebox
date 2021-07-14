@@ -3,6 +3,7 @@ package com.bookshop01.admin.member.controller;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.admin.member.service.AdminMemberService;
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.cscenter.vo.PageMaker;
+import com.bookshop01.cscenter.vo.SearchCriteria;
+import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
 
 @Controller("adminMemberController")
@@ -87,37 +92,39 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 	}
 	
 	@RequestMapping(value="/modifyMemberInfo.do" ,method={RequestMethod.POST})
-	public void modifyMemberInfo(@RequestParam("mod_type")  String mod_type,@RequestParam("value")  String value,
-			@RequestParam("member_id")  String member_id,
-			HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HashMap<String,String> memberMap=new HashMap<String,String>();
 		String val[]=null;
 		PrintWriter pw=response.getWriter();
-		//String member_id=request.getParameter("member_id");
-		//String mod_type=request.getParameter("mod_type");
-		//String value =request.getParameter("value");
-		if(mod_type.equals("member_birth")){
+		String member_id=request.getParameter("member_id");
+		String mod_type=request.getParameter("mod_type");
+		String value =request.getParameter("value");
+		if(mod_type.equals("member_pw")){
+			memberMap.put("member_pw",value);
+		}else if(mod_type.equals("member_birth")){
 			val=value.split(",");
 			memberMap.put("member_birth_y",val[0]);
 			memberMap.put("member_birth_m",val[1]);
 			memberMap.put("member_birth_d",val[2]);
 		}else if(mod_type.equals("hp")){
 			val=value.split(",");
-			memberMap.put("hp1",val[0]);
-			memberMap.put("hp2",val[1]);
-			memberMap.put("hp3",val[2]);
-			memberMap.put("smssts_yn", val[3]);
+			memberMap.put("member_hp1",val[0]);
+			memberMap.put("member_hp2",val[1]);
+			memberMap.put("member_hp3",val[2]);
+		//	memberMap.put("smssts_yn", val[3]);
 		}else if(mod_type.equals("email")){
 			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
+			memberMap.put("member_email1",val[0]);
+			memberMap.put("member_email2",val[1]);
+			memberMap.put("member_emailsts_yn", val[2]);
 		}else if(mod_type.equals("address")){
 			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
-			memberMap.put("roadaddress",val[1]);
-			memberMap.put("jibunaddress", val[2]);
-			memberMap.put("namujiaddress", val[3]);
+			memberMap.put("zip",val[0]);
+			memberMap.put("member_roadaddress",val[1]);
+			memberMap.put("member_jibunaddress", val[2]);
+			memberMap.put("member_namujiaddress", val[3]);
+		}else if(mod_type.equals("del")){
+			memberMap.put("member_del_yn", value);
 		}
 		
 		memberMap.put("member_id", member_id);
@@ -125,7 +132,6 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		adminMemberService.modifyMemberInfo(memberMap);
 		pw.print("mod_success");
 		pw.close();		
-		
 	}
 	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})
 	public ModelAndView deleteMember(HttpServletRequest request, HttpServletResponse response)  throws Exception {
@@ -147,5 +153,26 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		adminMemberService.deletemember(member_id);
 		return "redirect:/admin/member/adminMemberMain.do";
 	}
+	@Override
+	@RequestMapping(value="/searchMember.do" ,method = RequestMethod.GET)
+	public ModelAndView searchMember(@ModelAttribute("scri") SearchCriteria scri, HttpServletRequest request) throws Exception  {
+		HttpSession session=request.getSession();
+		session=request.getSession();
+		session.setAttribute("side_menu", "admin_mode"); //마이페이지 사이드 메뉴로 설정한다.
 		
+		List<MemberVO> newGoodsList = adminMemberService.searchMember(scri);
+		
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminMemberService.listCount2(scri));
+		
+		mav.addObject("pageMaker", pageMaker);
+		mav.addObject("newGoodsList", newGoodsList);
+		return mav;
+		
+	}
+	
 }
