@@ -136,7 +136,8 @@ table td {
 </script>
 </head>
 <body>
-<section class="admin_mypage_main">
+<h1>상영시간표</h1>
+
 <br/>
 <div style="overflow:auto; width:30%; float: left;">	
 <h1>영화</h1>
@@ -180,6 +181,5 @@ table td {
 </form>
 </div>
 
-</section>
 </body>
 </html>

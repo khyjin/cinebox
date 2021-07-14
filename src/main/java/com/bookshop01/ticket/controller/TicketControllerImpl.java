@@ -29,27 +29,27 @@ import com.bookshop01.ticket.service.TicketService;
 @Controller("ticketController")
 @RequestMapping(value="/ticket")
 public class TicketControllerImpl extends BaseController implements TicketController {
-	@Autowired
-	 private TicketService ticketService;
+   @Autowired
+    private TicketService ticketService;
 
-	@Override
-	@RequestMapping(value= "/reservartion.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		session.removeAttribute("side_menu");
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-//		List<GoodsVO> list = ticketService.listGoods();
-		List<ScheduleVO> list = ticketService.listMovieTitle();
-		mav.addObject("list", list);
-		return mav;
-		
-	}
-	
+   @Override
+   @RequestMapping(value= "/reservartion.do" ,method={RequestMethod.POST,RequestMethod.GET})
+   public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      HttpSession session = request.getSession();
+      session.removeAttribute("side_menu");
+      ModelAndView mav=new ModelAndView();
+      String viewName=(String)request.getAttribute("viewName");
+      mav.setViewName(viewName);
+      
+//      List<GoodsVO> list = ticketService.listGoods();
+      List<ScheduleVO> list = ticketService.listMovieTitle();
+      mav.addObject("list", list);
+      return mav;
+      
+   }
+   
 
-	//임의로 추가/////////////
+
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/makeTicket.do", method = RequestMethod.POST)
@@ -71,25 +71,11 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		
 		return map;
 	}
-	
-//	@RequestMapping(value="/seat.do", method=RequestMethod.GET)
-//	public void printSeat(HttpServletRequest request) {
-//		String movie_id = request.getParameter("movie_id");
-//		String movie_title = request.getParameter("movie_title");
-//		String schedule_date = request.getParameter("schedule_date");
-//		String schedule_start_time = request.getParameter("schedule_start_time");
-//		String room_number = request.getParameter("room_number");
-//		
-//		System.out.println("영화번호 : "+movie_id);
-//		System.out.println("영화제목 : "+movie_title);
-//		System.out.println("상영날짜 : "+schedule_date);
-//		System.out.println("상영시간 : "+schedule_start_time);
-//		System.out.println("상영관 : "+room_number);
-//	}
 
-	//연습
+
+	@Override
 	@RequestMapping(value="/seat.do" ,method = RequestMethod.GET)
-	public ModelAndView NewFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView printSeat(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		String movie_id = request.getParameter("movie_id");
@@ -108,9 +94,8 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		
 		
 		return mav;
-		
 	}
-	
+   
 
-	
+   
 }

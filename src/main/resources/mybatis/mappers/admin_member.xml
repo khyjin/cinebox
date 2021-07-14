@@ -35,7 +35,7 @@
 			    select rowNum as recNum,t.*
 			       from (
 			              select  *  from cinebox_member 
-			              where to_date(member_joinDate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
+			              where to_date(member_joindate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
 			                <if test="search_type=='member_id'">
 			                  AND member_id=#{search_word}
 			                </if>
@@ -45,7 +45,7 @@
 			                <if test="search_type=='member_hp_num'">
 			                   AND hp1||hp2||hp3=#{search_word} 
 			                </if>
-			              order by member_joinDate desc
+			              order by member_joindate desc
 					    ) t
 				)							
 			where				
@@ -123,5 +123,55 @@
 	  where
 	  member_id=#{member_id}
 	</delete>
+	
+	
+		<select id="selectSearch" resultMap="memberResult">
+		<![CDATA[
+		select * from (
+			select
+			row_number() over(order by member_joindate desc) as rnum,
+			 member_id,
+			 member_pw,
+			 member_name,
+			 member_gender,
+			 member_hp1,
+			 member_hp2,
+			 member_hp3,
+			 member_email_yn,
+			 member_zip,
+			 member_birth_y,
+			 member_birth_m,
+			 member_birth_d,
+			 member_joindate,
+			 member_del_yn,
+			 to_char(member_del_date,'YYYY-MM-DD') as member_del_date,
+			 member_point 
+		 	from cinebox_member
+		 	where 1=1 
+		 	]]>
+		 	<include refid="search"></include>
+		 	) cm
+			where rnum between #{rowStart} and #{rowEnd}
+			order by member_joindate desc
+		
+	</select>
+	<select id="listCount2" resultType="String">
+		<![CDATA[
+		select count(member_id) from cinebox_member
+		where 1=1 ]]>
+		<include refid="search"></include>
+		and to_number(member_id)>0
+	</select>
+	
+	
+	<sql id="search">
+		<if test="keyword != null">
+			<if test="searchType == 't'.toString()">and member_id like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'd'.toString()">and member_name like '%'||#{keyword}||'%'</if>
+		 	<if test="searchType == 'a'.toString()">and member_id like '%'||#{keyword}||'%'</if>
+		</if>
+	</sql>
+	
+	
 </mapper>
 

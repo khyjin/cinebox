@@ -3,15 +3,21 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-    
-   
-      <definition name="/main/schedule" extends="baseLayout">
+   <definition name="/schedule/addSchedule" extends="baseLayout">
+       <put-attribute name="title" value="상영 스케줄링 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/schedule/addNewScheduleForm.jsp" />
+    </definition>
+      <definition name="/schedule/addNewScheduleForm" extends="baseLayout">
        <put-attribute name="title" value="상영 스케줄링 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/schedule/addNewScheduleForm.jsp" />
     </definition>
      <definition name="/schedule/selectSchedule" extends="baseLayout">
        <put-attribute name="title" value="상영 스케줄링 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/schedule/scheduleDetail.jsp" />
+    </definition>
+    <definition name="/schedule/modifyScheduleForm" extends="baseLayout">
+       <put-attribute name="title" value="상영 스케줄링 수정 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/schedule/modifyScheduleForm.jsp" />
     </definition>
 </tiles-definitions>
 

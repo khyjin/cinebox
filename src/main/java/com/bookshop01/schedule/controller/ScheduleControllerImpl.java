@@ -2,6 +2,7 @@ package com.bookshop01.schedule.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.service.ScheduleService;
 import com.bookshop01.schedule.vo.ScheduleVO;
 
@@ -26,6 +29,21 @@ public class ScheduleControllerImpl extends BaseController  implements ScheduleC
 	@Autowired
 	private ScheduleService scheduleService;
 	
+	@Override
+	@RequestMapping(value= "/addNewScheduleForm.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView goform(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		ModelAndView mav=new ModelAndView();
+		String viewName=(String)request.getAttribute("viewName");
+		mav.setViewName(viewName);
+		GoodsVO goodsVO = new GoodsVO();
+		List<GoodsVO> goodslist = scheduleService.listGoods();
+		mav.addObject("goodslist", goodslist);
+		List<ScheduleVO> list=scheduleService.selectSchedule();
+		mav.addObject("list", list);
+		
+		return mav;
+	}
 	
 	@Override
 	@RequestMapping(value="/addSchedule.do")
@@ -79,5 +97,42 @@ public class ScheduleControllerImpl extends BaseController  implements ScheduleC
 		mav.addObject("list", list);
 		return mav;
 	}
-	
+	//삭제하기
+	@Override
+	@RequestMapping("/deleteSchedule.do")
+	public String deleteSchedule(@RequestParam("schedule_id") int schedule_id) throws Exception {
+		scheduleService.deleteSchedule(schedule_id);
+		return "redirect:/schedule/addNewScheduleForm.do";
+	}
+	//수정폼으로 넘어가기
+	@RequestMapping(value= "/modifyScheduleForm.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView loadingview(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav=new ModelAndView(viewName);
+		List<ScheduleVO> list=scheduleService.selectSchedule();
+		mav.addObject("list", list);
+		GoodsVO goodsVO = new GoodsVO();
+		List<GoodsVO> goodslist = scheduleService.listGoods();
+		mav.addObject("goodslist", goodslist);
+		return mav;
+	}
+	//수정하기
+	@Override
+	@RequestMapping("/modifySchedule.do")
+	public String modifySchedule(
+			@RequestParam("schedule_id") int schedule_id,
+			@RequestParam("movie_title") String movie_title,
+			@RequestParam("room_number") String room_number,
+			@RequestParam("schedule_start_time") String schedule_start_time,
+			@RequestParam("schedule_date") String schedule_date,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Map<String,Object> modimap = new HashMap<String,Object>();
+		modimap.put("movie_title",movie_title);
+		modimap.put("room_number",room_number);
+		modimap.put("schedule_start_time",schedule_start_time);
+		modimap.put("schedule_date",schedule_date);
+		modimap.put("schedule_id",schedule_id);
+		scheduleService.modifySchedule(modimap);
+		return "redirect:/schedule/addNewScheduleForm.do";
+	}
 }

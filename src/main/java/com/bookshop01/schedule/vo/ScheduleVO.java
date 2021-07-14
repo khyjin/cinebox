@@ -6,9 +6,16 @@ public class ScheduleVO {
 	private String room_number; //상영관 번호
 	private String schedule_start_time; //상영시작시간
 	private String schedule_date; //상영날짜
-
+	private int schedule_id; //스케줄번호
 	
 	
+	
+	public int getSchedule_id() {
+		return schedule_id;
+	}
+	public void setSchedule_id(int schedule_id) {
+		this.schedule_id = schedule_id;
+	}
 	public String getMovie_id() {
 		return movie_id;
 	}
