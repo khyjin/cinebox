@@ -267,19 +267,19 @@ function selectOnChange(e) {
 <table id="seat_table">
 <tr class="dot_line">
    <td  class="fixed_join">영화 제목</td>
-   <td style="font-size:15px; font-weight: bold;">${movie_title}</td>
+   <td style="font-size:15px; font-weight: bold;">${map.movie_title}</td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영관</td>
-   <td style="font-size:15px; font-weight: bold;">${room_number}관</td>
+   <td style="font-size:15px; font-weight: bold;">${map.room_number}관</td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">예매일자</td>
-    <td style="font-size:15px; font-weight: bold;"> ${ticket_movie_day}</td>
+    <td style="font-size:15px; font-weight: bold;"> ${map.schedule_date}</td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영시간</td>
-   <td style="font-size:15px; font-weight: bold;">${ticket_start_time}~${ticket_end_time}</td>
+   <td style="font-size:15px; font-weight: bold;">${map.schedule_start_time}</td>
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>
