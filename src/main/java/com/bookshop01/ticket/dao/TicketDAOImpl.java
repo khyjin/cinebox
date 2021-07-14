@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop01.goods.vo.GoodsVO;
 
+
 @Repository("TicketDAO")
 public class TicketDAOImpl implements TicketDAO {
 		@Autowired

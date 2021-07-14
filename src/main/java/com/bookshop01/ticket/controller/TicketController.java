@@ -9,7 +9,6 @@ public interface TicketController {
 
 
 	public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 	 
 	 
 }

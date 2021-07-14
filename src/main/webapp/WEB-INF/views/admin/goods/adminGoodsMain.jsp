@@ -162,14 +162,10 @@ function delete_check(deleteId) {
 
 <body class="admin_bg">
 <section class="admin_mypage_main">
-<<<<<<< HEAD
 
 	<h1>영화 조회</h1>
 	<br>
 <div style="float: right; width: 40%">
-=======
-	<H3>영화 조회</H3>
->>>>>>> branch 'master' of https://github.com/khyjin/cinebox.git
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>

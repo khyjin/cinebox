@@ -21,5 +21,6 @@ public class TicketServiceImpl implements TicketService {
 		public List<GoodsVO> listGoods() throws Exception {
 			return ticketDAO.listGoods();
 		}
+
 		
 }

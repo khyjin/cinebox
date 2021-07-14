@@ -7,5 +7,4 @@ import com.bookshop01.goods.vo.GoodsVO;
 public interface TicketService {
 
 	public List<GoodsVO> listGoods() throws Exception;
-
 }
