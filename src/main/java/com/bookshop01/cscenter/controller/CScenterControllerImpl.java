@@ -101,6 +101,9 @@ public class CScenterControllerImpl implements CScenterController{
 		ModelAndView mav = new ModelAndView(viewName);		
 		List<CscenterVO> boardList = cscenterService.noticeList(scri);
 		
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menu", "cscenter");
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		scri.setSearchType("notice");
