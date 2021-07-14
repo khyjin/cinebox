@@ -10,6 +10,7 @@
 <head>
 <meta charset="utf-8">
 <style type="text/css">
+
 section.admin_mypage_main {
    width:800;
    height:800;
@@ -25,52 +26,64 @@ border-style: none;
 width: 40;
 height: 22;
 }
+
 .idx{
 color: black;
 }
+
 .idxn{
 	list-style: none; 
 	float: left; 
 	padding: 10px;
 }
+
 .paging{
 	color: black;
 }
+
 .paging1{
 	color: blue;
 	text-decoration: underline;
 }
+
 .paging2{
 	color: black;
 }
 .admin_bg{
 	background-color: white;
 }
+
 body {
    background: #fff;
 }
+
 .movielist {
    border-collapse: collapse;
    width: 100%;
    font-size: small;
 }
+
 .movielist th {
    padding: 10px;
    color: #168;
    border-bottom: 3px solid #168;
    text-align: center;
 }
+
 .movielist td {
    color: #669;
    padding: 10px;
    border-bottom: 1px solid #ddd;
 }
+
 .movielist tr:hover td {
    color: #004;
 }
 .modia{
    color: #669;
 }
+
+
 </style>
 
 <script>
@@ -86,71 +99,6 @@ function search_goods_list(fixeSearchPeriod){
     formObj.submit();
 }
 
-function  calcPeriod(search_period){
-	var dt = new Date();
-	var beginYear,endYear;
-	var beginMonth,endMonth;
-	var beginDay,endDay;
-	var beginDate,endDate;
-	
-	endYear = dt.getFullYear();
-	endMonth = dt.getMonth()+1;
-	endDay = dt.getDate();
-	if(search_period=='today'){
-		beginYear=endYear;
-		beginMonth=endMonth;
-		beginDay=endDay;
-	}else if(search_period=='one_week'){
-		beginYear=dt.getFullYear();
-		beginMonth=dt.getMonth()+1;
-		dt.setDate(endDay-7);
-		beginDay=dt.getDate();
-		
-	}else if(search_period=='two_week'){
-		beginYear = dt.getFullYear();
-		beginMonth = dt.getMonth()+1;
-		dt.setDate(endDay-14);
-		beginDay=dt.getDate();
-	}else if(search_period=='one_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-1);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}else if(search_period=='two_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-2);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}else if(search_period=='three_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-3);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}else if(search_period=='four_month'){
-		beginYear = dt.getFullYear();
-		dt.setMonth(endMonth-4);
-		beginMonth = dt.getMonth();
-		beginDay = dt.getDate();
-	}
-	
-	if(beginMonth <10){
-		beginMonth='0'+beginMonth;
-		if(beginDay<10){
-			beginDay='0'+beginDay;
-		}
-	}
-	if(endMonth <10){
-		endMonth='0'+endMonth;
-		if(endDay<10){
-			endDay='0'+endDay;
-		}
-	}
-	endDate=endYear+'-'+endMonth +'-'+endDay;
-	beginDate=beginYear+'-'+beginMonth +'-'+beginDay;
-	//alert(beginDate+","+endDate);
-	return beginDate+","+endDate;
-}
-
 function delete_check(deleteId) {
 	if(confirm("삭제하시겠습니까?") == true){
 		location.href="${contextPath}/admin/goods/deleteNewGoods.do?movie_id="+deleteId.value;
@@ -158,25 +106,28 @@ function delete_check(deleteId) {
 		return;
 	}
 }
+
+
+
 </script>
 </head>
 
 
 <body class="admin_bg">
 <section class="admin_mypage_main">
-
-
-	<h1>영화 조회</h1>
 	<br>
-<div style="float: left; width: 40%">
+<div style="float: left; width: 60%;">
 	<h1>영화 조회</h1>
 	<form  method="get" action="${contextPath}/admin/goods/searchMovie.do">	
-<div style="float: right; width: 40%">
-	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>
 				<tr>
-				  <td>
+				  <td style="text-align: left;">
+				  	<select name="searchType">
+				  		<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>영화</option>
+				  		<option value="d"<c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>감독</option>
+				  		<option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>배우</option>
+				  	</select>
 					<input name="keyword" id="keywordInput" type="text"  size="30"/>  
 					<input type="submit"  value="영화찾기"/>
 				  </td>
@@ -187,7 +138,7 @@ function delete_check(deleteId) {
 </div>
 	
 
-<DIV id="search" style="float: right; width: 40%; margin: 10; text-align: right;">
+<DIV id="search" style="float: right; width: 30%; margin: 10; text-align: right;">
 	<p>
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
 		<input type="submit" value="상품 등록하기">
@@ -247,6 +198,7 @@ function delete_check(deleteId) {
   </c:choose>
            <tr>
              <td colspan=8 class="fixed">
+
   <ul>
   <!-- 페이지 블럭 -->
     <c:if test="${pageMaker.prev}">

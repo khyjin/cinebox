@@ -12,16 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 public interface CScenterController {
 	
 	public ModelAndView cscenterMain(@RequestParam(required = false,value="message")  String message,
 			   HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView noticeList(HttpServletRequest request, Criteria cri) throws Exception;
-	public ModelAndView faqList(HttpServletRequest request, Criteria cri) throws Exception;
+	public ModelAndView noticeList(HttpServletRequest request, SearchCriteria scri) throws Exception;
+	public ModelAndView faqList(HttpServletRequest request, SearchCriteria scri) throws Exception;
 	public ModelAndView contentView(@RequestParam("cscenter_number") int cscenter_number, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addQna(@ModelAttribute("cscenterVO") CscenterVO cscenterVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ResponseEntity rentalSaveProcess(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 }

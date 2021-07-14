@@ -112,34 +112,26 @@ body {
 		</c:if>
 
 		<div class="page">
-			<ul>
-				<c:if test="${pageMaker.prev}">
-					<li class="idxn"><a class="paging"
-						href="${pageMaker.makeQuery(pageMaker.startPage - 1)}"> << 이전
-					</a></li>
-				</c:if>
+  <ul>
+    <c:if test="${pageMaker.prev}">
+    	<li class="idxn"><a class="paging" href="${pageMaker.makeSearch(pageMaker.startPage - 1)}"> << 이전 </a></li>
+    </c:if> 
 
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
-					var="idx">
-					<c:choose>
-						<c:when test="${pageMaker.cri.page==idx}">
-							<font size=+1>
-								<li class="idxn"><a class="paging1"
-									href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
-							</font>
-						</c:when>
-						<c:otherwise>
-							<li class="idxn"><a class="paging2"
-								href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li class="idxn"><a class="paging"
-						href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음 >></a></li>
-				</c:if>
-			</ul>
+    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+    	<c:choose>
+    		<c:when test="${pageMaker.cri.page==idx}">
+    			<font size=+1>
+    			<li class="idxn"><a class="paging1" href="${pageMaker.makeSearch(idx)}">${idx}</a></li></font>
+    		</c:when>
+    		<c:otherwise>
+    			<li class="idxn"><a class="paging2" href="${pageMaker.makeSearch(idx)}">${idx}</a></li>
+    		</c:otherwise>
+    	</c:choose>
+    </c:forEach>
+    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+    	<li class="idxn"><a class="paging" href="${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음 >></a></li>
+    </c:if> 
+  </ul>
 		</div>
 	</div>
 	</section>

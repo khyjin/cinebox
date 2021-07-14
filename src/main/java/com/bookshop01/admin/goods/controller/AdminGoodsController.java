@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.cscenter.vo.Criteria;
-import com.bookshop01.goods.vo.SearchCriteria;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 public interface AdminGoodsController {
 	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,HttpServletRequest request, HttpServletResponse response, Criteria cri)  throws Exception;
@@ -28,7 +28,7 @@ public interface AdminGoodsController {
             HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public void  addNewGoodsImage(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 	public void modifyGoodsImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
-	public String deleteNewGoods(int good_id) throws Exception;
+	public String deleteNewGoods(int movie_id) throws Exception;
 	
-	public ModelAndView searchMovie(@ModelAttribute("scri") SearchCriteria scri,HttpServletRequest request) throws Exception;
+	public ModelAndView searchMovie(@ModelAttribute("scri") SearchCriteria scri, HttpServletRequest request) throws Exception; 
 }

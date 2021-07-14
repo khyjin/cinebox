@@ -17,13 +17,13 @@ section.admin_mypage_main {
 	margin-top: -190;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function fn_modify_goods(movie_id, attribute){
 	var frm_mod_goods=document.frm_mod_goods;
 	var value="";
-	var sort_value=[];
-	
+	var sort_value= [];
 	if(attribute=='title'){
 		value=frm_mod_goods.movie_title.value;
 	}else if(attribute=='movie_title'){
@@ -46,8 +46,11 @@ function fn_modify_goods(movie_id, attribute){
 		value=frm_mod_goods.movie_open_date.value;
 	}else if(attribute=='movie_close_date'){
 		value=frm_mod_goods.movie_close_date.value;
-	}else if(attribute=='movie_sort'){
-		value=frm_mod_goods.movie_sort.value;
+	}else if(attribute=='movie_sort'){	
+		$("input[name='movie_sort']:checked").each(function(i){
+			sort_value.push($(this).val());
+		});
+		value=sort_value.join();
 	}
 
 	$.ajax({
@@ -92,7 +95,7 @@ function readURL(input,preview) {
   function fn_addFile(){
 	  $("#d_file").append("<br>"+"<input  type='file' name='still"+cnt+"' id='still"+cnt+"'  onchange=readURL(this,'previewImage"+cnt+"') />");
 	  $("#d_file").append("<img  id='previewImage"+cnt+"'   width=200 height=200  />");
-	  $("#d_file").append("<input  type='button' value='추가'  onClick='addNewImageFile('still"+cnt+"','${imageFileList[0].movie_id}','still')'  />");
+	  $("#d_file").append("<input type='button' value='추가'  onClick=addNewImageFile('still"+cnt+"','${imageFileList[0].movie_id}') />");
 	  cnt++;
   }
 
@@ -116,13 +119,13 @@ function readURL(input,preview) {
 	       }
  	});
  }
-  function addNewImageFile(fileId, movie_id, image_File_sort){
+  function addNewImageFile(fileId, movie_id){
 	     alert(fileId);
 		  var form = $('#FILE_FORM')[0];
 	      var formData = new FormData(form);
 	      formData.append("uploadFile", $('#'+fileId)[0].files[0]);
 	      formData.append("movie_id", movie_id);
-	      formData.append("image_file_sort", image_file_sort);
+	      formData.append("image_file_sort", "still");
 	      
 	      $.ajax({
 	          url: '${contextPath}/admin/goods/addNewGoodsImage.do',
@@ -177,60 +180,20 @@ function readURL(input,preview) {
 				<tr>
 					<td>장르</td>
 					<td>
-					<c:set value="${goods.movie_sort}" var="sort"/>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'SF')}"><input type="checkbox" value="SF" name="movie_sort" checked="checked">SF</c:when>
-						<c:otherwise><input type="checkbox" value="SF" name="movie_sort">SF</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'공포')}"><input type="checkbox" value="공포" name="movie_sort" checked="checked">공포</c:when>
-						<c:otherwise><input type="checkbox" value="공포" name="movie_sort">공포</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'코미디')}"><input type="checkbox" value="코미디" name="movie_sort" checked="checked">코미디</c:when>
-						<c:otherwise><input type="checkbox" value="코미디" name="movie_sort">코미디</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'로맨스')}"><input type="checkbox" value="로맨스" name="movie_sort" checked="checked">로맨스</c:when>
-						<c:otherwise><input type="checkbox" value="로맨스" name="movie_sort">로맨스</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'판타지')}"><input type="checkbox" value="판타지" name="movie_sort" checked="checked">판타지</c:when>
-						<c:otherwise><input type="checkbox" value="판타지" name="movie_sort">판타지</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'액션')}"><input type="checkbox" value="액션" name="movie_sort" checked="checked">액션</c:when>
-						<c:otherwise><input type="checkbox" value="액션" name="movie_sort">액션</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'미스테리')}"><input type="checkbox" value="미스테리" name="movie_sort" checked="checked">미스테리</c:when>
-						<c:otherwise><input type="checkbox" value="미스테리" name="movie_sort">미스테리</c:otherwise>
-					</c:choose>
+					<label><input name="movie_sort" type="checkbox" value="SF" />SF</label> 
+					<label><input type="checkbox" value="공포" name="movie_sort">공포</label>			
+					<label><input type="checkbox" value="코미디" name="movie_sort">코미디</label>					
+					<label><input type="checkbox" value="로맨스" name="movie_sort">로맨스</label>					
+					<label><input type="checkbox" value="판타지" name="movie_sort">판타지</label>					
+					<label><input type="checkbox" value="액션" name="movie_sort">액션</label>					
+					<label><input type="checkbox" value="미스테리" name="movie_sort">미스테리</label>					
 					<p>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'애니메이션')}"><input type="checkbox" value="애니메이션" name="movie_sort" checked="checked">애니메이션</c:when>
-						<c:otherwise><input type="checkbox" value="애니메이션" name="movie_sort">애니메이션</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'드라마')}"><input type="checkbox" value="드라마" name="movie_sort" checked="checked">드라마</c:when>
-						<c:otherwise><input type="checkbox" value="드라마" name="movie_sort">드라마</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'전쟁')}"><input type="checkbox" value="전쟁" name="movie_sort" checked="checked">전쟁</c:when>
-						<c:otherwise><input type="checkbox" value="전쟁" name="movie_sort">전쟁</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'멜로')}"><input type="checkbox" value="멜로" name="movie_sort" checked="checked">멜로</c:when>
-						<c:otherwise><input type="checkbox" value="멜로" name="movie_sort">멜로</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'스릴러')}"><input type="checkbox" value="스릴러" name="movie_sort" checked="checked">스릴러</c:when>
-						<c:otherwise><input type="checkbox" value="스릴러" name="movie_sort">스릴러</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${fn:contains(sort,'범죄')}"><input type="checkbox" value="범죄" name="movie_sort" checked="checked">범죄</c:when>
-						<c:otherwise><input type="checkbox" value="범죄" name="movie_sort">범죄</c:otherwise>
-					</c:choose>
+					<label><input type="checkbox" value="애니메이션" name="movie_sort">애니메이션</label>
+					<label><input type="checkbox" value="드라마" name="movie_sort">드라마</label>					
+					<label><input type="checkbox" value="전쟁" name="movie_sort">전쟁</label>
+					<label><input type="checkbox" value="멜로" name="movie_sort">멜로</label>				
+					<label><input type="checkbox" value="스릴러" name="movie_sort">스릴러</label>				
+					<label><input type="checkbox" value="범죄" name="movie_sort">범죄</label>
 					</td>
 					<td><input type="button" value="수정반영"></td>
 				</tr>

@@ -93,7 +93,7 @@ body {
 		<tr>
 			<td colspan="2" style="text-align: center;"><input type="submit" value="답변하기">&emsp;
 		</form>
-				<button onclick="location.href='${contextPath}/admin/cscenter/deleteNotice.do?cscenter_number=${content_view.cscenter_number}'">삭제하기</button>
+				<button onclick="location.href='${contextPath}/admin/cscenter/deleteNotice.do?cscenter_number=${content_view.cscenter_number}&cscenter_type=${content_view.cscenter_type}'">삭제하기</button>
 				<button style="float: right;" onclick="location.href='${contextPath}/admin/cscenter/qnaBoard.do'">목록가기</button></td>
 		</tr>
 	</tbody>

@@ -1,19 +1,19 @@
 package com.bookshop01.admin.goods.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop01.cscenter.vo.Criteria;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.goods.vo.SearchCriteria;
 import com.bookshop01.order.vo.OrderVO;
 
 @Repository("adminGoodsDAO")
@@ -38,7 +38,7 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 		
 	@Override
 	public List<GoodsVO> selectNewGoodsList(Map condMap,Criteria cri) throws DataAccessException {
-		Map<String, Object> map = new HashedMap();
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		ArrayList<GoodsVO>  movieList=(ArrayList)sqlSession.selectList("mapper.admin.goods.selectNewGoodsList", cri);
 		return movieList;
@@ -113,17 +113,15 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 
 	@Override
-	public List<GoodsVO> movieSearchList(SearchCriteria scri) throws DataAccessException {
-		return sqlSession.selectList("mapper.admin.goods.movieSearchList", scri);
+	public List<GoodsVO> selectSearch(SearchCriteria scri) throws DataAccessException {
+		
+		return sqlSession.selectList("mapper.admin.goods.selectSearch", scri);
 	}
 
 	@Override
-	public int listCount(SearchCriteria scri) throws DataAccessException {
-		return sqlSession.selectOne("mapper.admin.goods.listCount",scri);
+	public int listCount2(SearchCriteria scri) throws DataAccessException{
+		return sqlSession.selectOne("mapper.admin.goods.listCount2", scri);
 	}
-
-
-
 
 	
 

@@ -52,5 +52,31 @@
 	    ]]>
 	</select>
 	
+	
+<!-- 임시 -->	
+	<select id="reservationSchedule" resultType="scheduleVO"   >
+        <![CDATA[
+        select distinct movie_title, movie_id  from cinebox_schedule
+	    ]]>
+	</select>
+	
+	<select id="makeTicket" resultMap="scheduleResult" parameterType="int">
+		<![CDATA[
+		select movie_id,schedule_date from cinebox_schedule
+		where movie_id=#{movie_id}
+		]]>
+	</select>
+	
+	<select id="selectTime" resultMap="scheduleResult" parameterType="java.util.Map">
+		<![CDATA[
+		select schedule_start_time,room_number from cinebox_schedule
+		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
+		]]>
+	</select>
+	
+
+
+	
+<!-- 임시 -->	
 </mapper>
 

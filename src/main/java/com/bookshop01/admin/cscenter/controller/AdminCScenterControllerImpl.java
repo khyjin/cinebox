@@ -22,6 +22,7 @@ import com.bookshop01.admin.cscenter.service.AdminCScenterService;
 import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.cscenter.vo.PageMaker;
+import com.bookshop01.cscenter.vo.SearchCriteria;
 
 @Controller("adminCScenterController")
 @RequestMapping(value="/admin/cscenter")
@@ -32,15 +33,15 @@ public class AdminCScenterControllerImpl implements AdminCScenterController{
 	//관리자 모드, 1:1게시판 가기+ 페이징 추가
 	@Override
 	@RequestMapping(value="/qnaBoard.do")
-	public String qnaList(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+	public String qnaList(HttpServletRequest request, SearchCriteria scri, Model model) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 				
-		model.addAttribute("list", adminCScenterService.boardList(cri));
+		model.addAttribute("list", adminCScenterService.boardList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(adminCScenterService.listCount());
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminCScenterService.listCount(scri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
@@ -135,10 +136,16 @@ public class AdminCScenterControllerImpl implements AdminCScenterController{
 		
 		try {
 			adminCScenterService.updateNotice(cscenterVO);
+			if(cscenterVO.getCscenter_type().equals("faq")) {
+				message  = "<script>";
+				message +=" alert('글 수정을 완료했습니다.');";
+				message += " location.href='"+request.getContextPath()+"/cscenter/faqBoard.do';";
+				message += " </script>";
+			} else {
 			message  = "<script>";
 			message +=" alert('글 수정을 완료했습니다.');";
 			message += " location.href='"+request.getContextPath()+"/cscenter/cscenterNotice.do';";
-			message += " </script>";
+			message += " </script>"; }
 		} catch (Exception e) {
 			message  = "<script>";
 		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
@@ -156,31 +163,47 @@ public class AdminCScenterControllerImpl implements AdminCScenterController{
 	@RequestMapping(value="/deleteNotice.do")
 	public ResponseEntity deleteNotice(@RequestParam("cscenter_number") int cscenter_number, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		String cscenter_type= request.getParameter("cscenter_type");
+		String viewName =null;
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
-		
+				
 		try {
 			adminCScenterService.deleteNotice(cscenter_number);
-			message  = "<script>";
-			message +=" alert('삭제를 완료했습니다.');";
-			message += " location.href='"+request.getContextPath()+"/cscenter/cscenterNotice.do';";
-			message += " </script>";
+			
+			if(cscenter_type.equals("qna")||cscenter_type.equals("qna_re")) {
+				message  = "<script>";
+				message +=" alert('삭제를 완료했습니다.');";
+				message += "location.href='"+request.getContextPath()+"/admin/cscenter/qnaBoard.do';";
+				message += " </script>";
+			} else if(cscenter_type.equals("notice")) {
+				message  = "<script>";
+				message +=" alert('삭제를 완료했습니다.');";
+				message += "location.href='"+request.getContextPath()+"/cscenter/cscenterNotice.do';";
+				message += " </script>";
+			} else if(cscenter_type.equals("faq")) {
+				message  = "<script>";
+				message +=" alert('삭제를 완료했습니다.');";
+				message += "location.href='"+request.getContextPath()+"/cscenter/faqBoard.do';";
+				message += " </script>";
+			}			
 		} catch (Exception e) {
 			message  = "<script>";
 		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-		    message += " location.href='"+request.getContextPath()+"/cscenter/noticeView.do';";
-		    message += " </script>";
+		    message += "location.href='"+request.getContextPath()+"/cscenter/noticeView.do';";
+		    message += "</script>";
 			e.printStackTrace();
 		}
 		
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+	
+	
 
 	//1:1문의 내용 보기
 	@Override
@@ -221,9 +244,7 @@ public class AdminCScenterControllerImpl implements AdminCScenterController{
 		
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-	}
-	
-	
+	}	
 
 
 }

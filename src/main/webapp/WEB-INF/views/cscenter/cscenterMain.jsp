@@ -58,7 +58,7 @@ table .notice1 {
 			<img class="csimg" src="${contextPath}/resources/image/qnaicon.png" width="200" height="200"><br>
 			1:1문의하기<br></a></td>
 			<td>
-			<a class="na" href="javascript:fn_send_rental()">
+			<a class="na" href="${contextPath}/cscenter/rentalForm.do">
 			<img class="csimg" src="${contextPath}/resources/image/people.png" width="200" height="200"><br>
 			단체관람/대관문의<br></a></td>
 		</tr>
