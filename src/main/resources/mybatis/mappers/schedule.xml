@@ -60,10 +60,12 @@
 	    ]]>
 	</select>
 	
-	<select id="makeTicket" resultMap="scheduleResult" parameterType="int">
+	<select id="selectDate" resultMap="scheduleResult" parameterType="int">
 		<![CDATA[
-		select movie_id,schedule_date from cinebox_schedule
-		where movie_id=#{movie_id}
+		select distinct movie_id, schedule_date from cinebox_schedule
+		where movie_id=#{movie_id} 
+		and schedule_date between to_char(sysdate) and to_char(sysdate+7)
+		order by schedule_date
 		]]>
 	</select>
 	
@@ -71,6 +73,7 @@
 		<![CDATA[
 		select schedule_start_time,room_number from cinebox_schedule
 		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
+		order by room_number, schedule_start_time
 		]]>
 	</select>
 	

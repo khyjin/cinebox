@@ -10,11 +10,7 @@
 <meta charset="UTF-8">
 <title>상영시간표</title>
  <style>
- section.admin_mypage_main {
-   width:800;
-   height:800;
-   float:right;
-   }
+
  
 body {
    background: #fff;

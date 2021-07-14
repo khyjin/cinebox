@@ -35,8 +35,10 @@ public class AdminCScenterControllerImpl implements AdminCScenterController{
 	@RequestMapping(value="/qnaBoard.do")
 	public String qnaList(HttpServletRequest request, SearchCriteria scri, Model model) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-				
+
+		scri.setSearchType("qna");
+		scri.setKeyword("qna_re");		
+		
 		model.addAttribute("list", adminCScenterService.boardList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
@@ -245,6 +247,32 @@ public class AdminCScenterControllerImpl implements AdminCScenterController{
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}	
-
+	
+	@RequestMapping(value="/rentalBoard.do")
+	public ModelAndView rentalBoare(HttpServletRequest request, SearchCriteria scri) throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		scri.setSearchType("rental");
+		
+		mav.addObject("list", adminCScenterService.boardList(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminCScenterService.listCount(scri));
+		
+		mav.addObject("pageMaker", pageMaker);
+		
+		return mav;	
+	}
+	
+	@RequestMapping(value="/rental_view.do")
+	public ModelAndView rentalView(@RequestParam("cscenter_number") int cscenter_number, HttpServletRequest request) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		CscenterVO content_view = adminCScenterService.content_view(cscenter_number);
+		mav.addObject("content_view", content_view);
+		
+		return mav;
+	}
 
 }

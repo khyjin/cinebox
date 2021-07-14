@@ -68,6 +68,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		map.put("movie_id", movie_id);
 		map.put("schedule_date", schedule_date);
 		map.put("time", ticketService.listMovieTitme(map));
+		
 		return map;
 	}
 	
