@@ -114,7 +114,7 @@ function selectOnChange(e) {
 	
 	if(value>4) {
 		alert("관람 인원 4명 초과 시 예매 불가 입니다.");
-		window.location.href = "http://localhost:8282/bookshop01/ticket/seat.do";
+		location.href = "${contextPath}/ticket/seat.do";
 	}
 	
 	if(Number(num1)==0&&Number(num2)==0) {
@@ -262,6 +262,25 @@ function selectOnChange(e) {
 	<td  class="fixed_join">총 인원 수</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="result" style="display:inline;"></div>명</td>
 </tr>
+
+</table>
+<table id="seat_table">
+<tr class="dot_line">
+   <td  class="fixed_join">영화 제목</td>
+   <td style="font-size:15px; font-weight: bold;">${movie_title}</td>
+</tr>
+<tr class="dot_line">
+   <td  class="fixed_join">상영관</td>
+   <td style="font-size:15px; font-weight: bold;">${room_number}관</td>
+</tr>
+<tr class="dot_line">
+   <td  class="fixed_join">예매일자</td>
+    <td style="font-size:15px; font-weight: bold;"> ${ticket_movie_day}</td>
+</tr>
+<tr class="dot_line">
+   <td  class="fixed_join">상영시간</td>
+   <td style="font-size:15px; font-weight: bold;">${ticket_start_time}~${ticket_end_time}</td>
+</tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원</td>
@@ -269,26 +288,6 @@ function selectOnChange(e) {
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div></td>
-</tr>
-</table>
-<table class="reserve_table" border="1">
-<tr>
-   <td>${movie_title}</td>
-</tr>
-<tr>
-   <td>${room_number}관</td>
-</tr>
-<tr>
-   <td>${ticket_movie_day}</td>
-</tr>
-<tr>
-   <td>${ticket_start_time}~${ticket_end_time}</td>
-</tr>
-<tr>
-
-   <td>      
-         <div id="seat" style="display:inline;"></div>
-   </td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
