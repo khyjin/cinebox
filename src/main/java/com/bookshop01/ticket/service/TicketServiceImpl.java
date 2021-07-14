@@ -23,6 +23,7 @@ public class TicketServiceImpl implements TicketService {
 		public List<GoodsVO> listGoods() throws Exception {
 			return ticketDAO.listGoods();
 		}
+
 		
 		@Override
 		public List<ScheduleVO> listTicke(int movie_id) throws Exception{

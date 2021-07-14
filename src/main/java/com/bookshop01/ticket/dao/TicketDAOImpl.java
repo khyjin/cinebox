@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 
+
 @Repository("TicketDAO")
 public class TicketDAOImpl implements TicketDAO {
 		@Autowired
@@ -21,7 +22,6 @@ public class TicketDAOImpl implements TicketDAO {
 			List<GoodsVO> list=sqlSession.selectList("mapper.schedule.selectSchedule");
 			return list;
 		}
-
 		@Override
 		public List<ScheduleVO> selectDate(int movie_id) throws DataAccessException {
 			return sqlSession.selectList("mapper.schedule.selectDate", movie_id);
