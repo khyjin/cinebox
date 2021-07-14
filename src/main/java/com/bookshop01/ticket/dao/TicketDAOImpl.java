@@ -23,8 +23,8 @@ public class TicketDAOImpl implements TicketDAO {
 		}
 
 		@Override
-		public List<ScheduleVO> makeTicket(int movie_id) throws DataAccessException {
-			return sqlSession.selectList("mapper.schedule.makeTicket", movie_id);
+		public List<ScheduleVO> selectDate(int movie_id) throws DataAccessException {
+			return sqlSession.selectList("mapper.schedule.selectDate", movie_id);
 		}
 
 		@Override

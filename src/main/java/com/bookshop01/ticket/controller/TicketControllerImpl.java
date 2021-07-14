@@ -68,6 +68,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		map.put("movie_id", movie_id);
 		map.put("schedule_date", schedule_date);
 		map.put("time", ticketService.listMovieTitme(map));
+		
 		return map;
 	}
 	
@@ -87,7 +88,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 	}
 
 	//¿¬½À
-	@RequestMapping(value="/NewFile.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/seat.do" ,method = RequestMethod.GET)
 	public ModelAndView NewFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);

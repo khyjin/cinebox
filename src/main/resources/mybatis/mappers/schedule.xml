@@ -69,14 +69,25 @@
 	    ]]>
 	</select>
 	
+<<<<<<< HEAD
 	<select id="makeTicket" resultMap="scheduleResult" parameterType="int">
 		
+=======
+	<select id="selectDate" resultMap="scheduleResult" parameterType="int">
+		<![CDATA[
+		select distinct movie_id, schedule_date from cinebox_schedule
+		where movie_id=#{movie_id} 
+		and schedule_date between to_char(sysdate) and to_char(sysdate+7)
+		order by schedule_date
+		]]>
+>>>>>>> cdbd23f58c411f4a16702e1a0e06714bbb1a84c3
 	</select>
 	
 	<select id="selectTime" resultMap="scheduleResult" parameterType="java.util.Map">
 		<![CDATA[
 		select schedule_start_time,room_number from cinebox_schedule
 		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
+		order by room_number, schedule_start_time
 		]]>
 	</select>
 	<update id="modifySchedule" parameterType="java.util.HashMap">

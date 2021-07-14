@@ -85,7 +85,7 @@
 		cscenter_step,
 		row_number() over(order by cscenter_group desc, cscenter_step asc) as rnum
 		from cinebox_cscenter 
-		where cscenter_type='qna' or cscenter_type='qna_re') cs
+		where cscenter_type=#{searchType} or cscenter_type=#{keyword}) cs
 		where rnum between #{rowStart} and #{rowEnd}
 		order by cscenter_group desc, cscenter_step asc
 		]]>
@@ -93,10 +93,10 @@
 
 <select id="listCount" resultType="int">
 	<![CDATA[
+	
 		select count(cscenter_number)
 		from cinebox_cscenter 
-		where cscenter_number>0 
-		and cscenter_type='qna' or cscenter_type='qna_re'
+		where cscenter_number>0 and cscenter_type=#{searchType}
 	]]>
 </select>
 <!-- 페이징 처리 end -->

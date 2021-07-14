@@ -154,8 +154,8 @@ public class CScenterControllerImpl implements CScenterController{
 		String cscenter_title = request.getParameter("member_name")+" 님의 대관문의";
 		String cscenter_type="rental";
 		String cscenter_headline = "대관문의";
-		String cscenter_content = request.getParameter("content1")+","+request.getParameter("content2")+","
-								+request.getParameter("content3")+","+request.getParameter("phone")+","+request.getParameter("email");
+		String cscenter_content ="관람희망일 : "+request.getParameter("content1")+", 희망인원 :"+request.getParameter("content2")+", 내용 : "
+								+request.getParameter("content3")+", 전화번호 : "+request.getParameter("phone")+", email : "+request.getParameter("email");
 		String member_id = request.getParameter("member_id");		
 		
 		response.setContentType("text/html; charset=UTF-8");

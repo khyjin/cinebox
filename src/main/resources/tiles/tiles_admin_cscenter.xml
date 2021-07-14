@@ -21,13 +21,23 @@
 		
 		
 	<definition name="/admin/cscenter/contentView" extends="baseLayout">
-		<put-attribute name="title" value="문의사항"/>
+		<put-attribute name="title" value="문의사항 확인"/>
     	<put-attribute name="body" value="/WEB-INF/views/admin/cscenter/contentView.jsp"/>
 	</definition>
 	
 	<definition name="/admin/cscenter/faqRegForm" extends="baseLayout">
-		<put-attribute name="title" value="문의사항"/>
+		<put-attribute name="title" value="자주찾는 질문"/>
     	<put-attribute name="body" value="/WEB-INF/views/admin/cscenter/noticeRegForm.jsp"/>
+	</definition>
+	
+	<definition name="/admin/cscenter/rentalBoard" extends="baseLayout">
+		<put-attribute name="title" value="대관문의 확인"/>
+    	<put-attribute name="body" value="/WEB-INF/views/admin/cscenter/rentalBoard.jsp"/>
+	</definition>
+	
+	<definition name="/admin/cscenter/rental_view" extends="baseLayout">
+		<put-attribute name="title" value="대관문의 확인"/>
+    	<put-attribute name="body" value="/WEB-INF/views/admin/cscenter/rental_view.jsp"/>
 	</definition>
 </tiles-definitions>
 

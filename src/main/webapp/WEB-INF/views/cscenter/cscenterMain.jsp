@@ -58,9 +58,19 @@ table .notice1 {
 			<img class="csimg" src="${contextPath}/resources/image/qnaicon.png" width="200" height="200"><br>
 			1:1문의하기<br></a></td>
 			<td>
-			<a class="na" href="${contextPath}/cscenter/rentalForm.do">
-			<img class="csimg" src="${contextPath}/resources/image/people.png" width="200" height="200"><br>
-			단체관람/대관문의<br></a></td>
+			<c:choose>
+				<c:when test="${memberInfo.member_id=='admin'}">
+					<a class="na" href="${contextPath}/admin/cscenter/rentalBoard.do">
+					<img class="csimg" src="${contextPath}/resources/image/people.png" width="200" height="200"><br>
+					단체관람/대관문의 확인<br></a>
+				</c:when>
+				<c:otherwise>
+					<a class="na" href="${contextPath}/cscenter/rentalForm.do">
+					<img class="csimg" src="${contextPath}/resources/image/people.png" width="200" height="200"><br>
+					단체관람/대관문의<br></a>
+				</c:otherwise>
+			</c:choose>
+			</td>
 		</tr>
 	</table>
 	
@@ -94,7 +104,7 @@ table .notice1 {
 			<tbody class="notice1">
 				<c:forEach items="${main.faq}" var="faq">
 				<tr class="notice2">
-					<td class="notice3"><a class="na" href="${contextPath}/cscenter/noticeView.do?cscenter_number=${notice.cscenter_number}">
+					<td class="notice3"><a class="na" href="${contextPath}/cscenter/noticeView.do?cscenter_number=${faq.cscenter_number}">
 					[${faq.cscenter_headline}] ${faq.cscenter_title}</a></td>
 					<td class="notice3"><fmt:formatDate value="${faq.cscenter_reg_date}" pattern="yyyy/MM/dd"/></td>
 				</tr>

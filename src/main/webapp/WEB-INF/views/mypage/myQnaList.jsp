@@ -21,7 +21,8 @@ color:black;
          <tr style=background:#e8e8e8 >  
             <td><strong>문의유형</strong></td>
             <td><strong>제목</strong></td>     
-            <td><strong>작성일자</strong></td> 
+            <td><strong>작성일자</strong></td>
+            <td><strong>삭제</strong></td> 
          </tr>
          <c:choose>
          	<c:when test="${ empty myQnaList  }">
@@ -33,6 +34,15 @@ color:black;
         	</c:when>
         <c:otherwise>
          <c:forEach var="item" items="${myQnaList}">
+         <script type="text/javascript">
+			function delete_qna() {
+				if (confirm("문의 내역을 삭제하시겠습니까?") == true) {
+					location.href = '${contextPath}/mypage/deletemyQna.do?cscenter_number=${item.cscenter_number}';
+				} else {
+					return;
+				}
+			}
+		</script>
             <tr>  
              <td> <!-- 1.문의 타입 -->    
                <span> ${item.cscenter_type} </span>
@@ -44,8 +54,11 @@ color:black;
                                   
            <td> <!-- 3.작성일자 -->
                <span>${item.cscenter_reg_date} </span>
-             </td>                   
-         </tr>
+             </td>
+             
+             <td> <!-- 4.삭제 -->  
+               <button onclick="delete_qna()">삭제</button>                 
+         </tr> 
       </c:forEach>
      </c:otherwise> 
      </c:choose>     

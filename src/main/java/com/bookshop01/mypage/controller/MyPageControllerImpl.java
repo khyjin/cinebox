@@ -267,4 +267,13 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 			return resEntity;
 		}
+		
+	//나의 1:1 문의 삭제
+		@Override
+		@RequestMapping("/deletemyQna.do")
+		public String deletemyQna(@RequestParam("cscenter_number") int cscenter_number) throws Exception {
+			myPageService.deletemyQna(cscenter_number);
+			return "redirect:/mypage/myQnaList.do";
+		}
+		
 }
