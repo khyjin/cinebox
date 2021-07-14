@@ -180,4 +180,9 @@
 	<select id="myQnaModifyview" resultType="cscenterVO" parameterType="int">
 		select * from cinebox_cscenter where cscenter_number=#{cscenter_number} 
 	</select>
+	
+	<!-- 나의 1:1 문의 내역 삭제 -->
+	<delete id="deletemyQna" parameterType="int">
+	delete from cinebox_cscenter where cscenter_number = #{cscenter_number}
+	</delete>
 </mapper>
