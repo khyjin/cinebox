@@ -108,12 +108,15 @@ table td {
 					$("#checkedDate").append(send_date);
 					
 					var now = new Date();
+					var year = now.getFullYear()-2000;
+					var month = ("0"+(now.getMonth()+1));
+					var date = now.getDate();
 					var hours = ('0' + now.getHours()).slice(-2); 
 					var minutes = ('0' + now.getMinutes()).slice(-2);
 					
 					for(var i=0;i<data.time.length;i++){
-					if(!((schedule_date==String((now.getFullYear()-2000)+"/"+("0"+(now.getMonth()+1))+"/"+now.getDate()))&&
-							((data.time[i].schedule_start_time.toString().slice(-5,-3)+data.time[i].schedule_start_time.toString().slice(-2))<(hours+minutes)))){
+					if(!((schedule_date==String(year+"/"+month+"/"+date))&&
+						((data.time[i].schedule_start_time.toString().slice(-5,-3)+data.time[i].schedule_start_time.toString().slice(-2))<(hours+minutes)))){
 						//오늘 날짜랑 같으면 현재시간 이후로 붙여라		
 			        	var tag ="<tr>"+"<td id='choiceA'>"+"<a id='checkA' href=javascript:checkTime('"+data.time[i].schedule_start_time+"','"+data.time[i].room_number+"')>"+data.time[i].room_number+"관 "+data.time[i].schedule_start_time+"</a>"+"</td>"+"</tr>";	
 			        	$("#time").append(tag);}
@@ -152,7 +155,22 @@ table td {
 	<tbody>
 		<c:forEach var="list" items="${list}">
 		<tr>
-		 <td id="choiceA"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">${list.movie_title}</a></td>
+		 <td id="choiceA"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">
+		 	<c:choose>
+		 		<c:when test="${list.movie_age_grade=='전체관람가'}">
+		 			<img src="${contextPath}/resources/image/allage.png" width="20" height="20">
+		 		</c:when>
+		 		<c:when test="${list.movie_age_grade=='12세이상관람가'}">
+		 			<img src="${contextPath}/resources/image/12.png" width="20" height="20">
+		 		</c:when>
+		 		<c:when test="${list.movie_age_grade=='15세이상관람가'}">
+		 			<img src="${contextPath}/resources/image/15.png" width="20" height="20">
+		 		</c:when>
+		 		<c:otherwise>
+		 			<img src="${contextPath}/resources/image/18.png" width="20" height="20">
+		 		</c:otherwise>
+		 	</c:choose>
+		 	${list.movie_title}</a></td>
 		</tr>
 		</c:forEach>
 	</tbody>

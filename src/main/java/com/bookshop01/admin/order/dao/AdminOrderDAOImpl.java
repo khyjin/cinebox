@@ -8,17 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Repository("adminOrderDAO")
 public class AdminOrderDAOImpl  implements AdminOrderDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public ArrayList<OrderVO>selectNewOrderList(Map condMap) throws DataAccessException{
-		ArrayList<OrderVO>  orderList=(ArrayList)sqlSession.selectList("mapper.admin.order.selectNewOrderList",condMap);
-		return orderList;
+	public ArrayList<TicketVO> selectTicketList(SearchCriteria scri) throws DataAccessException{
+		ArrayList<TicketVO>  ticketList=(ArrayList)sqlSession.selectList("mapper.admin.order.selectTicketList",scri);
+		return ticketList;
 	}
 	public void  updateDeliveryState(Map deliveryMap) throws DataAccessException{
 		sqlSession.update("mapper.admin.order.updateDeliveryState",deliveryMap);
@@ -32,8 +34,11 @@ public class AdminOrderDAOImpl  implements AdminOrderDAO{
 
 	public MemberVO selectOrderer(String member_id) throws DataAccessException{
 		MemberVO orderer=(MemberVO)sqlSession.selectOne("mapper.admin.order.selectOrderer",member_id);
-		return orderer;
-		
+		return orderer;	
+	}
+	
+	public int listCount(SearchCriteria scri) throws DataAccessException {
+		return sqlSession.selectOne("mapper.admin.order.listCount",scri);
 	}
 
 }

@@ -92,7 +92,7 @@
 <nav>
 <div id="logo">
 	<a href="${contextPath}/goods/movieopen.do">영화</a>&emsp;&emsp;&emsp;&emsp;&emsp;
-	<a href="${contextPath}/ticket/reservartion.do">예매</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+	<a href="${contextPath}/ticket/reservation.do">예매</a>&emsp;&emsp;&emsp;&emsp;&emsp;
 	<a href="${contextPath}/main/main.do"><img width="110" height="135" alt="booktopia" src="${contextPath}/resources/image/cinelogo.jpg"></a>&emsp;&emsp;&emsp;&emsp;&emsp;
 	<a href="${contextPath}/map/map.do">영화관</a>&emsp;&emsp;&emsp;&emsp;&emsp;
 	<a href="${contextPath}/schedule/selectSchedule.do">상영시간표</a>&emsp;&emsp;&emsp;&emsp;&emsp;

@@ -545,7 +545,7 @@ body, hmtl{background: #ecf0f1;}
 	      
 	       if(isLogOn=="false" || isLogOn=='' ){
 	         alert("로그인 후 작성이 가능합니다.");	
-	 		location.href = "${contextPath}/goods/goodsDetail.do";
+	 		location.href = "${contextPath}/goods/goodsDetail.do?movie_id=${movie.movie_id}";
 	      } 	    	      
 	   }
 	
@@ -628,7 +628,7 @@ body, hmtl{background: #ecf0f1;}
    <strong>실관람평</strong>
 <div class="wrap">
     <br>
-    <form name="reviewform" class="reviewform" method="post" action="${contextPath}/goods/myReview.do" name="g">
+    <form name="reviewform" class="reviewform" method="post" name="g">
         <input type="hidden" name="rate" id="rate" value="0"/>
         <p>${movie.movie_title}&emsp;재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.<br><br> 
         <div class="review_rating">
@@ -654,8 +654,7 @@ body, hmtl{background: #ecf0f1;}
 			<input type="text" name="review_content" size="100" title="관람평" placeholder="5자 이상 작성해 주세요.">&emsp;
         </div>   
         
-           <div class="reg"><input type="submit" value="등록" onClick="reg_review()"></div>
-           
+           <div class="reg"><input type="button" value="등록" onClick="reg_review()"></div>
     </form>
 </div>
    
