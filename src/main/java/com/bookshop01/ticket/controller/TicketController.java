@@ -24,5 +24,6 @@ public interface TicketController {
 	public ModelAndView printSeat1(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView printSeat2(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView printSeat3(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 
+
 }
+

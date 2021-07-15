@@ -16,6 +16,9 @@ section.admin_mypage_main {
 	float: right;
 	margin-top: -190;
 }
+.admin_bg {
+	background-color: white;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -164,38 +167,78 @@ function readURL(input,preview) {
  }
 </script>
 </head>
-<BODY>
+<BODY class="admin_bg">
 <section class="admin_mypage_main">
 <form  name="frm_mod_goods"  method=post >
-	<div id="container">
+	<div id="container" >
 	<ul class="tabs">
 			<li><A href="#tab1">영화정보</A></li>
 			<li><A href="#tab2">영화이미지</A></li>
 	</ul>
 	</div>
-	<div class="tab_container" id="container">
+	<div class="tab_container" id="container" style="background-color: white;">
 	<div class="tab_content" id="tab1">
 		<table>
 			<tbody>
 				<tr>
 					<td>장르</td>
 					<td>
-					<label><input name="movie_sort" type="checkbox" value="SF" />SF</label> 
-					<label><input type="checkbox" value="공포" name="movie_sort">공포</label>			
-					<label><input type="checkbox" value="코미디" name="movie_sort">코미디</label>					
-					<label><input type="checkbox" value="로맨스" name="movie_sort">로맨스</label>					
-					<label><input type="checkbox" value="판타지" name="movie_sort">판타지</label>					
-					<label><input type="checkbox" value="액션" name="movie_sort">액션</label>					
-					<label><input type="checkbox" value="미스테리" name="movie_sort">미스테리</label>					
+					<c:set value="${goods.movie_sort}" var="sort"/>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'SF')}"><input type="checkbox" value="SF" name="movie_sort" checked="checked">SF</c:when>
+						<c:otherwise><input type="checkbox" value="SF" name="movie_sort">SF</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'공포')}"><input type="checkbox" value="공포" name="movie_sort" checked="checked">공포</c:when>
+						<c:otherwise><input type="checkbox" value="공포" name="movie_sort">공포</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'코미디')}"><input type="checkbox" value="코미디" name="movie_sort" checked="checked">코미디</c:when>
+						<c:otherwise><input type="checkbox" value="코미디" name="movie_sort">코미디</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'로맨스')}"><input type="checkbox" value="로맨스" name="movie_sort" checked="checked">로맨스</c:when>
+						<c:otherwise><input type="checkbox" value="로맨스" name="movie_sort">로맨스</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'판타지')}"><input type="checkbox" value="판타지" name="movie_sort" checked="checked">판타지</c:when>
+						<c:otherwise><input type="checkbox" value="판타지" name="movie_sort">판타지</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'액션')}"><input type="checkbox" value="액션" name="movie_sort" checked="checked">액션</c:when>
+						<c:otherwise><input type="checkbox" value="액션" name="movie_sort">액션</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'미스테리')}"><input type="checkbox" value="미스테리" name="movie_sort" checked="checked">미스테리</c:when>
+						<c:otherwise><input type="checkbox" value="미스테리" name="movie_sort">미스테리</c:otherwise>
+					</c:choose>
 					<p>
-					<label><input type="checkbox" value="애니메이션" name="movie_sort">애니메이션</label>
-					<label><input type="checkbox" value="드라마" name="movie_sort">드라마</label>					
-					<label><input type="checkbox" value="전쟁" name="movie_sort">전쟁</label>
-					<label><input type="checkbox" value="멜로" name="movie_sort">멜로</label>				
-					<label><input type="checkbox" value="스릴러" name="movie_sort">스릴러</label>				
-					<label><input type="checkbox" value="범죄" name="movie_sort">범죄</label>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'애니메이션')}"><input type="checkbox" value="애니메이션" name="movie_sort" checked="checked">애니메이션</c:when>
+						<c:otherwise><input type="checkbox" value="애니메이션" name="movie_sort">애니메이션</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'드라마')}"><input type="checkbox" value="드라마" name="movie_sort" checked="checked">드라마</c:when>
+						<c:otherwise><input type="checkbox" value="드라마" name="movie_sort">드라마</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'전쟁')}"><input type="checkbox" value="전쟁" name="movie_sort" checked="checked">전쟁</c:when>
+						<c:otherwise><input type="checkbox" value="전쟁" name="movie_sort">전쟁</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'멜로')}"><input type="checkbox" value="멜로" name="movie_sort" checked="checked">멜로</c:when>
+						<c:otherwise><input type="checkbox" value="멜로" name="movie_sort">멜로</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'스릴러')}"><input type="checkbox" value="스릴러" name="movie_sort" checked="checked">스릴러</c:when>
+						<c:otherwise><input type="checkbox" value="스릴러" name="movie_sort">스릴러</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${fn:contains(sort,'범죄')}"><input type="checkbox" value="범죄" name="movie_sort" checked="checked">범죄</c:when>
+						<c:otherwise><input type="checkbox" value="범죄" name="movie_sort">범죄</c:otherwise>
+					</c:choose>
 					</td>
-					<td><input type="button" value="수정반영"></td>
+					<td><input type="button" value="수정반영" onclick="fn_modify_goods('${goods.movie_id}','movie_sort')"></td>
 				</tr>
 				<tr>
 					<td>영화이름</td>

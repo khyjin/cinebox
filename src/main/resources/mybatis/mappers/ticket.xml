@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.ticket">
+
+	<resultMap id="ticket" type="ticketVO">
+		<result property="movie_id" column="movie_id" />
+		<result property="ticket_number" column="ticket_number" />
+		<result property="ticket_number_code" column="ticket_number_code" />
+		<result property="ticket_adult" column="ticket_adult" />
+		<result property="ticket_child" column="ticket_child" />
+		<result property="ticket_adult_morning" column="ticket_adult_morning" />
+		<result property="ticket_child_morning" column="ticket_child_morning" />
+		<result property="ticket_start_time" column="ticket_start_time" />
+		<result property="ticket_end_time" column="ticket_end_time" />
+		<result property="ticket_movie_day" column="ticket_movie_day" />
+		<result property="room_number" column="room_number" />
+		<result property="seat_number1" column="seat_number1" />
+		<result property="seat_number2" column="seat_number2" />
+		<result property="ticket_reservation_date" column="ticket_reservation_date" />	
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	</mapper>

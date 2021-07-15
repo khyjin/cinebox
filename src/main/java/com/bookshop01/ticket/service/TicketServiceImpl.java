@@ -23,11 +23,12 @@ public class TicketServiceImpl implements TicketService {
 		public List<GoodsVO> listGoods() throws Exception {
 			return ticketDAO.listGoods();
 		}
+
 		
 		@Override
 		public List<ScheduleVO> listTicke(int movie_id) throws Exception{
 			//예매폼에 상영날짜 출력
-			return ticketDAO.makeTicket(movie_id);
+			return ticketDAO.selectDate(movie_id);
 		}
 
 		@Override

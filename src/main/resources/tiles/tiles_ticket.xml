@@ -4,13 +4,11 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
     
-   
-      <definition name="/ticket/reservartion" extends="baseLayout">
+      <definition name="/ticket/reservation" extends="baseLayout">
        <put-attribute name="title" value="영화 예매 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/ticket/reservation.jsp" />
-    </definition>
-   
-   
+      </definition>
+
 	<!-- 좌석 페이지 -->
 	<definition name="/ticket/room1" extends="baseLayout">
 		<put-attribute name="title" value="1관 좌석 선택 페이지" />

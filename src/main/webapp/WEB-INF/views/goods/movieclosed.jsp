@@ -20,9 +20,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<section class="openContent">
 <div class="main_book" >
-<h3>상영 종료된 영화</h3>
+<h3>상영 종료된 영화</h3><br>
 <c:set  var="goods_count" value="0" />
 <div class="movietabcontainer" id="moviecontainer">
 		<ul class="movietabs">
@@ -50,6 +49,5 @@
      </c:if>
   </c:forEach>
 </div>
-</section>
 </body>
 </html>

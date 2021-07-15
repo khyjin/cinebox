@@ -165,7 +165,6 @@ function delete_check(deleteId) {
 <body class="admin_bg">
 <section class="admin_mypage_main">
 
-
 	<h1>영화 조회</h1>
 	<br>
 <div style="float: left; width: 40%">
