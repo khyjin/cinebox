@@ -279,19 +279,19 @@ function selectOnChange(e) {
 <table>
 <tr class="dot_line">
    <td  class="fixed_join">영화 제목</td>
-   <td style="font-size:15px; font-weight: bold;">${movie_title}</td>
+   <td style="font-size:15px; font-weight: bold;">${list.movie_title}</td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영관</td>
-   <td style="font-size:15px; font-weight: bold;">${room_number}관</td>
+   <td style="font-size:15px; font-weight: bold;">${list.room_number}관</td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영일자</td>
-    <td style="font-size:15px; font-weight: bold;"> ${schedule_date}</td>
+    <td style="font-size:15px; font-weight: bold;"> ${list.schedule_date}</td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영시간</td>
-   <td style="font-size:15px; font-weight: bold;">${ticket_start_time}~${ticket_end_time}</td>
+   <td style="font-size:15px; font-weight: bold;">${list.schedule_start_time}~이후 추가예정</td>
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>

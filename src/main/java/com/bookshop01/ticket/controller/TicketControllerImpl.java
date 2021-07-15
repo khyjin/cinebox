@@ -1,3 +1,4 @@
+  
 package com.bookshop01.ticket.controller;
 
 import java.io.PrintWriter;
@@ -26,7 +27,6 @@ import com.bookshop01.common.base.BaseController;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.service.TicketService;
-import com.bookshop01.ticket.vo.TicketVO;
 
 
 @Controller("ticketController")
@@ -36,7 +36,21 @@ public class TicketControllerImpl extends BaseController implements TicketContro
     private TicketService ticketService;
 
 
-	//임의로 추가/////////////
+   @Override
+   @RequestMapping(value= "/reservation.do" ,method={RequestMethod.POST,RequestMethod.GET})
+   public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      HttpSession session = request.getSession();
+      session.removeAttribute("side_menu");
+      ModelAndView mav=new ModelAndView();
+      String viewName=(String)request.getAttribute("viewName");
+      mav.setViewName(viewName);
+      
+      List<ScheduleVO> list = ticketService.listMovieTitle();
+      mav.addObject("list", list);
+      return mav;
+      
+   }
+
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/makeTicket.do", method = RequestMethod.POST)
@@ -55,59 +69,78 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		map.put("movie_id", movie_id);
 		map.put("schedule_date", schedule_date);
 		map.put("time", ticketService.listMovieTitme(map));
+		
 		return map;
 	}
-	
-   @Override
-   @RequestMapping(value= "/reservation.do" ,method={RequestMethod.POST,RequestMethod.GET})
-   public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      HttpSession session = request.getSession();
-      session.removeAttribute("side_menu");
-      ModelAndView mav=new ModelAndView();
-      String viewName=(String)request.getAttribute("viewName");
-      mav.setViewName(viewName);
-      
-//      List<GoodsVO> list = ticketService.listGoods();
-      List<ScheduleVO> list = ticketService.listMovieTitle();
-      mav.addObject("list", list);
-      return mav;
-      
-   }
-   
 
+	@RequestMapping(value="/seat.do")
+	public ModelAndView roomNumber(HttpServletRequest request) throws Exception {
+		String viewName=null;
+
+		String movie_id = request.getParameter("movie_id");
+		String movie_title = request.getParameter("movie_title");
+		String schedule_date = request.getParameter("schedule_date");
+		String schedule_start_time = request.getParameter("schedule_start_time");
+		String room_number = request.getParameter("room_number");
+		
+		if(room_number.equals("1")) {
+			viewName = "redirect:/ticket/room1.do";
+		} else if(room_number.equals("2")) {
+			viewName = "redirect:/ticket/room2.do";
+		} else {
+			viewName = "redirect:/ticket/room3.do";
+		}
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("movie_id", movie_id);
+		mav.addObject("movie_title", movie_title);
+		mav.addObject("room_number", room_number);
+		mav.addObject("schedule_date", schedule_date);
+		mav.addObject("schedule_start_time", schedule_start_time);
+		
+		return mav;
+	}
+	
+	
 	@RequestMapping(value="/room1.do" ,method = RequestMethod.GET)
 	public ModelAndView printSeat1(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
-		System.out.println("영화번호 : "+movie_id);
-		System.out.println("영화제목 : "+movie_title);
-		System.out.println("상영날짜 : "+schedule_date);
-		System.out.println("상영시간 : "+schedule_start_time);
-		System.out.println("상영관 : "+room_number);
+		
+		ScheduleVO scheduleVO = new ScheduleVO();
+		scheduleVO.setMovie_id(movie_id);
+		scheduleVO.setMovie_title(movie_title);
+		scheduleVO.setRoom_number(room_number);
+		scheduleVO.setSchedule_date(schedule_date);
+		scheduleVO.setSchedule_start_time(schedule_start_time);
+		mav.addObject("list", scheduleVO);
 		return mav;
 		
 	}
-   
+
 	@RequestMapping(value="/room2.do" ,method = RequestMethod.GET)
 	public ModelAndView printSeat2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
 		
-		System.out.println("영화번호 : "+movie_id);
-		System.out.println("영화제목 : "+movie_title);
-		System.out.println("상영날짜 : "+schedule_date);
-		System.out.println("상영시간 : "+schedule_start_time);
-		System.out.println("상영관 : "+room_number);
+		ScheduleVO scheduleVO = new ScheduleVO();
+		scheduleVO.setMovie_id(movie_id);
+		scheduleVO.setMovie_title(movie_title);
+		scheduleVO.setRoom_number(room_number);
+		scheduleVO.setSchedule_date(schedule_date);
+		scheduleVO.setSchedule_start_time(schedule_start_time);
+		mav.addObject("list", scheduleVO);
 		return mav;
 		
 	}
@@ -116,22 +149,22 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 	public ModelAndView printSeat3(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
 		
-		System.out.println("영화번호 : "+movie_id);
-		System.out.println("영화제목 : "+movie_title);
-		System.out.println("상영날짜 : "+schedule_date);
-		System.out.println("상영시간 : "+schedule_start_time);
-		System.out.println("상영관 : "+room_number);
+		ScheduleVO scheduleVO = new ScheduleVO();
+		scheduleVO.setMovie_id(movie_id);
+		scheduleVO.setMovie_title(movie_title);
+		scheduleVO.setRoom_number(room_number);
+		scheduleVO.setSchedule_date(schedule_date);
+		scheduleVO.setSchedule_start_time(schedule_start_time);
+		mav.addObject("list", scheduleVO);
 		return mav;
-		
 	}
-	
-
    
 
    

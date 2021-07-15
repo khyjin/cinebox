@@ -1,28 +1,43 @@
 package com.bookshop01.ticket.vo;
 
+import java.util.Date;
+
 public class TicketVO {
 	private int movie_id; //영화번호
+	private String movie_title;
 	private String ticket_number; //예매 일련번호
 	private int ticket_number_code; //예매번호
 	private int ticket_adult; //성인 일반
 	private int ticket_child; //청소년 일반
-	private int ticket_adult_night; //성인 심야
-	private int ticket_child_night; //청소년 심야
-	private int ticket_adult_morning; //성인 조조
-	private int ticket_child_morning; //청소년 조조
 	private String ticket_start_time; //상영시작시간
 	private String ticket_end_time; //상영끝시간
 	private String ticket_movie_day; //상영일
 	private String room_number; //상영관번호
-	private String seat_number; //좌석이름
+	private String seat_number; //좌석이름 영문
 	private String ticket_reservation_date; //예매시간
 	private String member_id; //회원아이디
+	private String ticket_cancle_date;	//취소날짜
+	private String ticket_cancle_yn;	//취소여부
+	private String ticket_card_company;	//결제카드회사
+	private int ticket_card_month;	//할부개월수
+	private String ticket_pay_method;	//결제수단
+	private Date ticket_payment_date;	//결제날짜
+	private String ticket_phone_code;	//휴대폰 결제 코드
+	private String ticket_phone_number;	//결제자 전화번호
+	private int ticket_total_price;		//총결제금액
+	private int ticket_used_point;	//사용된 포인트금액(=할인금액)
 	
 	public int getMovie_id() {
 		return movie_id;
 	}
 	public void setMovie_id(int movie_id) {
 		this.movie_id = movie_id;
+	}
+	public String getMovie_title() {
+		return movie_title;
+	}
+	public void setMovie_title(String movie_title) {
+		this.movie_title = movie_title;
 	}
 	public String getTicket_number() {
 		return ticket_number;
@@ -47,30 +62,6 @@ public class TicketVO {
 	}
 	public void setTicket_child(int ticket_child) {
 		this.ticket_child = ticket_child;
-	}
-	public int getTicket_adult_night() {
-		return ticket_adult_night;
-	}
-	public void setTicket_adult_night(int ticket_adult_night) {
-		this.ticket_adult_night = ticket_adult_night;
-	}
-	public int getTicket_child_night() {
-		return ticket_child_night;
-	}
-	public void setTicket_child_night(int ticket_child_night) {
-		this.ticket_child_night = ticket_child_night;
-	}
-	public int getTicket_adult_morning() {
-		return ticket_adult_morning;
-	}
-	public void setTicket_adult_morning(int ticket_adult_morning) {
-		this.ticket_adult_morning = ticket_adult_morning;
-	}
-	public int getTicket_child_morning() {
-		return ticket_child_morning;
-	}
-	public void setTicket_child_morning(int ticket_child_morning) {
-		this.ticket_child_morning = ticket_child_morning;
 	}
 	public String getTicket_start_time() {
 		return ticket_start_time;
@@ -114,6 +105,70 @@ public class TicketVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getTicket_cancle_date() {
+		return ticket_cancle_date;
+	}
+	public void setTicket_cancle_date(String ticket_cancle_date) {
+		this.ticket_cancle_date = ticket_cancle_date;
+	}
+	public String getTicket_cancle_yn() {
+		return ticket_cancle_yn;
+	}
+	public void setTicket_cancle_yn(String ticket_cancle_yn) {
+		this.ticket_cancle_yn = ticket_cancle_yn;
+	}
+	public String getTicket_card_company() {
+		return ticket_card_company;
+	}
+	public void setTicket_card_company(String ticket_card_company) {
+		this.ticket_card_company = ticket_card_company;
+	}
+	public int getTicket_card_month() {
+		return ticket_card_month;
+	}
+	public void setTicket_card_month(int ticket_card_month) {
+		this.ticket_card_month = ticket_card_month;
+	}
+	public String getTicket_pay_method() {
+		return ticket_pay_method;
+	}
+	public void setTicket_pay_method(String ticket_pay_method) {
+		this.ticket_pay_method = ticket_pay_method;
+	}
+	public Date getTicket_payment_date() {
+		return ticket_payment_date;
+	}
+	public void setTicket_payment_date(Date ticket_payment_date) {
+		this.ticket_payment_date = ticket_payment_date;
+	}
+	public String getTicket_phone_code() {
+		return ticket_phone_code;
+	}
+	public void setTicket_phone_code(String ticket_phone_code) {
+		this.ticket_phone_code = ticket_phone_code;
+	}
+	public String getTicket_phone_number() {
+		return ticket_phone_number;
+	}
+	public void setTicket_phone_number(String ticket_phone_number) {
+		this.ticket_phone_number = ticket_phone_number;
+	}
+	public int getTicket_total_price() {
+		return ticket_total_price;
+	}
+	public void setTicket_total_price(int ticket_total_price) {
+		this.ticket_total_price = ticket_total_price;
+	}
+	public int getTicket_used_point() {
+		return ticket_used_point;
+	}
+	public void setTicket_used_point(int ticket_used_point) {
+		this.ticket_used_point = ticket_used_point;
+	}
+	
+
+	
+	
 	
 	
 	

@@ -15,7 +15,6 @@ import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.SearchCriteria;
 
 public interface AdminGoodsController {
-	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,HttpServletRequest request, HttpServletResponse response, Criteria cri)  throws Exception;
 	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 	public ModelAndView modifyGoodsForm(@RequestParam("movie_id") int movie_id,
             HttpServletRequest request, HttpServletResponse response)  throws Exception;
