@@ -28,7 +28,7 @@ import com.bookshop01.schedule.vo.ScheduleVO;
 public class ScheduleControllerImpl extends BaseController  implements ScheduleController{
 	@Autowired
 	private ScheduleService scheduleService;
-	
+	//스케줄 폼으로 가기
 	@Override
 	@RequestMapping(value= "/addNewScheduleForm.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView goform(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -44,7 +44,7 @@ public class ScheduleControllerImpl extends BaseController  implements ScheduleC
 		
 		return mav;
 	}
-	
+	//스케줄 입력
 	@Override
 	@RequestMapping(value="/addSchedule.do")
 	public ResponseEntity addSchedule(HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -86,6 +86,7 @@ public class ScheduleControllerImpl extends BaseController  implements ScheduleC
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+	//상영스케줄 표 
 	@Override
 	@RequestMapping(value= "/selectSchedule.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView selectSchedule(HttpServletRequest request, HttpServletResponse response) throws Exception{
