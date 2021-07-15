@@ -193,7 +193,7 @@ table td {
 </div>
 
 <div style="width: 25%; float: left; background-color: silver;">
-<form action="${contextPath}/ticket/seat.do" method="get">
+<form action="${contextPath}/ticket/room3.do" method="get">
 <h1>예매내용</h1>
 <table id="reserTable">
 	<tbody>
