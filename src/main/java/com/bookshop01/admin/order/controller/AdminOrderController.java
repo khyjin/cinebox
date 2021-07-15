@@ -19,5 +19,7 @@ public interface AdminOrderController {
 	public ModelAndView orderDetail(@RequestParam("order_id") int order_id, 
             HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	
+	public ResponseEntity cancelTicket(@RequestParam("ticket_number_code") int ticket_number_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	
 }

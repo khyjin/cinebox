@@ -21,7 +21,7 @@ public class TicketVO {
 	private String ticket_card_company;	//결제카드회사
 	private int ticket_card_month;	//할부개월수
 	private String ticket_pay_method;	//결제수단
-	private Date ticket_payment_date;	//결제날짜
+	private String ticket_payment_date;	//결제날짜
 	private String ticket_phone_code;	//휴대폰 결제 코드
 	private String ticket_phone_number;	//결제자 전화번호
 	private int ticket_total_price;		//총결제금액
@@ -135,10 +135,10 @@ public class TicketVO {
 	public void setTicket_pay_method(String ticket_pay_method) {
 		this.ticket_pay_method = ticket_pay_method;
 	}
-	public Date getTicket_payment_date() {
+	public String getTicket_payment_date() {
 		return ticket_payment_date;
 	}
-	public void setTicket_payment_date(Date ticket_payment_date) {
+	public void setTicket_payment_date(String ticket_payment_date) {
 		this.ticket_payment_date = ticket_payment_date;
 	}
 	public String getTicket_phone_code() {

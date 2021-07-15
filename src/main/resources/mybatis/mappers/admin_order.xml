@@ -71,6 +71,7 @@
 			movie_id,
 			movie_title,
 			ticket_number,
+			ticket_number_code,
 			ticket_movie_day,
 			member_id,
 			to_char(ticket_cancle_date) as ticket_cancle_date,
@@ -94,11 +95,16 @@
 	
 	<sql id="search">
 		<if test="keyword != null">
-			<if test="searchType == 't'.toString()">and movie_title like '%'||#{keyword}||'%'</if>
-			<if test="searchType == 'd'.toString()">and movie_director like '%'||#{keyword}||'%'</if>
-		 	<if test="searchType == 'a'.toString()">and movie_actor like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 't'.toString()">and ticket_number like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'd'.toString()">and member_id like '%'||#{keyword}||'%'</if>
+		 	<if test="searchType == 'a'.toString()">and movie_title like '%'||#{keyword}||'%'</if>
 		</if>
 	</sql>	
+	
+	<delete id="cancelTicket" parameterType="int">
+		delete from cinebox_ticket
+		where ticket_number_code=#{ticket_number_code}
+	</delete>
 	
 
 <select id="selectNewOrderList" resultMap="ticketResult"   parameterType="java.util.HashMap"  >

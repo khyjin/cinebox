@@ -74,9 +74,9 @@ body {
 </style>
 
 <script>
-function delete_check(deleteId) {
+function cancel_check(ticket_number) {
 	if(confirm("삭제하시겠습니까?") == true){
-		location.href="${contextPath}/admin/goods/deleteNewGoods.do?movie_id="+deleteId.value;
+		location.href="${contextPath}/admin/order/ticketCancel.do?ticket_number_code="+ticket_number;
 	}else{
 		return;
 	}
@@ -96,6 +96,11 @@ function delete_check(deleteId) {
 			<TBODY>
 				<tr>
 				  <td>
+				  	<select name="searchType">
+				  		<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>예매번호</option>
+				  		<option value="d"<c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>예매자ID</option>
+				  		<option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>영화</option>
+				  	</select>
 					<input name="keyword" id="keywordInput" type="text"  size="30"/>  
 					<input type="submit"  value="예매내역 검색"/>
 				  </td>
@@ -148,8 +153,9 @@ function delete_check(deleteId) {
 				<strong>${item.ticket_cancle_date}</strong>
 				</td>
 				<td>
-					<input type="hidden" value="${item.movie_id}" name="deleteId${status.index}">
-					<input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">				
+					<button id="button0">
+						<a href="javascript:cancel_check('${item.ticket_number_code}'))">삭제</a>
+					</button>				
 				</td>
 			</TR>
 	</c:forEach></form>
