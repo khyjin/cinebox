@@ -16,6 +16,6 @@
 	
 	<input id="pwsearchForm" type="button" onclick="location.href='idsearchview.do'" value="아이디 찾기">  
     <input id="LoginForm" type="button" onclick="location.href='loginForm.do'" value="로그인"> 
-	</section>
+</section>
 </body>
 </html>
