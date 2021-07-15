@@ -74,27 +74,96 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		return map;
 	}
 
+	@RequestMapping(value="/seat.do")
+	public ModelAndView roomNumber(HttpServletRequest request) throws Exception {
+		String viewName=null;
 
-	@Override
-	@RequestMapping(value="/seat.do" ,method = RequestMethod.GET)
-	public ModelAndView printSeat(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
+		
+		if(room_number.equals("1")) {
+			viewName = "redirect:/ticket/room1.do";
+		} else if(room_number.equals("2")) {
+			viewName = "redirect:/ticket/room2.do";
+		} else {
+			viewName = "redirect:/ticket/room3.do";
+		}
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("movie_id", movie_id);
+		mav.addObject("movie_title", movie_title);
+		mav.addObject("room_number", room_number);
+		mav.addObject("schedule_date", schedule_date);
+		mav.addObject("schedule_start_time", schedule_start_time);
+		
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/room1.do" ,method = RequestMethod.GET)
+	public ModelAndView printSeat1(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		String movie_id = request.getParameter("movie_id");
+		String movie_title = request.getParameter("movie_title");
+		String schedule_date = request.getParameter("schedule_date");
+		String schedule_start_time = request.getParameter("schedule_start_time");
+		String room_number = request.getParameter("room_number");
+		
 		ScheduleVO scheduleVO = new ScheduleVO();
 		scheduleVO.setMovie_id(movie_id);
 		scheduleVO.setMovie_title(movie_title);
 		scheduleVO.setRoom_number(room_number);
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
+		mav.addObject("list", scheduleVO);
+		return mav;
 		
-		mav.addObject("map", scheduleVO);
+	}
+
+	@RequestMapping(value="/room2.do" ,method = RequestMethod.GET)
+	public ModelAndView printSeat2(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
 		
+		String movie_id = request.getParameter("movie_id");
+		String movie_title = request.getParameter("movie_title");
+		String schedule_date = request.getParameter("schedule_date");
+		String schedule_start_time = request.getParameter("schedule_start_time");
+		String room_number = request.getParameter("room_number");
 		
+		ScheduleVO scheduleVO = new ScheduleVO();
+		scheduleVO.setMovie_id(movie_id);
+		scheduleVO.setMovie_title(movie_title);
+		scheduleVO.setRoom_number(room_number);
+		scheduleVO.setSchedule_date(schedule_date);
+		scheduleVO.setSchedule_start_time(schedule_start_time);
+		mav.addObject("list", scheduleVO);
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/room3.do" ,method = RequestMethod.GET)
+	public ModelAndView printSeat3(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		String movie_id = request.getParameter("movie_id");
+		String movie_title = request.getParameter("movie_title");
+		String schedule_date = request.getParameter("schedule_date");
+		String schedule_start_time = request.getParameter("schedule_start_time");
+		String room_number = request.getParameter("room_number");
+		
+		ScheduleVO scheduleVO = new ScheduleVO();
+		scheduleVO.setMovie_id(movie_id);
+		scheduleVO.setMovie_title(movie_title);
+		scheduleVO.setRoom_number(room_number);
+		scheduleVO.setSchedule_date(schedule_date);
+		scheduleVO.setSchedule_start_time(schedule_start_time);
+		mav.addObject("list", scheduleVO);
 		return mav;
 	}
    

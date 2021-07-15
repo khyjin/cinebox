@@ -33,6 +33,12 @@ public class TicketVO {
 	public void setMovie_id(int movie_id) {
 		this.movie_id = movie_id;
 	}
+	public String getMovie_title() {
+		return movie_title;
+	}
+	public void setMovie_title(String movie_title) {
+		this.movie_title = movie_title;
+	}
 	public String getTicket_number() {
 		return ticket_number;
 	}
@@ -81,6 +87,12 @@ public class TicketVO {
 	public void setRoom_number(String room_number) {
 		this.room_number = room_number;
 	}
+	public String getSeat_number() {
+		return seat_number;
+	}
+	public void setSeat_number(String seat_number) {
+		this.seat_number = seat_number;
+	}
 	public String getTicket_reservation_date() {
 		return ticket_reservation_date;
 	}
@@ -93,11 +105,11 @@ public class TicketVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public String getSeat_number() {
-		return seat_number;
+	public String getTicket_cancle_date() {
+		return ticket_cancle_date;
 	}
-	public void setSeat_number(String seat_number) {
-		this.seat_number = seat_number;
+	public void setTicket_cancle_date(String ticket_cancle_date) {
+		this.ticket_cancle_date = ticket_cancle_date;
 	}
 	public String getTicket_cancle_yn() {
 		return ticket_cancle_yn;
@@ -153,18 +165,7 @@ public class TicketVO {
 	public void setTicket_used_point(int ticket_used_point) {
 		this.ticket_used_point = ticket_used_point;
 	}
-	public String getMovie_title() {
-		return movie_title;
-	}
-	public void setMovie_title(String movie_title) {
-		this.movie_title = movie_title;
-	}
-	public String getTicket_cancle_date() {
-		return ticket_cancle_date;
-	}
-	public void setTicket_cancle_date(String ticket_cancle_date) {
-		this.ticket_cancle_date = ticket_cancle_date;
-	}
+	
 
 	
 	

@@ -13,9 +13,19 @@
 
    
 	<!-- 좌석 페이지 -->
-	<definition name="/ticket/seat" extends="baseLayout">
-		<put-attribute name="title" value="좌석 페이지" />
-		<put-attribute name="body" value="/WEB-INF/views/ticket/seat.jsp" />
+	<definition name="/ticket/room1" extends="baseLayout">
+		<put-attribute name="title" value="1관 좌석 선택 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/ticket/room1.jsp" />
+	</definition>
+	
+	<definition name="/ticket/room2" extends="baseLayout">
+		<put-attribute name="title" value="2관 좌석 선택 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/ticket/room2.jsp" />
+	</definition>
+	
+	<definition name="/ticket/room3" extends="baseLayout">
+		<put-attribute name="title" value="3관 좌석 선택 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/ticket/room3.jsp" />
 	</definition>
    
 </tiles-definitions>
