@@ -25,6 +25,35 @@ section.admin_mypage_main {
    height:800;
    float:right;
    }
+
+.pay {
+	border:2px solid #168;
+   border-collapse: collapse;
+   width: 130%;
+   font-size: small;
+   text-align: center;
+   
+}
+
+.pay th {
+   padding: 10px;
+   color: #168;
+   border-bottom: 1px solid #168;
+   background-color: #168;
+   color:#fff;
+}
+
+.pay td {
+   background-color: #fff;
+   color:#168;
+   padding: 10px;
+   
+}
+
+.pay tr:hover td {
+   color: #004;
+}   
+   
 #layer {
    z-index: 2;
    position: absolute;
@@ -510,9 +539,9 @@ function fn_process_pay_order(){
 <body>
  <div style='float:left'>
    <br>
-   <table class="list_view" style='width:140%; background: #ccffff; border-radius:10%'>
+   <table class="pay">
     <tr align=center class="fixed">
-     <th><h1>총 상품금액</h1></th>
+     <th>총 상품금액</th>
      </tr>
      <tr>
         <td>
@@ -520,20 +549,20 @@ function fn_process_pay_order(){
             <input id="h_totalPrice" type="hidden" value="${total_order_price}" />
         </td>
 	</tr>
-     </table> 
-     <table class="list_view" style='width:140%; background: #ccffff; border-radius:10%'>
+     </table><br>  
+     <table class="pay">
     <tr align=center class="fixed"> 
-     <th><h1>총 할인 금액</h1></th>
+     <th>총 할인 금액</th>
      </tr>
      <tr>
        <td>
        		<p id="p_totalSalesPrice">${1500 *item.order_goods_qty}원</p> 
             <input id="h_total_sales_price" type="hidden" value="${1500 *item.order_goods_qty}원" />
        </td>
-    </table> 
-    <table class="list_view" style='width:140%; background: #ccffff; border-radius:10%'>
+    </table><br> 
+    <table class="pay">
     <tr align=center class="fixed">
-        <td><h1>최종 결제금액</h1></td>
+        <th>최종 결제금액</th>
         </tr>
         <tr>
         <td><p id="p_final_totalPrice">
@@ -548,7 +577,7 @@ function fn_process_pay_order(){
 <form  name="form_order">   
    <table class="list_view">
       <tbody align=center>
-         <tr style="background: #33ff00">
+         <tr>
             <td colspan=2 class="fixed">주문상품명</td>
             <td>수량</td>
             <td>주문금액</td>
@@ -677,9 +706,12 @@ function fn_process_pay_order(){
   
    <center>
       <br>
-      <br> <a href="javascript:fn_show_order_detail();"> 
-      <img width="125" height="90" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
-      </a>
+      <br> 
+      <button style="background-color: #f44336; color:white; font-size:20px; border-radius:10px; border:0; padding: 15px 32px;" >
+      <a href="javascript:fn_show_order_detail();">
+       결제하기</a></button>
+      <!--<img width="125" height="90" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">-->
+      
        <a href="${contextPath}/main/main.do"> 
          <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
       </a>

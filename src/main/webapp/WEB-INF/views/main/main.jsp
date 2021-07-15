@@ -48,7 +48,7 @@
 			</a>
 				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 			<div class="title">${item.movie_title }</div>
-		  	  <a href="#" class="myButton">예매하기</a>
+		  	  <a href="${contextPath}/ticket/reservation.do" class="myButton">예매하기</a>
 
 		</div>
 	   <c:if test="${goods_count==8}">
