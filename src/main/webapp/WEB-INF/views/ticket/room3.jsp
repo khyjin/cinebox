@@ -270,7 +270,7 @@ function selectOnChange(e) {
         }
     }
 </script>
-<form action="" method="get">
+<form action="${contextPath}/order/orderMovie.do" method="get">
 
 <table>
 <tr class="dot_line">
