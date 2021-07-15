@@ -12,7 +12,7 @@ import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 
 
-@Repository("TicketDAO")
+@Repository("ticketDAO")
 public class TicketDAOImpl implements TicketDAO {
 		@Autowired
 		private SqlSession sqlSession;

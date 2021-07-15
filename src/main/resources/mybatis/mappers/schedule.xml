@@ -65,8 +65,8 @@
 	<select id="reservationSchedule" resultType="scheduleVO"   >
         <![CDATA[
             select * from(
-       			select distinct s.movie_id,s.movie_title, m.movie_age_grade 
-        		from cinebox_schedule s, cinebox_movie m
+       			select distinct s.movie_id, s.movie_title , m.movie_age_grade
+        		 from cinebox_schedule s, cinebox_movie m
         		where s.movie_id = m.movie_id
         		and s.schedule_date between to_char(sysdate) and to_char(sysdate+7)
         	)
@@ -92,7 +92,5 @@
 	
 
 
-	
-<!-- 임시 -->	
 </mapper>
 

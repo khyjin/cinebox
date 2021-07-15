@@ -36,7 +36,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 
 
    @Override
-   @RequestMapping(value= "/reservartion.do" ,method={RequestMethod.POST,RequestMethod.GET})
+   @RequestMapping(value= "/reservation.do" ,method={RequestMethod.POST,RequestMethod.GET})
    public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception {
       HttpSession session = request.getSession();
       session.removeAttribute("side_menu");

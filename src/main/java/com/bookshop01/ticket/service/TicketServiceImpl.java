@@ -12,7 +12,7 @@ import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.dao.TicketDAO;
 
-@Service("TicketService") // 서비스에는 service,transactional
+@Service("ticketService") // 서비스에는 service,transactional
 @Transactional(propagation=Propagation.REQUIRED)
 public class TicketServiceImpl implements TicketService {
 
