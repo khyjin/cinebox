@@ -50,7 +50,7 @@
 }
 
 #seat_table table td.fixed_join{
-   width: 110px; font-weight: bold; color: #ffffff; background:#193a3e; text-align: center; 
+   width: 110px; font-weight: bold; color: #ffffff; background:#193a3e; text-align: center; font-size:15px;
 }
 
 #seat_table table tr.dot_line {
@@ -118,7 +118,6 @@ function selectOnChange(e) {
 	
 	if(value>8) {
 	      alert("관람 인원 8명 초과 시 예매 불가 입니다.");
-	      location.href = "${contextPath}/ticket/room2.do";
 	   }
 
 	document.getElementById('result').innerText = value;
@@ -215,24 +214,29 @@ function selectOnChange(e) {
                     clicked.forEach((data) => {
                         selectedSeats.push(data.value);
                     })
-                    document.getElementById('seat').innerText += input.value+'\u00A0'; // 클릭된 좌석값 쌓이게 하기
+                    document.getElementById('seat').innerText = selectedSeats+'\u00A0'; // 클릭된 좌석값 쌓이게 하기
                     
                 }
                 console.log(selectedSeats);
+                console.log(selectedSeats.length); // 클릭될 때의 추가되는 좌석 배열의 길이
                 
-                if(input.click) {
-                	var num1 = $("#select_box1").val();
-                	var num2 = $("#select_box2").val();
-                	const value = Number(num1)+Number(num2);
-                	var count = 0;
-                	
-                	count++;
-                	
-                	if(value<=count) {
-                    	alert("인원 체크 후 좌석 선택 가능합니다.");
-                		location.href = "${contextPath}/ticket/room2.do";
-                    }
-                 }
+                var num1 = $("#select_box1").val();
+            	var num2 = $("#select_box2").val();
+            	const value = Number(num1)+Number(num2);
+            	var count = 0;
+            	
+            	if(selectedSeats.length==1&&value==0) {
+                	alert("인원 체크 후 좌석 선택 가능합니다.");
+                    return;
+                }
+            	else if(selectedSeats.length>value) {
+                    alert("이미 좌석을 모두 선택하셨습니다.");
+                    selectedSeats.pop();
+                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
+                    console.log(selectedSeats);
+                    console.log(input.value);
+                    return;
+                }
                 
             })
          }
@@ -293,12 +297,11 @@ function selectOnChange(e) {
 	<td  class="fixed_join">총 결제 금액</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원
 	<input type="hidden" id="total_pay" name="pay_total_price"></td>
-	
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
-	<input type="hidden" id="seat" name="seat_number"><h3>X</h3></td>
+	<input type="hidden" id="seat" name="seat_number"><h3 style="float:right; color:black;">X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>

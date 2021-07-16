@@ -70,7 +70,6 @@
 
 			<div class="title">${item.movie_title }</div>
 			<div class="date">개봉일&emsp;<fmt:formatDate value="${item.movie_open_date}" pattern="yy-MM-dd"/></div>
-			<a href="${contextPath}/ticket/reservation.do" class="myButton">예매하기</a>
 		</div>
 	   <c:if test="${goods_count==8}">
          <div class="book">
