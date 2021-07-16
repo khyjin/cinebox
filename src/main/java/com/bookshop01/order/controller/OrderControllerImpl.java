@@ -1,10 +1,5 @@
 package com.bookshop01.order.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
@@ -22,142 +18,158 @@ import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.service.OrderService;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.schedule.vo.ScheduleVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Controller("orderController")
 @RequestMapping(value="/order")
 public class OrderControllerImpl extends BaseController implements OrderController {
 	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private OrderVO orderVO;
 	
-	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
-			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		
-		request.setCharacterEncoding("utf-8");
-		HttpSession session=request.getSession();
-		session=request.getSession();
-		
-		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
-		String action=(String)session.getAttribute("action");
-		//로그인 여부 체크
-		//이전에 로그인 상태인 경우는 주문과정 진행
-		//로그아웃 상태인 경우 로그인 화면으로 이동
-		if(isLogOn==null || isLogOn==false){
-			session.setAttribute("orderInfo", _orderVO);
-			session.setAttribute("action", "/order/orderEachGoods.do");
-			return new ModelAndView("redirect:/member/loginForm.do");
-		}else{
-			 if(action!=null && action.equals("/order/orderEachGoods.do")){
-				orderVO=(OrderVO)session.getAttribute("orderInfo");
-				session.removeAttribute("action");
-			 }else {
-				 orderVO=_orderVO; //로그인이 되었다면 로그인 처리
-			 }
-		 }
-		
+	TicketVO ticketVO = new TicketVO();
+	
+//	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
+//	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
+//			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
+//		
+//		request.setCharacterEncoding("utf-8");
+//		HttpSession session=request.getSession();
+//		session=request.getSession();
+//		
+//		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
+//		String action=(String)session.getAttribute("action");
+//		//로그인 여부 체크
+//		//이전에 로그인 상태인 경우는 주문과정 진행
+//		//로그아웃 상태인 경우 로그인 화면으로 이동
+//		if(isLogOn==null || isLogOn==false){
+//			session.setAttribute("orderInfo", _orderVO);
+//			session.setAttribute("action", "/order/orderEachGoods.do");
+//			return new ModelAndView("redirect:/member/loginForm.do");
+//		}else{
+//			 if(action!=null && action.equals("/order/orderEachGoods.do")){
+//				orderVO=(OrderVO)session.getAttribute("orderInfo");
+//				session.removeAttribute("action");
+//			 }else {
+//				 orderVO=_orderVO; //로그인이 되었다면 로그인 처리
+//			 }
+//		 }
+//		
+//		String viewName=(String)request.getAttribute("viewName");
+//		ModelAndView mav = new ModelAndView(viewName);
+//		
+//		//주문 정보를 배열 처리하여 저장
+//		List myOrderList=new ArrayList<OrderVO>();
+//		myOrderList.add(orderVO);
+//		
+//		// 주문자 정보 가져오기
+//		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo"); //멤버 컨트롤러 확인
+//		
+//		// 주문자 정보와 주문 정보를 새션에 저장
+//		session.setAttribute("myOrderList", myOrderList);
+//		session.setAttribute("orderer", memberInfo);
+//		return mav;
+//	}
+	// 결제 페이지로 정보 넘기기
+	@Override
+	@RequestMapping(value="/orderMovie.do" )
+	public ModelAndView orderMovie (HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session=request.getSession();
 		
-		//주문 정보를 배열 처리하여 저장
-		List myOrderList=new ArrayList<OrderVO>();
-		myOrderList.add(orderVO);
+		String[] seat_number=request.getParameterValues("seat_number");
+		String seat_number2=seat_number[0];
+		for(int i=1;i<seat_number.length;i++) {
+			seat_number2+=","+seat_number[i];
+		}
+		int movie_id = Integer.parseInt(request.getParameter("movie_id"));
+		String movie_title = request.getParameter("movie_title");
+		String room_number = request.getParameter("room_number");
+		String ticket_movie_day = request.getParameter("ticket_movie_day");
+		String ticket_start_time = request.getParameter("ticket_start_time");
+		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
+		int ticket_adult = Integer.parseInt(request.getParameter("ticket_adult"));
+		int ticket_child = Integer.parseInt(request.getParameter("ticket_child"));
 		
-		// 주문자 정보 가져오기
-		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo"); //멤버 컨트롤러 확인
+		ticketVO.setSeat_number(seat_number2);
+		ticketVO.setMovie_id(movie_id);
+		ticketVO.setMovie_title(movie_title);
+		ticketVO.setRoom_number(room_number);
+		ticketVO.setTicket_movie_day(ticket_movie_day);
+		ticketVO.setTicket_start_time(ticket_start_time);
+		ticketVO.setTicket_total_price(ticket_total_price);
+		ticketVO.setTicket_adult(ticket_adult);
+		ticketVO.setTicket_child(ticket_child);
+		mav.addObject("list", ticketVO);
 		
-		// 주문자 정보와 주문 정보를 새션에 저장
-		session.setAttribute("myOrderList", myOrderList);
+		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
 		session.setAttribute("orderer", memberInfo);
 		return mav;
-	}
-	// 장바구니의 모든 상품을 가져오기
-	@RequestMapping(value="/orderMovie.do" ,method = RequestMethod.POST)
-	public ModelAndView orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
-			                 HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		HttpSession session=request.getSession();
-		
-		// 세션에 저장된 장바구니의 상품목록을 가져오기
-//		Map cartMap=(Map)session.getAttribute("cartMap"); // cart 컨트롤러
-//		List myOrderList=new ArrayList<OrderVO>();
-//		
-//		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
-//		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		//장바구니 갯수만큼 반복하기
-//		for(int i=0; i<cart_goods_qty.length;i++){
-//			String[] cart_goods=cart_goods_qty[i].split(":"); // :으로 결합된 상품번호와 주문 수량 분리
-//			for(int j = 0; j< myGoodsList.size();j++) {
-//				GoodsVO goodsVO = myGoodsList.get(j); // 장바구니 목록에서 차레로 GoodsVO를 가져오기
-//				int goods_id = goodsVO.getGoods_id(); // 상품번호 가져오기
-				
-				//전송된 상품번호와 GoodVO의 상품 번호와 같다면
-//				if(goods_id==Integer.parseInt(cart_goods[0])) {
-//					OrderVO _orderVO=new OrderVO();
-//					String goods_title=goodsVO.getGoods_title();
-//					int goods_sales_price=goodsVO.getGoods_sales_price();
-//					String goods_fileName=goodsVO.getGoods_fileName();
-//					_orderVO.setGoods_id(goods_id);
-//					_orderVO.setGoods_title(goods_title);
-//					_orderVO.setGoods_sales_price(goods_sales_price);
-//					_orderVO.setGoods_fileName(goods_fileName);
-//					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
-//					myOrderList.add(_orderVO);
-//					break;
-//				}
-//			}
-//		}
-//		session.setAttribute("myOrderList", myOrderList);
-//		session.setAttribute("orderer", memberVO);
-		return mav;
 
-	}	
+		}	
 	
-	@RequestMapping(value="/payToOrderGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> receiverMap,
-			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
+	//입력 및 결과 전송
+	@ResponseBody
+	@RequestMapping(value="/payToOrderGoods.do" )
+	public ModelAndView payToOrderGoods(HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		
+		response.setCharacterEncoding("utf-8");
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);	
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
-		String member_id=memberVO.getMember_id();
-		String orderer_name=memberVO.getMember_name();
-		String orderer_hp = memberVO.getHp1()+"-"+memberVO.getHp2()+"-"+memberVO.getHp3();
-		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
-		// 주문창에서 입력한 수령자 정보와 배송지 정보를 주문 상품 목록과 합친다
-		for(int i=0; i<myOrderList.size();i++){
-			OrderVO orderVO=(OrderVO)myOrderList.get(i);
-//			orderVO.setMember_id(member_id);
-//			orderVO.setOrderer_name(orderer_name);
-//			orderVO.setReceiver_name(receiverMap.get("receiver_name"));
-//			orderVO.setReceiver_hp1(receiverMap.get("receiver_hp1"));
-//			orderVO.setReceiver_hp2(receiverMap.get("receiver_hp2"));
-//			orderVO.setReceiver_hp3(receiverMap.get("receiver_hp3"));
-//			orderVO.setReceiver_tel1(receiverMap.get("receiver_tel1"));
-//			orderVO.setReceiver_tel2(receiverMap.get("receiver_tel2"));
-//			orderVO.setReceiver_tel3(receiverMap.get("receiver_tel3"));
-//			
-//			orderVO.setDelivery_address(receiverMap.get("delivery_address"));
-//			orderVO.setDelivery_message(receiverMap.get("delivery_message"));
-//			orderVO.setDelivery_method(receiverMap.get("delivery_method"));
-//			orderVO.setGift_wrapping(receiverMap.get("gift_wrapping"));
-//			orderVO.setPay_method(receiverMap.get("pay_method"));
-//			orderVO.setCard_com_name(receiverMap.get("card_com_name"));
-//			orderVO.setCard_pay_month(receiverMap.get("card_pay_month"));
-//			orderVO.setPay_orderer_hp_num(receiverMap.get("pay_orderer_hp_num"));	
-//			orderVO.setOrderer_hp(orderer_hp);	
-			myOrderList.set(i, orderVO); //각 orderVO에 주문자 정보를 세팅한 후 다시 myOrderList에 저장한다.
-		}//end for
 		
-	    orderService.addNewOrder(myOrderList);
-	    //주문완료 결과창에 주문자 정보를 표시하도록 전달
-		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
-		// OrderVO을 사용하여 주문결과 페이지에 주문자 정보를 표시한다
-		mav.addObject("myOrderList", myOrderList);
+		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
+		session.setAttribute("orderer", memberInfo);
+		
+		int movie_id = Integer.parseInt(request.getParameter("movie_id"));
+		String movie_title = request.getParameter("movie_title");
+		int ticket_adult = Integer.parseInt(request.getParameter("ticket_adult"));
+		int ticket_child = Integer.parseInt(request.getParameter("ticket_child"));
+		String ticket_start_time = request.getParameter("ticket_start_time");
+		String seat_number=request.getParameter("seat_number");
+		String room_number = request.getParameter("room_number");
+		String ticket_movie_day = request.getParameter("ticket_movie_day");
+		String ticket_card_company = request.getParameter("ticket_card_company");
+		String ticket_card_month = request.getParameter("ticket_card_month");
+		String ticket_pay_method = request.getParameter("ticket_pay_method");
+		String ticket_phone_number1 = request.getParameter("ticket_phone_number1");
+		String ticket_phone_number2 = request.getParameter("ticket_phone_number2");
+		String ticket_phone_number3 = request.getParameter("ticket_phone_number3");
+		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
+		int ticket_used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
+		String memeber_id = request.getParameter("memeber_id");
+	
+		ticketVO.setMember_id(memberInfo.getMember_id());
+		ticketVO.setMovie_id(movie_id);
+		ticketVO.setMovie_title(movie_title);
+		ticketVO.setTicket_adult(ticket_adult);
+		ticketVO.setTicket_child(ticket_child);
+		ticketVO.setTicket_start_time(ticket_start_time);
+		ticketVO.setSeat_number(seat_number);
+		ticketVO.setRoom_number(room_number);
+		ticketVO.setTicket_movie_day(ticket_movie_day);
+		ticketVO.setTicket_card_company(ticket_card_company);
+		ticketVO.setTicket_card_month(ticket_card_month);
+		ticketVO.setTicket_pay_method(ticket_pay_method);
+		ticketVO.setTicket_phone_number1(ticket_phone_number1);
+		ticketVO.setTicket_phone_number2(ticket_phone_number2);
+		ticketVO.setTicket_phone_number3(ticket_phone_number3);
+		ticketVO.setTicket_total_price(ticket_total_price);
+		ticketVO.setTicket_used_point(ticket_used_point);
+		mav.addObject("list", ticketVO);
+		
+		orderService.addNewOrder(ticketVO);
 		return mav;
+	}
+		
+
+	@Override
+	public ModelAndView orderEachGoods(OrderVO _orderVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

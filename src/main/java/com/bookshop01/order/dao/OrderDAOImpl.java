@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Repository("orderDAO")
 public class OrderDAOImpl implements OrderDAO {
@@ -21,17 +22,10 @@ public class OrderDAOImpl implements OrderDAO {
 		return orderGoodsList;
 	}
 	
-	public void insertNewOrder(List<OrderVO> myOrderList) throws DataAccessException{
-		//주문번호 가져오기
-		int order_id=selectOrderID();
-		//주문 목록에서 차례대로 OrderVO를 가져와서 주문 번호 설정
-		for(int i=0; i<myOrderList.size();i++){
-			OrderVO orderVO =(OrderVO)myOrderList.get(i);
-	//		orderVO.setOrder_id(order_id);
-			sqlSession.insert("mapper.order.insertNewOrder",orderVO);
-		}
+	public void insertNewOrder(TicketVO ticketVO) throws DataAccessException{
 		
-	}	
+			sqlSession.insert("mapper.ticket.insertNewOrder",ticketVO);
+	}
 	
 	public OrderVO findMyOrder(String order_id) throws DataAccessException{
 		OrderVO orderVO=(OrderVO)sqlSession.selectOne("mapper.order.selectMyOrder",order_id);		

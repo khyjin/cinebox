@@ -7,20 +7,77 @@
 
 	<resultMap id="ticket" type="ticketVO">
 		<result property="movie_id" column="movie_id" />
+		<result property="movie_title" column="movie_title" />
 		<result property="ticket_number" column="ticket_number" />
-		<result property="ticket_number_code" column="ticket_number_code" />
 		<result property="ticket_adult" column="ticket_adult" />
 		<result property="ticket_child" column="ticket_child" />
-		<result property="ticket_adult_morning" column="ticket_adult_morning" />
-		<result property="ticket_child_morning" column="ticket_child_morning" />
 		<result property="ticket_start_time" column="ticket_start_time" />
 		<result property="ticket_end_time" column="ticket_end_time" />
 		<result property="ticket_movie_day" column="ticket_movie_day" />
 		<result property="room_number" column="room_number" />
-		<result property="seat_number1" column="seat_number1" />
-		<result property="seat_number2" column="seat_number2" />
-		<result property="ticket_reservation_date" column="ticket_reservation_date" />	
+		<result property="seat_number" column="seat_number" />
+		<result property="ticket_cancle_date" column="ticket_cancle_date" />
+		<result property="ticket_cancle_yn" column="ticket_cancle_yn" />
+		<result property="ticket_card_company" column="ticket_card_company" />
+		<result property="ticket_card_month" column="ticket_card_month" />
+		<result property="ticket_pay_method" column="ticket_pay_method" />
+		<result property="ticket_payment_date" column="ticket_payment_date" />
+		<result property="ticket_phone_number1" column="ticket_phone_number1" />
+		<result property="ticket_phone_number2" column="ticket_phone_number2" />
+		<result property="ticket_phone_number3" column="ticket_phone_number3" />
+		<result property="ticket_total_price" column="ticket_total_price" />
+		<result property="ticket_used_point" column="ticket_used_point" />
 	</resultMap>
+	
+	<insert id="insertNewOrder" parameterType="ticketVO"  >
+	    <![CDATA[
+			insert into cinebox_ticket(movie_id,
+										movie_title,
+										ticket_number,
+										ticket_adult,
+										ticket_child,
+										ticket_start_time,
+										ticket_end_time,
+										ticket_movie_day,
+										room_number,
+										seat_number,
+										member_id,
+										ticket_cancle_date,
+										ticket_cancle_yn,
+										ticket_card_company,
+										ticket_card_month,
+										ticket_pay_method,
+										ticket_payment_date,
+										ticket_phone_number1,
+										ticket_phone_number2,
+										ticket_phone_number3,
+										ticket_total_price,
+										ticket_used_point)
+									values(
+										#{movie_id},
+										#{movie_title},
+										TICKET_seq.nextval,
+										#{ticket_adult},
+										#{ticket_child},
+										#{ticket_start_time},
+										#{ticket_start_time},
+										#{ticket_movie_day},
+										#{room_number,jdbcType=VARCHAR},
+										#{seat_number,jdbcType=VARCHAR},
+										#{member_id,jdbcType=VARCHAR},
+										to_char(sysdate,'YYYY-MM-DD'),
+										'N',
+										#{ticket_card_company},
+										#{ticket_card_month},
+										#{ticket_pay_method},
+										sysdate,
+										#{ticket_phone_number1,jdbcType=VARCHAR},
+										#{ticket_phone_number2,jdbcType=VARCHAR},
+										#{ticket_phone_number3,jdbcType=VARCHAR},
+										#{ticket_total_price},
+										#{ticket_used_point,jdbcType=VARCHAR})
+    	]]>
+	</insert>
 	
 	
 	
