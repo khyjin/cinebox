@@ -17,4 +17,5 @@ public interface AdminOrderDAO {
 	public MemberVO selectOrderer(String member_id) throws DataAccessException;
 	
 	public int listCount(SearchCriteria scri) throws DataAccessException;
+	public void cancelTicket(int ticket_number_code) throws DataAccessException;
 }

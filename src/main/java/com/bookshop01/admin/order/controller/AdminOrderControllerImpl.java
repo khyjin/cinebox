@@ -80,14 +80,47 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	}
 	
 	@Override
-	@RequestMapping(value="/orderDetail.do" ,method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView orderDetail(@RequestParam("order_id") int order_id, 
-			                      HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	@RequestMapping(value="/orderDetail.do", method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		Map orderMap =adminOrderService.orderDetail(order_id);
-		mav.addObject("orderMap", orderMap);
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menu", "admin_mode");
+//		Map orderMap =adminOrderService.orderDetail(order_id);
+//		mav.addObject("orderMap", orderMap);
 		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/ticketCancel.do")
+	public ResponseEntity cancelTicket(@RequestParam("ticket_number_code")int ticket_number_code, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String cscenter_type= request.getParameter("cscenter_type");
+		String viewName =null;
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+				
+		try {
+			adminOrderService.cancleTicket(ticket_number_code);
+			message  = "<script>";
+			message +=" alert('삭제를 완료했습니다.');";
+			message += "location.href='"+request.getContextPath()+"/admin/order/adminOrderMain.do';";
+			message += " </script>";
+						
+		} catch (Exception e) {
+			message  = "<script>";
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += "location.href='"+request.getContextPath()+"/cscenter/noticeView.do';";
+		    message += "</script>";
+			e.printStackTrace();
+		}
+		
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 	
 }

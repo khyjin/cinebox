@@ -122,6 +122,7 @@ public class TicketVO {
 	public void setTicket_pay_method(String ticket_pay_method) {
 		this.ticket_pay_method = ticket_pay_method;
 	}
+
 	public Date getTicket_payment_date() {
 		return ticket_payment_date;
 	}

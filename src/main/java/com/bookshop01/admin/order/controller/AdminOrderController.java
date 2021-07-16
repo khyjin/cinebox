@@ -16,8 +16,9 @@ public interface AdminOrderController {
 	public ModelAndView adminOrderMain(@ModelAttribute("scri") SearchCriteria scri, HttpServletRequest request)  throws Exception;
 	public ResponseEntity modifyDeliveryState(@RequestParam Map<String, String> deliveryMap, 
             HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView orderDetail(@RequestParam("order_id") int order_id, 
-            HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	
+	public ResponseEntity cancelTicket(@RequestParam("ticket_number_code") int ticket_number_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 }

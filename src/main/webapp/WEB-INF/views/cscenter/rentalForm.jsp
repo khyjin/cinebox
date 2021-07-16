@@ -7,6 +7,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function fn_check(){
+	var rental_form = document.rental_form;
+	var name = rental_form.member_name.value;
+	var phone = rental_form.phone.value;
+	var email = rental_form.email.value;
+	var r_day = rental_form.content1.value;
+	var count = rental_form.content2.value;
+	var content = rental_form.content3.value;
+	
+	if(name==""){
+		alert("이름을 입력해주세요");
+		rental_form.member_name.select();
+		return false;
+	} else if(phone=="" && email==""){
+		alert("연락가능한 휴대전화번호 혹은 이메일을 입력해주세요");
+		rental_form.phone.select();
+		return false;
+	} else if(r_day==""){
+		rental_form.content1.select();
+		alert("대관희망일을 입력해주세요");
+		return false;
+	} else if(count==""){
+		alert("희망인원수를 입력해주세요");
+		rental_form.content2.select();
+		return false;
+	} else if(content==""){
+		alert("문의사항을 입력해주세요");
+		rental_form.content3.select();
+		return false;
+	}
+	
+	rental_form.submit();	
+}
+</script>
 </head>
 <style>
 .blueone {
@@ -53,7 +88,7 @@ section.admin_mypage_main {
 	<font size="2">
 	개인이나 단체를 위한 대관서비스로 CINEBOX의 넓고 쾌적한 극장에서 즐거운 추억을 만드실 수 있습니다.<br>
 	단체/대관 문의 외 문의나 불편사항은 이메일 문의로 작성 부탁드립니다.</font><br><br>
-<form action="${contextPath}/cscenter/sendRental.do" method="post">
+<form name="rental_form" action="${contextPath}/cscenter/sendRental.do" method="post">
 
 <table class="blueone">
 	<tbody>
@@ -104,7 +139,7 @@ section.admin_mypage_main {
 			<td></td><td></td><td></td>
 			<td>
 			<input type="reset" value="취소">
-			<input id="button0" type="submit" value="등록하기" size="20"></td>
+			<input id="button0" type="button" value="등록하기" size="20" onclick="fn_check()"></td>
 		</tr>
 	</tbody>
 </table>
