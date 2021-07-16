@@ -40,5 +40,11 @@ public class AdminOrderDAOImpl  implements AdminOrderDAO{
 	public int listCount(SearchCriteria scri) throws DataAccessException {
 		return sqlSession.selectOne("mapper.admin.order.listCount",scri);
 	}
+	
+	@Override
+	public void cancelTicket(int ticket_number_code) throws DataAccessException {
+		sqlSession.delete("mapper.admin.order.cancelTicket", ticket_number_code);
+		
+	}
 
 }

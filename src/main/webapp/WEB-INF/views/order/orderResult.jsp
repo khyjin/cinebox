@@ -7,69 +7,77 @@
 <BODY>
 결제가 완료되었습니다.
 	<H1>1.최종 예매 내역</H1>
-	<TABLE class="list_view">
-		<TBODY align=center>
-			<tr style="background: #33ff00">
-			     <td>주문번호 </td>
-				<td colspan=2 class="fixed">주문상품명</td>
-				<td>수량</td>
-				<td>주문금액</td>
-				<td>배송비</td>
-				<td>예상적립금</td>
-				<td>주문금액합계</td>
-			</tr>
-			<TR>
-				<c:forEach var="item" items="${myOrderList }">
-				    <td> ${item.order_id }</td>
-					<TD class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <IMG width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-					  </a>
-					</TD>
-					<TD>
-					  <h2>
-					     <A href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</A>
-					  </h2>
-					</TD>
-					<td>
-					  <h2>${item.order_goods_qty }개<h2>
-					</td>
-					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
-					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty }원</h2></td>
-					<td>
-					  <h2>${item.order_goods_qty *item.goods_sales_price}원</h2>
-					</td>
-			</TR>
-			</c:forEach>
-		</TBODY>
-	</TABLE>
-	<DIV class="clear"></DIV>
-<form  name="form_order">
-	<br>
-	<br>
+	<table class="list_view">
+      <tbody align=center>
+     	 <tr>
+    	 <td class="goods_image">
+             <img width="75" alt=""  src="${contextPath}/thumbnails.do?movie_id=${list.movie_id}&fileName=${item.movie_fileName}">
+             <input type="hidden" id="movie_id" name="movie_id" value="${list.movie_id}" />
+              <input type="hidden" id="member_id" name="member_id" value="${list.member_id}" />
+		</td>
+       	</tr>
+         <tr>
+         <td>
+            <input type="hidden" id="movie_title" name="movie_title" value="${list.movie_title}" />
+                   예매 영화 : ${list.movie_title} ,${orderer.member_id}
+          </td>
+         </tr>
+         <tr>
+         <td>
+         상영관 : ${list.room_number}관
+               <input type="hidden" id="room_number" name="room_number" value="${list.room_number}" />
+          </td>
+          </tr>
+         <tr>
+         <td> 
+         상영날짜 : ${list.ticket_movie_day}
+               <input type="hidden" id="ticket_movie_day" name="ticket_movie_day" value="${list.ticket_movie_day}" />   
+         </td>
+          </tr>
+          <tr>
+          <td>
+           상영시간 : ${list.ticket_start_time}
+               <input type="hidden" id="ticket_start_time" name="ticket_start_time" value="${list.ticket_start_time}" />
+          </td>
+          </tr>
+          <tr>
+          <td>
+          예매인원 : 성인 -> ${list.ticket_adult}
+               <input   type="hidden" id="ticket_adult" name="ticket_adult" value="${list.ticket_adult}" />
+          / 청소년 ->${list.ticket_child}
+          <input type="hidden" id="ticket_child" name="ticket_child" value="${list.ticket_child}" />
+          </td>
+          </tr>
+          <tr>
+          <td>
+          예매좌석 : ${list.seat_number}
+               <input type="hidden" id="seat_number" name="seat_number" value="${list.seat_number}" />
+          </td>
+          </tr>
+      </tbody>
+   </table>
 	
 	<br>
-	<H1>3.결제정보</H1>
+	<H1>2.결제정보</H1>
 	<DIV class="detail_table">
 		<table>
 			<TBODY>
 				<TR class="dot_line">
 					<TD class="fixed_join">결제방법</TD>
 					<TD>
-					   ${myOrderInfo.pay_method }
+					   ${list.ticket_pay_method}
 				    </TD>
 				</TR>
 				<TR class="dot_line">
 					<TD class="fixed_join">결제카드</TD>
 					<TD>
-					   ${myOrderInfo.card_com_name}
+					   ${list.ticket_card_company}
 				    </TD>
 				</TR>
 				<TR class="dot_line">
 					<TD class="fixed_join">할부기간</TD>
 					<TD>
-					   ${myOrderInfo.card_pay_month }
+					   ${list.ticket_card_month }
 				    </TD>
 				</TR>
 			</TBODY>

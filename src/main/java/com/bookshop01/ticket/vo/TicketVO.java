@@ -6,7 +6,6 @@ public class TicketVO {
 	private int movie_id; //영화번호
 	private String movie_title;
 	private String ticket_number; //예매 일련번호
-	private int ticket_number_code; //예매번호
 	private int ticket_adult; //성인 일반
 	private int ticket_child; //청소년 일반
 	private String ticket_start_time; //상영시작시간
@@ -14,16 +13,16 @@ public class TicketVO {
 	private String ticket_movie_day; //상영일
 	private String room_number; //상영관번호
 	private String seat_number; //좌석이름 영문
-	private String ticket_reservation_date; //예매시간
 	private String member_id; //회원아이디
 	private String ticket_cancle_date;	//취소날짜
 	private String ticket_cancle_yn;	//취소여부
 	private String ticket_card_company;	//결제카드회사
-	private int ticket_card_month;	//할부개월수
+	private String ticket_card_month;	//할부개월수
 	private String ticket_pay_method;	//결제수단
 	private Date ticket_payment_date;	//결제날짜
-	private String ticket_phone_code;	//휴대폰 결제 코드
-	private String ticket_phone_number;	//결제자 전화번호
+	private String ticket_phone_number1;	//결제자 전화번호1
+	private String ticket_phone_number2;	//결제자 전화번호2
+	private String ticket_phone_number3;	//결제자 전화번호3
 	private int ticket_total_price;		//총결제금액
 	private int ticket_used_point;	//사용된 포인트금액(=할인금액)
 	
@@ -44,12 +43,6 @@ public class TicketVO {
 	}
 	public void setTicket_number(String ticket_number) {
 		this.ticket_number = ticket_number;
-	}
-	public int getTicket_number_code() {
-		return ticket_number_code;
-	}
-	public void setTicket_number_code(int ticket_number_code) {
-		this.ticket_number_code = ticket_number_code;
 	}
 	public int getTicket_adult() {
 		return ticket_adult;
@@ -93,12 +86,6 @@ public class TicketVO {
 	public void setSeat_number(String seat_number) {
 		this.seat_number = seat_number;
 	}
-	public String getTicket_reservation_date() {
-		return ticket_reservation_date;
-	}
-	public void setTicket_reservation_date(String ticket_reservation_date) {
-		this.ticket_reservation_date = ticket_reservation_date;
-	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -123,10 +110,10 @@ public class TicketVO {
 	public void setTicket_card_company(String ticket_card_company) {
 		this.ticket_card_company = ticket_card_company;
 	}
-	public int getTicket_card_month() {
+	public String getTicket_card_month() {
 		return ticket_card_month;
 	}
-	public void setTicket_card_month(int ticket_card_month) {
+	public void setTicket_card_month(String ticket_card_month) {
 		this.ticket_card_month = ticket_card_month;
 	}
 	public String getTicket_pay_method() {
@@ -135,23 +122,30 @@ public class TicketVO {
 	public void setTicket_pay_method(String ticket_pay_method) {
 		this.ticket_pay_method = ticket_pay_method;
 	}
+
 	public Date getTicket_payment_date() {
 		return ticket_payment_date;
 	}
 	public void setTicket_payment_date(Date ticket_payment_date) {
 		this.ticket_payment_date = ticket_payment_date;
 	}
-	public String getTicket_phone_code() {
-		return ticket_phone_code;
+	public String getTicket_phone_number1() {
+		return ticket_phone_number1;
 	}
-	public void setTicket_phone_code(String ticket_phone_code) {
-		this.ticket_phone_code = ticket_phone_code;
+	public void setTicket_phone_number1(String ticket_phone_number1) {
+		this.ticket_phone_number1 = ticket_phone_number1;
 	}
-	public String getTicket_phone_number() {
-		return ticket_phone_number;
+	public String getTicket_phone_number2() {
+		return ticket_phone_number2;
 	}
-	public void setTicket_phone_number(String ticket_phone_number) {
-		this.ticket_phone_number = ticket_phone_number;
+	public void setTicket_phone_number2(String ticket_phone_number2) {
+		this.ticket_phone_number2 = ticket_phone_number2;
+	}
+	public String getTicket_phone_number3() {
+		return ticket_phone_number3;
+	}
+	public void setTicket_phone_number3(String ticket_phone_number3) {
+		this.ticket_phone_number3 = ticket_phone_number3;
 	}
 	public int getTicket_total_price() {
 		return ticket_total_price;
@@ -165,11 +159,6 @@ public class TicketVO {
 	public void setTicket_used_point(int ticket_used_point) {
 		this.ticket_used_point = ticket_used_point;
 	}
-	
-
-	
-	
-	
 	
 	
 }

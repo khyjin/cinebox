@@ -141,6 +141,7 @@ function selectOnChange(e) {
 <h1>상영관 1관</h1>
 <br><br>
 <div id="seat_table">
+<form action="${contextPath}/order/orderMovie.do" method="get">
 <table>
 <tr class="dot_line">
 	<td  class="fixed_join">인원 체크</td>
@@ -279,34 +280,42 @@ function selectOnChange(e) {
         }
     }
 </script>
-<form action="" method="get">
 
 <table>
 <tr class="dot_line">
    <td  class="fixed_join">영화 제목</td>
-   <td style="font-size:15px; font-weight: bold;">${list.movie_title}</td>
+   <td style="font-size:15px; font-weight: bold;">${list.movie_title}
+   <input type="hidden" value="${list.movie_title}" name="movie_title">
+   <input type="hidden" value="${list.movie_id}" name="movie_id">
+   </td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영관</td>
-   <td style="font-size:15px; font-weight: bold;">${list.room_number}관</td>
+   <td style="font-size:15px; font-weight: bold;">${list.room_number}관
+   <input type="hidden" value="${list.room_number}" name="room_number">
+   </td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영일자</td>
-    <td style="font-size:15px; font-weight: bold;"> ${list.schedule_date}</td>
+    <td style="font-size:15px; font-weight: bold;"> ${list.schedule_date}
+    <input type="hidden" value="${list.schedule_date}" name="ticket_movie_day">
+    </td>
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영시간</td>
-   <td style="font-size:15px; font-weight: bold;">${list.schedule_start_time}~이후 추가예정</td>
+   <td style="font-size:15px; font-weight: bold;">${list.schedule_start_time}~이후 추가예정
+   <input type="hidden" value="${list.schedule_start_time}" name="ticket_start_time">
+   </td>
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원
-	<input type="hidden" id="total_pay" name="pay_total_price"></td>
+	<input type="hidden" id="total_pay" name="ticket_total_price" value="10000"></td>
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
-	<input type="hidden" id="seat" name="seat_number"><h3 style="float:right; color:black;">X</h3></td>
+	<input type="hidden" id="seat" name="seat_number" value="aa"><h3 style="float:right; color:black;">X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>

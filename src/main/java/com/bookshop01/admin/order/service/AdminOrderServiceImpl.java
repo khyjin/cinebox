@@ -59,6 +59,11 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	public int listCount(SearchCriteria scri) throws Exception {
 		return adminOrderDAO.listCount(scri);
 	}
+	@Override
+	public void cancleTicket(int ticket_number_code) throws Exception {
+		adminOrderDAO.cancelTicket(ticket_number_code);
+		
+	}
 
 	
 	

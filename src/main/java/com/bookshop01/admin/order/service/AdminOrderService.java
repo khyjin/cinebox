@@ -19,4 +19,5 @@ public interface AdminOrderService {
 	public Map orderDetail(int order_id) throws Exception;
 	
 	public int listCount(SearchCriteria scri) throws Exception;
+	public void cancleTicket(int ticket_number_code) throws Exception;
 }

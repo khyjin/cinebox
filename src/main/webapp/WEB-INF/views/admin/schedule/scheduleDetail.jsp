@@ -5,12 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%@page import="java.util.Date" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>상영시간표 수정하기</title>
+<title>상영시간표</title>
 <style>
 body {
    background: #fff;
