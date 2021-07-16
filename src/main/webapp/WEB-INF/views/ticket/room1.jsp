@@ -324,7 +324,7 @@ function selectOnChange(e) {
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
 	<input type="hidden" id="seatA" name="seat_number">
-	<h3>X</h3></td>
+	<h3 style="float:right; color:black;">X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
