@@ -221,7 +221,6 @@ function selectOnChange(e) {
                 }
                 console.log(selectedSeats.length); // 클릭될 때의 추가되는 좌석 배열의 길이
                 
-<<<<<<< HEAD
                 var num1 = $("#select_box1").val();
             	var num2 = $("#select_box2").val();
             	const value = Number(num1)+Number(num2);
@@ -239,7 +238,6 @@ function selectOnChange(e) {
                     return;
                 }
                 
-=======
                 if(input.click) {
                 	var num1 = $("#select_box1").val();
                 	var num2 = $("#select_box2").val();
@@ -253,7 +251,6 @@ function selectOnChange(e) {
                 		location.href = "${contextPath}/ticket/room3.do";
                     }
                  }
->>>>>>> branch 'master' of https://PyeonJiHee@github.com/khyjin/cinebox.git
                 
             })
          }
