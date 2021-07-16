@@ -65,7 +65,7 @@
 										#{room_number,jdbcType=VARCHAR},
 										#{seat_number,jdbcType=VARCHAR},
 										#{member_id,jdbcType=VARCHAR},
-										to_char(sysdate,'YYYY-MM-DD'),
+										'N',
 										'N',
 										#{ticket_card_company},
 										#{ticket_card_month},

@@ -223,6 +223,15 @@ function fn_process_pay_order(){
     formObj.submit();
    imagePopup('close');
 }
+
+function order_check() {
+	if(confirm("최종 결제하기") == true){
+		//action="${contextPath}/order/payToOrderGoods.do";
+		//document.getElementById("form_order").submit();
+		location.href="${contextPath}/order/payToOrderGoods.do";
+	}else{
+		return;
+	}
 </script>
 
 </head>
@@ -327,7 +336,7 @@ function fn_process_pay_order(){
             <tr class="dot_line">
                <td>보유포인트 : ${orderer.member_point}원 </td>
                <td cellpadding="5">
-                / 사용할 포인트 : <input name="ticket_used_point" type="text"size="10" /> 원 &nbsp;&nbsp;&nbsp; 
+                / 사용할 포인트 : <input name="ticket_used_point" type="text"size="10" value="0"/> 원 &nbsp;&nbsp;&nbsp; 
                <input type="checkbox" /> 모두사용
                </td>
             </tr>
@@ -393,22 +402,20 @@ function fn_process_pay_order(){
          </tbody>
       </table>
 	</div>
-	 <input type="submit" value="전송">
-</form>
+	 
+
    <div class="clear"></div>
    <br>
   
    <center>
       <br>
-      <br> 
-      <button style="background-color: #f44336; color:white; font-size:20px; border-radius:10px; border:0; padding: 15px 32px;" >
-      <a href="javascript:fn_show_order_detail();">
-       결제하기</a></button>
-      
+      <br>
+       <button onclick="order_check();" style="background-color: #f44336; color:white; font-size:20px; border-radius:10px; border:0; padding: 15px 32px;" >
+       결제하기</button>
        <a href="${contextPath}/main/main.do"> 
          <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
       </a>
-    </center>
+    </center></form>
 <div class="clear"></div>      
    <div id="layer" style="visibility:hidden">
       <!-- visibility:hidden 으로 설정하여 해당 div안의 모든것들을 가려둔다. -->
@@ -464,7 +471,7 @@ function fn_process_pay_order(){
                </tr>
                <tr>
                 <td colspan=2 align=center>
-                <input  name="btn_process_pay_order" type="button" onClick="fn_process_pay_order()" value="최종결제하기">
+                <input  name="btn_process_pay_order" type="button" onClick="order_check()" value="최종결제하기">
                 </td>
                </tr>
             </tbody>
