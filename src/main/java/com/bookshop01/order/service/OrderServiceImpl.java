@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 import com.bookshop01.order.dao.OrderDAO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 
 @Service("orderService")
@@ -24,11 +25,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderGoodsList;
 	}
 	
-	public void addNewOrder(List<OrderVO> myOrderList) throws Exception{
+	public void addNewOrder(TicketVO ticketVO) throws Exception{
 		//주문상품목록에 상품 추가
-		orderDAO.insertNewOrder(myOrderList);
-		//카트에서 주문 상품 제거한다.
-		orderDAO.removeGoodsFromCart(myOrderList);
+		orderDAO.insertNewOrder(ticketVO);
+		
 	}	
 	
 	public OrderVO findMyOrder(String order_id) throws Exception{
