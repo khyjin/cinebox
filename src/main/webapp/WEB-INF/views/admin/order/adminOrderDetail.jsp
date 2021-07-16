@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	isELIgnored="false"%> 
+	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="orderList"  value="${orderMap.orderList}"  />
-<c:set var="deliveryInfo"  value="${orderMap.deliveryInfo}"  />
-<c:set var="orderer"  value="${orderMap.orderer}"  />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="orderList" value="${orderMap.orderList}" />
+<c:set var="deliveryInfo" value="${orderMap.deliveryInfo}" />
+<c:set var="orderer" value="${orderMap.orderer}" />
 
-<script  type="text/javascript">
+<script type="text/javascript">
 function fn_modify_order_state(order_id){
 	var s_delivery_state=document.getElementById("s_delivery_state");
     var index = s_delivery_state.selectedIndex;   //선택한 옵션의 인덱스를 구합니다.
@@ -41,173 +40,130 @@ function fn_modify_order_state(order_id){
 }
 
 </script>
+<style>
+section.admin_mypage_main {
+   width:800;
+   height:800;
+   float:right;
+   margin-top : -190;
+   font-family: "맑은고딕";
+   }
+	
+#button0{ 
+background-color: #168;
+color: white;
+border-radius: 50;
+border-style: none;
+width: 90;
+height: 30;
+}
+.blueone {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.blueone td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+#button1{
+	background-color: #193a3e;
+	color: white;
+	border: none;
+	padding: 6px 6px;
+}
+</style>
+
 </head>
 <body>
+<section class="admin_mypage_main">
+<form name="frm_delivery_list">
 	<H1>1. 예매정보</H1>
-	<table class="list_view">
+	<table class="blueone">
 		<tbody align=center>
-			<tr style="background: #33ff00">
-			    <td>예매번호</td>
-				<td colspan=2 class="fixed">영화명</td>
-				<td>어른/청소년 구분</td>
-				<td>주문금액</td>
-				<td>배송비</td>
-				<td>예상적립금</td>
-				<td>주문금액합계</td>
+			<tr>
+				<td rowspan="5" class="goods_image">
+				<img width="75" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+				</td>
+				<td>예매번호</td>
+				<td>예매번호 불러올 자리</td>
 			</tr>
 			<tr>
-				<c:forEach var="item" items="${orderList }">
-				    <td> ${item.order_id }</td>
-					<td class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-					  </a>
-					</td>
-					<td>
-					  <h2>
-					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
-					  </h2>
-					</td>
-					<td>
-					  <h2>${item.order_goods_qty }개<h2>
-					</td>
-					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
-					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty }원</h2></td>
-					<td>
-					  <h2>${item.order_goods_qty *item.goods_sales_price}원</h2>
-					</td>
-			</c:forEach>
+				<td>영화명</td>
+				<td>영화명 들어갈 자리</td>
+			</tr>
+			<tr>
+				<td>상영관</td>
+				<td>상영관 들어갈 자리</td>
+			</tr>
+			<tr>
+				<td>일시</td>
+				<td>날짜+시간</td>
+			</tr>
+			<tr>
+				<td>인원</td>
+				<td>일반 :- &emsp; 청소년 : -</td>
 			</tr>
 		</tbody>
 	</table>
 	<div class="clear"></div>
-<form name="frm_delivery_list" >	
-	<br>
-	<br>
-	<h1>2.배송지 정보</h1>
-	<div class="detail_table">
+	<br><br>
+	<h1>2.결제 정보</h1>
+	<div>
+	<table class="blueone">
+		<tbody>
+			<tr>
+				<td rowspan="5">총결제금액</td>
+				<td>일반</td>
+				<td>12000*인원(최대8명?)</td>
+			</tr>
+			<tr>
+				<td >청소년</td>
+				<td>10000*인원</td>
+			</tr>
+			<tr>
+				<td>할인 포인트</td>
+				<td>사용된 포인트 출력</td>
+			</tr>
+			<tr>
+				<td>최종결제금액</td>
+				<td>일반+청소년-포인트</td>
+			</tr>
+			<tr>
+				<td>결제수단</td>
+				<td colspan="2">카드/카카오페이...</td>
+			</tr>
+			<tr>
+				<td>적립포인트</td>
+				<td colspan="2" style="text-align: center;">결제금액*0.1P</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
 	
-		<table>
-			<tbody>
-				<tr class="dot_line">
-					<td class="fixed_join">배송방법</td>
-					<td>
-					   ${deliveryInfo.delivery_method }
-				    </td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">받으실 분</td>
-					<td>
-					${deliveryInfo.receiver_name }
-					</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">휴대폰번호</td>
-					<td>
-					  ${deliveryInfo.receiver_hp1}-${deliveryInfo.receiver_hp2}-${deliveryInfo.receiver_hp3}</td>
-				  </tr>
-				<tr class="dot_line">
-					<td class="fixed_join">유선전화(선택)</td>
-					<td>
-					   ${deliveryInfo.receiver_tel1}-${deliveryInfo.receiver_tel2}-${deliveryInfo.receiver_tel3}</td>
-				</tr>
-
-
-				<tr class="dot_line">
-					<td class="fixed_join">주소</td>
-					<td>
-					   ${deliveryInfo.delivery_address}
-					</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">배송 메시지</td>
-					<td>
-					${deliveryInfo.delivery_message}
-					</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">선물 포장</td>
-					<td>
-					${deliveryInfo.gift_wrapping}
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-	</div>
-	<div >
-	  <br><br>
-	   <h2>주문고객</h2>
-		 <table >
-		   <TBODY>
-			 <tr class="dot_line">
-				<td ><h2>이름</h2></td>
-				<td>
-				 <input  type="text" value="${orderer.member_name}" size="15" disabled />
-				</td>
-			  </tr>
-			  <tr class="dot_line">
-				<td ><h2>핸드폰</h2></td>
-				<td>
-				 <input  type="text" value="${orderer.hp1}-${orderer.hp2}-${orderer.hp3}" size="15" disabled />
-				</td>
-			  </tr>
-			  <tr class="dot_line">
-				<td><h2>이메일</h2></td>
-				<td>
-				   <input  type="text" value="${orderer.email1}@${orderer.email2}" size="15" disabled />
-				</td>
-			  </tr>
-		   </tbody>
-		</table>
-	</div>
 	<div class="clear"></div>
-	<br>
-	<br>
-	<br>
-	<h1>3.결제정보</h1>
-	<div class="detail_table">
-		<table>
-			<tbody>
-				<tr class="dot_line">
-					<td class="fixed_join">결제방법</td>
-					<td>
-					   ${deliveryInfo.pay_method }
-				    </td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">결제카드</td>
-					<td>
-					   ${deliveryInfo.card_com_name}
-				    </TD>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">할부기간</td>
-					<td>
-					   ${deliveryInfo.card_pay_month }
-				    </td>
-				</tr>
-			</tbody>
-		</table>
+	<br> <br> <br>
+	<h1>3.취소여부</h1>
+	<div>
+	<table class="blueone">
+		<tbody>
+			<tr>
+				<td>취소여부</td>
+				<td>Y/N</td>
+				<td style="text-align: right;"><input type="button" value="예매취소하기" id="button0"/></td>
+			</tr>
+			<tr>
+				<td>취소날짜</td>
+				<td>---</TD>
+			</tr>
+		</tbody>
+	</table>
 	</div>
+	<div class="clear"></div><br>
+	</form>
 	<div class="clear"></div>
-	<br>
-	<br>
-	<br>
-
-</form>
-    <div class="clear"></div>
-	<br>
-	<br>
-	<br>
-		<br>
-		<br> 
-		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-		</a>
-<div class="clear"></div>		
-	
-			
-			
-			
+		<center><brtton id="button1"><a href="${contextPath}/admin/order/adminOrderMain.do">목록가기</a></brtton></center>
+	<div class="clear"></div>
+</section>
+</body>

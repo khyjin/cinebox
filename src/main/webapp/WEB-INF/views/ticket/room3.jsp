@@ -70,8 +70,8 @@ body {
 .seat {
     width: 35px;
     height: 35px;
-    margin-right: 4px;
-    margin-top: 4px;
+    margin-right: 2px;
+    margin-top: 2px;
 }
 
 button {
@@ -238,9 +238,10 @@ function selectOnChange(e) {
          }
     }
 
+  //좌석 선택 후 삭제 버튼
     $(document).ready(function() {
-        $( 'button' ).click( function() {
-             $( 'div' ).remove('#seat');
+        $( 'h3' ).click( function() {
+             $( '#seat' ).empty();
            });
         }); 
   
@@ -269,7 +270,7 @@ function selectOnChange(e) {
         }
     }
 </script>
-<form action="" method="get">
+<form action="${contextPath}/order/orderMovie.do" method="get">
 
 <table>
 <tr class="dot_line">
@@ -281,7 +282,7 @@ function selectOnChange(e) {
    <td style="font-size:15px; font-weight: bold;">${list.room_number}관</td>
 </tr>
 <tr class="dot_line">
-   <td  class="fixed_join">예매일자</td>
+   <td  class="fixed_join">상영일자</td>
     <td style="font-size:15px; font-weight: bold;"> ${list.schedule_date}</td>
 </tr>
 <tr class="dot_line">
@@ -297,7 +298,7 @@ function selectOnChange(e) {
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
-	<input type="hidden" id="seat" name="seat_number"><button id="btn">X</button></td>
+	<input type="hidden" id="seat" name="seat_number"><h3>X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>

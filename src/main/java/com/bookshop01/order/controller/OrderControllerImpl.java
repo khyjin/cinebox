@@ -73,7 +73,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		return mav;
 	}
 	// 장바구니의 모든 상품을 가져오기
-	@RequestMapping(value="/orderAllCartGoods.do" ,method = RequestMethod.POST)
+	@RequestMapping(value="/orderMovie.do" ,method = RequestMethod.POST)
 	public ModelAndView orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
 			                 HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
@@ -81,11 +81,11 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		HttpSession session=request.getSession();
 		
 		// 세션에 저장된 장바구니의 상품목록을 가져오기
-		Map cartMap=(Map)session.getAttribute("cartMap"); // cart 컨트롤러
-		List myOrderList=new ArrayList<OrderVO>();
-		
-		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
-		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
+//		Map cartMap=(Map)session.getAttribute("cartMap"); // cart 컨트롤러
+//		List myOrderList=new ArrayList<OrderVO>();
+//		
+//		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
+//		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		//장바구니 갯수만큼 반복하기
 //		for(int i=0; i<cart_goods_qty.length;i++){
 //			String[] cart_goods=cart_goods_qty[i].split(":"); // :으로 결합된 상품번호와 주문 수량 분리

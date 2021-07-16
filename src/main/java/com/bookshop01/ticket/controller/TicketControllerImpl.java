@@ -1,3 +1,4 @@
+  
 package com.bookshop01.ticket.controller;
 
 import java.io.PrintWriter;
@@ -49,8 +50,6 @@ public class TicketControllerImpl extends BaseController implements TicketContro
       return mav;
       
    }
-   
-
 
 	@Override
 	@ResponseBody

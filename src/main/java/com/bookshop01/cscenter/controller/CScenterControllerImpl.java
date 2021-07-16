@@ -178,7 +178,7 @@ public class CScenterControllerImpl implements CScenterController{
 		} catch (Exception e) {
 			message  = "<script>";
 		    message +="alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-		    message += "location.href='"+request.getContextPath()+"/cscenter/saveRental.do';";
+		    message += "location.href='"+request.getContextPath()+"/cscenter/sendRental.do';";
 		    message += "</script>";
 			e.printStackTrace();
 		}

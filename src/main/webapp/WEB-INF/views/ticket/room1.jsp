@@ -68,10 +68,10 @@ body {
 }
 
 .seat {
-    width: 26px;
-    height: 26px;
-    margin-right: 4px;
-    margin-top: 4px;
+    width: 31px;
+    height: 31px;
+    margin-right: 1px;
+    margin-top: 1px;
 }
 
 button {
@@ -91,7 +91,8 @@ button {
     color: white;
 }
 .seat-wrapper {
-	text-align:center;
+	text-align:center; 
+    font-size:small;
 }
 .pay {
 	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
@@ -103,8 +104,8 @@ button {
 function selectOnChange(e) {
 	
 	// 총 예매 인원수 표시
-	var num1 = $("#select_box1").val();
-	var num2 = $("#select_box2").val();
+	var num1 = $("#select_box1").val(); // 어른 표수 select
+	var num2 = $("#select_box2").val(); // 청소년 표수 select
 	const value = Number(num1)+Number(num2);
 	
 	// 총 결제 금액 표시
@@ -184,10 +185,10 @@ function selectOnChange(e) {
     let clicked = "";
     let div = "";
 
-    for (let seat_number1 = 1; seat_number1 <= 11; seat_number1++) {
+    for (let seat_number1 = 1; seat_number1 <= 10; seat_number1++) {
         div = document.createElement("div");
         seatWrapper.append(div);
-        for (let seat_number2 = 1; seat_number2 <= 20; seat_number2++) {
+        for (let seat_number2 = 1; seat_number2 <= 19; seat_number2++) {
             const input = document.createElement('input');
             input.type = "button";
             input.name = "seats"
@@ -237,14 +238,14 @@ function selectOnChange(e) {
             })
          }
     }
-
+    //좌석 선택 후 삭제 버튼
     $(document).ready(function() {
-        $( 'button' ).click( function() {
-             $( 'div' ).remove('#seat');
+        $( 'h3' ).click( function() {
+             $( '#seat' ).empty();
            });
         }); 
   
-
+    //좌석 폼  
     function mapping(input, seat_number1, seat_number2) {
         if (seat_number1 === 1) {
         	input.value = "A" + seat_number2;
@@ -285,7 +286,7 @@ function selectOnChange(e) {
    <td style="font-size:15px; font-weight: bold;">${list.room_number}관</td>
 </tr>
 <tr class="dot_line">
-   <td  class="fixed_join">예매일자</td>
+   <td  class="fixed_join">상영일자</td>
     <td style="font-size:15px; font-weight: bold;"> ${list.schedule_date}</td>
 </tr>
 <tr class="dot_line">
@@ -296,12 +297,11 @@ function selectOnChange(e) {
 	<td  class="fixed_join">총 결제 금액</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원
 	<input type="hidden" id="total_pay" name="pay_total_price"></td>
-	
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
-	<input type="hidden" id="seat" name="seat_number"><button id="btn">X</button></td>
+	<input type="hidden" id="seat" name="seat_number"><h3>X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>

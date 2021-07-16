@@ -36,6 +36,40 @@ color: black;
 .paging{
 	color: black;
 }
+
+
+function fn_modify_order_state(order_id,select_id){
+	var s_delivery_state=document.getElementById(select_id);
+    var index = s_delivery_state.selectedIndex;
+    var value = s_delivery_state[index].value;
+    //console.log("value: "+value );
+	 
+	$.ajax({
+		type : "post",
+		async : false,
+		url : "${contextPath}/admin/order/modifyDeliveryState.do",
+		data : {
+			order_id:order_id,
+			"delivery_state":value
+		},
+		success : function(data, textStatus) {
+			if(data.trim()=='mod_success'){
+				alert("주문 정보를 수정했습니다.");
+				location.href="${contextPath}/admin/order/adminOrderMain.do";
+			}else if(data.trim()=='failed'){
+				alert("다시 시도해 주세요.");	
+			}
+			
+		},
+		error : function(data, textStatus) {
+			alert("에러가 발생했습니다."+data);
+		},
+		complete : function(data, textStatus) {
+			//alert("작업을완료 했습니다");
+			
+		}
+	}); //end ajax		
+
 .paging1{
 	color: blue;
 	text-decoration: underline;

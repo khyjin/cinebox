@@ -12,6 +12,7 @@
 		<result property="schedule_start_time" column="schedule_start_time" />
 		<result property="schedule_date" column="schedule_date" />
 		<result property="movie_age_grade" column="movie_age_grade"/>
+		<result property="schedule_id" column="schedule_id" />
 	</resultMap>
 	<resultMap id="goodsResult" type="goodsVO">
 		<result property="movie_id" column="movie_id" />
@@ -38,13 +39,15 @@
 			movie_title,
             room_number,
             schedule_start_time,
-            schedule_date)
+            schedule_date,
+            schedule_id)
 		values(
 			(select movie_id from cinebox_movie where movie_title=#{movie_title}),
 			#{movie_title},
 			#{room_number},
 			#{schedule_start_time},
-            to_date(#{schedule_date},'yyyy-MM-dd') )
+            to_date(#{schedule_date},'yyyy-MM-dd'),
+            schedule_seq.nextval )
 		]]>
 	</insert> 
 	
@@ -88,8 +91,36 @@
 		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
 		order by room_number, schedule_start_time
 		]]>
-	</select>
+
+	</select> 
 	
+	<update id="modifySchedule" parameterType="java.util.HashMap">
+		 
+		 update cinebox_schedule 
+			   <set>
+				  <if test=" movie_title!='' and movie_title!=null">
+			         movie_title=#{movie_title},
+			         movie_id=(select movie_id from cinebox_movie where movie_title=#{movie_title}),
+			      </if>
+			      <if test=" room_number!='' and room_number!=null">
+			         room_number=#{room_number},
+			      </if>
+			      <if test=" schedule_start_time!='' and schedule_start_time!=null">			      	 
+			         schedule_start_time=#{schedule_start_time,jdbcType=VARCHAR},
+			      </if>
+			      <if test=" schedule_date!='' and schedule_date!=null">
+			         schedule_date=to_date(#{schedule_date},'yyyy-MM-dd')
+			      </if>
+			   </set>
+		where 
+		schedule_id=#{schedule_id}
+		
+	</update>
+	<delete id="deleteSchedule" parameterType="int">
+	  delete from cinebox_schedule
+	  where
+	  schedule_id=#{schedule_id}
+	</delete>
 
 
 </mapper>

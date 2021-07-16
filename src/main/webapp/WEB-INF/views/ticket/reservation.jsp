@@ -106,10 +106,20 @@ table td {
 					$("#checkedDate").html(schedule_date);
 					var send_date = "<input type='hidden' name='schedule_date' value='"+schedule_date+"'>";
 					$("#checkedDate").append(send_date);
-
+					
+					var now = new Date();
+					var year = now.getFullYear()-2000;
+					var month = ("0"+(now.getMonth()+1));
+					var date = now.getDate();
+					var hours = ('0' + now.getHours()).slice(-2); 
+					var minutes = ('0' + now.getMinutes()).slice(-2);
+					
 					for(var i=0;i<data.time.length;i++){
+					if(!((schedule_date==String(year+"/"+month+"/"+date))&&
+						((data.time[i].schedule_start_time.toString().slice(-5,-3)+data.time[i].schedule_start_time.toString().slice(-2))<(hours+minutes)))){
+						//오늘 날짜랑 같으면 현재시간 이후로 붙여라		
 			        	var tag ="<tr>"+"<td id='choiceA'>"+"<a id='checkA' href=javascript:checkTime('"+data.time[i].schedule_start_time+"','"+data.time[i].room_number+"')>"+data.time[i].room_number+"관 "+data.time[i].schedule_start_time+"</a>"+"</td>"+"</tr>";	
-			        	$("#time").append(tag);
+			        	$("#time").append(tag);}
 			        }	
 			}, error : function(data) {
 				alert("에러가 발생했습니다."+data);
@@ -183,7 +193,7 @@ table td {
 </div>
 
 <div style="width: 25%; float: left; background-color: silver;">
-<form action="${contextPath}/ticket/seat.do" method="get">
+<form action="${contextPath}/ticket/room3.do" method="get">
 <h1>예매내용</h1>
 <table id="reserTable">
 	<tbody>

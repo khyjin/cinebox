@@ -106,6 +106,14 @@ function delete_check(deleteId) {
 	}
 }
 </script>
+<style>
+.sidemenu{
+   padding: 10px 5px; 
+   font-size: 13; 
+   font-family:"맑은 고딕";
+   float: left; 
+}
+</style>
 </head>
 <body class="admin_bg">
 <section class="admin_mypage_main">

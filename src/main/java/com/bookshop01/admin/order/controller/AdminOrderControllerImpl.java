@@ -80,13 +80,14 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	}
 	
 	@Override
-	@RequestMapping(value="/orderDetail.do" ,method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView orderDetail(@RequestParam("order_id") int order_id, 
-			                      HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	@RequestMapping(value="/orderDetail.do", method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		Map orderMap =adminOrderService.orderDetail(order_id);
-		mav.addObject("orderMap", orderMap);
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menu", "admin_mode");
+//		Map orderMap =adminOrderService.orderDetail(order_id);
+//		mav.addObject("orderMap", orderMap);
 		return mav;
 	}
 

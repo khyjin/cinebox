@@ -4,14 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%@page import="java.util.Date" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>상영시간표 수정하기</title>
- <style>
-
- 
+<title>상영시간표</title>
+<style>
 body {
    background: #fff;
 }
@@ -41,7 +40,8 @@ table tr:hover td {
 </style>
 </head>
 <body>
-
+<jsp:useBean id="now2" class="java.util.Date" />
+<fmt:formatDate value="${now2}" pattern="yy/MM/dd" var="today" />
 <h1>상영시간표</h1>
 <br/>
 <table>
@@ -54,16 +54,16 @@ table tr:hover td {
 			<th>종료시간</th>
 		</tr>
 	</thead>
-		
 	<tbody>
 		<c:forEach var="list" items="${list}">
+		<c:if test="${list.schedule_date gt today}">
 		<tr>
 		 <td>${list.schedule_date}</td>
 		 <td>${list.room_number}</td>
 		 <td>${list.movie_title}</td>
 		 <td>${list.schedule_start_time}</td>
 		 <td>${list.schedule_start_time}</td>
-		</tr>
+		</tr></c:if>
 		</c:forEach>
 	</tbody>
 </table>	

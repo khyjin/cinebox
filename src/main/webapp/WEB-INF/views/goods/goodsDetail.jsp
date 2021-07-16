@@ -572,7 +572,7 @@ body, hmtl{background: #ecf0f1;}
             <tr>
                <td class="fixed">${movie.movie_title}</td><td><ul>
    
-         <li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">예매</a></li>
+         <li><a class="buy" href="${contextPath}/ticket/reservation.do">예매</a></li>
       </ul></td><tr class="dot_line">
             </tr>
             <tr>
