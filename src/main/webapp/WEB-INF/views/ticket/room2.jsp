@@ -124,8 +124,11 @@ function selectOnChange(e) {
 	document.getElementById('result').innerText = value;
 	
 	document.getElementById('total_pay').innerText = totalpay;
+	
+	var tp = totalpay;
+    $('#total_payA').val(tp);
+	
 	}
-
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -219,6 +222,9 @@ function selectOnChange(e) {
                     document.getElementById('seat').innerText += input.value+'\u00A0'; // 클릭된 좌석값 쌓이게 하기
                     
                 }
+	                var ss = selectedSeats;
+	                $('#seatA').val(ss);
+                
                 console.log(selectedSeats);
                 
                 if(input.click) {
@@ -271,7 +277,6 @@ function selectOnChange(e) {
         }
     }
 </script>
-<form action="" method="get">
 
 <table>
 <tr class="dot_line">
@@ -302,13 +307,15 @@ function selectOnChange(e) {
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원
-	<input type="hidden" id="total_pay" name="ticket_total_price" value="10000"></td>
+	<input type="hidden" id="total_payA" name="ticket_total_price">
+	</td>
 	
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
-	<input type="hidden" id="seat" name="seat_number" value="aa"><h3>X</h3></td>
+	<input type="hidden" id="seatA" name="seat_number">
+	<h3>X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>

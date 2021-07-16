@@ -29,47 +29,6 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	
 	TicketVO ticketVO = new TicketVO();
 	
-//	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
-//	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
-//			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
-//		
-//		request.setCharacterEncoding("utf-8");
-//		HttpSession session=request.getSession();
-//		session=request.getSession();
-//		
-//		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
-//		String action=(String)session.getAttribute("action");
-//		//로그인 여부 체크
-//		//이전에 로그인 상태인 경우는 주문과정 진행
-//		//로그아웃 상태인 경우 로그인 화면으로 이동
-//		if(isLogOn==null || isLogOn==false){
-//			session.setAttribute("orderInfo", _orderVO);
-//			session.setAttribute("action", "/order/orderEachGoods.do");
-//			return new ModelAndView("redirect:/member/loginForm.do");
-//		}else{
-//			 if(action!=null && action.equals("/order/orderEachGoods.do")){
-//				orderVO=(OrderVO)session.getAttribute("orderInfo");
-//				session.removeAttribute("action");
-//			 }else {
-//				 orderVO=_orderVO; //로그인이 되었다면 로그인 처리
-//			 }
-//		 }
-//		
-//		String viewName=(String)request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView(viewName);
-//		
-//		//주문 정보를 배열 처리하여 저장
-//		List myOrderList=new ArrayList<OrderVO>();
-//		myOrderList.add(orderVO);
-//		
-//		// 주문자 정보 가져오기
-//		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo"); //멤버 컨트롤러 확인
-//		
-//		// 주문자 정보와 주문 정보를 새션에 저장
-//		session.setAttribute("myOrderList", myOrderList);
-//		session.setAttribute("orderer", memberInfo);
-//		return mav;
-//	}
 	// 결제 페이지로 정보 넘기기
 	@Override
 	@RequestMapping(value="/orderMovie.do" )
@@ -78,11 +37,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		
-		String[] seat_number=request.getParameterValues("seat_number");
-		String seat_number2=seat_number[0];
-		for(int i=1;i<seat_number.length;i++) {
-			seat_number2+=","+seat_number[i];
-		}
+		String seat_number=request.getParameter("seat_number");
 		int movie_id = Integer.parseInt(request.getParameter("movie_id"));
 		String movie_title = request.getParameter("movie_title");
 		String room_number = request.getParameter("room_number");
@@ -92,7 +47,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		int ticket_adult = Integer.parseInt(request.getParameter("ticket_adult"));
 		int ticket_child = Integer.parseInt(request.getParameter("ticket_child"));
 		
-		ticketVO.setSeat_number(seat_number2);
+		ticketVO.setSeat_number(seat_number);
 		ticketVO.setMovie_id(movie_id);
 		ticketVO.setMovie_title(movie_title);
 		ticketVO.setRoom_number(room_number);
@@ -110,6 +65,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		}	
 	
 	//입력 및 결과 전송
+	@Override
 	@ResponseBody
 	@RequestMapping(value="/payToOrderGoods.do" )
 	public ModelAndView payToOrderGoods(HttpServletRequest request, HttpServletResponse response)  throws Exception{
@@ -165,12 +121,6 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	}
 		
 
-	@Override
-	public ModelAndView orderEachGoods(OrderVO _orderVO, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 
 }
