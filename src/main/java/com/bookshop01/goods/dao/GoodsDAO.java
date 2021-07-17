@@ -24,4 +24,6 @@ public interface GoodsDAO {
 	public List<GoodsVO> movielist(String movie_status) throws DataAccessException;
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
 	public void myReview(HashMap<String,String> reviewmap) throws Exception;
+	public int totalCount() throws Exception;
+	public int eachCount(String movie_id) throws Exception;
 }

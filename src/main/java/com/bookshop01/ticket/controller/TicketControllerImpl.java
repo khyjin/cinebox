@@ -87,7 +87,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 			viewName = "redirect:/ticket/room1.do";
 		} else if(room_number.equals("2")) {
 			viewName = "redirect:/ticket/room2.do";
-		} else {
+		} else if(room_number.equals("3")){
 			viewName = "redirect:/ticket/room3.do";
 		}
 		ModelAndView mav = new ModelAndView(viewName);

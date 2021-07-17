@@ -11,5 +11,6 @@ public interface OrderService {
 	public void addNewOrder(TicketVO ticketVO) throws Exception;
 	public OrderVO findMyOrder(String order_id) throws Exception;
 	
+	public TicketVO getImage(int movie_id) throws Exception;
 	
 }

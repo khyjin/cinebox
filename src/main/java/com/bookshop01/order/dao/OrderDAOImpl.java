@@ -48,5 +48,10 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectOne("mapper.order.selectOrderID");
 		
 	}
+	
+	//결제폼에 이미지 출력
+	public TicketVO selectImage(int movie_id) throws DataAccessException{
+		return sqlSession.selectOne("mapper.ticket.selectImage", movie_id);
+	}
 }
 

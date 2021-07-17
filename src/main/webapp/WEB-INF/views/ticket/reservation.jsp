@@ -49,7 +49,7 @@ table td {
 	height: 40px;
 }
 #reserTable{
-
+	background-color: silver;
 	height: 250px;
 }
 </style>
@@ -192,8 +192,8 @@ table td {
 </table>	
 </div>
 
-<div style="width: 25%; float: left; background-color: silver;">
-<form action="${contextPath}/ticket/room3.do" method="get">
+<div style="width: 25%; float: left;">
+<form action="${contextPath}/ticket/seat.do" method="get">
 <h1>예매내용</h1>
 <table id="reserTable">
 	<tbody>

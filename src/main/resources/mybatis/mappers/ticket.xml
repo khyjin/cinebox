@@ -27,6 +27,8 @@
 		<result property="ticket_phone_number3" column="ticket_phone_number3" />
 		<result property="ticket_total_price" column="ticket_total_price" />
 		<result property="ticket_used_point" column="ticket_used_point" />
+		<result property="member_id" column="member_id" />
+		<result property="image_file_name" column="image_file_name"/>		
 	</resultMap>
 	
 	<insert id="insertNewOrder" parameterType="ticketVO"  >
@@ -79,9 +81,13 @@
     	]]>
 	</insert>
 	
-	
-	
-	
-	
+	<select id="selectImage" resultMap="ticket" parameterType="int">
+	<![CDATA[ 
+	select movie_id, image_file_name from cinebox_image
+	where movie_id=#{movie_id}
+	and image_file_sort='poster'
+	]]>
+	</select>
+		
 	
 	</mapper>

@@ -35,4 +35,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.findMyOrder(order_id);
 	}
 
+	@Override
+	public TicketVO getImage(int movie_id) throws Exception {
+		
+		return orderDAO.selectImage(movie_id);
+	}
+
 }

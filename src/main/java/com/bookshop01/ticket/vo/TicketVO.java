@@ -25,6 +25,7 @@ public class TicketVO {
 	private String ticket_phone_number3;	//결제자 전화번호3
 	private int ticket_total_price;		//총결제금액
 	private int ticket_used_point;	//사용된 포인트금액(=할인금액)
+	private String image_file_name; //이미지 출력용 파일이름
 	
 	public int getMovie_id() {
 		return movie_id;
@@ -158,6 +159,12 @@ public class TicketVO {
 	}
 	public void setTicket_used_point(int ticket_used_point) {
 		this.ticket_used_point = ticket_used_point;
+	}
+	public String getImage_file_name() {
+		return image_file_name;
+	}
+	public void setImage_file_name(String image_file_name) {
+		this.image_file_name = image_file_name;
 	}
 	
 	

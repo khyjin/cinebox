@@ -102,7 +102,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ticketVO.setTicket_adult(ticket_adult);
 		ticketVO.setTicket_child(ticket_child);
 		mav.addObject("list", ticketVO);
-		
+		mav.addObject("img", orderService.getImage(movie_id));
 		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
 		session.setAttribute("orderer", memberInfo);
 		return mav;
@@ -159,7 +159,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ticketVO.setTicket_total_price(ticket_total_price);
 		ticketVO.setTicket_used_point(ticket_used_point);
 		mav.addObject("list", ticketVO);
-		
+		mav.addObject("img", orderService.getImage(movie_id));
 		orderService.addNewOrder(ticketVO);
 		return mav;
 	}

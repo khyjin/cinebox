@@ -65,6 +65,90 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	}
 	
 	@Override
+	@RequestMapping(value="/orderDetail.do", method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView orderDetail(@RequestParam("ticket_number") String ticket_number,HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+
+		mav.addObject("list", adminOrderService.selectReservation(ticket_number));
+		
+		return mav;
+	}	
+	
+	@Override
+	@RequestMapping(value="/cancelTicket.do")
+	public ResponseEntity cancelTicket(@RequestParam("ticket_number")String ticket_number, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String member_id=request.getParameter("member_id");
+		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
+		int used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
+		int saving_point = (int) (ticket_total_price*0.1);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+				
+		try {
+			adminOrderService.cancleTicket(ticket_number, member_id, saving_point, used_point);
+			message  = "<script>";
+			message +=" alert('예매가 취소되었습니다.');";
+			message += "location.href='"+request.getContextPath()+"/admin/order/orderDetail.do?ticket_number="+ticket_number+"';";
+			message += " </script>";
+						
+		} catch (Exception e) {
+			message  = "<script>";
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += "location.href='"+request.getContextPath()+"/admin/order/orderDetail.do?ticket_number="+ticket_number+"';";
+		    message += "</script>";
+			e.printStackTrace();
+		}
+		
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+	
+	
+	@Override
+	@RequestMapping(value="/modifyReservation.do", method = RequestMethod.POST)
+	public ResponseEntity modifyResevation(@ModelAttribute("ticketVO") TicketVO ticketVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		int total_price = ticketVO.getTicket_adult()*10000+ticketVO.getTicket_child()*8000-ticketVO.getTicket_used_point();
+		ticketVO.setTicket_total_price(total_price);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+		TicketVO forPoint = adminOrderService.selectReservation(ticketVO.getTicket_number());
+		
+		//기존에 적립되었던 적립금
+		int point = (int)(forPoint.getTicket_total_price()*0.1);
+		try {
+			adminOrderService.modifyReservation(ticketVO,point);
+			message  = "<script>";
+			message +=" alert('예매내역이 수정되었습니다.');";
+			message += "location.href='"+request.getContextPath()+"/admin/order/orderDetail.do?ticket_number="+ticketVO.getTicket_number()+"';";
+			message += " </script>";
+						
+		} catch (Exception e) {
+			message  = "<script>";
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += "location.href='"+request.getContextPath()+"/admin/order/orderDetail.do?ticket_number="+ticketVO.getTicket_number()+"';";
+		    message += "</script>";
+			e.printStackTrace();
+		}
+		
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+///////////////////////////////////////////////////////////////////////////	
+	@Override
 	@RequestMapping(value="/modifyDeliveryState.do" ,method={RequestMethod.POST})
 	public ResponseEntity modifyDeliveryState(@RequestParam Map<String, String> deliveryMap, 
 			                        HttpServletRequest request, HttpServletResponse response)  throws Exception {
@@ -78,49 +162,9 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		return resEntity;
 		
 	}
-	
-	@Override
-	@RequestMapping(value="/orderDetail.do", method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menu", "admin_mode");
-//		Map orderMap =adminOrderService.orderDetail(order_id);
-//		mav.addObject("orderMap", orderMap);
-		return mav;
-	}
 
-	@Override
-	@RequestMapping(value="/ticketCancel.do")
-	public ResponseEntity cancelTicket(@RequestParam("ticket_number_code")int ticket_number_code, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		String cscenter_type= request.getParameter("cscenter_type");
-		String viewName =null;
-		response.setContentType("text/html; charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
-				
-		try {
-			adminOrderService.cancleTicket(ticket_number_code);
-			message  = "<script>";
-			message +=" alert('삭제를 완료했습니다.');";
-			message += "location.href='"+request.getContextPath()+"/admin/order/adminOrderMain.do';";
-			message += " </script>";
-						
-		} catch (Exception e) {
-			message  = "<script>";
-		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-		    message += "location.href='"+request.getContextPath()+"/cscenter/noticeView.do';";
-		    message += "</script>";
-			e.printStackTrace();
-		}
-		
-		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEntity;
-	}
+
+	
+
 	
 }

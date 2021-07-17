@@ -15,9 +15,10 @@ import com.bookshop01.ticket.vo.TicketVO;
 
 public interface AdminOrderService {
 	public List<TicketVO> listNewOrder(SearchCriteria scri) throws Exception;
-	public void  modifyDeliveryState(Map deliveryMap) throws Exception;
-	public Map orderDetail(int order_id) throws Exception;
+	public TicketVO selectReservation(String ticket_number) throws Exception;
 	
+	public void  modifyDeliveryState(Map deliveryMap) throws Exception;	
 	public int listCount(SearchCriteria scri) throws Exception;
-	public void cancleTicket(int ticket_number_code) throws Exception;
+	public void cancleTicket(String ticket_number, String member_id, int saving_point, int used_point) throws Exception;
+	public void modifyReservation(TicketVO ticketVO, int point) throws Exception;
 }

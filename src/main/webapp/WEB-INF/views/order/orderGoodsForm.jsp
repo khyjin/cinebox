@@ -271,7 +271,7 @@ function fn_process_pay_order(){
       <tbody align=center>
      	 <tr>
     	 <td class="goods_image">
-             <img width="75" alt=""  src="${contextPath}/thumbnails.do?movie_id=${list.movie_id}&fileName=${item.movie_fileName}">
+             <img width="75" alt=""  src="${contextPath}/thumbnails.do?movie_id=${img.movie_id}&image_file_name=${img.image_file_name}">
              <input type="hidden" id="movie_id" name="movie_id" value="${list.movie_id}" />
               <input type="hidden" id="member_id" name="member_id" value="${list.member_id}" />${list.member_id}
 		</td>
