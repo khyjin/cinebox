@@ -59,25 +59,25 @@
 										#{movie_id},
 										#{movie_title},
 										TICKET_seq.nextval,
-										#{ticket_adult},
-										#{ticket_child},
+										#{ticket_adult,jdbcType=INTEGER},
+										#{ticket_child,jdbcType=INTEGER},
 										#{ticket_start_time},
-										#{ticket_start_time},
+										#{ticket_end_time},
 										#{ticket_movie_day},
 										#{room_number,jdbcType=VARCHAR},
 										#{seat_number,jdbcType=VARCHAR},
 										#{member_id,jdbcType=VARCHAR},
-										to_char(sysdate,'YYYY-MM-DD'),
 										'N',
-										#{ticket_card_company},
-										#{ticket_card_month},
+										'N',
+										#{ticket_card_company,jdbcType=VARCHAR},
+										#{ticket_card_month,jdbcType=INTEGER},
 										#{ticket_pay_method},
 										sysdate,
 										#{ticket_phone_number1,jdbcType=VARCHAR},
 										#{ticket_phone_number2,jdbcType=VARCHAR},
 										#{ticket_phone_number3,jdbcType=VARCHAR},
 										#{ticket_total_price},
-										#{ticket_used_point,jdbcType=VARCHAR})
+										#{ticket_used_point})
     	]]>
 	</insert>
 	

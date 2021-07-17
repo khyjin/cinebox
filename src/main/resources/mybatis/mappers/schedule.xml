@@ -13,6 +13,7 @@
 		<result property="schedule_date" column="schedule_date" />
 		<result property="movie_age_grade" column="movie_age_grade"/>
 		<result property="schedule_id" column="schedule_id" />
+		<result property="schedule_end_time" column="schedule_end_time" />
 	</resultMap>
 	<resultMap id="goodsResult" type="goodsVO">
 		<result property="movie_id" column="movie_id" />
@@ -21,6 +22,7 @@
 		<result property="movie_director" column="movie_director" />
 		<result property="movie_actor" column="movie_actor" />
 	
+		<result property="movie_age_grade" column="movie_age_grade"/>
 		<result property="movie_sort" column="movie_sort" />
 		<result property="movie_runningtime" column="movie_runningtime" />
 		<result property="movie_content" column="movie_content" />
@@ -40,14 +42,19 @@
             room_number,
             schedule_start_time,
             schedule_date,
-            schedule_id)
+            schedule_id,
+            schedule_end_time)
 		values(
 			(select movie_id from cinebox_movie where movie_title=#{movie_title}),
 			#{movie_title},
 			#{room_number},
 			#{schedule_start_time},
             to_date(#{schedule_date},'yyyy-MM-dd'),
-            schedule_seq.nextval )
+            schedule_seq.nextval,
+          	to_char( substr(#{schedule_start_time},1,2) +(select to_char(trunc(movie_runningtime/60)) from cinebox_movie where movie_title=#{movie_title}) )
+            || ':' ||
+          	to_char( substr(#{schedule_start_time},-2) +(select to_char(mod(movie_runningtime,60)) from cinebox_movie where movie_title=#{movie_title}) )
+          )
 		]]>
 	</insert> 
 	
@@ -59,7 +66,7 @@
    
 <select id="selectSchedule" resultType="scheduleVO"   >
         <![CDATA[
-        select * from cinebox_schedule
+        select * from cinebox_schedule order by schedule_date desc
 	    ]]>
 	</select>
 	
@@ -87,9 +94,8 @@
 	
 	<select id="selectTime" resultMap="scheduleResult" parameterType="java.util.Map">
 		<![CDATA[
-		select schedule_start_time,room_number from cinebox_schedule
+		select schedule_start_time,room_number,schedule_end_time from cinebox_schedule
 		where movie_id=#{movie_id} and schedule_date=#{schedule_date}
-		order by room_number, schedule_start_time
 		]]>
 
 	</select> 

@@ -26,8 +26,8 @@ function fn_plus(attribute, plusMinus){
 	
 	if(attribute=='adult'&&plusMinus=='plus'){
 		var modiCount = parseInt(adult_count)+1;
-		var modi_price = parseInt(modiCount)*10000;
-		newTotalPrice = parseInt(total_price)+10000;
+		var modi_price = parseInt(modiCount)*12000;
+		newTotalPrice = parseInt(total_price)+12000;
 		if(modiCount>8){
 			alert("8매까지만 예매가 가능합니다.");
 			return false;
@@ -41,8 +41,8 @@ function fn_plus(attribute, plusMinus){
 		
 	} else if(attribute=='child'&&plusMinus=='plus'){
 		var modiCount2 = parseInt(child_count)+1;
-		var modi_price2 = parseInt(modiCount2)*8000;
-		newTotalPrice = parseInt(total_price)+8000;
+		var modi_price2 = parseInt(modiCount2)*10000;
+		newTotalPrice = parseInt(total_price)+10000;
 		if(modiCount2>8){
 			alert("8매까지만 예매가 가능합니다.");
 			return false;
@@ -55,8 +55,8 @@ function fn_plus(attribute, plusMinus){
 		}
 	} else if(attribute=='adult'&&plusMinus=='minus'){
 		var modiCount = parseInt(adult_count)-1;
-		var modi_price = parseInt(modiCount)*10000;
-		newTotalPrice = parseInt(total_price)-10000;
+		var modi_price = parseInt(modiCount)*12000;
+		newTotalPrice = parseInt(total_price)-12000;
 		if(modiCount<0){
 			return false;
 		}else{
@@ -68,8 +68,8 @@ function fn_plus(attribute, plusMinus){
 		}
 	} else if(attribute=='child'&&plusMinus=='minus'){
 		var modiCount2 = parseInt(child_count)-1;
-		var modi_price2 = parseInt(modiCount2)*8000;
-		newTotalPrice = parseInt(total_price)-8000;
+		var modi_price2 = parseInt(modiCount2)*10000;
+		newTotalPrice = parseInt(total_price)-10000;
 		if(modiCount2<0){
 			return false;
 		}else{
@@ -174,7 +174,7 @@ height: 30;
 				<tr>
 					<td rowspan="5">총결제금액</td>
 					<td>일반</td>
-					<td id="adult_price"><c:set value="${list.ticket_adult*10000 }" var="price"/>
+					<td id="adult_price"><c:set value="${list.ticket_adult*12000 }" var="price"/>
 						<fmt:formatNumber value="${price}" pattern="#,###"/>
 					</td>
 					<td><a href="javascript:fn_plus('adult','minus')"><img src="${contextPath}/resources/image/minusIcon.png" width="20" height="20"></a>
@@ -186,7 +186,7 @@ height: 30;
 				</tr>
 				<tr>
 					<td >청소년</td>
-					<td id="child_price"><c:set value="${list.ticket_child*8000 }" var="priceChild"/>
+					<td id="child_price"><c:set value="${list.ticket_child*10000 }" var="priceChild"/>
 						<fmt:formatNumber value="${priceChild}" pattern="#,###"/></td>
 					<td><a href="javascript:fn_plus('child','minus')"><img src="${contextPath}/resources/image/minusIcon.png" width="20" height="20"></a>
 						<span id="count_ch">${list.ticket_child}
