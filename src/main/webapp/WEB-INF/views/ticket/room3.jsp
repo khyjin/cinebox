@@ -236,11 +236,13 @@ function selectOnChange(e) {
             	
             	if(selectedSeats.length==1&&value==0) {
                 	alert("인원 체크 후 좌석 선택 가능합니다.");
+                	selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
+                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
                     return;
                 }
             	else if(selectedSeats.length>value) {
                     alert("이미 좌석을 모두 선택하셨습니다.");
-                    selectedSeats.pop();
+                    selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0';
                     console.log(selectedSeats);
                     console.log(input.value);
@@ -321,7 +323,7 @@ function selectOnChange(e) {
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
 	<input type="hidden" id="seatA" name="seat_number">
-	<h3>X</h3></td>
+	<h3 style="float:right; color:black;">X</h3></td>
 </tr>
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
