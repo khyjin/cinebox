@@ -60,7 +60,7 @@
 										#{ticket_adult},
 										#{ticket_child},
 										#{ticket_start_time},
-										#{ticket_start_time},
+										#{ticket_end_time},
 										#{ticket_movie_day},
 										#{room_number,jdbcType=VARCHAR},
 										#{seat_number,jdbcType=VARCHAR},

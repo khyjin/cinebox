@@ -306,8 +306,9 @@ function selectOnChange(e) {
 </tr>
 <tr class="dot_line">
    <td  class="fixed_join">상영시간</td>
-   <td style="font-size:15px; font-weight: bold;">${list.schedule_start_time}~이후 추가예정
+   <td style="font-size:15px; font-weight: bold;">${list.schedule_start_time} ~ ${list.schedule_end_time}
    <input type="hidden" value="${list.schedule_start_time}" name="ticket_start_time">
+   <input type="hidden" value="${list.schedule_end_time}" name="ticket_end_time">
    </td>
 </tr>
 <tr class="dot_line">

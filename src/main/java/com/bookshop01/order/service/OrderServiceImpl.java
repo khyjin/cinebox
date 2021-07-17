@@ -35,4 +35,11 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.findMyOrder(order_id);
 	}
 
+
+	@Override
+	public void modifyPoint(Map<String, Object> pointMap) {
+		orderDAO.modifyPoint(pointMap);
+		
+	}
+
 }

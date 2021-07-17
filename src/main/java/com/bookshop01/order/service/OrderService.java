@@ -10,6 +10,7 @@ public interface OrderService {
 	public List<OrderVO> listMyOrderGoods(OrderVO orderVO) throws Exception;
 	public void addNewOrder(TicketVO ticketVO) throws Exception;
 	public OrderVO findMyOrder(String order_id) throws Exception;
+	public void modifyPoint(Map<String, Object> pointMap) throws Exception;
 	
 	
 }

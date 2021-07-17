@@ -1,5 +1,8 @@
 package com.bookshop01.order.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,6 +49,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
 		int ticket_adult = Integer.parseInt(request.getParameter("ticket_adult"));
 		int ticket_child = Integer.parseInt(request.getParameter("ticket_child"));
+		String ticket_end_time = request.getParameter("ticket_end_time");
 		
 		ticketVO.setSeat_number(seat_number);
 		ticketVO.setMovie_id(movie_id);
@@ -56,6 +60,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ticketVO.setTicket_total_price(ticket_total_price);
 		ticketVO.setTicket_adult(ticket_adult);
 		ticketVO.setTicket_child(ticket_child);
+		ticketVO.setTicket_end_time(ticket_end_time);
 		mav.addObject("list", ticketVO);
 		
 		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
@@ -95,8 +100,15 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		String ticket_phone_number3 = request.getParameter("ticket_phone_number3");
 		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
 		int ticket_used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
-		String memeber_id = request.getParameter("memeber_id");
-	
+		String ticket_end_time = request.getParameter("ticket_end_time");
+		
+		Map<String,Object> pointMap = new HashMap<String,Object>();
+		if(ticket_used_point>0 && ticket_used_point<=memberInfo.getMember_point()) {
+			pointMap.put("ticket_used_point",ticket_used_point);
+			pointMap.put("member_id",memberInfo.getMember_id());
+			orderService.modifyPoint(pointMap);
+		}
+		
 		ticketVO.setMember_id(memberInfo.getMember_id());
 		ticketVO.setMovie_id(movie_id);
 		ticketVO.setMovie_title(movie_title);
@@ -114,6 +126,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ticketVO.setTicket_phone_number3(ticket_phone_number3);
 		ticketVO.setTicket_total_price(ticket_total_price);
 		ticketVO.setTicket_used_point(ticket_used_point);
+		ticketVO.setTicket_end_time(ticket_end_time);
 		mav.addObject("list", ticketVO);
 		
 		orderService.addNewOrder(ticketVO);
