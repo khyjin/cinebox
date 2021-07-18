@@ -236,7 +236,7 @@ function selectOnChange(e) {
             	var count = 0;
             	
             	if(selectedSeats.length==1&&value==0) {
-                	alert("인원 체크 후 좌석 선택 가능합니다.");
+                	alert("인원 체크 후 좌석 선택 가능합니다.");                	
                     return;
                 }
             	else if(selectedSeats.length>value) {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class TicketVO {
 	private int movie_id; //영화번호
 	private String movie_title;
-	private String ticket_number; //예매 일련번호
+	private int ticket_number; //예매 일련번호
 	private int ticket_adult; //성인 일반
 	private int ticket_child; //청소년 일반
 	private String ticket_start_time; //상영시작시간
@@ -39,10 +39,10 @@ public class TicketVO {
 	public void setMovie_title(String movie_title) {
 		this.movie_title = movie_title;
 	}
-	public String getTicket_number() {
+	public int getTicket_number() {
 		return ticket_number;
 	}
-	public void setTicket_number(String ticket_number) {
+	public void setTicket_number(int ticket_number) {
 		this.ticket_number = ticket_number;
 	}
 	public int getTicket_adult() {

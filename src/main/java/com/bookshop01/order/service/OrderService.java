@@ -13,5 +13,6 @@ public interface OrderService {
 	public void modifyPoint(Map<String, Object> pointMap) throws Exception;
 	
 	public TicketVO getImage(int movie_id) throws Exception;
+	public TicketVO searchSeatNumber(String seat_number) throws Exception;
 	
 }

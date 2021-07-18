@@ -1,6 +1,7 @@
 package com.bookshop01.order.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -101,13 +102,23 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
 		int ticket_used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
 		String ticket_end_time = request.getParameter("ticket_end_time");
+		String plus_point = request.getParameter("plus_point");
 		
-		Map<String,Object> pointMap = new HashMap<String,Object>();
-		if(ticket_used_point>0 && ticket_used_point<=memberInfo.getMember_point()) {
-			pointMap.put("ticket_used_point",ticket_used_point);
-			pointMap.put("member_id",memberInfo.getMember_id());
-			orderService.modifyPoint(pointMap);
+		//1) 잘라서 배열이 넣기 배열 돌면서 검색하기
+		//2) if 비교해서 있다면? redirect 
+		String[] seatList = seat_number.split(",");
+		for(int i=0;i<seatList.length;i++) {
+			TicketVO result = orderService.searchSeatNumber(seatList[i]);
+			if(result != null){	        	         	 
+				mav.setViewName("redirect:/order/failedOrder.do");
+         }
 		}
+
+		Map<String,Object> pointMap = new HashMap<String,Object>();
+		pointMap.put("ticket_used_point",ticket_used_point);
+		pointMap.put("plus_point",plus_point);
+		pointMap.put("member_id",memberInfo.getMember_id());
+		orderService.modifyPoint(pointMap);
 		
 		ticketVO.setMember_id(memberInfo.getMember_id());
 		ticketVO.setMovie_id(movie_id);
@@ -132,8 +143,13 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		orderService.addNewOrder(ticketVO);
 		return mav;
 	}
-		
-
+	//결제 실패 페이지로 가기	
+	@RequestMapping(value= "/failedOrder.do" )
+	public ModelAndView loadingview(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav=new ModelAndView(viewName);
+		return mav;
+	}
 	
 
 }

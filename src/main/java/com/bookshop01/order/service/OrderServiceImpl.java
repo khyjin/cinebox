@@ -48,4 +48,10 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+	@Override
+	public TicketVO searchSeatNumber(String seat_number) throws Exception {
+		return orderDAO.searchSeatNumber(seat_number);
+		 
+	}
+
 }
