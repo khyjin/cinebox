@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.admin.goods.service.AdminGoodsService;
@@ -37,6 +38,7 @@ import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.controller.MyPageController;
 import com.bookshop01.mypage.service.MyPageService;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.vo.TicketVO;
 
 @Controller("adminOrderController")
@@ -66,7 +68,7 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	
 	@Override
 	@RequestMapping(value="/orderDetail.do", method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView orderDetail(@RequestParam("ticket_number") String ticket_number,HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public ModelAndView orderDetail(@RequestParam("ticket_number") int ticket_number,HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 
@@ -77,7 +79,7 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	
 	@Override
 	@RequestMapping(value="/cancelTicket.do")
-	public ResponseEntity cancelTicket(@RequestParam("ticket_number")String ticket_number, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity cancelTicket(@RequestParam("ticket_number") int ticket_number, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String member_id=request.getParameter("member_id");
 		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
@@ -147,21 +149,7 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
-///////////////////////////////////////////////////////////////////////////	
-	@Override
-	@RequestMapping(value="/modifyDeliveryState.do" ,method={RequestMethod.POST})
-	public ResponseEntity modifyDeliveryState(@RequestParam Map<String, String> deliveryMap, 
-			                        HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		adminOrderService.modifyDeliveryState(deliveryMap);
-		
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		message  = "mod_success";
-		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEntity;
-		
-	}
+
 
 
 	
