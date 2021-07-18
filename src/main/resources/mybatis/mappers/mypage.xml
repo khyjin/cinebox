@@ -41,31 +41,46 @@
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap> 
 	
+	<resultMap id="ticket" type="ticketVO">
+      <result property="movie_id" column="movie_id" />
+      <result property="movie_title" column="movie_title" />
+      <result property="ticket_number" column="ticket_number" />
+      <result property="ticket_adult" column="ticket_adult" />
+      <result property="ticket_child" column="ticket_child" />
+      <result property="ticket_start_time" column="ticket_start_time" />
+      <result property="ticket_end_time" column="ticket_end_time" />
+      <result property="ticket_movie_day" column="ticket_movie_day" />
+      <result property="room_number" column="room_number" />
+      <result property="seat_number" column="seat_number" />
+      <result property="ticket_cancle_date" column="ticket_cancle_date" />
+      <result property="ticket_cancle_yn" column="ticket_cancle_yn" />
+      <result property="ticket_card_company" column="ticket_card_company" />
+      <result property="ticket_card_month" column="ticket_card_month" />
+      <result property="ticket_pay_method" column="ticket_pay_method" />
+      <result property="ticket_payment_date" column="ticket_payment_date" />
+      <result property="ticket_phone_number1" column="ticket_phone_number1" />
+      <result property="ticket_phone_number2" column="ticket_phone_number2" />
+      <result property="ticket_phone_number3" column="ticket_phone_number3" />
+      <result property="ticket_total_price" column="ticket_total_price" />
+      <result property="ticket_used_point" column="ticket_used_point" />
+   </resultMap>
 	
 	
-	 <select id="selectMyOrderGoodsList" resultMap="orderGoodsResult"  parameterType="String"  >
-	    <![CDATA[
-			select * from t_shopping_order
-            where member_id=#{member_id}
-            order by pay_order_time desc
-		]]>
-	</select>
+	
+	 <select id="selectMyOrderGoodsList" resultMap="ticket"  parameterType="String"  >
+       <![CDATA[
+         select * from cinebox_ticket
+            where member_id=#{member_id} and ticket_cancle_yn='N'
+      ]]>
+     </select>
 	
 
-	<select id="selectMyOrderInfo" resultMap="orderGoodsResult"   parameterType="String"  >
+	<select id="selectMyOrderInfo" resultMap="ticket"   parameterType="Integer"  >
 	    <![CDATA[
-		    select * from t_shopping_order
-            where order_id=#{order_id}
+		    select * from cinebox_ticket
+            where ticket_number=#{ticket_number}
     	]]>
-	</select>
-		<select id="selectMyOrderHistoryList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
-	    <![CDATA[
-		  select * from t_shopping_order
-          where member_id=#{member_id}
-          and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
-          order by pay_order_time desc
-    	]]>
-	</select>	
+	</select>		
 	
 	<update id="updateMyInfo" parameterType="java.util.HashMap">
 	   update cinebox_member
@@ -133,15 +148,21 @@
     	]]>
 	</select>	
 	
-	<update id="updateMyOrderCancel" parameterType="String">
-	   update t_shopping_order
-	 	  set delivery_state='cancel_order'
-	   where order_id=#{order_id}
+	<update id="updateMyOrderCancel" parameterType="Integer">
+	   update cinebox_ticket
+	 	  set ticket_cancle_yn='Y',ticket_cancle_date=to_char(sysdate,'YYYY-MM-DD')
+	   where ticket_number=#{ticket_number}
 	</update>
 		
 	<select id="myPoint" resultType="memberVO" parameterType="String">
 		select * from cinebox_member where member_id = #{member_id}
 	</select>
+		
+	<update id="updateMyPoint" parameterType="memberVO">
+		update cinebox_member 
+		set member_point = #{member_point}
+		where member_id = #{member_id}
+	</update>
 	
 	<update id="memberDelete" parameterType="String">
 	  <![CDATA[

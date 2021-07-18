@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class TicketVO {
 	private int movie_id; //영화번호
-	private String movie_title;
-	private String ticket_number; //예매 일련번호
+	private String movie_title;//영화제목
+	private int ticket_number; //예매 일련번호
 	private int ticket_adult; //성인 일반
 	private int ticket_child; //청소년 일반
 	private String ticket_start_time; //상영시작시간
@@ -19,7 +19,7 @@ public class TicketVO {
 	private String ticket_card_company;	//결제카드회사
 	private String ticket_card_month;	//할부개월수
 	private String ticket_pay_method;	//결제수단
-	private Date ticket_payment_date;	//결제날짜
+	private String ticket_payment_date;	//결제날짜
 	private String ticket_phone_number1;	//결제자 전화번호1
 	private String ticket_phone_number2;	//결제자 전화번호2
 	private String ticket_phone_number3;	//결제자 전화번호3
@@ -38,10 +38,10 @@ public class TicketVO {
 	public void setMovie_title(String movie_title) {
 		this.movie_title = movie_title;
 	}
-	public String getTicket_number() {
+	public int getTicket_number() {
 		return ticket_number;
 	}
-	public void setTicket_number(String ticket_number) {
+	public void setTicket_number(int ticket_number) {
 		this.ticket_number = ticket_number;
 	}
 	public int getTicket_adult() {
@@ -123,10 +123,10 @@ public class TicketVO {
 		this.ticket_pay_method = ticket_pay_method;
 	}
 
-	public Date getTicket_payment_date() {
+	public String getTicket_payment_date() {
 		return ticket_payment_date;
 	}
-	public void setTicket_payment_date(Date ticket_payment_date) {
+	public void setTicket_payment_date(String ticket_payment_date) {
 		this.ticket_payment_date = ticket_payment_date;
 	}
 	public String getTicket_phone_number1() {

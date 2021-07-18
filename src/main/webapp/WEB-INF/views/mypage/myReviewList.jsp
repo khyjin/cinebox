@@ -7,6 +7,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -57,7 +58,7 @@
                <span>${item.review_reg_date} </span>
              </td>
            <td> <!-- 5.삭제 -->  
-               <button onclick="delete_review()">삭제</button>                 
+               <button onclick="delete_review()">삭제</button>                
          </tr>
       </c:forEach>
      </c:otherwise> 
