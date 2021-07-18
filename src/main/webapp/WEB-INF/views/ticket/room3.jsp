@@ -96,7 +96,6 @@ button {
 .pay {
 	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
 }
-
 </style>
 <script type="text/javascript">
 
@@ -128,7 +127,6 @@ function selectOnChange(e) {
 	var tp = totalpay;
     $('#total_payA').val(tp);
 	}
-
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -219,7 +217,6 @@ function selectOnChange(e) {
                     clicked.forEach((data) => {
                         selectedSeats.push(data.value);
                     })
-
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0'; // 클릭된 좌석값 쌓이게 하기
                     
                 }
@@ -248,7 +245,7 @@ function selectOnChange(e) {
                     console.log(input.value);
                     return;
                 }
-                
+            	
             })
          }
     }
@@ -258,7 +255,7 @@ function selectOnChange(e) {
         $( 'h3' ).click( function() {
              $( '#seat' ).empty();
            });
-        }); 
+    });
   
 
     function mapping(input, seat_number1, seat_number2) {
@@ -322,8 +319,14 @@ function selectOnChange(e) {
 	<td  class="fixed_join">선택 좌석</td>
 	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="seat" style="display:inline;"></div>
 	<input type="hidden" id="seatA" name="seat_number">
-	<h3 style="float:right; color:black;">X</h3></td>
+	<h3 style="float:right; color:black;" >X</h3></td>
 </tr>
+<!-- 같은 시간에 예매된 좌석 값
+	<div id="seatnum">
+	<c:forEach var='seat' items='${seatt}' >
+		${seat.seat_number}
+	</c:forEach>
+	</div> -->
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
 </form>

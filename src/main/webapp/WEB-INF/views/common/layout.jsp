@@ -38,7 +38,7 @@
 	$(function() {
 		$("#sticky").stickySidebar({
 			timer :1,
-			easing : "easeInBounce"
+			easing : "linear"
 		});
 	});
 	

@@ -126,7 +126,6 @@ function selectOnChange(e) {
 	
 	var tp = totalpay;
     $('#total_payA').val(tp);
-	
 	}
 </script>
 <meta charset="UTF-8">
@@ -234,11 +233,13 @@ function selectOnChange(e) {
             	
             	if(selectedSeats.length==1&&value==0) {
                 	alert("인원 체크 후 좌석 선택 가능합니다.");
+                	selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
+                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
                     return;
                 }
             	else if(selectedSeats.length>value) {
                     alert("이미 좌석을 모두 선택하셨습니다.");
-                    selectedSeats.pop();
+                    selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0';
                     console.log(selectedSeats);
                     console.log(input.value);

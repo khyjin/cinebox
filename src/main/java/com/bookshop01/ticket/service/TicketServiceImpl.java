@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.dao.TicketDAO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Service("ticketService") // 서비스에는 service,transactional
 @Transactional(propagation=Propagation.REQUIRED)
@@ -41,6 +44,9 @@ public class TicketServiceImpl implements TicketService {
 		public List<ScheduleVO> listMovieTitme(HashMap<String, Object> map) throws Exception {
 			//예매폼에 영화시간 출력
 			return ticketDAO.selectTime(map);
+		}
+		public List<TicketVO> seatReservation(TicketVO ticketVO)  throws Exception {
+			return ticketDAO.seatReservation(ticketVO);
 		}
 		
 }

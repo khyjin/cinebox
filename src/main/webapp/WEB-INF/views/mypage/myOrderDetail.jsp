@@ -20,14 +20,14 @@
 </script>
 </c:if>
 <script>
-function fn_cancel_order(order_id){
+function fn_cancel_order(ticket_number){
 	var answer=confirm("예매를 취소하시겠습니까?");
 	if(answer==true){
 		var formObj=document.createElement("form");
 		var i_order_id = document.createElement("input"); 
 	    
-	    i_order_id.name="order_id";
-	    i_order_id.value=order_id;
+	    i_order_id.name="ticket_number";
+	    i_order_id.value=ticket_number;
 		
 	    formObj.appendChild(i_order_id);
 	    document.body.appendChild(formObj); 
@@ -45,7 +45,7 @@ function fn_cancel_order(order_id){
 		<tbody align=center>			
 			<tr> 
 				 <td style="background: #e8e8e8">결제일 </td>
-				 <td> ${item.ticket_reservation_day}</td> 
+				 <td> ${myOrderList.ticket_payment_date}</td> 
 			</tr>
 			
 			<tr>
@@ -56,17 +56,17 @@ function fn_cancel_order(order_id){
 			
 			<tr>
 				 <td style="background: #e8e8e8">예매번호</td> 
-				 <td>${item.ticket_number }개</td>				 
+				 <td>${myOrderList.ticket_number }개</td>				 
 			</tr>
 			
 			<tr>
 				 <td style="background: #e8e8e8">관람일</td> 
-				 <td>${item.ticket_movie_day }개</td>				 
+				 <td>${myOrderList.ticket_movie_day }개</td>				 
 			</tr>
 				 				 
 			<tr>
 				 <td style="background: #e8e8e8">관람 인원</td> 
-				 <td>${item.ticket_adult/child }개 <!-- foreach써서 성일/청소년 구분 --></td>				 
+				 <td>${myOrderList.ticket_adult}개 ${myOrderList.ticket_child }개 <!-- foreach써서 성일/청소년 구분 --></td>				 
 			</tr>
 			
 			<!-- <tr>
@@ -78,17 +78,17 @@ function fn_cancel_order(order_id){
 			
 			<tr>
 				 <td style="background: #e8e8e8">상영관</td>
-				 <td>${item.room_number}관</td>
+				 <td>${myOrderList.room_number}관</td>
 			</tr>
 			
 			<tr>
 				 <td style="background: #e8e8e8">좌석</td>
-				 <td>${item.seat_number1 }열 ${item.seat_number2 } <!-- foreach써서 좌석 여러개 표시 --></td>
+				 <td>${myOrderList.seat_number } <!-- foreach써서 좌석 여러개 표시 --></td>
 			</tr>
 			
 			<tr>
 				 <td style="background: #e8e8e8">주문금액합계</td>
-				 <td>${item.pay_total_price}원</td>
+				 <td>${myOrderList.pay_total_price}원</td>
 			</tr>
 	</tbody>
 </table>

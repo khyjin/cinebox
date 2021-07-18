@@ -15,19 +15,20 @@ import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Repository("myPageDAO")
 public class MyPageDAOImpl implements MyPageDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException{
-		List<OrderVO> orderGoodsList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList",member_id);
+	public List<TicketVO> selectMyOrderGoodsList(String member_id) throws DataAccessException{
+		List<TicketVO> orderGoodsList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList",member_id);
 		return orderGoodsList;
 	}
 	
-	public List selectMyOrderInfo(String order_id) throws DataAccessException{
-		List myOrderList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderInfo",order_id);
+	public TicketVO selectMyOrderInfo(String ticket_number) throws DataAccessException{
+		TicketVO myOrderList=sqlSession.selectOne("mapper.mypage.selectMyOrderInfo",ticket_number);
 		return myOrderList;
 	}	
 

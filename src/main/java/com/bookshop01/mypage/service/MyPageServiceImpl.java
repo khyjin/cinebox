@@ -17,6 +17,7 @@ import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.dao.MyPageDAO;
 import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Service("myPageService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -24,12 +25,12 @@ public class MyPageServiceImpl  implements MyPageService{
 	@Autowired
 	private MyPageDAO myPageDAO;
 
-	public List<OrderVO> listMyOrderGoods(String member_id) throws Exception{
+	public List<TicketVO> listMyOrderGoods(String member_id) throws Exception{
 		return myPageDAO.selectMyOrderGoodsList(member_id);
 	}
 	
-	public List findMyOrderInfo(String order_id) throws Exception{
-		return myPageDAO.selectMyOrderInfo(order_id);
+	public TicketVO findMyOrderInfo(String ticket_number) throws Exception{
+		return myPageDAO.selectMyOrderInfo(ticket_number);
 	}
 	
 	public List<OrderVO> listMyOrderHistory(Map dateMap) throws Exception{

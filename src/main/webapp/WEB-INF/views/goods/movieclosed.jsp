@@ -37,7 +37,7 @@
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
 			</a>
 
-				<img width="171" height="204" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
+				<img width="171" height="214" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
 			<div class="title">${item.movie_title }</div>
 			<div class="score">평점 0.0</div>
@@ -49,5 +49,7 @@
      </c:if>
   </c:forEach>
 </div>
+<br><br>
+<img width="980" height="160" src="${contextPath}/resources/image/cine_event4.png">
 </body>
 </html>

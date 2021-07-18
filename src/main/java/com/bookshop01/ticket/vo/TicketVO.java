@@ -19,7 +19,7 @@ public class TicketVO {
 	private String ticket_card_company;	//결제카드회사
 	private String ticket_card_month;	//할부개월수
 	private String ticket_pay_method;	//결제수단
-	private Date ticket_payment_date;	//결제날짜
+	private String ticket_payment_date;	//결제날짜
 	private String ticket_phone_number1;	//결제자 전화번호1
 	private String ticket_phone_number2;	//결제자 전화번호2
 	private String ticket_phone_number3;	//결제자 전화번호3
@@ -122,15 +122,15 @@ public class TicketVO {
 	public void setTicket_pay_method(String ticket_pay_method) {
 		this.ticket_pay_method = ticket_pay_method;
 	}
-
-	public Date getTicket_payment_date() {
-		return ticket_payment_date;
-	}
-	public void setTicket_payment_date(Date ticket_payment_date) {
-		this.ticket_payment_date = ticket_payment_date;
-	}
+	
 	public String getTicket_phone_number1() {
 		return ticket_phone_number1;
+	}
+	public String getTicket_payment_date() {
+		return ticket_payment_date;
+	}
+	public void setTicket_payment_date(String ticket_payment_date) {
+		this.ticket_payment_date = ticket_payment_date;
 	}
 	public void setTicket_phone_number1(String ticket_phone_number1) {
 		this.ticket_phone_number1 = ticket_phone_number1;

@@ -28,7 +28,7 @@ table th {
 }
 table td {
    padding: 15px;
-   text-align: center;
+   
 }
 #checkA{
 	color: black;
@@ -155,7 +155,7 @@ table td {
 	<tbody>
 		<c:forEach var="list" items="${list}">
 		<tr>
-		 <td id="choiceA"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">
+		 <td id="choiceA" style="text-align: center;"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">
 		 	<c:choose>
 		 		<c:when test="${list.movie_age_grade=='전체관람가'}">
 		 			<img src="${contextPath}/resources/image/allage.png" width="20" height="20">
@@ -180,14 +180,14 @@ table td {
 <div style="width: 20%; float: left; overflow:auto;">
 <h1>날짜</h1>
 <table>
-	<tbody id="date">
+	<tbody id="date"  style="text-align: center;">
 	</tbody>
 </table>	
 </div>
 <div style="width: 25%; float: left;">
 <h1>시간</h1>
 <table>
-	<tbody id="time">	
+	<tbody id="time"  style="text-align: center;">	
 	</tbody>
 </table>	
 </div>
@@ -196,7 +196,7 @@ table td {
 <form action="${contextPath}/ticket/room3.do" method="get">
 <h1>예매내용</h1>
 <table id="reserTable">
-	<tbody>
+	<tbody style="text-align: center;">
 		<tr><td id="checkedTitle"></td></tr>
 		<tr><td id="checkedDate"></td></tr>
 		<tr><td id="checkedTime"></td></tr>
@@ -205,6 +205,5 @@ table td {
 </table>
 </form>
 </div>
-
 </body>
 </html>

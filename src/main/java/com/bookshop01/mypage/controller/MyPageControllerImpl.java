@@ -26,6 +26,7 @@ import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.service.MyPageService;
 import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Controller("myPageController")
 @RequestMapping(value="/mypage")
@@ -52,7 +53,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMember_id();
 		
-		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);
+		List<TicketVO> myOrderList=myPageService.listMyOrderGoods(member_id);
 		
 		mav.addObject("message", message);
 		mav.addObject("myOrderList", myOrderList);
@@ -62,13 +63,13 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/myOrderDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView myOrderDetail(@RequestParam("order_id")  String order_id,HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public ModelAndView myOrderDetail(@RequestParam("ticket_number")  String ticket_number,HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		MemberVO orderer=(MemberVO)session.getAttribute("memberInfo");
 		
-		List<OrderVO> myOrderList=myPageService.findMyOrderInfo(order_id);
+		TicketVO myOrderList=myPageService.findMyOrderInfo(ticket_number);
 		mav.addObject("orderer", orderer);
 		mav.addObject("myOrderList",myOrderList);
 		return mav;
