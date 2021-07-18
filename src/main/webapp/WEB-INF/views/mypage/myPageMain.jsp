@@ -7,7 +7,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-
+<style type="text/css">
+a {
+color : black;
+}
+</style>
 </head>
 
 <body>
@@ -20,52 +24,44 @@
             <td><strong>영화제목</strong></td> <!-- movie_title -->
             <td><strong>좌석번호</strong></td> <!-- ticket_adult/child -->
             <td><strong>관람일</strong></td> <!-- ticket_movie_day -->
-            <td><strong>결제일</strong></td>        
+            <td><strong>결제일</strong></td>
          </tr>
-      <c:choose>
+       <c:choose>
          <c:when test="${ empty myOrderList  }">
         <tr>
           <td colspan=5 class="fixed">
-              <strong>고객님의 예매내역이 존재하지 않습니다.</strong>
+              <strong>${memberInfo.member_id }님의 예매내역이 존재하지 않습니다.</strong>
           </td>
         </tr>
-        </c:when>
-        
-        
+        </c:when>       
+       
         <c:otherwise>
-         <c:forEach var="item" items="${myOrderList}"  varStatus="i">
-         
-          <c:choose> 
-              <c:when test="${ticket_number!= item.ticket_number}">               
-            <tr>  
-             <td > <!-- 1.예매번호 -->
-             <a style="color:black;" href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}"><span>${item.ticket_number }</span>  </a>
-           </td>   
-                
-             <td align="center"> <!-- 2.제목 -->
-                <strong>
-                    ${item.movie_title }<br>
-            </strong>
-             </td>
-             
-             <td> <!-- 3.좌석번호 -->
-             <span>${item.seat_number} </span>
-             </td>
-                 
-               <td> <!-- 4.결제일 -->       
-               <span>${item.ticket_payment_date} </span>
-             </td>   
-              
-                                   
-           <td> <!-- 5.관람일 -->
-               <span>${item.ticket_movie_day} </span>
-             </td>                          
-        
-         </tr>
-         
-          <c:set  var="ticket_number" value="${item.ticket_number}" />
-           </c:when>
-      </c:choose>
+         <c:forEach var="item" items="${myOrderList }">         
+            <tr>             
+	             <td> <!-- 1.예매번호 -->
+	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}">
+	             	<span>${item.ticket_number}</span></a></strong>
+	             </td>                  
+	             <td align="left"> <!-- 2.제목 -->
+	                ${item.movie_title }
+	             </td>
+	             
+	             
+	             <td> <!-- 3.매수 -->
+	             	${item.ticket_adult }
+	             </td>
+	             
+	                                   
+	             <td> <!-- 4.관람일 -->
+	               <span>${item.ticket_movie_day} </span> 
+	             </td> 
+	             
+	             
+	             <td> <!-- 5.결제일 -->
+	               <span>${item.ticket_payment_date} </span> 
+	             </td> 
+	                                                     
+            </tr>         
       </c:forEach>
      </c:otherwise>
     </c:choose>        

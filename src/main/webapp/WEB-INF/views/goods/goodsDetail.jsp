@@ -7,6 +7,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="movie"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
+<c:set var="rate" value="${goodsMap.rate}"/>
  <%
      //치환 변수 선언합니다.
       //pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -542,11 +543,15 @@ body, hmtl{background: #ecf0f1;}
 	function reg_review(){
 	      var _isLogOn=document.getElementById("isLogOn");
 	      var isLogOn=_isLogOn.value;
+	      var reviewform = document.reviewform;
 	      
 	       if(isLogOn=="false" || isLogOn=='' ){
 	         alert("로그인 후 작성이 가능합니다.");	
-	 		location.href = "${contextPath}/goods/goodsDetail.do?movie_id=${movie.movie_id}";
-	      } 	    	      
+	      	return;
+	       }
+	       else {
+	    	   reviewform.submit();
+	       }
 	   }
 	
 	
@@ -576,7 +581,7 @@ body, hmtl{background: #ecf0f1;}
       </ul></td><tr class="dot_line">
             </tr>
             <tr>
-               <td colspan="2" class="fixed">예매율 : 0.0%</td><tr class="dot_line">
+               <td colspan="2" class="fixed">예매율 : <fmt:formatNumber value="${rate}" pattern="##.##"/>%</td><tr class="dot_line">
             </tr>
             <tr>
                <td class="fixed">감독 : ${movie.movie_director}</td>
@@ -600,7 +605,7 @@ body, hmtl{background: #ecf0f1;}
    <!-- 내용 들어 가는 곳 -->
    <strong>줄거리</strong>
    <hr>
-   <h4>${movie.movie_content}</h4>
+   <h4><pre>${movie.movie_content}</pre></h4>
    <hr>
    <p>
    <div class="clear"></div>
@@ -628,7 +633,7 @@ body, hmtl{background: #ecf0f1;}
    <strong>실관람평</strong>
 <div class="wrap">
     <br>
-    <form name="reviewform" class="reviewform" method="post" name="g">
+    <form name="reviewform" class="reviewform" method="post" action="${contextPath}/goods/myReview.do">
         <input type="hidden" name="rate" id="rate" value="0"/>
         <p>${movie.movie_title}&emsp;재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.<br><br> 
         <div class="review_rating">
@@ -653,8 +658,8 @@ body, hmtl{background: #ecf0f1;}
         <input type="hidden" name="movie_title" value="${movie.movie_title}"/><p>     
 			<input type="text" name="review_content" size="100" title="관람평" placeholder="5자 이상 작성해 주세요.">&emsp;
         </div>   
-        
-           <div class="reg"><input type="button" value="등록" onClick="reg_review()"></div>
+            <div class="reg"><input type="button" value="등록" onClick="reg_review()"></div>
+                          
     </form>
 </div>
    

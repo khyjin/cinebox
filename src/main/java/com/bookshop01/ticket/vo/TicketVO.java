@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class TicketVO {
 	private int movie_id; //영화번호
-	private String movie_title;
-	private String ticket_number; //예매 일련번호
+	private String movie_title;//영화제목
+	private int ticket_number; //예매 일련번호
 	private int ticket_adult; //성인 일반
 	private int ticket_child; //청소년 일반
 	private String ticket_start_time; //상영시작시간
@@ -25,6 +25,7 @@ public class TicketVO {
 	private String ticket_phone_number3;	//결제자 전화번호3
 	private int ticket_total_price;		//총결제금액
 	private int ticket_used_point;	//사용된 포인트금액(=할인금액)
+	private String image_file_name; //이미지 출력용 파일이름
 	
 	public int getMovie_id() {
 		return movie_id;
@@ -38,10 +39,10 @@ public class TicketVO {
 	public void setMovie_title(String movie_title) {
 		this.movie_title = movie_title;
 	}
-	public String getTicket_number() {
+	public int getTicket_number() {
 		return ticket_number;
 	}
-	public void setTicket_number(String ticket_number) {
+	public void setTicket_number(int ticket_number) {
 		this.ticket_number = ticket_number;
 	}
 	public int getTicket_adult() {
@@ -122,7 +123,6 @@ public class TicketVO {
 	public void setTicket_pay_method(String ticket_pay_method) {
 		this.ticket_pay_method = ticket_pay_method;
 	}
-	
 	public String getTicket_phone_number1() {
 		return ticket_phone_number1;
 	}
@@ -158,6 +158,12 @@ public class TicketVO {
 	}
 	public void setTicket_used_point(int ticket_used_point) {
 		this.ticket_used_point = ticket_used_point;
+	}
+	public String getImage_file_name() {
+		return image_file_name;
+	}
+	public void setImage_file_name(String image_file_name) {
+		this.image_file_name = image_file_name;
 	}
 	
 	

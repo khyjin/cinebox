@@ -3,6 +3,7 @@
 	isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <!DOCTYPE html >
@@ -15,6 +16,7 @@ section.admin_mypage_main {
    height:800;
    float:right;
    margin-top : -190;
+   background-color: white;
    }
 	
 #button0{ 
@@ -22,8 +24,8 @@ background-color: #168;
 color: white;
 border-radius: 50;
 border-style: none;
-width: 40;
-height: 22;
+width: 95;
+height: 25;
 }
 .idx{
 color: black;
@@ -36,7 +38,48 @@ color: black;
 .paging{
 	color: black;
 }
+.paging1{
+	color: blue;
+	text-decoration: underline;
+}
+.paging2{
+	color: black;
+}
+body {
+   background: #fff;
+}
+.ticketList {
+   border-collapse: collapse;
+   width: 100%;
+   font-size: small;
+}
+.ticketList th {
+   padding: 10px;
+   color: #168;
+   border-bottom: 3px solid #168;
+   text-align: center;
+}
+.ticketList td {
+   color: #669;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
+}
+.ticketList tr:hover td {
+   color: #004;
+}
+.modia{
+   color: #669;
+}
+</style>
 
+<script>
+function cancel_check(ticket_number) {
+	if(confirm("삭제하시겠습니까?") == true){
+		location.href="${contextPath}/admin/order/ticketCancel.do?ticket_number_code="+ticket_number;
+	}else{
+		return;
+	}
+}
 
 function fn_modify_order_state(order_id,select_id){
 	var s_delivery_state=document.getElementById(select_id);
@@ -68,53 +111,7 @@ function fn_modify_order_state(order_id,select_id){
 			//alert("작업을완료 했습니다");
 			
 		}
-	}); //end ajax		
-
-.paging1{
-	color: blue;
-	text-decoration: underline;
-}
-.paging2{
-	color: black;
-}
-.admin_bg{
-	background-color: white;
-}
-body {
-   background: #fff;
-}
-.movielist {
-   border-collapse: collapse;
-   width: 100%;
-   font-size: small;
-}
-.movielist th {
-   padding: 10px;
-   color: #168;
-   border-bottom: 3px solid #168;
-   text-align: center;
-}
-.movielist td {
-   color: #669;
-   padding: 10px;
-   border-bottom: 1px solid #ddd;
-}
-.movielist tr:hover td {
-   color: #004;
-}
-.modia{
-   color: #669;
-}
-</style>
-
-<script>
-function cancel_check(ticket_number) {
-	if(confirm("삭제하시겠습니까?") == true){
-		location.href="${contextPath}/admin/order/ticketCancel.do?ticket_number_code="+ticket_number;
-	}else{
-		return;
-	}
-}
+	}); //end ajax	
 </script>
 </head>
 
@@ -122,10 +119,10 @@ function cancel_check(ticket_number) {
 <body class="admin_bg">
 <section class="admin_mypage_main">
 
-<div style="float: left;">
+<div>
 	<h1>예매 관리</h1>
 	<br>
-	<form  method="get" action="${contextPath}/admin/goods/searchMovie.do">	
+	<form  method="get" action="${contextPath}/admin/order/adminOrderMain.do">	
 		<TABLE cellpadding="10" cellspacing="10">
 			<TBODY>
 				<tr>
@@ -145,19 +142,19 @@ function cancel_check(ticket_number) {
 </div>
 
 <br>
-<TABLE class="movielist">
+<TABLE class="ticketList">
 		<TBODY align=center >
 			<tr>
 				<th>예매번호</th>
 				<th>상영일자</th>
 				<th>영화명</th>
+				<th>예매일자</th>
 				<th>예매자ID</th>
-				<th>취소여부</th>
-				<th>취소일자</th>
-				<th>교환/취소</th>
+				<th>취소여부</th>				
+				<th></th>
 			</tr>
    <c:choose>
-     <c:when test="${empty orderList }">			
+     <c:when test="${empty ticketList }">			
 			<TR>
 		       <TD colspan=8 class="fixed">
 				  <strong>조회된 예매내역이 없습니다.</strong>
@@ -166,10 +163,10 @@ function cancel_check(ticket_number) {
 	 </c:when>
 	 <c:otherwise>
 <form>
-     <c:forEach var="item" items="${ticketList}" varStatus="status">
+     <c:forEach var="item" items="${ticketList}">
 			 <TR>       
 				<TD>
-				  <strong>${item.ticket_num}</strong>
+				  <strong>${item.ticket_number}</strong>
 				</TD>				
 				<TD>
 				   <strong>${item.ticket_movie_day}</strong> 
@@ -178,18 +175,16 @@ function cancel_check(ticket_number) {
 				    <strong>${item.movie_title}</strong>
 				</TD>
 				<td>
+				<strong>${item.ticket_payment_date}</strong>
+				</td>
+				<td>
 				  <strong>${item.member_id}</strong>
 				</td>
 				<td>
 				 <strong>${item.ticket_cancle_yn}</strong> 
 				</td>
 				<td>
-				<strong>${item.ticket_cancle_date}</strong>
-				</td>
-				<td>
-					<button id="button0">
-						<a href="javascript:cancel_check('${item.ticket_number_code}'))">삭제</a>
-					</button>				
+					<input type="button" id="button0" value="상세내역보기" onclick="location.href='${contextPath}/admin/order/orderDetail.do?ticket_number=${item.ticket_number}'">
 				</td>
 			</TR>
 	</c:forEach></form>

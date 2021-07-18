@@ -144,6 +144,9 @@
 			 member_birth_d,
 			 member_joindate,
 			 member_del_yn,
+			 member_roadaddress,
+			 member_jibunaddress,
+			 member_namujiaddress,
 			 to_char(member_del_date,'YYYY-MM-DD') as member_del_date,
 			 member_point 
 		 	from cinebox_member
@@ -155,12 +158,11 @@
 			order by member_joindate desc
 		
 	</select>
-	<select id="listCount2" resultType="String">
+	<select id="listCount2" resultType="int">
 		<![CDATA[
 		select count(member_id) from cinebox_member
 		where 1=1 ]]>
 		<include refid="search"></include>
-		and to_number(member_id)>0
 	</select>
 	
 	
@@ -172,6 +174,8 @@
 		</if>
 	</sql>
 	
-	
+	<update id="modifyPoint" parameterType="java.util.Map">
+		update cinebox_member set member_point=member_point-#{ticket_used_point} where member_id=#{member_id}
+	</update>
 </mapper>
 

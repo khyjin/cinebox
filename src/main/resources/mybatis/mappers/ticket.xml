@@ -27,6 +27,8 @@
 		<result property="ticket_phone_number3" column="ticket_phone_number3" />
 		<result property="ticket_total_price" column="ticket_total_price" />
 		<result property="ticket_used_point" column="ticket_used_point" />
+		<result property="member_id" column="member_id" />
+		<result property="image_file_name" column="image_file_name"/>		
 	</resultMap>
 	
 	<insert id="insertNewOrder" parameterType="ticketVO"  >
@@ -57,25 +59,25 @@
 										#{movie_id},
 										#{movie_title},
 										TICKET_seq.nextval,
-										#{ticket_adult},
-										#{ticket_child},
+										#{ticket_adult,jdbcType=INTEGER},
+										#{ticket_child,jdbcType=INTEGER},
 										#{ticket_start_time},
-										#{ticket_start_time},
+										#{ticket_end_time},
 										#{ticket_movie_day},
 										#{room_number,jdbcType=VARCHAR},
 										#{seat_number,jdbcType=VARCHAR},
 										#{member_id,jdbcType=VARCHAR},
 										'N',
 										'N',
-										#{ticket_card_company},
-										#{ticket_card_month},
+										#{ticket_card_company,jdbcType=VARCHAR},
+										#{ticket_card_month,jdbcType=INTEGER},
 										#{ticket_pay_method},
 										to_char(sysdate,'YYYY-MM-DD'),
 										#{ticket_phone_number1,jdbcType=VARCHAR},
 										#{ticket_phone_number2,jdbcType=VARCHAR},
 										#{ticket_phone_number3,jdbcType=VARCHAR},
 										#{ticket_total_price},
-										#{ticket_used_point,jdbcType=VARCHAR})
+										#{ticket_used_point})
     	]]>
 	</insert>
 	
@@ -87,5 +89,13 @@
 	</select>
 	
 	
+	<select id="selectImage" resultMap="ticket" parameterType="int">
+	<![CDATA[ 
+	select movie_id, image_file_name from cinebox_image
+	where movie_id=#{movie_id}
+	and image_file_sort='poster'
+	]]>
+	</select>
+		
 	
 	</mapper>

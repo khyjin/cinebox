@@ -15,16 +15,6 @@ section.admin_mypage_main {
    float:right;
    margin-top : -280;
    }
-table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-tr td {
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
 
 body {
 	background: #fff;

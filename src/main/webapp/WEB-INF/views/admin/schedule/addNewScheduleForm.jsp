@@ -283,7 +283,7 @@ function delete_check(deleteSchedule) {
 			<td>${list.room_number}</td>
 			<td>${list.movie_title}</td>
 			<td>${list.schedule_start_time}</td>
-			<td>${list.schedule_start_time}</td>
+			<td>${list.schedule_end_time}</td>
 			<td>
 				 <input type="hidden" value="${list.schedule_id}" name="deleteSchedule${status.index}">
 				 <input type="button" id="button0" onclick="delete_check(deleteSchedule${status.index})" value="삭제">

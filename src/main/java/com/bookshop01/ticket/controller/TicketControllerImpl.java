@@ -85,12 +85,13 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
+		String schedule_end_time = request.getParameter("schedule_end_time");
 		
 		if(room_number.equals("1")) {
 			viewName = "redirect:/ticket/room1.do";
 		} else if(room_number.equals("2")) {
 			viewName = "redirect:/ticket/room2.do";
-		} else {
+		} else if(room_number.equals("3")){
 			viewName = "redirect:/ticket/room3.do";
 		}
 		ModelAndView mav = new ModelAndView(viewName);
@@ -99,6 +100,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		mav.addObject("room_number", room_number);
 		mav.addObject("schedule_date", schedule_date);
 		mav.addObject("schedule_start_time", schedule_start_time);
+		mav.addObject("schedule_end_time",schedule_end_time);
 		
 		return mav;
 	}
@@ -114,6 +116,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
+		String schedule_end_time = request.getParameter("schedule_end_time");
 		
 		ScheduleVO scheduleVO = new ScheduleVO();
 		scheduleVO.setMovie_id(movie_id);
@@ -121,6 +124,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		scheduleVO.setRoom_number(room_number);
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
+		scheduleVO.setSchedule_end_time(schedule_end_time);
 		mav.addObject("list", scheduleVO);
 		return mav;
 		
@@ -136,6 +140,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
+		String schedule_end_time = request.getParameter("schedule_end_time");
 		
 		ScheduleVO scheduleVO = new ScheduleVO();
 		scheduleVO.setMovie_id(movie_id);
@@ -143,6 +148,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		scheduleVO.setRoom_number(room_number);
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
+		scheduleVO.setSchedule_end_time(schedule_end_time);
 		mav.addObject("list", scheduleVO);
 		return mav;
 		
@@ -157,6 +163,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		String schedule_date = request.getParameter("schedule_date");
 		String schedule_start_time = request.getParameter("schedule_start_time");
 		String room_number = request.getParameter("room_number");
+		String schedule_end_time = request.getParameter("schedule_end_time");
 		
 		ScheduleVO scheduleVO = new ScheduleVO();
 		scheduleVO.setMovie_id(movie_id);
@@ -164,15 +171,17 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		scheduleVO.setRoom_number(room_number);
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
+		scheduleVO.setSchedule_end_time(schedule_end_time);
 		
 		ticketVO.setTicket_movie_day(scheduleVO.getSchedule_date());
 		ticketVO.setTicket_start_time(scheduleVO.getSchedule_start_time());
 		List<TicketVO> seatt = ticketService.seatReservation(ticketVO); 
+		
 		mav.addObject("list", scheduleVO);
 		mav.addObject("seatt", seatt);
 		return mav;
 	}
-   
 
+	
    
 }

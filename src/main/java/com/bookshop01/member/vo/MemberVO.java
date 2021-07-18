@@ -307,5 +307,6 @@ public class MemberVO {
    public void setDel_yn(String del_yn) {
       this.del_yn = del_yn;
    }
+
    
 }

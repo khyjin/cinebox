@@ -44,6 +44,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
+		System.out.println("예매율 결과"+goodsMap.get("rate"));
 //		addGoodsInQuick(movie_id,goodsVO,session);
 		return mav;
 	}
@@ -254,35 +255,4 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;		
 	}
-
-
-	
-	
-//	private void addGoodsInQuick(String movie_id,GoodsVO goodsVO,HttpSession session){
-//		boolean already_existed=false;
-//		List<GoodsVO> quickMovieList; //최근 본 상품 저장 ArrayList
-//		quickMovieList=(ArrayList<GoodsVO>)session.getAttribute("quickMovieList");
-//		
-//		if(quickMovieList!=null){
-//			if(quickMovieList.size() < 4){ //미리 본 상품 리스트에 상품개수가 세개 이하인 경우
-//				for(int i=0; i<quickMovieList.size();i++){
-//					GoodsVO _movieBean=(GoodsVO)quickMovieList.get(i);
-//					if(movie_id.equals(_movieBean.getGoods_id())){
-//						already_existed=true;
-//						break;
-//					}
-//				}
-//				if(already_existed==false){
-//					quickMovieList.add(goodsVO);
-//				}
-//			}
-//			
-//		}else{
-//			quickMovieList =new ArrayList<GoodsVO>();
-//			quickMovieList.add(goodsVO);
-//			
-//		}
-//		session.setAttribute("quickGoodsList",quickMovieList);
-//		session.setAttribute("quickGoodsListNum", quickMovieList.size());
-//	}
 }
