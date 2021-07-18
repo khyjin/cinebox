@@ -7,6 +7,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="movie"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
+<c:set var="rate" value="${goodsMap.rate}"/>
  <%
      //치환 변수 선언합니다.
       //pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -580,7 +581,7 @@ body, hmtl{background: #ecf0f1;}
       </ul></td><tr class="dot_line">
             </tr>
             <tr>
-               <td colspan="2" class="fixed">예매율 : 0.0%</td><tr class="dot_line">
+               <td colspan="2" class="fixed">예매율 : <fmt:formatNumber value="${rate}" pattern="##.##"/>%</td><tr class="dot_line">
             </tr>
             <tr>
                <td class="fixed">감독 : ${movie.movie_director}</td>
@@ -604,7 +605,7 @@ body, hmtl{background: #ecf0f1;}
    <!-- 내용 들어 가는 곳 -->
    <strong>줄거리</strong>
    <hr>
-   <h4>${movie.movie_content}</h4>
+   <h4><pre>${movie.movie_content}</pre></h4>
    <hr>
    <p>
    <div class="clear"></div>

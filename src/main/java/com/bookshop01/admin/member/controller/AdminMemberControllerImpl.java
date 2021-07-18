@@ -160,7 +160,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		session=request.getSession();
 		session.setAttribute("side_menu", "admin_mode"); //마이페이지 사이드 메뉴로 설정한다.
 		
-		List<MemberVO> newGoodsList = adminMemberService.searchMember(scri);
+		List<MemberVO> member_list = adminMemberService.searchMember(scri);
 		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -170,7 +170,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		pageMaker.setTotalCount(adminMemberService.listCount2(scri));
 		
 		mav.addObject("pageMaker", pageMaker);
-		mav.addObject("newGoodsList", newGoodsList);
+		mav.addObject("member_list", member_list);
 		return mav;
 		
 	}

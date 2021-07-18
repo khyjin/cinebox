@@ -85,6 +85,13 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsMap.put("goodsVO", goodsVO);
 		List<ImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(movie_id);
 		goodsMap.put("imageList", imageList);
+		
+		double totalCount =(double)goodsDAO.totalCount();
+		double eachCount = (double)goodsDAO.eachCount(movie_id);
+		double rate = (eachCount/totalCount*100);
+		
+		System.out.println("ÃÑ°¹¼ö "+totalCount+" ¿µÈ­°¹¼ö "+eachCount+" °è»ê°á°ú "+rate);
+		goodsMap.put("rate", rate);
 		return goodsMap;
 	}
 	

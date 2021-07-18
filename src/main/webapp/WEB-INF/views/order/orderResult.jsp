@@ -5,13 +5,14 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 </head>
 <BODY>
-결제가 완료되었습니다.
+
 	<H1>1.최종 예매 내역</H1>
 	<table class="list_view">
       <tbody align=center>
      	 <tr>
     	 <td class="goods_image">
-             <img width="75" alt=""  src="${contextPath}/thumbnails.do?movie_id=${list.movie_id}&fileName=${item.movie_fileName}">
+			 <strong>결제가 완료되었습니다.</strong><br>
+             <img width="150" height="180" src="${contextPath}/thumbnails.do?movie_id=${img.movie_id}&image_file_name=${img.image_file_name}">
              <input type="hidden" id="movie_id" name="movie_id" value="${list.movie_id}" />
               <input type="hidden" id="member_id" name="member_id" value="${list.member_id}" />
 		</td>
@@ -92,7 +93,7 @@
 		<br>
 		<br> 
 		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
+		  홈으로
 		</a>
 <DIV class="clear"></DIV>		
 	

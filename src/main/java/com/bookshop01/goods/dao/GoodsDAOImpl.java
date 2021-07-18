@@ -100,4 +100,14 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		sqlSession.insert("mapper.goods.myReview",reviewmap);
 	}
 
+	@Override
+	public int totalCount() throws Exception {
+		return sqlSession.selectOne("mapper.goods.totalCount");
+	}
+
+	@Override
+	public int eachCount(String movie_id) throws Exception {
+		return sqlSession.selectOne("mapper.goods.eachCount", movie_id);
+	}
+
 }

@@ -2,6 +2,7 @@ package com.bookshop01.order.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -13,4 +14,7 @@ public interface OrderDAO {
 	public void insertNewOrder(TicketVO ticketVO) throws DataAccessException;
 	public OrderVO findMyOrder(String order_id) throws DataAccessException;
 	public void removeGoodsFromCart(List<OrderVO> myOrderList)throws DataAccessException;
+	public TicketVO selectImage(int movie_id) throws DataAccessException;
+	public void modifyPoint(Map<String, Object> pointMap) throws DataAccessException;
+
 }

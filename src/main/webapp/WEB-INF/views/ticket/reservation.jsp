@@ -49,7 +49,7 @@ table td {
 	height: 40px;
 }
 #reserTable{
-
+	background-color: silver;
 	height: 250px;
 }
 </style>
@@ -118,7 +118,7 @@ table td {
 					if(!((schedule_date==String(year+"/"+month+"/"+date))&&
 						((data.time[i].schedule_start_time.toString().slice(-5,-3)+data.time[i].schedule_start_time.toString().slice(-2))<(hours+minutes)))){
 						//오늘 날짜랑 같으면 현재시간 이후로 붙여라		
-			        	var tag ="<tr>"+"<td id='choiceA'>"+"<a id='checkA' href=javascript:checkTime('"+data.time[i].schedule_start_time+"','"+data.time[i].room_number+"')>"+data.time[i].room_number+"관 "+data.time[i].schedule_start_time+"</a>"+"</td>"+"</tr>";	
+			        	var tag ="<tr>"+"<td id='choiceA'>"+"<a id='checkA' href=javascript:checkTime('"+data.time[i].schedule_start_time+"','"+data.time[i].room_number+"','"+data.time[i].schedule_end_time+"')>"+data.time[i].room_number+"관 "+data.time[i].schedule_start_time+"</a>"+"</td>"+"</tr>";	
 			        	$("#time").append(tag);}
 			        }	
 			}, error : function(data) {
@@ -127,14 +127,16 @@ table td {
 		}); //end ajax		
 	}
 	
-	function checkTime(schedule_start_time, room_number){
+	function checkTime(schedule_start_time, room_number, schedule_end_time){
 		
 		$("#submit_btn").empty();
 		var send_time = "<input type='hidden' name='schedule_start_time' value='"+schedule_start_time+"'>";
+		var send_end_time ="<input type='hidden' name='schedule_end_time' value='"+schedule_end_time+"'>";
 		var send_room = "<input type='hidden' name='room_number' value='"+room_number+"'>";
 		var bnt_submit = "<input id='button0' type='submit' value='좌석선택'>";
 		
 		$("#checkedDate").append(send_time);
+		$("#checkedDate").append(send_end_time);
 		$("#checkedDate").append(send_room);
 		$("#checkedTime").empty();
 		$("#checkedTime").html(room_number+"관 "+schedule_start_time);
@@ -151,8 +153,8 @@ table td {
 <br/>
 <div style="overflow:auto; width:30%; float: left;">	
 <h1>영화</h1>
-<table>
-	<tbody>
+<table style="margin-bottom:100px">
+	<tbody style="align:left">
 		<c:forEach var="list" items="${list}">
 		<tr>
 		 <td id="choiceA"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">
@@ -192,10 +194,10 @@ table td {
 </table>	
 </div>
 
-<div style="width: 25%; float: left; background-color: silver;">
-<form action="${contextPath}/ticket/room3.do" method="get">
+<div style="width: 25%; float: left;">
+<form action="${contextPath}/ticket/seat.do" method="get">
 <h1>예매내용</h1>
-<table id="reserTable">
+<table id="reserTable" style="background-color: silver;">
 	<tbody>
 		<tr><td id="checkedTitle"></td></tr>
 		<tr><td id="checkedDate"></td></tr>

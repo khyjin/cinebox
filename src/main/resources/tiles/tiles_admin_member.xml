@@ -5,7 +5,7 @@
 <tiles-definitions>
     
     <!-- 회원관리 -->
-    <definition name="/admin/member/adminMemberMain" extends="baseLayout">
+    <definition name="/admin/member/searchMember" extends="baseLayout">
        <put-attribute name="title" value="회원 관리 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/member/adminMemberMain.jsp" />
     </definition>

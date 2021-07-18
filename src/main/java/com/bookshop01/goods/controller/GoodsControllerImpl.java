@@ -44,6 +44,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
+		System.out.println("예매율 결과"+goodsMap.get("rate"));
 //		addGoodsInQuick(movie_id,goodsVO,session);
 		return mav;
 	}

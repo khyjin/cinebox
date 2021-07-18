@@ -6,19 +6,17 @@
 <mapper namespace="mapper.admin.order">
 <resultMap id="ticketResult" type="ticketVO">
 		<result property="movie_id" column="movie_id" />
-		<result property="member_id" column="member_id" />
 		<result property="movie_title" column="movie_title"/>
 		<result property="ticket_number" column="ticket_number" />
-		<result property="ticket_number_code" column="ticket_number_code" />
 		<result property="ticket_adult" column="ticket_adult" />
 		<result property="ticket_child" column="ticket_child" />
-		<result property="ticket_start_time" column="ticket_start_time" />
 		
+		<result property="ticket_start_time" column="ticket_start_time" />
 		<result property="ticket_end_time" column="ticket_end_time" />
 		<result property="ticket_movie_day" column="ticket_movie_day" />
 		<result property="room_number" column="room_number" />
 		<result property="seat_number" column="seat_number" />
-		<result property="ticket_reservation_date" column="ticket_reservation_date" />
+		<result property="member_id" column="member_id" />
 		
 		<result property="ticket_cancle_date" column="ticket_cancle_date" />
 		<result property="ticket_cancle_yn" column="ticket_cancle_yn" />
@@ -27,40 +25,23 @@
 		<result property="ticket_pay_method" column="ticket_pay_method" />
 		
 		<result property="ticket_payment_date" column="ticket_payment_date" />
-		<result property="ticket_phone_code" column="ticket_phone_code" />
-		<result property="ticket_phone_number" column="ticket_phone_number" />
+		<result property="ticket_phone_number1" column="ticket_phone_number1" />
+		<result property="ticket_phone_number2" column="ticket_phone_number2" />
+		<result property="ticket_phone_number3" column="ticket_phone_number3" />
 		<result property="ticket_total_price" column="ticket_total_price" />
 		<result property="ticket_used_point" column="ticket_used_point" />
+		<result property="image_file_name" column="image_file_name"/>
 	</resultMap>
 	
-  <resultMap id="memberResult" type="memberVO">
-		<result property="member_id" column="member_id" />
-		<result property="member_pw" column="member_pw" />
-		<result property="member_name" column="member_name" />
-		<result property="member_gender" column="member_gender" />
-		
-		<result property="member_birth_y" column="member_birth_y" />
-		<result property="member_birth_m" column="member_birth_m" />
-		<result property="member_birth_d" column="member_birth_d" />
-		
-		<result property="member_birth_gn" column="member_birth_gn" />
-		<result property="tel1" column="tel1" />
-		<result property="tel2" column="tel2" />
-		<result property="tel3" column="tel3" />
-		
-		<result property="hp1" column="hp1" />
-		<result property="hp2" column="hp2" />
-		<result property="hp3" column="hp3" />
-		<result property="smssts_yn" column="smssts_yn" />
-		<result property="email1" column="email1" />
-		<result property="email2" column="email2" />
-		<result property="emailsts_yn" column="emailsts_yn" />
-		
-		<result property="zipcode" column="zipcode" />
-		<result property="roadAddress" column="roadAddress" />
-		<result property="jibunAddress" column="jibunAddress" />
-		<result property="namujiAddress" column="namujiAddress" />
-		<result property="joinDate" column="joinDate" />
+	<resultMap id="scheduleResult" type="scheduleVO">
+		<result property="movie_id" column="movie_id" />
+		<result property="movie_title" column="movie_title" />
+		<result property="room_number" column="room_number" />
+		<result property="schedule_start_time" column="schedule_start_time" />
+		<result property="schedule_date" column="schedule_date" />
+		<result property="movie_age_grade" column="movie_age_grade"/>
+		<result property="schedule_id" column="schedule_id" />
+		<result property="schedule_end_time" column="schedule_end_time" />
 	</resultMap>
 	
 	<select id="selectTicketList" resultMap="ticketResult">
@@ -71,11 +52,10 @@
 			movie_id,
 			movie_title,
 			ticket_number,
-			ticket_number_code,
 			ticket_movie_day,
 			member_id,
-			to_char(ticket_cancle_date) as ticket_cancle_date,
-			ticket_cancle_yn
+			ticket_cancle_yn,
+			ticket_payment_date
 		 	from cinebox_ticket
 		 	where 1=1 
 		 	]]>
@@ -91,8 +71,6 @@
 		<include refid="search"></include>
 		and to_number(ticket_number)>0
 	</select>
-	
-	
 	<sql id="search">
 		<if test="keyword != null">
 			<if test="searchType == 't'.toString()">and ticket_number like '%'||#{keyword}||'%'</if>
@@ -101,57 +79,36 @@
 		</if>
 	</sql>	
 	
-	<delete id="cancelTicket" parameterType="int">
-		delete from cinebox_ticket
-		where ticket_number_code=#{ticket_number_code}
-	</delete>
-	
 
-<select id="selectNewOrderList" resultMap="ticketResult"   parameterType="java.util.HashMap"  >
-		  select * from (
-			    select rowNum as recNum,t.*
-			       from (
-			              select  *  from t_shopping_order 
-			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
-			                <if test="search_type=='orderer_id'">
-			                  AND orderer_id=#{search_word}
-			                </if>
-			                <if test="search_type=='orderer_name'">
-			                  AND orderer_name=#{search_word}
-			                </if>
-			                <if test="search_type=='orderer_hp_num'">
-			                   AND pay_orderer_hp_num=#{search_word} 
-			                </if>
-			              order by pay_order_time desc
-					    ) t
-				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+	<select id="selectReservation" resultMap="ticketResult"   parameterType="int"  >
+		select t.*, i.image_file_name from cinebox_ticket t, cinebox_image i
+		where ticket_number=#{ticket_number}
+		and t.movie_id = i.movie_id
+		and i.image_file_sort = 'poster' 			        
 	</select>
 	
-<update id="updateDeliveryState" parameterType="java.util.Map" >
-	   update t_shopping_order
-	    <set> 
-	      <if test=" delivery_state!='' and delivery_state!=null">
-	        delivery_state=#{delivery_state}
-	      </if>
-	    </set>
-	    where 
-	    order_id=#{order_id}
-	</update>	
+	<update id="cancelTicket" parameterType="int">
+		update cinebox_ticket
+		set ticket_cancle_yn='Y',
+		ticket_cancle_date=to_char(sysdate,'YYYY-MM-DD HH:MI:SS')
+		where ticket_number = #{ticket_number}
+	</update>
 	
-    <select id="selectOrderDetail" resultMap="ticketResult"   parameterType="int"  >
-	    <![CDATA[
-		    select * from t_shopping_order
-            where order_id=#{order_id}
-    	]]>
-	</select>	
+	<select id="selectPoint" parameterType="int" resultType="int">
+		select member_point from cinebox_member where member_id=#{member_id}
+	</select>
 	
-   <select id="selectOrderer" resultMap="memberResult"  parameterType="String"  >
-	    <![CDATA[
-			select * from t_shopping_member 
-			where member_id=#{member_id}
-		]]>
-	</select>	
+	<update id="updatePoint" parameterType="memberVO">
+		update cinebox_member 
+		set member_point = #{member_point}
+		where member_id = #{member_id}
+	</update>
+	
+	<update id="updateReservation" parameterType="ticketVO">
+		update cinebox_ticket
+		set ticket_adult=#{ticket_adult}, ticket_child=#{ticket_child}, ticket_total_price=#{ticket_total_price}
+		where ticket_number=#{ticket_number}
+	</update>
+
 </mapper>
 

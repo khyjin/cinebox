@@ -44,7 +44,7 @@ table tr:hover td {
 <fmt:formatDate value="${now2}" pattern="yy/MM/dd" var="today" />
 <h1>상영시간표</h1>
 <br/>
-<table>
+<table style="margin-bottom:100px">
 	<thead>
 		<tr>
 			<th>상영날짜</th>
@@ -62,7 +62,7 @@ table tr:hover td {
 		 <td>${list.room_number}</td>
 		 <td>${list.movie_title}</td>
 		 <td>${list.schedule_start_time}</td>
-		 <td>${list.schedule_start_time}</td>
+		 <td>${list.schedule_end_time}</td>
 		</tr></c:if>
 		</c:forEach>
 	</tbody>

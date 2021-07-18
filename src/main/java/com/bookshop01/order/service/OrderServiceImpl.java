@@ -35,4 +35,17 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.findMyOrder(order_id);
 	}
 
+
+	@Override
+	public TicketVO getImage(int movie_id) throws Exception {
+		
+		return orderDAO.selectImage(movie_id);
+	}
+
+	@Override
+	public void modifyPoint(Map<String, Object> pointMap) {
+		orderDAO.modifyPoint(pointMap);
+		
+	}
+
 }

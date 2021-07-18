@@ -2,6 +2,7 @@ package com.bookshop01.order.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,19 @@ public class OrderDAOImpl implements OrderDAO {
 	//테이블에 저장할 주문 번호 가져오기
 	private int selectOrderID() throws DataAccessException{
 		return sqlSession.selectOne("mapper.order.selectOrderID");
+		
+	}
+
+	
+	//결제폼에 이미지 출력
+	public TicketVO selectImage(int movie_id) throws DataAccessException{
+		return sqlSession.selectOne("mapper.ticket.selectImage", movie_id);
+	}
+
+
+	@Override
+	public void modifyPoint(Map<String, Object> pointMap) throws DataAccessException {
+		sqlSession.update("mapper.admin.member.modifyPoint", pointMap);		
 		
 	}
 }

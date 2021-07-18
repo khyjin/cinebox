@@ -27,6 +27,7 @@ import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.vo.TicketVO;
 
 
@@ -39,33 +40,53 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	public List<TicketVO>listNewOrder(SearchCriteria scri) throws Exception{
 		return adminOrderDAO.selectTicketList(scri);
 	}
-	@Override
-	public void  modifyDeliveryState(Map deliveryMap) throws Exception{
-		adminOrderDAO.updateDeliveryState(deliveryMap);
-	}
-	@Override
-	public Map orderDetail(int order_id) throws Exception{
-		Map orderMap=new HashMap();
-		ArrayList<OrderVO> orderList =adminOrderDAO.selectOrderDetail(order_id);
-		OrderVO deliveryInfo=(OrderVO)orderList.get(0);
-//		String member_id=(String)deliveryInfo.getMember_id();
-//		MemberVO orderer=adminOrderDAO.selectOrderer(member_id);
-		orderMap.put("orderList",orderList);
-		orderMap.put("deliveryInfo",deliveryInfo);
-//		orderMap.put("orderer", orderer);
-		return orderMap;
-	}
+	
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception {
 		return adminOrderDAO.listCount(scri);
 	}
-	@Override
-	public void cancleTicket(int ticket_number_code) throws Exception {
-		adminOrderDAO.cancelTicket(ticket_number_code);
-		
-	}
-
 	
+	@Override
+	public TicketVO selectReservation(int ticket_number) throws Exception{
+		return adminOrderDAO.selectReservation(ticket_number);
+	}
+	
+	@Override
+	public void cancleTicket(int ticket_number, String member_id, int saving_point, int used_point) throws Exception {		
+		int current_point = adminOrderDAO.selectPoint(member_id);
+		int member_point = current_point+used_point-saving_point;
+
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMember_id(member_id);
+		memberVO.setMember_point(member_point);
+		
+		adminOrderDAO.cancelTicket(ticket_number);
+		adminOrderDAO.updatePoint(memberVO);		
+	}
+	
+	@Override
+	public void modifyReservation(TicketVO ticketVO, int point) throws Exception {
+		adminOrderDAO.updateReservation(ticketVO);		
+		
+		int current_point = adminOrderDAO.selectPoint(ticketVO.getMember_id());	//현재 사용자의 ponit
+		int add_point = (int) (ticketVO.getTicket_total_price()*0.1);	//적립될 point
+		int newPoint = current_point + add_point-point;
+		
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMember_id(ticketVO.getMember_id());
+		memberVO.setMember_point(newPoint);
+		adminOrderDAO.updatePoint(memberVO);
+	}
+	
+
+
+
+
+
+
+
+
+
 	
 
 }

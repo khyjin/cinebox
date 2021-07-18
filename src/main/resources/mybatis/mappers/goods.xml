@@ -146,4 +146,12 @@
 ]]>
 	</insert>
 
+	<select id="totalCount" resultType="int">
+		select count(ticket_number) from cinebox_ticket
+	</select>
+	
+	<select id="eachCount" resultType="int">
+		select count(ticket_number) from cinebox_ticket
+		where movie_id=#{movie_id}
+	</select>
 </mapper>
