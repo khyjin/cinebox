@@ -72,7 +72,7 @@
 										#{ticket_card_company,jdbcType=VARCHAR},
 										#{ticket_card_month,jdbcType=INTEGER},
 										#{ticket_pay_method},
-										to_char(sysdate,'YYYY-MM-DD'),
+										to_char(sysdate,'YYYY-MM-DD HH:MI:SS'),
 										#{ticket_phone_number1,jdbcType=VARCHAR},
 										#{ticket_phone_number2,jdbcType=VARCHAR},
 										#{ticket_phone_number3,jdbcType=VARCHAR},
