@@ -64,8 +64,7 @@
       <result property="ticket_total_price" column="ticket_total_price" />
       <result property="ticket_used_point" column="ticket_used_point" />
    </resultMap>
-	
-	
+
 	
 	 <select id="selectMyOrderGoodsList" resultMap="ticket"  parameterType="String"  >
        <![CDATA[
@@ -73,7 +72,6 @@
             where member_id=#{member_id} and ticket_cancle_yn='N'
       ]]>
      </select>
-	
 
 	<select id="selectMyOrderInfo" resultMap="ticket"   parameterType="Integer"  >
 	    <![CDATA[

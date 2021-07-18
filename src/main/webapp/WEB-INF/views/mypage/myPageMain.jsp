@@ -19,14 +19,14 @@ color : black;
 <div class="myInfo">예매 내역</div>
 <table class="list_view">
       <tbody align=center >
-         <tr style=background:#e8e8e8 >            
-            <td>예매번호</td> <!-- ticket_number -->
-            <td>제목</td> <!-- movie_title -->
-            <td>매수</td> <!-- ticket_adult/child -->
-            <td>관람일</td> <!-- ticket_movie_day -->
-            <td>결제일</td> <!-- ticket_payment_date -->
+         <tr style=background:#e8e8e8 >  
+            <td><strong>예매번호</strong></td> <!-- ticket_number -->
+            <td><strong>영화제목</strong></td> <!-- movie_title -->
+            <td><strong>좌석번호</strong></td> <!-- ticket_adult/child -->
+            <td><strong>관람일</strong></td> <!-- ticket_movie_day -->
+            <td><strong>결제일</strong></td>
          </tr>
-      <c:choose>
+       <c:choose>
          <c:when test="${ empty myOrderList  }">
         <tr>
           <td colspan=5 class="fixed">

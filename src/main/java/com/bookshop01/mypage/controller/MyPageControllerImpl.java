@@ -71,7 +71,6 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		
 		TicketVO myOrderList=myPageService.findMyOrderInfo(ticket_number);
 		
-		
 		mav.addObject("orderer", orderer);
 		mav.addObject("myOrderList",myOrderList);
 		return mav;

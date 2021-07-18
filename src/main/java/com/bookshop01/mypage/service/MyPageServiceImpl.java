@@ -29,14 +29,12 @@ public class MyPageServiceImpl  implements MyPageService{
 		return myPageDAO.selectMyOrderGoodsList(member_id);
 	}
 	
+
 	public TicketVO findMyOrderInfo(int ticket_number) throws Exception{
 		return myPageDAO.selectMyOrderInfo(ticket_number);
 	}
 	
-//	public List<OrderVO> listMyOrderHistory(Map dateMap) throws Exception{
-//		return myPageDAO.selectMyOrderHistoryList(dateMap);
-//	}
-	
+
 	public MemberVO  modifyMyInfo(Map memberMap) throws Exception{
 		 String member_id=(String)memberMap.get("member_id");
 		 myPageDAO.updateMyInfo(memberMap);

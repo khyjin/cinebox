@@ -118,46 +118,46 @@ function result(){
     
 		if(pw1 !== pw2) {
 			   alert("비밀번호가 일치하지 않습니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			   return;
 		}
 		else if(id==""||id==null) {
 			alert("아이디는 필수 입력 항목입니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else if(4>id.length ||id.length >10) {
 			alert("아이디는 4~10자 이내로 입력해주세요.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else if(pw1==""||pw1==null) {
 			alert("패스워드는 필수 입력 항목입니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else if(4>pw1.length ||pw1.length >15) {
 			alert("패스워드는 4~15자 이내로 입력해주세요.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else if(name==null||name=="") {
 			alert("이름은 필수 입력 항목입니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else if(2>name.length ||name.length>5) {
 			alert("이름은 2~5자 이내로 입력해주세요.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else if(hp2==""||hp2==null||hp3==""||hp3==null) {
 			alert("연락처는 필수 입력 항목입니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
+		}
+		else if(roadaddress==""||roadaddress==null||jibunaddress==""||jibunaddress==null) {
+			alert("주소는 필수 입력 항목입니다.");
+			return;
 		}
 		else if(email1==""||email1==null) {
 			alert("이메일은 필수 입력 항목입니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
-		}
-		else if(roadAddress==""||roadAddress==null||jibunAddress==""||jibunAddress==null) {
-			alert("주소는 필수 입력 항목입니다.");
-			   window.location.href = "${contextPath}/member/memberForm.do";
+			return;
 		}
 		else {
-			window.location.href = "${contextPath}/member/addMember.do";
+			memberform.submit();
 		}
 	}
 </script>
@@ -167,7 +167,7 @@ function result(){
 <img src="${contextPath}/resources/image/signup_icon.png" width="40" height="40"/>
 회원가입
 </div>
-   <form name="memberform" method="post">   
+   <form name="memberform" method="post" action="${contextPath}/member/addMember.do">   
    <div id="detail_table">
       <table>
          <tbody>
@@ -256,8 +256,8 @@ function result(){
             </tr>
             <tr class="dot_line">
                <td class="fixed_join">이메일<br>(e-mail)</td>
-               <td  class="member_input"><input size="10px" type="text" name="member_email1" /> @
-                    <select name="member_email2" onChange=""   title="직접입력">
+               <td  class="member_input"><input size="10px" type="text" id="member_email1" name="member_email1" /> @
+                    <select name="member_email2" onChange=""  title="직접입력">
                            <option value="non">직접입력</option>
                            <option value="hanmail.net">hanmail.net</option>
                            <option value="naver.com">naver.com</option>

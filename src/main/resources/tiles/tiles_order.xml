@@ -3,21 +3,25 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-<!-- 한개의 상품을 주문할 경우 상품페이지에서 직접 구입하거나 장바구니에서 한개 주문 -> 바로 주문 
-    <definition name="/order/orderEachGoods" extends="baseLayout">
-       <put-attribute name="title" value="상품 주문 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm.jsp" />
-    </definition> -->
+
     <definition name="/order/orderMovie" extends="baseLayout">
        <put-attribute name="title" value="예매내역 결제 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm.jsp" />
     </definition> 
 <!-- 주문 결과 표시 -->
-     <definition name="/order/payToOrderGoods" extends="baseLayout">
+ <definition name="/order/payToOrderGoods" extends="baseLayout">
+       <put-attribute name="title" value="예매 결제 결과 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/order/orderResult.jsp" />
+    </definition>
+     <definition name="/order/payToOrderGoods2" extends="baseLayout">
        <put-attribute name="title" value="예매 결제 결과 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderResult.jsp" />
     </definition>
     
+    <definition name="/order/failedOrder" extends="baseLayout">
+       <put-attribute name="title" value="예매실패 결과 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/order/failedOrderResult.jsp" />
+    </definition> 
 </tiles-definitions>
 
 

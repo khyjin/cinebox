@@ -1,6 +1,7 @@
 package com.bookshop01.order.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.goods.vo.GoodsVO;
@@ -76,8 +78,8 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	public ModelAndView payToOrderGoods(HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		
 		response.setCharacterEncoding("utf-8");
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);	
+		String viewName=null;
+		ModelAndView mav = new ModelAndView();	
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		
@@ -101,21 +103,15 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
 		int ticket_used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
 		String ticket_end_time = request.getParameter("ticket_end_time");
-		
-		Map<String,Object> pointMap = new HashMap<String,Object>();
-		if(ticket_used_point>0 && ticket_used_point<=memberInfo.getMember_point()) {
-			pointMap.put("ticket_used_point",ticket_used_point);
-			pointMap.put("member_id",memberInfo.getMember_id());
-			orderService.modifyPoint(pointMap);
-		}
+		String plus_point = request.getParameter("plus_point");
 		
 		ticketVO.setMember_id(memberInfo.getMember_id());
 		ticketVO.setMovie_id(movie_id);
 		ticketVO.setMovie_title(movie_title);
-		ticketVO.setTicket_adult(ticket_adult);
-		ticketVO.setTicket_child(ticket_child);
+//		ticketVO.setTicket_adult(ticket_adult);
+//		ticketVO.setTicket_child(ticket_child);
 		ticketVO.setTicket_start_time(ticket_start_time);
-		ticketVO.setSeat_number(seat_number);
+		
 		ticketVO.setRoom_number(room_number);
 		ticketVO.setTicket_movie_day(ticket_movie_day);
 		ticketVO.setTicket_card_company(ticket_card_company);
@@ -124,16 +120,83 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ticketVO.setTicket_phone_number1(ticket_phone_number1);
 		ticketVO.setTicket_phone_number2(ticket_phone_number2);
 		ticketVO.setTicket_phone_number3(ticket_phone_number3);
-		ticketVO.setTicket_total_price(ticket_total_price);
+//		ticketVO.setTicket_total_price(ticket_total_price);
 		ticketVO.setTicket_used_point(ticket_used_point);
 		ticketVO.setTicket_end_time(ticket_end_time);
-		mav.addObject("list", ticketVO);
-		mav.addObject("img", orderService.getImage(movie_id));
-		orderService.addNewOrder(ticketVO);
+		
+		
+		int count=0;
+		
+		String[] seatList = seat_number.split(",");
+		
+		for(int i=0;i<seatList.length;i++) {
+			ticketVO.setSeat_number(seatList[i]);
+			TicketVO result = orderService.searchSeatNumber(ticketVO);
+			
+			if(result != null ){	
+				count++;
+			}
+		}
+
+		if(count!=0) {
+			viewName = "redirect:/order/failedOrder.do";
+
+		} else {
+			if(ticket_adult>0) {
+				for(int i=0;i<ticket_adult;i++) {
+					ticketVO.setTicket_adult(1);
+					ticketVO.setTicket_child(0);
+					ticketVO.setTicket_total_price(12000);
+					ticketVO.setSeat_number(seatList[i]);
+					orderService.addNewOrder(ticketVO);
+				}
+			}
+			if(ticket_child>0) {
+				for(int i=0;i<ticket_child;i++) {
+					ticketVO.setTicket_adult(0);
+					ticketVO.setTicket_child(1);
+					ticketVO.setTicket_total_price(10000);
+					ticketVO.setSeat_number(seatList[ticket_adult+i]);
+					orderService.addNewOrder(ticketVO);
+				}
+			}
+
+			ticketVO.setSeat_number(seat_number);
+			ticketVO.setTicket_adult(ticket_adult);
+			ticketVO.setTicket_child(ticket_child);
+			mav.addObject("list", ticketVO);
+			mav.addObject("img", orderService.getImage(movie_id));
+			
+			mav.setViewName(viewName);
+
+			Map<String,Object> pointMap = new HashMap<String,Object>();
+			pointMap.put("ticket_used_point",ticket_used_point);
+			pointMap.put("plus_point",plus_point);
+			pointMap.put("member_id",memberInfo.getMember_id());
+			orderService.modifyPoint(pointMap);
+			
+			viewName = (String)request.getAttribute("viewName");
+		}
+		
+		mav.setViewName(viewName);
 		return mav;
 	}
-		
-
 	
+	@RequestMapping(value= "/payToOrderGoods2.do" )
+	public ModelAndView payToOrderGoods2(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav=new ModelAndView(viewName);
+		
+		return mav;
+	}	
+
+	//결제 실패 페이지로 가기	
+	@RequestMapping(value= "/failedOrder.do" )
+	public ModelAndView failedOrder(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav=new ModelAndView(viewName);
+		
+		return mav;
+	}	
 
 }

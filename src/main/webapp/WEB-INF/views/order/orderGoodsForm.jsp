@@ -18,7 +18,6 @@ section.admin_mypage_main {
 	border:2px solid #168;
    border-collapse: collapse;
    width: 250;
-   
    text-align: center;
    
 }
@@ -44,13 +43,14 @@ section.admin_mypage_main {
 
 #list td{
 	text-align: left; 
+	font-size: 13px;
 }
 
 #buttons{
 	font-size:20px;
 	border-radius:10px; 
 	border:0;
-	padding: 15px 32px;"
+	padding: 15px 32px;
 }
    
 #layer {
@@ -119,21 +119,23 @@ function fn_pay_account(){
 </script>
 <script>
 function myFunction() {
+	
 	var x = document.getElementById("usedPoint").value; //쓴 포인트
 	document.getElementById("result").innerText = x;
 	
-	const y= document.getElementById("ticket_total_price").value; // 티켓값
-	const point = document.getElementById("point"); //보유 포인트
-	var finalPayment="";
+	var ticket = document.getElementById("origin"); //티켓 값 저장				
+	const point = document.getElementById("point"); //보유 포인트	
+	var finalPayment=ticket; //최종결제금액
 	
 	if(Number(point.innerText) >= Number(x)){	
-	    finalPayment=y-x;
+				 			
+		finalPayment=ticket.innerText-x; 	
 	    $('#ticket_total_price').val(finalPayment);
-	    document.getElementById("result2").innerText =document.getElementById("ticket_total_price").value;
-    
+	    document.getElementById("result2").innerText =document.getElementById("ticket_total_price").value;   
 	}else{
     	alert("보유 포인트 이상 입력하였습니다.");
     	document.getElementById("result").innerText =0;
+    	document.getElementById("result2").innerText =ticket.innerText;//최후금액도 초기화
     	$('#usedPoint').val(0);
     }
 }
@@ -142,16 +144,16 @@ $(document).ready(function(){ //포인트 모두 사용 체크시
     $("#checkBoxId").change(function(){
         if($("#checkBoxId").is(":checked")){
         	document.getElementById("result").innerText =point.innerText;
+        	document.getElementById("result2").innerText =document.getElementById("origin").innerText-point.innerText;        	
         	$('#usedPoint').val(point.innerText);
         	
         }else{
         	document.getElementById("result").innerText =0;
         	$('#usedPoint').val(0);
-        	y= document.getElementById("ticket_total_price").value;
+        	//y= document.getElementById("ticket_total_price").value;
         }
     });
 });
-
 
 window.history.forward(); //뒤로가기 방지
 function noBack() {
@@ -171,7 +173,7 @@ function noBack() {
      </tr>
      <tr>
         <td>
-            <font size="5">${list.ticket_total_price}원</font>
+            <font size="5"><span id="origin">${list.ticket_total_price}</span>원</font>
             <input type="hidden" id="ticket_total_price" name="ticket_total_price" value="${list.ticket_total_price}" />
         </td>
 	</tr>
@@ -203,7 +205,7 @@ function noBack() {
    <table class="list_view" id="list">
       <tbody align=center>
      	 <tr>
-    	 <td rowspan="6" class="goods_image" style="padding-right:50px; padding-left:20px;">
+    	 <td rowspan="6" class="goods_image" style="padding-right:60px; padding-left:30px;">
              <img width="160" height="200" src="${contextPath}/thumbnails.do?movie_id=${img.movie_id}&image_file_name=${img.image_file_name}">
              <input type="hidden" id="movie_id" name="movie_id" value="${list.movie_id}" />
              <input type="hidden" id="member_id" name="member_id" value="${list.member_id}" />
@@ -257,10 +259,18 @@ function noBack() {
       <table>
          <tbody>
             <tr class="dot_line">
-               <td>보유포인트 : <span id="point">${orderer.member_point}</span>원</td>
+                              
                <td cellpadding="5">
-                / 사용할 포인트 : <input name="ticket_used_point" value="0" type="text" size="10" id="usedPoint" onchange="myFunction()"/>&nbsp;&nbsp;&nbsp; 
+               사용할 포인트 : <input name="ticket_used_point" value="0" type="text" size="10" id="usedPoint" onchange="myFunction()"/>&nbsp;&nbsp;
+              &nbsp; 
                <input type="checkbox" id="checkBoxId"/> 모두사용
+               </td>
+                </tr>
+               <tr cellpadding="5"></tr>
+             <tr >
+               <td style="padding-top:8px"><fmt:formatNumber value="${list.ticket_total_price*0.05}" var="point" pattern="#"/> 
+               ( 보유포인트 : <span id="point">${orderer.member_point}</span>원 / 적립예정 포인트 : ${point}원
+               <input type="hidden" name="plus_point" value="${point}" />)         
                </td>
             </tr>
          </tbody>

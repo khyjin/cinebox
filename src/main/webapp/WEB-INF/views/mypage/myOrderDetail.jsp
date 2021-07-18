@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	isELIgnored="false"%> 
@@ -45,7 +46,6 @@ input#button{
    color: ghostwhite;
    width: 100;
 }
-
 button{
    height: 35px;   
    border: 1px solid #193a3e;
@@ -57,7 +57,6 @@ button{
 button a {
 	color:ghostwhite;
 }
-
 </style>
 <c:if test="${message=='cancel_order'}">
 <script>
