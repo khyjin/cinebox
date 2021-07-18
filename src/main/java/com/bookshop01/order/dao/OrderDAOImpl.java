@@ -64,8 +64,8 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public TicketVO searchSeatNumber(String seat_number) throws DataAccessException {
-		return sqlSession.selectOne("mapper.ticket.selectSeatNumber", seat_number);
+	public TicketVO searchSeatNumber(TicketVO ticketVO) throws DataAccessException {
+		return sqlSession.selectOne("mapper.ticket.selectSeatNumber", ticketVO);
 	}
 }
 

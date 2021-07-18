@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.vo.TicketVO;
 
 @Repository("adminOrderDAO")
@@ -28,12 +29,12 @@ public class AdminOrderDAOImpl  implements AdminOrderDAO{
 		return sqlSession.selectOne("mapper.admin.order.listCount",scri);
 	}
 
-	public TicketVO selectReservation(String ticket_number) throws DataAccessException{
+	public TicketVO selectReservation(int ticket_number) throws DataAccessException{
 		return  (TicketVO) sqlSession.selectOne("mapper.admin.order.selectReservation",ticket_number);
 	}
 	
 	@Override
-	public void cancelTicket(String ticket_number) throws DataAccessException {
+	public void cancelTicket(int ticket_number) throws DataAccessException {
 		sqlSession.update("mapper.admin.order.cancelTicket", ticket_number);		
 	}
 	
@@ -51,20 +52,6 @@ public class AdminOrderDAOImpl  implements AdminOrderDAO{
 	public void updateReservation(TicketVO ticketVO) throws DataAccessException {
 		sqlSession.update("mapper.admin.order.updateReservation", ticketVO);		
 	}
-/////////////////////////////////////////////////////////////////////	
-	public void  updateDeliveryState(Map deliveryMap) throws DataAccessException{
-		sqlSession.update("mapper.admin.order.updateDeliveryState",deliveryMap);
-	}
-
-	public MemberVO selectOrderer(String member_id) throws DataAccessException{
-		MemberVO orderer=(MemberVO)sqlSession.selectOne("mapper.admin.order.selectOrderer",member_id);
-		return orderer;	
-	}
-	
-
-
-
-
 
 
 

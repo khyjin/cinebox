@@ -26,9 +26,9 @@ h1{
 
 </style>
 </head>
-<BODY>
+<BODY><center>
 	<H1>결제가 실패했습니다.</H1>
-	이미 예약된 좌석입니다. ()
+	이미 예약된 좌석입니다.
 	
 
     <DIV class="clear"></DIV>
@@ -41,7 +41,7 @@ h1{
 		<a href="${contextPath}/main/main.do">
 		<button id="buttons">홈으로</button>
 		</a>
-		<a href="${contextPath}/main/main.do">
+		<a href="${contextPath}/ticket/reservation.do">
 		<button id="buttons">다시 예매하기</button>
 		</a>
 		<br>

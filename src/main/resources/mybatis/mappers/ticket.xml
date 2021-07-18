@@ -72,7 +72,7 @@
 										#{ticket_card_company,jdbcType=VARCHAR},
 										#{ticket_card_month,jdbcType=INTEGER},
 										#{ticket_pay_method},
-										sysdate,
+										to_char(sysdate,'YYYY-MM-DD'),
 										#{ticket_phone_number1,jdbcType=VARCHAR},
 										#{ticket_phone_number2,jdbcType=VARCHAR},
 										#{ticket_phone_number3,jdbcType=VARCHAR},
@@ -80,6 +80,19 @@
 										#{ticket_used_point})
     	]]>
 	</insert>
+	
+	
+	<select id="selectSeat" resultMap="ticket" >
+		SELECT * FROM CINEBOX_TICKET
+		WHERE
+		ROOM_NUMBER = #{room_number} AND MOVIE_TITLE = #{movie_title} AND TICKET_MOVIE_DAY = #{ticket_movie_day} AND TICKET_START_TIME = #{ticket_start_time}
+	</select>
+	
+	<select id="selectSeatNumber" resultMap="ticket" >
+		SELECT seat_number FROM CINEBOX_TICKET
+		WHERE seat_number=#{seat_number} and
+		ROOM_NUMBER = #{room_number} AND MOVIE_TITLE = #{movie_title} AND TICKET_MOVIE_DAY = #{ticket_movie_day} AND TICKET_START_TIME = #{ticket_start_time}
+	</select>
 	
 	<select id="selectImage" resultMap="ticket" parameterType="int">
 	<![CDATA[ 

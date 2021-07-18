@@ -169,7 +169,7 @@ height: 30;
 			<tbody>
 				<tr>
 					<td>예매날짜</td>
-					<td colspan="3"><fmt:formatDate value="${list.ticket_payment_date }" pattern="yyyy-MM-dd hh:mm:ss"/> </td>
+					<td colspan="3">${list.ticket_payment_date }</td>
 				</tr>
 				<tr>
 					<td rowspan="5">총결제금액</td>

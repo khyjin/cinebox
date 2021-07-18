@@ -7,7 +7,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-
+<style type="text/css">
+a {
+color : black;
+}
+</style>
 </head>
 
 <body>
@@ -15,70 +19,49 @@
 <div class="myInfo">예매 내역</div>
 <table class="list_view">
       <tbody align=center >
-         <tr style=background:#e8e8e8 >            
-            <td>예매번호</td> <!-- ticket_number -->
-            <td>제목</td> <!-- movie_title -->
-            <td>매수</td> <!-- ticket_adult/child -->
-            <td>관람일</td> <!-- ticket_movie_day -->
-            <td>결제일</td> <!-- ticket_reservation_day -->
+         <tr style=background:#e8e8e8 >  
+            <td><strong>예매번호</strong></td> <!-- ticket_number -->
+            <td><strong>영화제목</strong></td> <!-- movie_title -->
+            <td><strong>좌석번호</strong></td> <!-- ticket_adult/child -->
+            <td><strong>관람일</strong></td> <!-- ticket_movie_day -->
+            <td><strong>결제일</strong></td>
          </tr>
-      <c:choose>
+       <c:choose>
          <c:when test="${ empty myOrderList  }">
         <tr>
           <td colspan=5 class="fixed">
-              <strong>고객님의 예매내역이 존재하지 않습니다.</strong>
+              <strong>${memberInfo.member_id }님의 예매내역이 존재하지 않습니다.</strong>
           </td>
         </tr>
-        </c:when>
-        
-        
+        </c:when>       
+       
         <c:otherwise>
-         <c:forEach var="item" items="${myOrderList }"  varStatus="i">
-         
-          <c:choose> 
-              <c:when test="${ pre_order_id != item.order_id}">               
-            <tr>  
-            
-             <td> <!-- 1.결제일 -->
-           <!-- <span>${item.pay_order_time }</span></td> bookshop 주문일자 -->            
-               <span>${item.ticket_reservation_day} </span>
-             </td>       
-                
-             <td> <!-- 2.예매번호 -->
-             <a href="${contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id }"><span>${item.ticket_number }</span>  </a>
-           </td>   
-                
-             <td align="left"> <!-- 3.제목 -->
-                <strong>
-               <c:forEach var="item2" items="${myOrderList}" varStatus="j">
-                   <c:if  test="${item.order_id ==item2.order_id}" >
-                    ${item2.movie_title }<br>
-                  </c:if>   
-             </c:forEach>
-            </strong>
-             </td>
-             
-             <td> <!-- 4.매수 -->
-             </td>
-                                   
-           <td> <!-- 5.관람일 -->
-               <span>${item.ticket_movie_day} </span>
-             </td>                          
-             
-      <!-- <td align="left">  bookshop 주문상품 
-            <strong>
-               <c:forEach var="item2" items="${myOrderList}" varStatus="j">
-                   <c:if  test="${item.order_id ==item2.order_id}" >
-                     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item2.goods_id }">${item2.goods_title }/${item.order_goods_qty }개</a><br>
-                  </c:if>   
-             </c:forEach>
-            </strong>
-          </td>-->
-         </tr>
-         
-          <c:set  var="pre_order_id" value="${item.order_id}" />
-           </c:when>
-      </c:choose>
+         <c:forEach var="item" items="${myOrderList }">         
+            <tr>             
+	             <td> <!-- 1.예매번호 -->
+	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}">
+	             	<span>${item.ticket_number}</span></a></strong>
+	             </td>                  
+	             <td align="left"> <!-- 2.제목 -->
+	                ${item.movie_title }
+	             </td>
+	             
+	             
+	             <td> <!-- 3.매수 -->
+	             	${item.ticket_adult }
+	             </td>
+	             
+	                                   
+	             <td> <!-- 4.관람일 -->
+	               <span>${item.ticket_movie_day} </span> 
+	             </td> 
+	             
+	             
+	             <td> <!-- 5.결제일 -->
+	               <span>${item.ticket_payment_date} </span> 
+	             </td> 
+	                                                     
+            </tr>         
       </c:forEach>
      </c:otherwise>
     </c:choose>        

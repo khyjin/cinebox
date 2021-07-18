@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.goods.vo.GoodsVO;
@@ -78,7 +79,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		response.setCharacterEncoding("utf-8");
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);	
+		ModelAndView mav = new ModelAndView();	
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		
@@ -104,29 +105,13 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		String ticket_end_time = request.getParameter("ticket_end_time");
 		String plus_point = request.getParameter("plus_point");
 		
-		//1) 잘라서 배열이 넣기 배열 돌면서 검색하기
-		//2) if 비교해서 있다면? redirect 
-		String[] seatList = seat_number.split(",");
-		for(int i=0;i<seatList.length;i++) {
-			TicketVO result = orderService.searchSeatNumber(seatList[i]);
-			if(result != null){	        	         	 
-				mav.setViewName("redirect:/order/failedOrder.do");
-         }
-		}
-
-		Map<String,Object> pointMap = new HashMap<String,Object>();
-		pointMap.put("ticket_used_point",ticket_used_point);
-		pointMap.put("plus_point",plus_point);
-		pointMap.put("member_id",memberInfo.getMember_id());
-		orderService.modifyPoint(pointMap);
-		
 		ticketVO.setMember_id(memberInfo.getMember_id());
 		ticketVO.setMovie_id(movie_id);
 		ticketVO.setMovie_title(movie_title);
 		ticketVO.setTicket_adult(ticket_adult);
 		ticketVO.setTicket_child(ticket_child);
 		ticketVO.setTicket_start_time(ticket_start_time);
-		ticketVO.setSeat_number(seat_number);
+		
 		ticketVO.setRoom_number(room_number);
 		ticketVO.setTicket_movie_day(ticket_movie_day);
 		ticketVO.setTicket_card_company(ticket_card_company);
@@ -138,18 +123,56 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ticketVO.setTicket_total_price(ticket_total_price);
 		ticketVO.setTicket_used_point(ticket_used_point);
 		ticketVO.setTicket_end_time(ticket_end_time);
-		mav.addObject("list", ticketVO);
-		mav.addObject("img", orderService.getImage(movie_id));
-		orderService.addNewOrder(ticketVO);
-		return mav;
-	}
-	//결제 실패 페이지로 가기	
-	@RequestMapping(value= "/failedOrder.do" )
-	public ModelAndView loadingview(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav=new ModelAndView(viewName);
+		
+		
+		int count=0;
+		
+		String[] seatList = seat_number.split(",");
+		
+		for(int i=0;i<seatList.length;i++) {
+			ticketVO.setSeat_number(seatList[i]);
+			TicketVO result = orderService.searchSeatNumber(ticketVO);
+			
+			if(result != null ){	
+				count++;
+			}
+		}
+
+		if(count==0) {
+			
+			Map<String,Object> pointMap = new HashMap<String,Object>();
+			pointMap.put("ticket_used_point",ticket_used_point);
+			pointMap.put("plus_point",plus_point);
+			pointMap.put("member_id",memberInfo.getMember_id());
+			orderService.modifyPoint(pointMap);
+			
+			mav.addObject("list", ticketVO);
+			mav.addObject("img", orderService.getImage(movie_id));
+			orderService.addNewOrder(ticketVO);
+			mav.setViewName(viewName);
+		} else {
+			mav.setViewName("redirect:/order/failedOrder.do");
+		}
+		
+	
 		return mav;
 	}
 	
+	@RequestMapping(value= "/payToOrderGoods2.do" )
+	public ModelAndView payToOrderGoods2(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav=new ModelAndView(viewName);
+		
+		return mav;
+	}	
+
+	//결제 실패 페이지로 가기	
+	@RequestMapping(value= "/failedOrder.do" )
+	public ModelAndView failedOrder(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav=new ModelAndView(viewName);
+		
+		return mav;
+	}	
 
 }

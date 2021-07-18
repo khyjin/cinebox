@@ -26,6 +26,7 @@ import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.service.MyPageService;
 import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Controller("myPageController")
 @RequestMapping(value="/mypage")
@@ -52,7 +53,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMember_id();
 		
-		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);
+		List<TicketVO> myOrderList=myPageService.listMyOrderGoods(member_id);
 		
 		mav.addObject("message", message);
 		mav.addObject("myOrderList", myOrderList);
@@ -62,57 +63,31 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/myOrderDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView myOrderDetail(@RequestParam("order_id")  String order_id,HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public ModelAndView myOrderDetail(@RequestParam("ticket_number") int ticket_number,HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		MemberVO orderer=(MemberVO)session.getAttribute("memberInfo");
 		
-		List<OrderVO> myOrderList=myPageService.findMyOrderInfo(order_id);
+		TicketVO myOrderList=myPageService.findMyOrderInfo(ticket_number);
+		
 		mav.addObject("orderer", orderer);
 		mav.addObject("myOrderList",myOrderList);
 		return mav;
 	}
 	
-	@Override
-	@RequestMapping(value="/listMyOrderHistory.do" ,method = RequestMethod.GET)
-	public ModelAndView listMyOrderHistory(@RequestParam Map<String, String> dateMap,
-			                               HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		HttpSession session=request.getSession();
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String  member_id=memberVO.getMember_id();
-		
-		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
-		String beginDate=null,endDate=null;
-		
-		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
-		beginDate=tempDate[0];
-		endDate=tempDate[1];
-		dateMap.put("beginDate", beginDate);
-		dateMap.put("endDate", endDate);
-		dateMap.put("member_id", member_id);
-		List<OrderVO> myOrderHistList=myPageService.listMyOrderHistory(dateMap);
-		
-		String beginDate1[]=beginDate.split("-"); //검색일자를 년,월,일로 분리해서 화면에 전달합니다.
-		String endDate1[]=endDate.split("-");
-		mav.addObject("beginYear",beginDate1[0]);
-		mav.addObject("beginMonth",beginDate1[1]);
-		mav.addObject("beginDay",beginDate1[2]);
-		mav.addObject("endYear",endDate1[0]);
-		mav.addObject("endMonth",endDate1[1]);
-		mav.addObject("endDay",endDate1[2]);
-		mav.addObject("myOrderHistList", myOrderHistList);
-		return mav;
-	}	
 	
 	@Override
 	@RequestMapping(value="/cancelMyOrder.do" ,method = RequestMethod.POST)
-	public ModelAndView cancelMyOrder(@RequestParam("order_id")  String order_id,
+	public ModelAndView cancelMyOrder(@RequestParam("ticket_number")  int ticket_number,
 			                         HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		ModelAndView mav = new ModelAndView();
-		myPageService.cancelOrder(order_id);
+		String member_id=request.getParameter("member_id");
+		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
+		int used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
+		int saving_point = (int) (ticket_total_price*0.1);
+		myPageService.cancelOrder(ticket_number, member_id, used_point, saving_point);
+		
 		mav.addObject("message", "cancel_order");
 		mav.setViewName("redirect:/mypage/myPageMain.do");
 		return mav;

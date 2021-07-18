@@ -175,7 +175,7 @@ function fn_modify_order_state(order_id,select_id){
 				    <strong>${item.movie_title}</strong>
 				</TD>
 				<td>
-				<strong><fmt:formatDate value="${item.ticket_payment_date}" pattern="yyyy-MM-dd hh:mm:ss"/></strong>
+				<strong>${item.ticket_payment_date}</strong>
 				</td>
 				<td>
 				  <strong>${item.member_id}</strong>

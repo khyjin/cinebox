@@ -15,27 +15,23 @@ import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.vo.MyPageVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Repository("myPageDAO")
 public class MyPageDAOImpl implements MyPageDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException{
-		List<OrderVO> orderGoodsList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList",member_id);
+	public List<TicketVO> selectMyOrderGoodsList(String member_id) throws DataAccessException{
+		List<TicketVO> orderGoodsList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList",member_id);
 		return orderGoodsList;
 	}
 	
-	public List selectMyOrderInfo(String order_id) throws DataAccessException{
-		List myOrderList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderInfo",order_id);
+	public TicketVO selectMyOrderInfo(int ticket_number) throws DataAccessException{
+		TicketVO myOrderList=sqlSession.selectOne("mapper.mypage.selectMyOrderInfo",ticket_number);
 		return myOrderList;
 	}	
 
-	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException{
-		List<OrderVO> myOrderHistList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderHistoryList",dateMap);
-		return myOrderHistList;
-	}
-	
 	public void updateMyInfo(Map memberMap) throws DataAccessException{
 		sqlSession.update("mapper.mypage.updateMyInfo",memberMap);
 	}
@@ -46,15 +42,17 @@ public class MyPageDAOImpl implements MyPageDAO{
 		
 	}
 	
-	public void updateMyOrderCancel(String order_id) throws DataAccessException{
-		sqlSession.update("mapper.mypage.updateMyOrderCancel",order_id);
+	public void updateMyOrderCancel(int ticket_number) throws DataAccessException{
+		sqlSession.update("mapper.mypage.updateMyOrderCancel",ticket_number);
 	}
 
-	public MemberVO myPoint(String member_id) throws DataAccessException {
-		MemberVO memberVO = sqlSession.selectOne("mapper.mypage.myPoint",member_id);
-		return memberVO;
+	public int myPoint(String member_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.mypage.myPoint",member_id);
+	}	
+	@Override
+	public void updateMyPoint(MemberVO memberVO) throws DataAccessException {
+		sqlSession.update("mapper.mypage.updateMyPoint", memberVO);		
 	}
-	
 	@Override
 	public List<MyPageVO> myReviewList(String member_id) throws DataAccessException {
 		List<MyPageVO> myReviewList = sqlSession.selectList("mapper.mypage.myReviewList",member_id);

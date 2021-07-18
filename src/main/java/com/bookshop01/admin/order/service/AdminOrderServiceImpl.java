@@ -27,6 +27,7 @@ import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
+import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.vo.TicketVO;
 
 
@@ -46,12 +47,12 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	}
 	
 	@Override
-	public TicketVO selectReservation(String ticket_number) throws Exception{
+	public TicketVO selectReservation(int ticket_number) throws Exception{
 		return adminOrderDAO.selectReservation(ticket_number);
 	}
 	
 	@Override
-	public void cancleTicket(String ticket_number, String member_id, int saving_point, int used_point) throws Exception {		
+	public void cancleTicket(int ticket_number, String member_id, int saving_point, int used_point) throws Exception {		
 		int current_point = adminOrderDAO.selectPoint(member_id);
 		int member_point = current_point+used_point-saving_point;
 
@@ -77,11 +78,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		adminOrderDAO.updatePoint(memberVO);
 	}
 	
-/////////////////////////////////////////////////////////////////////////////////	
-	@Override
-	public void  modifyDeliveryState(Map deliveryMap) throws Exception{
-		adminOrderDAO.updateDeliveryState(deliveryMap);
-	}
+
 
 
 

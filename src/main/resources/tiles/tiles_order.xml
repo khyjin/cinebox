@@ -9,7 +9,11 @@
        <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm.jsp" />
     </definition> 
 <!-- 주문 결과 표시 -->
-     <definition name="/order/payToOrderGoods" extends="baseLayout">
+ <definition name="/order/payToOrderGoods" extends="baseLayout">
+       <put-attribute name="title" value="예매 결제 결과 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/order/orderResult.jsp" />
+    </definition>
+     <definition name="/order/payToOrderGoods2" extends="baseLayout">
        <put-attribute name="title" value="예매 결제 결과 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderResult.jsp" />
     </definition>

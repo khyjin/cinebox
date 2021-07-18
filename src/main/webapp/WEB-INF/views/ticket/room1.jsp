@@ -236,12 +236,14 @@ function selectOnChange(e) {
             	var count = 0;
             	
             	if(selectedSeats.length==1&&value==0) {
-                	alert("인원 체크 후 좌석 선택 가능합니다.");                	
+                	alert("인원 체크 후 좌석 선택 가능합니다.");
+                	selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
+                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
                     return;
                 }
             	else if(selectedSeats.length>value) {
                     alert("이미 좌석을 모두 선택하셨습니다.");
-                    selectedSeats.pop();
+                    selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0';
                     console.log(selectedSeats);
                     console.log(input.value);
@@ -250,6 +252,8 @@ function selectOnChange(e) {
                 
             })
          }
+   
+    
     }
     //좌석 선택 후 삭제 버튼
     $(document).ready(function() {
