@@ -322,7 +322,7 @@ function selectOnChange(e) {
 	<input type="hidden" id="seatA" name="seat_number">
 	<h3 style="float:right; color:black;" >X</h3></td>
 </tr>
-<!-- 같은 시간에 예매된 좌석 값
+<!-- 같은 시간에 예매된 좌석 값 
 	<div id="seatnum">
 	<c:forEach var='seat' items='${seatt}' >
 		${seat.seat_number}

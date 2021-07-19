@@ -72,13 +72,19 @@ function fn_overlapped(){
        dataType:"text",
        data: {id:_id},
        success:function (data,textStatus){
-          if(data=='false'){
-              alert("사용 가능한 ID 입니다.");
-              $('#btnOverlapped').prop("disabled", true);
-              $('#_member_id').prop("disabled", true);
-              $('#member_id').val(_id);
-          }else{
-             alert("이미 존재하는 ID 입니다.");
+          if(data=='true'){
+              alert("이미 존재하는 ID 입니다.");
+              
+          }
+          else if(4>_id.length ||_id.length >10){
+              alert("아이디는 4~10자 이내로 입력해주세요.");
+              
+          }
+          else{
+             alert("사용 가능한 ID 입니다.");
+             $('#btnOverlapped').prop("disabled", true);
+             $('#_member_id').prop("disabled", true);
+             $('#member_id').val(_id);
           }
        },
        error:function(data,textStatus){

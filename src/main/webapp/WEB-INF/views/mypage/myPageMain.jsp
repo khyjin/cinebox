@@ -42,13 +42,13 @@ color : black;
 	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}">
 	             	<span>${item.ticket_number}</span></a></strong>
 	             </td>                  
-	             <td align="left"> <!-- 2.제목 -->
+	             <td align="center"> <!-- 2.제목 -->
 	                ${item.movie_title }
 	             </td>
 	             
 	             
-	             <td> <!-- 3.매수 -->
-	             	${item.ticket_adult }
+	             <td> <!-- 3.좌석번호 -->
+	             	${item.seat_number}
 	             </td>
 	             
 	                                   

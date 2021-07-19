@@ -87,6 +87,7 @@ body {
 					   <input type="radio" name="cscenter_headline" value="불만">불만&emsp;
 						<input type="radio" name="cscenter_headline" value="칭찬">칭찬&emsp;
 						<input type="radio" name="cscenter_headline" value="제안">제안&emsp;
+						<input type="radio" name="cscenter_headline" value="분실물">분실물&emsp;
 					    </c:when>
 					    
 					    <c:when test="${item.cscenter_headline =='불만' }">
@@ -95,6 +96,7 @@ body {
 						  불만&emsp;
 						<input type="radio" name="cscenter_headline" value="칭찬">칭찬&emsp;
 						<input type="radio" name="cscenter_headline" value="제안">제안&emsp;
+						<input type="radio" name="cscenter_headline" value="분실물">분실물&emsp;
 					    </c:when>
 					    
 					    <c:when test="${item.cscenter_headline =='칭찬' }">
@@ -103,6 +105,7 @@ body {
 						<input type="radio" name="cscenter_headline" value="칭찬" checked>
 						  칭찬&emsp;
 						<input type="radio" name="cscenter_headline" value="제안">제안&emsp;
+						<input type="radio" name="cscenter_headline" value="분실물">분실물&emsp;
 					    </c:when>
 					    
 					    <c:when test="${item.cscenter_headline =='제안' }">
@@ -110,7 +113,16 @@ body {
 					   <input type="radio" name="cscenter_headline" value="불만">불만&emsp;
 						<input type="radio" name="cscenter_headline" value="칭찬">칭찬&emsp;
 						<input type="radio" name="cscenter_headline" value="제안" checked>
+						<input type="radio" name="cscenter_headline" value="분실물">분실물&emsp;
 						제안&emsp; 
+					    </c:when>
+					    
+					    <c:when test="${item.cscenter_headline =='분실물' }">
+					      <input type="radio" name="cscenter_headline" value="문의"/>문의&emsp;
+					   <input type="radio" name="cscenter_headline" value="불만">불만&emsp;
+						<input type="radio" name="cscenter_headline" value="칭찬">칭찬&emsp;
+						<input type="radio" name="cscenter_headline" value="제안">제안&emsp;						
+						<input type="radio" name="cscenter_headline" value="분실물" checked>분실물&emsp;
 					    </c:when>
 					   </c:choose>
 				
