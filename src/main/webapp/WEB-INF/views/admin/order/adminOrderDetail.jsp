@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function fn_check_cancel(){
 	if (confirm("예매를 취소하시겠습니까?") == true) {
-		location.href = '${contextPath}/admin/order/cancelTicket.do?ticket_number=${list.ticket_number}&member_id=${list.member_id}&ticket_total_price=${list.ticket_total_price}&ticket_used_point=${list.ticket_used_point}';
+		location.href = '${contextPath}/admin/order/cancelTicket.do?ticket_number=${list.ticket_number}&member_id=${list.member_id}&ticket_adult=${list.ticket_adult}&ticket_child=${list.ticket_child}&ticket_used_point=${list.ticket_used_point}';
 	} else {
 		return;
 	}
@@ -28,9 +28,9 @@ function fn_plus(attribute, plusMinus){
 		var modiCount = parseInt(adult_count)+1;
 		var modi_price = parseInt(modiCount)*12000;
 		newTotalPrice = parseInt(total_price)+12000;
-		if(modiCount>8){
+		if(count0>7){
 			alert("8매까지만 예매가 가능합니다.");
-			return false;
+			return ;
 		}else{
 			var str = "<input type='text' name='ticket_adult' value='"+modiCount+"' size='5' readonly='readonly'/>";
 			var tStr = "<input type='hidden' name='ticket_total_price' value='"+newTotalPrice+"'/>"+newTotalPrice;
@@ -43,9 +43,9 @@ function fn_plus(attribute, plusMinus){
 		var modiCount2 = parseInt(child_count)+1;
 		var modi_price2 = parseInt(modiCount2)*10000;
 		newTotalPrice = parseInt(total_price)+10000;
-		if(modiCount2>8){
+		if(count0>7){
 			alert("8매까지만 예매가 가능합니다.");
-			return false;
+			return ;
 		}else{
 			var str2 = "<input type='text' name='ticket_child' value='"+modiCount2+"' size='5' readonly='readonly'/>";
 			var tStr = "<input type='hidden' name='ticket_total_price' value='"+newTotalPrice+"'/>"+newTotalPrice;
@@ -58,7 +58,7 @@ function fn_plus(attribute, plusMinus){
 		var modi_price = parseInt(modiCount)*12000;
 		newTotalPrice = parseInt(total_price)-12000;
 		if(modiCount<0){
-			return false;
+			return ;
 		}else{
 			var str = "<input type='text' name='ticket_adult' value='"+modiCount+"' size='5' readonly='readonly'/>";
 			var tStr = "<input type='hidden' name='ticket_total_price' value='"+newTotalPrice+"'/>"+newTotalPrice;
@@ -71,7 +71,7 @@ function fn_plus(attribute, plusMinus){
 		var modi_price2 = parseInt(modiCount2)*10000;
 		newTotalPrice = parseInt(total_price)-10000;
 		if(modiCount2<0){
-			return false;
+			return ;
 		}else{
 			var str2 = "<input type='text' name='ticket_child' value='"+modiCount2+"' size='5' readonly='readonly'/>";
 			var tStr = "<input type='hidden' name='ticket_total_price' value='"+newTotalPrice+"'/>"+newTotalPrice;
@@ -211,7 +211,7 @@ height: 30;
 				</tr>
 				<tr>
 					<td>적립포인트</td>
-					<c:set var="point" value="${list.ticket_total_price*0.1}"/>
+					<c:set var="point" value="${(list.ticket_adult*12000+list.ticket_child*10000)*0.05}"/>
 					<td colspan="2" style="text-align: center;"><fmt:formatNumber value="${point}" pattern="#,###"/> 
 					</td>
 				</tr>
@@ -248,12 +248,12 @@ height: 30;
 			<tbody>
 				<tr>
 					<td>예매날짜</td>
-					<td colspan="3"><fmt:formatDate value="${list.ticket_payment_date }" pattern="yyyy-MM-dd hh:mm:ss"/> </td>
+					<td colspan="3">${list.ticket_payment_date }</td>
 				</tr>
 				<tr>
 					<td rowspan="5">총결제금액</td>
 					<td>일반</td>
-					<td><c:set value="${list.ticket_adult*10000 }" var="price"/>
+					<td><c:set value="${list.ticket_adult*12000 }" var="price"/>
 						<fmt:formatNumber value="${price}" pattern="#,###"/></td>
 					<td> ${list.ticket_adult}명</td>
 				</tr>
@@ -278,7 +278,7 @@ height: 30;
 				<tr>
 					<td>적립포인트</td>
 					<c:set var="point" value="${list.ticket_total_price*0.1}"/>
-					<td colspan="3" style="text-align: center;"><fmt:formatNumber value="${point}" pattern="#,###"/> </td>
+					<td colspan="3" style="text-align: center; text-decoration: line-through;"><fmt:formatNumber value="${point}" pattern="#,###"/> </td>
 				</tr>
 			</tbody>
 		</table>

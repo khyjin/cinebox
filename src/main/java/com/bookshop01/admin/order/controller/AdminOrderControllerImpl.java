@@ -82,9 +82,10 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	public ResponseEntity cancelTicket(@RequestParam("ticket_number") int ticket_number, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String member_id=request.getParameter("member_id");
-		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
+		int ticket_adult = Integer.parseInt(request.getParameter("ticket_adult"));
+		int ticket_child = Integer.parseInt(request.getParameter("ticket_child"));
 		int used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
-		int saving_point = (int) (ticket_total_price*0.1);
+		int saving_point = (int) (((ticket_adult*12000)+(ticket_child*10000))*0.05);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");

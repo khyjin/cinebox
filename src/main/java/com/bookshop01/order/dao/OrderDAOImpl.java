@@ -62,5 +62,10 @@ public class OrderDAOImpl implements OrderDAO {
 		sqlSession.update("mapper.admin.member.modifyPoint", pointMap);		
 		
 	}
+
+	@Override
+	public TicketVO searchSeatNumber(TicketVO ticketVO) throws DataAccessException {
+		return sqlSession.selectOne("mapper.ticket.selectSeatNumber", ticketVO);
+	}
 }
 
