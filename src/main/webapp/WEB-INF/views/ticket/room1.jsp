@@ -280,8 +280,6 @@ function selectOnChange(e) {
                 
             })
          }
-   
-    
     }
     //좌석 선택 후 삭제 버튼
     $(document).ready(function() {

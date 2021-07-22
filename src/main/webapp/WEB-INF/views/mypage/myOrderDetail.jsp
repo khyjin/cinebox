@@ -58,33 +58,13 @@ button a {
 	color:ghostwhite;
 }
 </style>
-<c:if test="${message=='cancel_order'}">
+
 <script>
-	window.onload=function()
-	{
-	  init();
-	}
-	
-	function init(){
-		alert("예매를 취소했습니다.");
-	}
-</script>
-</c:if>
-<script>
-function fn_cancel_order(ticket_number){
-	var answer=confirm("예매를 취소하시겠습니까?");
-	if(answer==true){
-		var formObj=document.createElement("form");
-		var i_ticket_number = document.createElement("input"); 
-	    
-	    i_ticket_number.name="ticket_number";
-	    i_ticket_number.value=ticket_number;
-		
-	    formObj.appendChild(i_ticket_number);
-	    document.body.appendChild(formObj); 
-	    formObj.method="post";
-	    formObj.action="${contextPath}/mypage/cancelMyOrder.do";
-	    formObj.submit();	
+function fn_cancel_order((){
+	if (confirm("예매를 취소하시겠습니까?") == true) {
+		location.href = '${contextPath}/mypage/cancelMyOrder.do?ticket_number=${myOrderList.ticket_number}&member_id=${myOrderList.member_id}&ticket_total_price=${myOrderList.ticket_total_price}&ticket_used_point=${myOrderList.ticket_used_point}';
+	} else {
+		return;
 	}
 }
 </script>
@@ -98,11 +78,7 @@ function fn_cancel_order(ticket_number){
 		<tbody align=center>
 			<tr>
 				 <td style="background: #e8e8e8" width="250">예매영화</td>
-				 <td><a href="${contextPath}/goods/goodsDetail.do?movie_id=${list.movie_id }">${myOrderList.movie_title }</a>
-				 </td>
-				 <td  rowspan=2 ><a href="${contextPath}/goods/goodsDetail.do?movie_id=${list.movie_id }">	
-				 	<img width="100" height="130" src="${contextPath}/thumbnails.do?movie_id=${list.movie_id}&image_file_name=${list.image_file_name}"></a>
-				</td>
+				 <td>${myOrderList.movie_title }</td>				 
 			</tr>
 			
 			<tr>
@@ -135,7 +111,10 @@ function fn_cancel_order(ticket_number){
 </table>
 	
 	<div class="clear"></div>
-<form name="form_order">
+	<input type="hidden" name="member_id" value="${myOrderList.member_id}">
+	<input type="hidden" name="ticket_number" value="${myOrderList.ticket_number}">
+	<input type="hidden" name="ticket_used_point" value="${myOrderList.ticket_used_point}"/>
+	
 	<div class="clear"></div>
 	<br>
 	<br>
@@ -172,14 +151,21 @@ function fn_cancel_order(ticket_number){
 				</tr>
 				
 				<tr class="dot_line">
+					<td class="fixed_join" style="background: #e8e8e8">적립포인트</td>
+					<c:set var="point" value="${myOrderList.ticket_total_price*0.05}"/>
+					<td colspan="2" style="text-align: center;"><fmt:formatNumber value="${point}" pattern="#,###"/>점
+					</td>
+				</tr>
+				
+				<tr class="dot_line">
 					<td class="fixed_join" style="background: #e8e8e8">결제금액</td>
 					<td>
 						<fmt:formatNumber value="${myOrderList.ticket_total_price}" pattern="#,###"/>원					  
 				    </td>
-				</tr>				
+				</tr>			
 			</tbody>
 		</table>
-</form>
+
 	<br><br><br>
 	<div class="movie_notice"><img src="${contextPath}/resources/image/warning_logo.png"><strong>당일 예매취소는 불가능한 점 유의바랍니다.</strong></div>
 	<div class="movie_notice"><img src="${contextPath}/resources/image/warning_logo.png"><strong>쾌적한 관람 환경을 위해 상영시간 이전에 입장 부탁드립니다.</strong></div>	
@@ -200,9 +186,7 @@ function fn_cancel_order(ticket_number){
 			   <input id="button" type="button" onClick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소" disabled />
 			</c:otherwise>
 		</c:choose>
-
- <!-- <input id="button" type="button" onClick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소"  /> -->
-<div class="clear"></div>	
+<div class="clear"></div>
 </section>
 </body>
 </html>	

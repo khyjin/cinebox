@@ -39,14 +39,14 @@ table#point {
 	</td>
 	
 	<td>
-	<Strong><fmt:formatNumber type="number" value="${memberInfo.member_point}" pattern="###,###" />점</Strong>
+	<c:set var="mypoint" value="${memberInfo.member_point+(myOrderList.ticket_total_price*0.05)}"/>
+	<Strong><fmt:formatNumber type="number" value="${mypoint}" pattern="#,##0" />점</Strong>
 	</td>
 </tr>
 
 
 </table>
 <br>
-<!-- <div class="checkPoint">포인트 적립/사용 내역</div> -->
 
 
 

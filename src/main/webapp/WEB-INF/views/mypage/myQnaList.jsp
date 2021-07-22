@@ -45,11 +45,11 @@ color:black;
 		</script>
             <tr>  
              <td> <!-- 1.문의 타입 -->    
-               <span> ${item.cscenter_type} </span>
+               <span> ${item.cscenter_headline} </span>
              </td>       
                 
              <td> <!-- 2.제목 -->
-             <span><a href="${contextPath}/mypage/myQnaModifyview.do?cscenter_number=${item.cscenter_number}">${item.cscenter_title}</a></span>
+             <span><strong><a href="${contextPath}/mypage/myQnaModifyview.do?cscenter_number=${item.cscenter_number}">${item.cscenter_title}</a></strong></span>
            </td>   
                                   
            <td> <!-- 3.작성일자 -->
