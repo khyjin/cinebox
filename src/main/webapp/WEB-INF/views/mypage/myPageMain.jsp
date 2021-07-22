@@ -19,14 +19,14 @@ color : black;
 <div class="myInfo">예매 내역</div>
 <table class="list_view">
       <tbody align=center >
-         <tr style=background:#e8e8e8 >            
-            <td>예매번호</td> <!-- ticket_number -->
-            <td>제목</td> <!-- movie_title -->
-            <td>매수</td> <!-- ticket_adult/child -->
-            <td>관람일</td> <!-- ticket_movie_day -->
-            <td>결제일</td> <!-- ticket_payment_date -->
+         <tr style=background:#e8e8e8 >  
+            <td><strong>예매번호</strong></td> <!-- ticket_number -->
+            <td><strong>영화제목</strong></td> <!-- movie_title -->
+            <td><strong>좌석번호</strong></td> <!-- ticket_adult/child -->
+            <td><strong>관람일</strong></td> <!-- ticket_movie_day -->
+            <td><strong>결제일</strong></td>
          </tr>
-      <c:choose>
+       <c:choose>
          <c:when test="${ empty myOrderList  }">
         <tr>
           <td colspan=5 class="fixed">
@@ -42,13 +42,13 @@ color : black;
 	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}">
 	             	<span>${item.ticket_number}</span></a></strong>
 	             </td>                  
-	             <td align="left"> <!-- 2.제목 -->
+	             <td align="center"> <!-- 2.제목 -->
 	                ${item.movie_title }
 	             </td>
 	             
 	             
-	             <td> <!-- 3.매수 -->
-	             	${item.ticket_adult }
+	             <td> <!-- 3.좌석번호 -->
+	             	${item.seat_number}
 	             </td>
 	             
 	                                   

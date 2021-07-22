@@ -123,15 +123,14 @@ public class TicketVO {
 	public void setTicket_pay_method(String ticket_pay_method) {
 		this.ticket_pay_method = ticket_pay_method;
 	}
-
+	public String getTicket_phone_number1() {
+		return ticket_phone_number1;
+	}
 	public String getTicket_payment_date() {
 		return ticket_payment_date;
 	}
 	public void setTicket_payment_date(String ticket_payment_date) {
 		this.ticket_payment_date = ticket_payment_date;
-	}
-	public String getTicket_phone_number1() {
-		return ticket_phone_number1;
 	}
 	public void setTicket_phone_number1(String ticket_phone_number1) {
 		this.ticket_phone_number1 = ticket_phone_number1;

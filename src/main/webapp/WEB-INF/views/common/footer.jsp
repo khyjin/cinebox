@@ -17,7 +17,7 @@
    <a href="#"><font size="2">출점문의</font></a> |
    <a href="#"><font size="2">고객만족센터</font></a> |
    <a href="${contextPath}/mypage/map.do"><font size="2">찾아오시는길</font></a><p>
-
+<br>
    <div align="center">
    <table width="100%">
    <tr>

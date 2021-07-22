@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 
 @Repository("ticketDAO")
@@ -37,7 +38,10 @@ public class TicketDAOImpl implements TicketDAO {
 		public List<ScheduleVO> selectTime(HashMap<String, Object> map) throws DataAccessException {
 			return sqlSession.selectList("mapper.schedule.selectTime", map);
 		}
-		
+		@Override
+		public List<TicketVO> seatReservation(TicketVO ticketVO) throws DataAccessException {
+			return sqlSession.selectList("mapper.ticket.selectSeat", ticketVO);
+		}
 		
 		
 }

@@ -29,6 +29,7 @@ public class MyPageServiceImpl  implements MyPageService{
 		return myPageDAO.selectMyOrderGoodsList(member_id);
 	}
 	
+
 	public TicketVO findMyOrderInfo(int ticket_number) throws Exception{
 		return myPageDAO.selectMyOrderInfo(ticket_number);
 	}
@@ -90,11 +91,6 @@ public class MyPageServiceImpl  implements MyPageService{
 	@Override
 	public void deletemyQna(int cscenter_number) throws Exception {
 		myPageDAO.deletemyQna(cscenter_number);
-	}
-
-	@Override
-	public TicketVO getImage(int movie_id) throws Exception {
-		return myPageDAO.selectImage(movie_id);
 	}
 
 }

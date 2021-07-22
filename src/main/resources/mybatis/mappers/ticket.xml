@@ -72,7 +72,7 @@
 										#{ticket_card_company,jdbcType=VARCHAR},
 										#{ticket_card_month,jdbcType=INTEGER},
 										#{ticket_pay_method},
-										to_char(sysdate,'YYYY-MM-DD'),
+										to_char(sysdate,'YYYY-MM-DD HH:MI:SS'),
 										#{ticket_phone_number1,jdbcType=VARCHAR},
 										#{ticket_phone_number2,jdbcType=VARCHAR},
 										#{ticket_phone_number3,jdbcType=VARCHAR},
@@ -81,6 +81,19 @@
     	]]>
 	</insert>
 	
+	
+	<select id="selectSeat" resultMap="ticket" >
+		SELECT * FROM CINEBOX_TICKET
+		WHERE
+		ROOM_NUMBER = #{room_number} AND MOVIE_TITLE = #{movie_title} AND TICKET_MOVIE_DAY = #{ticket_movie_day} AND TICKET_START_TIME = #{ticket_start_time}
+	</select>
+	
+	<select id="selectSeatNumber" resultMap="ticket" >
+		SELECT seat_number FROM CINEBOX_TICKET
+		WHERE seat_number=#{seat_number} and
+		ROOM_NUMBER = #{room_number} AND MOVIE_TITLE = #{movie_title} AND TICKET_MOVIE_DAY = #{ticket_movie_day} AND TICKET_START_TIME = #{ticket_start_time}
+	</select>
+	
 	<select id="selectImage" resultMap="ticket" parameterType="int">
 	<![CDATA[ 
 	select movie_id, image_file_name from cinebox_image
@@ -88,6 +101,5 @@
 	and image_file_sort='poster'
 	]]>
 	</select>
-		
-	
+
 	</mapper>

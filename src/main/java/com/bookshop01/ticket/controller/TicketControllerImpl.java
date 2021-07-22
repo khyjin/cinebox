@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ import com.bookshop01.common.base.BaseController;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.service.TicketService;
+import com.bookshop01.ticket.vo.TicketVO;
 
 
 @Controller("ticketController")
@@ -153,10 +155,9 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 	}
 	
 	@RequestMapping(value="/room3.do" ,method = RequestMethod.GET)
-	public ModelAndView printSeat3(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView printSeat3(@ModelAttribute("ticketVO") TicketVO ticketVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
@@ -171,7 +172,13 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
 		scheduleVO.setSchedule_end_time(schedule_end_time);
+		
+		ticketVO.setTicket_movie_day(scheduleVO.getSchedule_date());
+		ticketVO.setTicket_start_time(scheduleVO.getSchedule_start_time());
+		List<TicketVO> seatt = ticketService.seatReservation(ticketVO); 
+		
 		mav.addObject("list", scheduleVO);
+		mav.addObject("seatt", seatt);
 		return mav;
 	}
 
