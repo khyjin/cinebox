@@ -57,7 +57,7 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/makeTicket.do", method = RequestMethod.POST)
-	public HashMap<String, Object> makeTicket(@RequestParam("movie_id") int movie_id, @RequestParam("movie_title") String movie_title, Model model) throws Exception {
+	public HashMap<String, Object> makeTicket(@RequestParam("movie_id") int movie_id, @RequestParam("movie_title") String movie_title) throws Exception {
 		
 		List<ScheduleVO> list = ticketService.listTicke(movie_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -107,10 +107,9 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 	
 	
 	@RequestMapping(value="/room1.do" ,method = RequestMethod.GET)
-	public ModelAndView printSeat1(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView printSeat1(@ModelAttribute("ticketVO") TicketVO ticketVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
@@ -125,16 +124,20 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
 		scheduleVO.setSchedule_end_time(schedule_end_time);
-		mav.addObject("list", scheduleVO);
-		return mav;
 		
+		ticketVO.setTicket_movie_day(scheduleVO.getSchedule_date());
+		ticketVO.setTicket_start_time(scheduleVO.getSchedule_start_time());
+		List<TicketVO> seatt = ticketService.seatReservation(ticketVO); 
+		
+		mav.addObject("list", scheduleVO);
+		mav.addObject("seatt", seatt);
+		return mav;
 	}
 
 	@RequestMapping(value="/room2.do" ,method = RequestMethod.GET)
-	public ModelAndView printSeat2(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView printSeat2(@ModelAttribute("ticketVO") TicketVO ticketVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
 		String movie_id = request.getParameter("movie_id");
 		String movie_title = request.getParameter("movie_title");
 		String schedule_date = request.getParameter("schedule_date");
@@ -149,9 +152,14 @@ public class TicketControllerImpl extends BaseController implements TicketContro
 		scheduleVO.setSchedule_date(schedule_date);
 		scheduleVO.setSchedule_start_time(schedule_start_time);
 		scheduleVO.setSchedule_end_time(schedule_end_time);
-		mav.addObject("list", scheduleVO);
-		return mav;
 		
+		ticketVO.setTicket_movie_day(scheduleVO.getSchedule_date());
+		ticketVO.setTicket_start_time(scheduleVO.getSchedule_start_time());
+		List<TicketVO> seatt = ticketService.seatReservation(ticketVO); 
+		
+		mav.addObject("list", scheduleVO);
+		mav.addObject("seatt", seatt);
+		return mav;		
 	}
 	
 	@RequestMapping(value="/room3.do" ,method = RequestMethod.GET)

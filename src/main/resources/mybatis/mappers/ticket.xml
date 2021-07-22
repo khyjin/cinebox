@@ -86,12 +86,14 @@
 		SELECT * FROM CINEBOX_TICKET
 		WHERE
 		ROOM_NUMBER = #{room_number} AND MOVIE_TITLE = #{movie_title} AND TICKET_MOVIE_DAY = #{ticket_movie_day} AND TICKET_START_TIME = #{ticket_start_time}
+		AND TICKET_CANCLE_YN='N'
 	</select>
 	
 	<select id="selectSeatNumber" resultMap="ticket" >
 		SELECT seat_number FROM CINEBOX_TICKET
 		WHERE seat_number=#{seat_number} and
 		ROOM_NUMBER = #{room_number} AND MOVIE_TITLE = #{movie_title} AND TICKET_MOVIE_DAY = #{ticket_movie_day} AND TICKET_START_TIME = #{ticket_start_time}
+		AND TICKET_CANCLE_YN = 'N'
 	</select>
 	
 	<select id="selectImage" resultMap="ticket" parameterType="int">
