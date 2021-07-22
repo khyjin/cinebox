@@ -1,4 +1,3 @@
-  
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	isELIgnored="false"%> 
@@ -60,9 +59,9 @@ button a {
 </style>
 
 <script>
-function fn_cancel_order((){
+function fn_cancel_order(){
 	if (confirm("예매를 취소하시겠습니까?") == true) {
-		location.href = '${contextPath}/mypage/cancelMyOrder.do?ticket_number=${myOrderList.ticket_number}&member_id=${myOrderList.member_id}&ticket_total_price=${myOrderList.ticket_total_price}&ticket_used_point=${myOrderList.ticket_used_point}';
+		location.href = '${contextPath}/mypage/cancelMyOrder.do?ticket_number=${myOrderList.ticket_number}&member_id=${myOrderList.member_id}&ticket_adult=${myOrderList.ticket_adult}&ticket_child=${myOrderList.ticket_child}&ticket_used_point=${myOrderList.ticket_used_point}';
 	} else {
 		return;
 	}
@@ -73,6 +72,7 @@ function fn_cancel_order((){
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yy/MM/dd" var="today" />
 <section class="OrderPage">
+<form name="ticketdetail" action="${contextPath}/mypage/myPageMain.do" method="post">
 	<div class="myorderDetail"><img src="${contextPath}/resources/image/ticket_logo.png">예매 내역</div>
 	<table class="list_view">
 		<tbody align=center>
@@ -180,13 +180,14 @@ function fn_cancel_order((){
 		
 		<c:choose>
 			<c:when test="${myOrderList.ticket_movie_day gt today}"> <!-- 상영일이 현재날짜보다 더 크면 취소가능 -->
-			   <input id="button" type="button" onClick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소"  />
+			   <input id="button" type="button" onclick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소"  />
 			</c:when>
 			<c:otherwise>
-			   <input id="button" type="button" onClick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소" disabled />
+			   <input id="button" type="button" onclick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소불가" disabled />
 			</c:otherwise>
 		</c:choose>
 <div class="clear"></div>
+</form>
 </section>
 </body>
 </html>	
