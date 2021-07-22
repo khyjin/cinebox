@@ -86,5 +86,10 @@ public class MyPageDAOImpl implements MyPageDAO{
 	public void deletemyQna(int cscenter_number) throws DataAccessException {
 		sqlSession.delete("mapper.mypage.deletemyQna", cscenter_number);	
 	}
+
+	@Override
+	public TicketVO selectImage(int movie_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.mypage.selectImage",movie_id);		
+	}
 	
 }

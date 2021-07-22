@@ -42,6 +42,7 @@
 	</resultMap> 
 	
 	<resultMap id="ticket" type="ticketVO">
+	  <result property="member_id" column="member_id" />
       <result property="movie_id" column="movie_id" />
       <result property="movie_title" column="movie_title" />
       <result property="ticket_number" column="ticket_number" />
@@ -80,7 +81,15 @@
 		    select * from cinebox_ticket
             where ticket_number=#{ticket_number}
     	]]>
-	</select>		
+	</select>	
+	
+	<select id="selectImage" resultMap="ticket" parameterType="int">
+	<![CDATA[ 
+	select movie_id, image_file_name from cinebox_image
+	where movie_id=#{movie_id}
+	and image_file_sort='poster'
+	]]>
+	</select>	
 	
 	<update id="updateMyInfo" parameterType="java.util.HashMap">
 	   update cinebox_member
@@ -154,8 +163,8 @@
 	   where ticket_number=#{ticket_number}
 	</update>
 		
-	<select id="myPoint" resultType="memberVO" parameterType="String">
-		select * from cinebox_member where member_id = #{member_id}
+	<select id="myPoint" resultType="int" parameterType="int">
+		select member_point from cinebox_member where member_id = #{member_id}
 	</select>
 		
 	<update id="updateMyPoint" parameterType="memberVO">
@@ -163,6 +172,7 @@
 		set member_point = #{member_point}
 		where member_id = #{member_id}
 	</update>
+	
 	
 	<update id="memberDelete" parameterType="String">
 	  <![CDATA[

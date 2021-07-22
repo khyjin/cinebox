@@ -15,9 +15,9 @@ import com.bookshop01.ticket.vo.TicketVO;
 public interface MyPageDAO {
 	public List<TicketVO> selectMyOrderGoodsList(String member_id) throws DataAccessException;
 	public TicketVO selectMyOrderInfo(int ticket_number) throws DataAccessException;
-	//public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException;
 	public void updateMyInfo(Map memberMap) throws DataAccessException;
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException;
+	public TicketVO selectImage(int movie_id) throws DataAccessException;
 	public void updateMyOrderCancel(int ticket_number) throws DataAccessException;
 	public int myPoint(String member_id)throws DataAccessException;
 	public void updateMyPoint(MemberVO memberVO) throws DataAccessException;
