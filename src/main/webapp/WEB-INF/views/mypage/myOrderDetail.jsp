@@ -180,10 +180,10 @@ function fn_cancel_order((){
 		
 		<c:choose>
 			<c:when test="${myOrderList.ticket_movie_day gt today}"> <!-- 상영일이 현재날짜보다 더 크면 취소가능 -->
-			   <input id="button" type="button" onClick()="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소"  />
+			   <input id="button" type="button" onClick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소"  />
 			</c:when>
 			<c:otherwise>
-			   <input id="button" type="button" onClick()="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소" disabled />
+			   <input id="button" type="button" onClick="fn_cancel_order('${myOrderList.ticket_number}')" value="예매취소" disabled />
 			</c:otherwise>
 		</c:choose>
 <div class="clear"></div>
