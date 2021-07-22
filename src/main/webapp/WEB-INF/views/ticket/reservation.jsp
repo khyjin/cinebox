@@ -77,11 +77,8 @@ table td {
 				$("#checkedTitle").append(send_id);
 				
 				for(var i=0;i<data.data.length;i++){
-
-//		        	var tag ="<tr>"+"<td>"+"<input type='radio' id='checkDate' name='s_date' value='"+data.data[i].schedule_date+"'/>"+data.data[i].schedule_date+"</td>"+"</tr>";
 		        	var tag ="<tr>"+"<td id='choiceA'>"+"<a href=javascript:checkDate('"+data.data[i].schedule_date+"','"+data.data[i].movie_id+"') id='checkA'>"+data.data[i].schedule_date+"</a>"+"</td>"+"</tr>";	
 		        	$("#date").append(tag);
-
 		        }	
 		}, error : function(data) {
 			alert("에러가 발생했습니다."+data);

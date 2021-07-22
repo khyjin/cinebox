@@ -34,21 +34,20 @@ public class MyPageServiceImpl  implements MyPageService{
 		return myPageDAO.selectMyOrderInfo(ticket_number);
 	}
 	
-
 	public MemberVO  modifyMyInfo(Map memberMap) throws Exception{
 		 String member_id=(String)memberMap.get("member_id");
 		 myPageDAO.updateMyInfo(memberMap);
 		 return myPageDAO.selectMyDetailInfo(member_id);
 	}
 	
-	public void cancelOrder(int ticket_number, String member_id, int saving_point, int used_point) throws Exception{
+	public void cancelOrder(int ticket_number, String member_id, int saving_point, int used_point) throws Exception{		
 		int current_point = myPageDAO.myPoint(member_id);
 		int member_point = current_point+used_point-saving_point;
-
+		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMember_id(member_id);
 		memberVO.setMember_point(member_point);
-				
+		
 		myPageDAO.updateMyOrderCancel(ticket_number);
 		myPageDAO.updateMyPoint(memberVO);
 	}

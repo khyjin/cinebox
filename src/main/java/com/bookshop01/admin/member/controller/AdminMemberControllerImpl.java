@@ -143,7 +143,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		memberMap.put("member_id", member_id);
 		
 		adminMemberService.modifyMemberInfo(memberMap);
-		mav.setViewName("redirect:/admin/member/adminMemberMain.do");
+		mav.setViewName("redirect:/admin/member/searchMember.do");
 		return mav;
 		
 	}
@@ -151,7 +151,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 	@RequestMapping("/realdelmember.do")
 	public String realdelmember(@RequestParam("member_id") String member_id) throws Exception {
 		adminMemberService.deletemember(member_id);
-		return "redirect:/admin/member/adminMemberMain.do";
+		return "redirect:/admin/member/searchMember.do";
 	}
 	@Override
 	@RequestMapping(value="/searchMember.do" ,method = RequestMethod.GET)

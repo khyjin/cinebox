@@ -13,7 +13,7 @@ section.admin_mypage_main {
    width:780;
    height:800;
    float:right;
-   margin-top : -280; : -190;
+   margin-top : -280;
    }
 body {
 	background: #fff;
@@ -84,7 +84,7 @@ body {
 				</select>
 			</td>
 			<td>제목</td>
-			<td colspan="2"><input type="text" name="cscenter_title"></td>
+			<td colspan="2"><input type="text" name="cscenter_title" size="80"></td>
 			<input type="hidden" name="member_id" value="${memberInfo.member_id}">
 		</tr>		
 	</c:when>
@@ -100,7 +100,7 @@ body {
 				</select>
 			</td>
 			<td>제목</td>
-			<td colspan="2"><input type="text" name="cscenter_title"></td>
+			<td colspan="2"><input type="text" name="cscenter_title" size="80"></td>
 			<input type="hidden" name="member_id" value="${memberInfo.member_id}">
 		</tr>	
 	</c:otherwise>

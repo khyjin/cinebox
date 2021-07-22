@@ -78,19 +78,38 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	
 	@Override
-	@RequestMapping(value="/cancelMyOrder.do" ,method = RequestMethod.POST)
-	public ModelAndView cancelMyOrder(@RequestParam("ticket_number")  int ticket_number,
-			                         HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value="/cancelMyOrder.do")
+	public ResponseEntity cancelMyOrder(@RequestParam("ticket_number")  int ticket_number, HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String member_id=request.getParameter("member_id");
-		int ticket_total_price = Integer.parseInt(request.getParameter("ticket_total_price"));
+		int ticket_adult = Integer.parseInt(request.getParameter("ticket_adult"));
+		int ticket_child = Integer.parseInt(request.getParameter("ticket_child"));
 		int used_point = Integer.parseInt(request.getParameter("ticket_used_point"));
-		int saving_point = (int) (ticket_total_price*0.1);
-		myPageService.cancelOrder(ticket_number, member_id, used_point, saving_point);
+		int saving_point = (int) (((ticket_adult*12000)+(ticket_child*10000))*0.05);
+
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=UTF-8");
+				
+		try {
+			myPageService.cancelOrder(ticket_number, member_id, saving_point, used_point);
+			message  = "<script>";
+			message +=" alert('예매가 취소되었습니다.');";
+			message += "location.href='"+request.getContextPath()+"/mypage/myOrderDetail.do?ticket_number="+ticket_number+"';";
+			message += " </script>";
+						
+		} catch (Exception e) {
+			message  = "<script>";
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+		    message += "location.href='"+request.getContextPath()+"/mypage/myOrderDetail.do?ticket_number="+ticket_number+"';";
+		    message += "</script>";
+			e.printStackTrace();
+		}
 		
-		mav.addObject("message", "cancel_order");
-		mav.setViewName("redirect:/mypage/myPageMain.do");
-		return mav;
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 	
 	@Override

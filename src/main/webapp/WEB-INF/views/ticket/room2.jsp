@@ -96,6 +96,14 @@ button {
 .pay {
 	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
 }
+.seatt{
+    width: 32px;
+    height: 32px;
+    margin-right: 2px;
+    margin-top: 2px;
+    background-color: gray;
+    text-align: center;
+}
 </style>
 <script type="text/javascript">
 
@@ -178,6 +186,7 @@ function selectOnChange(e) {
 <br><br>
 <div class="seat-wrapper"></div>
 <br><br><br><br>
+
 <script>
     let test = [];
     let selectedSeats = new Array();
@@ -186,6 +195,11 @@ function selectOnChange(e) {
     let clicked = "";
     let div = "";
 
+    var seatList = new Array();
+    <c:forEach items="${seatt}" var="seatt">
+    seatList.push("${seatt.seat_number}");
+    </c:forEach>
+    
     for (let seat_number1 = 1; seat_number1 <= 10; seat_number1++) {
         div = document.createElement("div");
         seatWrapper.append(div);
@@ -196,7 +210,23 @@ function selectOnChange(e) {
             input.classList = "seat";
             //3중포문을 사용하지 않기위해 
             mapping(input, seat_number1, seat_number2);
-            div.append(input);
+
+            if(seatList.length>0){
+				for(var i=0;i<seatList.length;i++){
+	            	if(input.value!=(seatList[i])){
+	            		div.append(input);
+	            	}else{
+	            		input.type="text";
+	            		input.disabled=true;
+	            		input.classList = "seatt"
+	            		div.append(input);
+	            	}
+	            }
+			} else{
+				div.append(input);
+			}
+            
+            
             input.addEventListener('click', function(e) {
                 console.log(e.target.value);
                 //중복방지 함수

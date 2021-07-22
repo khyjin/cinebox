@@ -85,7 +85,8 @@ h1{
 				<TR class="dot_line">
 					<TD class="fixed_join">결제금액</TD>
 					<TD>
-					  <fmt:formatNumber var="ticket_total_price" value="${list.ticket_total_price}" pattern="#,##0원"/> ${ticket_total_price}
+					  <c:set value="${list.ticket_adult*12000+list.ticket_child*10000 }" var="total_price"/>
+					  <fmt:formatNumber var="ticket_total_price" value="${total_price}" pattern="#,##0원"/> ${ticket_total_price}
 				    </TD>
 				</TR>
 				<TR class="dot_line">

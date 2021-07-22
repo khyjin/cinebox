@@ -22,9 +22,9 @@ public interface TicketController {
 	public ModelAndView selectMovieList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public HashMap<String, Object> makeTicketDate(@RequestParam("movie_id") int movie_id, @RequestParam("schedule_date") String schedule_date) throws Exception;
 	//////임의 추가
-	public Map<String, Object> makeTicket(@RequestParam("movie_id") int movie_id,@RequestParam("movie_title") String movie_title, Model model) throws Exception;
-	public ModelAndView printSeat1(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView printSeat2(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public Map<String, Object> makeTicket(@RequestParam("movie_id") int movie_id,@RequestParam("movie_title") String movie_title) throws Exception;
+	public ModelAndView printSeat1(@ModelAttribute("ticketVO") TicketVO ticketVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView printSeat2(@ModelAttribute("ticketVO") TicketVO ticketVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView printSeat3(@ModelAttribute("ticketVO") TicketVO ticketVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
 

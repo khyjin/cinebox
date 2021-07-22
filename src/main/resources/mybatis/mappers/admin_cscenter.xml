@@ -58,7 +58,8 @@
 	set cscenter_title = #{cscenter_title},
 	cscenter_content = #{cscenter_content},
 	cscenter_reg_date = SYSDATE,
-	cscenter_type = #{cscenter_type}
+	cscenter_type = #{cscenter_type}, 
+	cscenter_headline = #{cscenter_headline}
 	where cscenter_number =#{cscenter_number}
 	and member_id =#{member_id}
 </update>

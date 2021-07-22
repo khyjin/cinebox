@@ -17,6 +17,7 @@ public interface MyPageDAO {
 	public TicketVO selectMyOrderInfo(int ticket_number) throws DataAccessException;
 	public void updateMyInfo(Map memberMap) throws DataAccessException;
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException;
+	public TicketVO selectImage(int movie_id) throws DataAccessException;
 	public void updateMyOrderCancel(int ticket_number) throws DataAccessException;
 	public int myPoint(String member_id)throws DataAccessException;
 	public void updateMyPoint(MemberVO memberVO) throws DataAccessException;
