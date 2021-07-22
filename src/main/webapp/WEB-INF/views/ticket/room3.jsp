@@ -198,7 +198,6 @@ function selectOnChange(e) {
             mapping(input, seat_number1, seat_number2);
             div.append(input);
             input.addEventListener('click', function(e) {
-                console.log(e.target.value);
                 //중복방지 함수
                 selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
 
@@ -223,33 +222,32 @@ function selectOnChange(e) {
                 	var ss = selectedSeats;
                     $('#seatA').val(ss);
                    
-                console.log(selectedSeats);
-                console.log(selectedSeats.length); // 클릭될 때의 추가되는 좌석 배열의 길이
                 
                 var num1 = $("#select_box1").val();
             	var num2 = $("#select_box2").val();
             	const value = Number(num1)+Number(num2);
             	var count = 0;
-            	
             	if(selectedSeats.length==1&&value==0) {
                 	alert("인원 체크 후 좌석 선택 가능합니다.");
                 	selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
-                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
+                    document.getElementById('seat').innerText += input.value+'\u00A0';
                     return;
                 }
             	else if(selectedSeats.length>value) {
+
                     alert("이미 좌석을 모두 선택하셨습니다.");
                     selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
-                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
-                    console.log(selectedSeats);
-                    console.log(input.value);
+                    document.getElementById('seat').innerText += input.value+'\u00A0';
                     return;
                 }
             	
+            	
             })
+        	 
          }
+        
     }
-
+    
   //좌석 선택 후 삭제 버튼
     $(document).ready(function() {
         $( 'h3' ).click( function() {
@@ -281,6 +279,7 @@ function selectOnChange(e) {
         	input.value = "J" + seat_number2;
         }
     }
+    
 </script>
 
 <table>
@@ -322,12 +321,10 @@ function selectOnChange(e) {
 	<input type="hidden" id="seatA" name="seat_number">
 	<h3 style="float:right; color:black;" >X</h3></td>
 </tr>
-<!-- 같은 시간에 예매된 좌석 값 
-	<div id="seatnum">
+<!-- 같은 시간에 예매된 좌석 값 -->
 	<c:forEach var='seat' items='${seatt}' >
 		${seat.seat_number}
 	</c:forEach>
-	</div> -->
 </table>
 <div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
 </form>
