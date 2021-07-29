@@ -49,12 +49,20 @@ color:black;
              </td>       
                 
              <td> <!-- 2.제목 -->
-             <span><strong><a href="${contextPath}/mypage/myQnaModifyview.do?cscenter_number=${item.cscenter_number}">${item.cscenter_title}</a></strong></span>
+             <c:choose>
+             	<c:when test="${item.cscenter_type=='qna_re'}">
+             		<a href="${contextPath}/mypage/myQnaModifyview.do?cscenter_number=${item.cscenter_number}">
+             		<img width="20" height="20"	src="${contextPath}/resources/image/reply.png">${item.cscenter_title}</a>
+             	</c:when>
+             	<c:otherwise>
+             	<span><strong><a href="${contextPath}/mypage/myQnaModifyview.do?cscenter_number=${item.cscenter_number}">${item.cscenter_title}</a></strong></span>
+             	</c:otherwise>
+             </c:choose>
            </td>   
                                   
            <td> <!-- 3.작성일자 -->
                <span>${item.cscenter_reg_date} </span>
-             </td>
+           </td>
              
              <td> <!-- 4.삭제 -->  
                <button onclick="delete_qna()">삭제</button>                 
