@@ -21,6 +21,11 @@
 <style>
 body, hmtl{background: #ecf0f1;}
 
+pre {
+font-family : "맑은 고딕";
+padding : 5;
+}
+
 #layer {
    z-index: 2;
    position: absolute;
@@ -575,7 +580,7 @@ body, hmtl{background: #ecf0f1;}
       <table>
          <tbody>
             <tr>
-               <td class="fixed">${movie.movie_title}</td><td><ul>
+               <td class="fixed"><strong>${movie.movie_title}</strong></td><td><ul>
    
          <li><a class="buy" href="${contextPath}/ticket/reservation.do">예매</a></li>
       </ul></td><tr class="dot_line">

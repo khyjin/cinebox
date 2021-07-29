@@ -40,6 +40,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
+		session.removeAttribute("side_menu");
 		Map goodsMap=goodsService.goodsDetail(movie_id);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
