@@ -18,7 +18,7 @@
 
 section.admin_mypage_main {
    width:800;
-   height:800;
+   height:1200;
    float:right;
    margin-top : -190;
    }

@@ -93,4 +93,10 @@ public class MyPageServiceImpl  implements MyPageService{
 		myPageDAO.deletemyQna(cscenter_number);
 	}
 
+
+	@Override
+	public TicketVO getImage(int movie_id) throws Exception {		
+		return myPageDAO.selectImage(movie_id);
+	}
+
 }

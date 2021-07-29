@@ -35,7 +35,8 @@ public class MainController extends BaseController {
 		mav.setViewName(viewName);
 		
 		session=request.getSession();
-		session.setAttribute("side_menu", "user");
+		//session.setAttribute("side_menu", "user");
+		session.removeAttribute("side_menu");
 		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoods();
 		mav.addObject("goodsMap", goodsMap);
 		return mav;
