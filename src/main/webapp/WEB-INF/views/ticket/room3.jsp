@@ -234,7 +234,6 @@ button {
 			}
             
             input.addEventListener('click', function(e) {
-                console.log(e.target.value);
                 //중복방지 함수
                 selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
 
@@ -268,7 +267,6 @@ button {
             	var num2 = $("#select2").val();
             	const value = Number(num1)+Number(num2);
             	var count = 0;
-            	
             	if(selectedSeats.length==1&&value==0) {
                 	alert("인원 체크 후 좌석 선택 가능합니다.");
                 	input.classList.remove("clicked");
@@ -278,6 +276,7 @@ button {
                     return;
             	}
             	else if(selectedSeats.length>value) {
+
                     alert("이미 좌석을 모두 선택하셨습니다.");
                     selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0';
@@ -297,9 +296,9 @@ button {
                    });
             });
         
-        }
-    }
-  
+        }        	 
+	}
+   
 
     function mapping(input, seat_number1, seat_number2) {
         if (seat_number1 === 1) {
@@ -324,6 +323,7 @@ button {
         	input.value = "J" + seat_number2;
         }
     }
+    
 </script>
 
 <table>
@@ -365,12 +365,6 @@ button {
 	<input type="hidden" id="seatA" name="seat_number">
 	<h3 style="float:right; color:black;" >X</h3></td>
 </tr>
-<!-- 같은 시간에 예매된 좌석 값 
-	<div id="seatnum">
-	<c:forEach var='seat' items='${seatt}' >
-		${seat.seat_number}
-	</c:forEach>
-	</div> -->
 </table>
 <div id="ticket_btn"><input type="button" class="pay" name="ticket_save" value="결제하기" onclick="checkForm()"></div>
 </form>
