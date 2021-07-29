@@ -129,18 +129,5 @@ function fn_send_qna() {
 		location.href='${contextPath}/cscenter/qnaForm.do'
 	}	
 }
-
-function fn_send_rental(){
-	var _isLogOn = document.getElementById("isLogOn");
-	var isLogOn = _isLogOn.value();
-	
-	if(isLogOn=="false"||isLogOn==''){
-		alert("로그인 후 대관 문의가 가능합니다.");
-		location.href='${contextPath}/member/loginForm.do'
-	}
-	else {
-		location.href='${contextPath}/cscenter/rentalForm.do';
-	}
-}
 </script>
 </html>

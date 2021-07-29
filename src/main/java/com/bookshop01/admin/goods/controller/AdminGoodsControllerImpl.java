@@ -67,8 +67,6 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			newGoodsMap.put(name,value);
 			}		
 			
-			
-			
 		}
 		
 		HttpSession session = multipartRequest.getSession();
@@ -142,7 +140,6 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			                     @RequestParam("attribute") String attribute,
 			                     @RequestParam("value") String value,
 			HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		//System.out.println("modifyGoodsInfo");
 		
 		Map<String,String> goodsMap=new HashMap<String,String>();
 		goodsMap.put("movie_id", movie_id);
@@ -286,7 +283,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		adminGoodsService.deleteMovie(movie_id);
 		
 		
-		return "redirect:/admin/goods/adminGoodsMain.do";
+		return "redirect:/admin/goods/searchMovie.do";
 	}
 
 	@Override

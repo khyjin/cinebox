@@ -97,40 +97,64 @@ button {
 .pay {
 	height: 50px; font-size: 1rem; font-weight: bold; background-color: #d5e5e8; border: 1px solid #d5e5e8; color: #193a3e; width: 530px; margin-bottom:30px; margin-left:30px;
 }
+.seatt{
+    width: 30px;
+    height: 30px;
+    margin-right: 2px;
+    margin-top: 2px;
+    background-color: gray;
+    text-align: center;
+}
 </style>
 <script type="text/javascript">
-
-
-function selectOnChange(e) {
-	
-	// 총 예매 인원수 표시
-	var num1 = $("#select_box1").val(); // 어른 표수 select
-	var num2 = $("#select_box2").val(); // 청소년 표수 select
+function checkForm(){
+	var num1 = $("#select1").val();
+	var num2 = $("#select2").val();
 	const value = Number(num1)+Number(num2);
+	var seat = selectedSeats;
+
+	if(seat.length==0||seat==null||seat.length<value||seat.length!=value){
+		alert("좌석을 선택해주세요");
+		return;
+	} else{
+		orderForm.submit();
+	}
+}
+
+function countClick(calc, age){
+	var num1 = $('#select1').val();
+	var num2 = $('#select2').val();
 	
-	// 총 결제 금액 표시
+	if(Number(num1)+Number(num2)==8&&calc=='plus'){
+		alert("예매는 최대8매까지 가능합니다.");
+		return;
+	}
+	
+	if(calc=='plus'&&age=='adult'){
+		num1++;
+		$('#select1').val(num1);
+	} else if(calc=='minus'&&age=='adult'&&num1>0){
+		num1--;
+		$('#select1').val(num1);
+	} else if(calc=='plus'&&age=='child'){
+		num2++;
+		$('#select2').val(num2);
+	} else if(calc=='minus'&&age=='child'&&num2>0){
+		num2--;
+		$('#select2').val(num2);
+	}
+	
 	const adultpay = Number(num1)*12000;
 	const childpay = Number(num2)*10000;
 	const totalpay = adultpay+childpay;
+	const value = Number(num1)+Number(num2);
 	
-	if(Number(num1)==0&&Number(num2)==0) {
-		alert("관람 인원은 1명 이상부터 예매 가능합니다.")
-	}
-	
-	if(value>8) {
-	      alert("관람 인원 8명 초과 시 예매 불가 입니다.");
-	      location.href = "${contextPath}/ticket/room1.do";
-	   }
-
-	document.getElementById('result').innerText = value;
-	
-	document.getElementById('total_pay').innerText = totalpay;
-	
+	document.getElementById('result').innerText = value+"명";
+	document.getElementById('total_pay').innerText = totalpay+"원";
 	var tp = totalpay;
     $('#total_payA').val(tp);
-    
-    }
-
+	
+}
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -145,36 +169,24 @@ function selectOnChange(e) {
 <h1>상영관 1관</h1>
 <br><br>
 <div id="seat_table">
-<form action="${contextPath}/order/orderMovie.do" method="get">
+<form action="${contextPath}/order/orderMovie.do" method="get" name="orderForm">
 <table>
 <tr class="dot_line">
 	<td  class="fixed_join">인원 체크</td>
-	<td>일반&emsp;<select name="ticket_adult" id="select_box1" onchange="selectOnChange(this)">
-    	                       <option value="0">0</option>
-        	                   <option value="1">1</option>
-            	               <option value="2">2</option>
-                	           <option value="3">3</option>
-                    	       <option value="4">4</option>
-                    	       <option value="5">5</option>
-            	               <option value="6">6</option>
-                	           <option value="7">7</option>
-                    	       <option value="8">8</option>
-                    	 </select></td>
-	<td>청소년&emsp;<select name="ticket_child" id="select_box2" onchange="selectOnChange(this)">
-    	                       <option value="0">0</option>
-        	                   <option value="1">1</option>
-            	               <option value="2">2</option>
-                	           <option value="3">3</option>
-                    	       <option value="4">4</option>
-                    	       <option value="5">5</option>
-            	               <option value="6">6</option>
-                	           <option value="7">7</option>
-                    	       <option value="8">8</option>
-                     	</select></td>
+	<td>
+		일반<br><a href="javascript:countClick('minus','adult')" style="color: black; font-size: 25">-</a>
+		<input size="3" type="text" id="select1" name="ticket_adult" value="0" style="text-align: center;">
+		<a href="javascript:countClick('plus','adult')" style="color: black; font-size: 20">+</a>
+	</td>
+	<td id="test01">
+		청소년<br><a href="javascript:countClick('minus','child')" style="color: black; font-size: 25">-</a>
+		<input size="3" type="text" id="select2" name="ticket_child" value="0" style="text-align: center;">
+		<a href="javascript:countClick('plus','child')" style="color: black; font-size: 20">+</a> 
+	</td>
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 인원 수</td>
-	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="result" style="display:inline;"></div>명</td>
+	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="result" style="display:inline;"></div></td>
 </tr>
 </table>
 <br><br>
@@ -189,6 +201,11 @@ function selectOnChange(e) {
     const seatWrapper = document.querySelector(".seat-wrapper");
     let clicked = "";
     let div = "";
+    
+    var seatList = new Array();
+    <c:forEach items="${seatt}" var="seatt">
+    seatList.push("${seatt.seat_number}");
+    </c:forEach>    
 
     for (let seat_number1 = 1; seat_number1 <= 10; seat_number1++) {
         div = document.createElement("div");
@@ -200,12 +217,28 @@ function selectOnChange(e) {
             input.classList = "seat";
             //3중포문을 사용하지 않기위해 
             mapping(input, seat_number1, seat_number2);
-            div.append(input);
+
+			if(seatList.length>0){
+				for(var i=0;i<seatList.length;i++){
+	            	if(input.value!=(seatList[i])){
+	            		div.append(input);
+	            	}else{
+	            		input.type="text";
+	            		input.disabled=true;
+	            		input.classList = "seatt"
+	            		div.append(input);
+	            	}
+	            }
+			} else{
+				div.append(input);
+			}   
+            
             input.addEventListener('click', function(e) {
                 console.log(e.target.value);
                 //중복방지 함수
                 selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
 
+                var ss = selectedSeats;
                 //click class가 존재할때(제거해주는 toggle)
                 if (input.classList.contains("clicked")) {
                 	input.classList.remove("clicked");
@@ -214,6 +247,8 @@ function selectOnChange(e) {
                     clicked.forEach((data) => {
                         selectedSeats.push(data.value);
                     });
+                    document.getElementById('seat').innerText = selectedSeats+'\u00A0';
+                    
                     //click class가 존재하지 않을때 (추가해주는 toggle)
                 } else {
                 	input.classList.add("clicked");
@@ -222,43 +257,48 @@ function selectOnChange(e) {
                         selectedSeats.push(data.value);
                     })
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0'; // 클릭된 좌석값 쌓이게 하기
-                    
                 }
-	                var ss = selectedSeats;
-	                $('#seatA').val(ss);
+                	
+                    $('#seatA').val(ss);
+                   
+//                console.log(selectedSeats);
+//                console.log(selectedSeats.length); // 클릭될 때의 추가되는 좌석 배열의 길이
                 
-                console.log(selectedSeats);
-                console.log(selectedSeats.length); // 클릭될 때의 추가되는 좌석 배열의 길이
-                
-                var num1 = $("#select_box1").val();
-            	var num2 = $("#select_box2").val();
+                var num1 = $("#select1").val();
+            	var num2 = $("#select2").val();
             	const value = Number(num1)+Number(num2);
             	var count = 0;
             	
             	if(selectedSeats.length==1&&value==0) {
                 	alert("인원 체크 후 좌석 선택 가능합니다.");
+                	input.classList.remove("clicked");
                 	selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0';
+                    $('#seatA').val(ss);
                     return;
-                }
+            	}
             	else if(selectedSeats.length>value) {
                     alert("이미 좌석을 모두 선택하셨습니다.");
                     selectedSeats.pop(); // 좌석 이름 안 뜨게 하기
                     document.getElementById('seat').innerText = selectedSeats+'\u00A0';
-                    console.log(selectedSeats);
-                    console.log(input.value);
+                    input.classList.remove("clicked");
+                    $('#seatA').val(ss);
                     return;
                 }
-                
+            	
             })
-         }
+        	
+            $(document).ready(function() {
+                $( 'h3' ).click( function() {
+                	input.classList.remove("clicked");
+                	selectedSeats.splice(0, selectedSeats.length);
+                	console.log(selectedSeats);
+                     $( '#seat' ).empty();
+                   });
+            });
+        
+        }
     }
-    //좌석 선택 후 삭제 버튼
-    $(document).ready(function() {
-        $( 'h3' ).click( function() {
-             $( '#seat' ).empty();
-           });
-        }); 
   
     //좌석 폼  
     function mapping(input, seat_number1, seat_number2) {
@@ -319,7 +359,7 @@ function selectOnChange(e) {
 </tr>
 <tr class="dot_line">
 	<td  class="fixed_join">총 결제 금액</td>
-	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>원
+	<td colspan='2' style="font-size:15px; font-weight: bold;"><div id="total_pay" style="display:inline;"></div>
 	<input type="hidden" id="total_payA" name="ticket_total_price">
 	</td>	
 </tr>
@@ -330,7 +370,7 @@ function selectOnChange(e) {
 	<h3 style="float:right; color:black;">X</h3></td>
 </tr>
 </table>
-<div id="ticket_btn"><input type="submit" class="pay" name="ticket_save" value="결제하기"></div>
+<div id="ticket_btn"><input type="button" class="pay" name="ticket_save" value="결제하기" onclick="checkForm()"></div>
 </form>
 </div>
 </body>

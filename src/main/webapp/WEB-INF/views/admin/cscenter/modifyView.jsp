@@ -69,13 +69,26 @@ body {
 	<input type="hidden" name="cscenter_type" value="${ulist.cscenter_type}"/>
 	<tbody>
 		<tr>
-		
-		
-			<td><select name="cscenter_headline">
-			<option value="공지" selected="selected">[공지]</option>
-			<option value="이벤트">[이벤트]</option>
-			<option value="기타">[기타]</option>
-			</select></td>
+		<c:choose>
+			<c:when test="${ulist.cscenter_type=='faq'}">
+			<td>
+				<select name="cscenter_headline">
+				<option value="영화관 이용">[영화관 이용]</option>
+				<option value="에매/매표">[예매/매표]</option>
+				<option value="홈페이지">[홈페이지]</option>
+				<option value="결제수단">[결제수단]</option>
+				<option value="기타">[기타]</option>
+				</select>
+			</td>
+			</c:when>
+			<c:otherwise>
+				<td><select name="cscenter_headline">
+				<option value="공지" selected="selected">[공지]</option>
+				<option value="이벤트">[이벤트]</option>
+				<option value="기타">[기타]</option>
+				</select></td>				
+			</c:otherwise>
+		</c:choose>
 
 			<td>제목</td>
 			<td colspan="2"><input type="text" name="cscenter_title" value="${ulist.cscenter_title}">

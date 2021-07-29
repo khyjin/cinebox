@@ -13,7 +13,6 @@
 + member(admin) - 회원관리
 + order(admin) - 예매 내역, 상세내역
 + cscenter - 고객센터 게시판
-+ cart - 관심 영화 담기
 + order - 결제하기, 결제내역
 
 ## Dependency
