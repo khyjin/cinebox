@@ -2,6 +2,7 @@
     pageEncoding="utf-8"
     isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html>
@@ -11,10 +12,17 @@
 a {
 color : black;
 }
+
+.info_view td {
+	font-family : "맑은 고딕";
+}
+
 </style>
 </head>
 
 <body>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yy/MM/dd" var="today" />
 <section class="mypage_main">
 <div class="myInfo">예매 내역</div>
 <div style="overflow: auto; height: 40%;">
@@ -27,7 +35,8 @@ color : black;
             <td><strong>관람일</strong></td> <!-- ticket_movie_day -->
             <td><strong>결제일</strong></td>
          </tr>
-       <c:choose>
+        
+        <c:choose>
          <c:when test="${ empty myOrderList  }">
         <tr>
           <td colspan=5 class="fixed">
@@ -40,21 +49,21 @@ color : black;
          <c:forEach var="item" items="${myOrderList }">         
             <tr>             
 	             <td> <!-- 1.예매번호 -->
-	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}">
+	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}&movie_id=${item.movie_id}">
 	             	<span>${item.ticket_number}</span></a></strong>
 	             </td>                  
-	             <td align="center"> <!-- 2.제목 -->
+	              <td align="center"> <!-- 2.제목 -->
 	                ${item.movie_title }
 	             </td>
 	             
 	             
-	             <td> <!-- 3.좌석번호 -->
-	             	${item.seat_number}
-	             </td>
+	             <td> <!-- 3.좌석번호--> 
+	             	 ${item.seat_number}
+	             </td> 	             	            
 	             
 	                                   
 	             <td> <!-- 4.관람일 -->
-	               <span>${item.ticket_movie_day} </span> 
+	                <span>${item.ticket_movie_day} </span> 
 	             </td> 
 	             
 	             
@@ -64,8 +73,9 @@ color : black;
 	                                                     
             </tr>         
       </c:forEach>
-     </c:otherwise>
-    </c:choose>        
+     </c:otherwise>   
+    </c:choose> 
+           
 </tbody>
 </table>
 </div>
@@ -77,7 +87,7 @@ color : black;
 <div class="myInfo">나의 정보
     <a href="${contextPath}/mypage/myDetailInfo.do"> <img width="20" height="20" src="${contextPath}/resources/image/more5.png" />  </a>
 </div>
-<table border="0" width=100% cellpadding=50 cellspacing=20 font-family="맑은 고딕">
+<table class="info_view" border="0" width=100% cellpadding=50 cellspacing=20>
    <tr>
        <td>이름</td>
        <td><strong>${memberInfo.member_name }</strong></td>

@@ -34,6 +34,8 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	@Autowired
 	private MyPageService myPageService;
 	
+	TicketVO ticketVO = new TicketVO();
+	
 	@Autowired
 	private MemberVO memberVO;
 	
@@ -67,12 +69,16 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
-		MemberVO orderer=(MemberVO)session.getAttribute("memberInfo");
 		
+		int movie_id = Integer.parseInt(request.getParameter("movie_id"));
+		ticketVO.setMovie_id(movie_id);
+		
+		MemberVO orderer=(MemberVO)session.getAttribute("memberInfo");		
 		TicketVO myOrderList=myPageService.findMyOrderInfo(ticket_number);
 		
 		mav.addObject("orderer", orderer);
 		mav.addObject("myOrderList",myOrderList);
+		mav.addObject("img", myPageService.getImage(movie_id));
 		return mav;
 	}
 	
@@ -97,7 +103,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			myPageService.cancelOrder(ticket_number, member_id, saving_point, used_point);
 			message  = "<script>";
 			message +=" alert('예매가 취소되었습니다.');";
-			message += "location.href='"+request.getContextPath()+"/mypage/myOrderDetail.do?ticket_number="+ticket_number+"';";
+			message += "location.href='"+request.getContextPath()+"/mypage/myPageMain.do?ticket_number="+ticket_number+"';";
 			message += " </script>";
 						
 		} catch (Exception e) {

@@ -21,7 +21,10 @@
    <div align="center">
    <table width="100%">
    <tr>
-      <td width="50"><img src="${contextPath}/resources/image/logo_footer.png"/></td>
+      <td width="50">
+      <a href="${contextPath}/main/main.do">
+      <img src="${contextPath}/resources/image/logo_footer.png"/></a>
+      </td>
       <td width="550"> <font size="2px" face="맑은 고딕">
       ㈜씨네박스 | 대표이사: 이병승   <br>
        주소 : (03133) 서울시 종로구 종로3 |  사업자등록번호 : 102-81-11111 <br>

@@ -11,7 +11,7 @@
 <style>
 section.OrderPage{
 	width:800;
-	height:1000;
+	height:1150;
 	float:right;
 	margin-top : -280;
 }
@@ -52,6 +52,7 @@ button{
    font-size: 13px;
    font-color: ghostwhite;
    width: 100;
+   margin-left : 230;
 }
 button a {
 	color:ghostwhite;
@@ -78,7 +79,14 @@ function fn_cancel_order(){
 		<tbody align=center>
 			<tr>
 				 <td style="background: #e8e8e8" width="250">예매영화</td>
-				 <td>${myOrderList.movie_title }</td>				 
+				 <td><a href="${contextPath}/goods/goodsDetail.do?movie_id=${myOrderList.movie_id }">${myOrderList.movie_title }</a>
+				 </td>	
+				 <td  rowspan=2 >
+				    <a href="${contextPath}/goods/goodsDetail.do?movie_id=${myOrderList.movie_id }">
+				    <img width="75" alt="" src="${contextPath}/thumbnails.do?movie_id=${img.movie_id}&image_file_name=${img.image_file_name}"></a>
+				    <input type="hidden" id="movie_id" name="movie_id" value="${myOrderList.movie_id}" />
+             		<input type="hidden" id="member_id" name="member_id" value="${myOrderList.member_id}" />            		
+				 </td>			 
 			</tr>
 			
 			<tr>

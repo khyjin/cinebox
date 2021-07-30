@@ -20,6 +20,11 @@
 <style>
 body, hmtl{background: #ecf0f1;}
 
+pre {
+font-family : "맑은 고딕";
+padding : 5;
+}
+
 #layer {
    z-index: 2;
    position: absolute;
@@ -604,7 +609,7 @@ body, hmtl{background: #ecf0f1;}
       <table>
          <tbody>
             <tr>
-               <td class="fixed">${movie.movie_title}</td><td><ul>
+               <td class="fixed"><strong>${movie.movie_title}</strong></td><td><ul>
    
          <li><a class="buy" href="${contextPath}/ticket/reservation.do">예매</a></li>
       </ul></td><tr class="dot_line">
@@ -726,7 +731,7 @@ body, hmtl{background: #ecf0f1;}
 		<td class="reviewtd" style="font-size: xx-large;">${reviewList.review_score}</td>
 		<td class="reviewtd">${reviewList.review_content}</td>
 		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd HH:ss"/>&emsp;
-		
+
 		 <c:if test="${memberInfo.member_id==reviewList.member_id}">
 		 <button onclick="delete_review()">삭제</button></td>
 		 </c:if>  
