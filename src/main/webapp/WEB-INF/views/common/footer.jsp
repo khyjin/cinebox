@@ -9,14 +9,14 @@
 <footer face="맑은 고딕">
    <a href="#"><font size="2">회사소개</font></a> |
    <a href="#"><font size="2">윤리경영</font></a> |
-   <a href="#"><font size="2">이용약관</font></a> |
+   <a href="${contextPath}/cscenter/cscenterNotice.do"><font size="2">이용약관</font></a> |
    <a href="#"><font size="2">회원약관</font></a> |
    <a href="#"><font size="2">개인정보취급방침</font></a> |
    <a href="#"><font size="2">제휴/영화홍보</font></a> |
    <a href="#"><font size="2">광고센터</font></a> |
    <a href="#"><font size="2">출점문의</font></a> |
-   <a href="#"><font size="2">고객만족센터</font></a> |
-   <a href="${contextPath}/mypage/map.do"><font size="2">찾아오시는길</font></a><p>
+   <a href="${contextPath}/cscenter/cscenterMain.do"><font size="2">고객만족센터</font></a> |
+   <a href="${contextPath}/map/map.do"><font size="2">찾아오시는길</font></a><p>
 <br>
    <div align="center">
    <table width="100%">

@@ -17,6 +17,7 @@ color : black;
 <body>
 <section class="mypage_main">
 <div class="myInfo">예매 내역</div>
+<div style="overflow: auto; height: 40%;">
 <table class="list_view">
       <tbody align=center >
          <tr style=background:#e8e8e8 >  
@@ -67,6 +68,7 @@ color : black;
     </c:choose>        
 </tbody>
 </table>
+</div>
 
 <br><br><br>   
 

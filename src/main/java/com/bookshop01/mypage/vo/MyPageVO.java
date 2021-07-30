@@ -11,7 +11,14 @@ public class MyPageVO {
 	private String review_score;
 	private String movie_title;
 	private Date review_reg_date;
+	private int movie_id;
 	
+	public int getMovie_id() {
+		return movie_id;
+	}
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

@@ -11,7 +11,7 @@ import com.bookshop01.mypage.vo.MyPageVO;
 public interface GoodsService {
 	
 	public Map<String,List<GoodsVO>> listGoods() throws Exception;
-	public Map goodsDetail(String _goods_id) throws Exception;
+	public Map goodsDetail(String movie_id) throws Exception;
 	public Map<String, List<GoodsVO>> movieopenlist() throws Exception;
 	public Map<String, List<GoodsVO>> moviereadylist() throws Exception;
 	public Map<String, List<GoodsVO>> movieendlist() throws Exception;

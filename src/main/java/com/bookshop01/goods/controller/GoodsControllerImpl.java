@@ -28,6 +28,7 @@ import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.vo.MyPageVO;
+import com.bookshop01.ticket.vo.TicketVO;
 
 @Controller("goodsController")
 @RequestMapping(value="/goods")
@@ -40,6 +41,9 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
+		GoodsVO goodVO = new GoodsVO();
+		String movie_title = goodVO.getMovie_title();
+		System.out.println(movie_title);
 		Map goodsMap=goodsService.goodsDetail(movie_id);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
@@ -227,6 +231,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		String review_content = request.getParameter("review_content");
 		String movie_title = request.getParameter("movie_title");
 		String[] review_score = request.getParameterValues("review_score"); 
+		String movie_id = request.getParameter("movie_id"); 
 		
 		HashMap<String,String> reviewmap = new HashMap<String,String>();		
 		int review_score2=0;
@@ -238,6 +243,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 				reviewmap.put("review_content",review_content);
 				reviewmap.put("movie_title",movie_title);
 				reviewmap.put("review_score",Integer.toString(review_score2));
+				reviewmap.put("movie_id",movie_id);
 				
 			try {
 				goodsService.myReview(reviewmap);
