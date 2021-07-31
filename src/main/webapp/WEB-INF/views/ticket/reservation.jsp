@@ -55,7 +55,7 @@ table td {
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function movieCheck(movie_id, movie_title){		
+	function movieCheck(movie_id, movie_title,movie_age_grade){		
 		$("#date").empty();
 		$("#time").empty();
 		$("#checkedDate").empty();
@@ -73,8 +73,10 @@ table td {
 				$("#checkedTitle").html(movie_title);
 				var send_title = "<input type='hidden' name='movie_title' value='"+movie_title+"'>";
 				var send_id = "<input type='hidden' name='movie_id' value='"+movie_id+"'>";
+				var send_age="<input type='hidden' name='movie_age_grade' value='"+movie_age_grade+"'>";
 				$("#checkedTitle").append(send_title);				
 				$("#checkedTitle").append(send_id);
+				$("#checkedTitle").append(send_age);
 				
 				for(var i=0;i<data.data.length;i++){
 		        	var tag ="<tr>"+"<td id='choiceA'>"+"<a href=javascript:checkDate('"+data.data[i].schedule_date+"','"+data.data[i].movie_id+"') id='checkA'>"+data.data[i].schedule_date+"</a>"+"</td>"+"</tr>";	
@@ -154,7 +156,7 @@ table td {
 	<tbody style="align:left">
 		<c:forEach var="list" items="${list}">
 		<tr>
-		 <td id="choiceA" style="text-align: center;"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}')">
+		 <td id="choiceA" style="text-align: center;"><a id="checkA" href="javascript:movieCheck('${list.movie_id}','${list.movie_title}','${list.movie_age_grade}')">
 		 	<c:choose>
 		 		<c:when test="${list.movie_age_grade=='전체관람가'}">
 		 			<img src="${contextPath}/resources/image/allage.png" width="20" height="20">

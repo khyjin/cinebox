@@ -105,6 +105,19 @@ button {
     background-color: gray;
     text-align: center;
 }
+#rated_alarm{
+	z-index: 3;
+	position: fixed;
+	top: 200;
+	width: 800px;
+	height: 250px;
+	background-color:white;
+	border: 2px solid ;
+	font-size: medium;
+	padding: 10px;
+	left: 300;
+}
+
 </style>
 <script type="text/javascript">
 function checkForm(){
@@ -175,12 +188,12 @@ function countClick(calc, age){
 	<td  class="fixed_join">인원 체크</td>
 	<td>
 		일반<br><a href="javascript:countClick('minus','adult')" style="color: black; font-size: 25">-</a>
-		<input size="3" type="text" id="select1" name="ticket_adult" value="0" style="text-align: center;">
+		<input size="3" type="text" id="select1" name="ticket_adult" value="0" style="text-align: center;" readonly="readonly">
 		<a href="javascript:countClick('plus','adult')" style="color: black; font-size: 20">+</a>
 	</td>
 	<td id="test01">
 		청소년<br><a href="javascript:countClick('minus','child')" style="color: black; font-size: 25">-</a>
-		<input size="3" type="text" id="select2" name="ticket_child" value="0" style="text-align: center;">
+		<input size="3" type="text" id="select2" name="ticket_child" value="0" style="text-align: center;" readonly="readonly">
 		<a href="javascript:countClick('plus','child')" style="color: black; font-size: 20">+</a> 
 	</td>
 </tr>
@@ -194,6 +207,33 @@ function countClick(calc, age){
 <br><br>
 <div class="seat-wrapper"></div>
 <br><br><br><br>
+<script type="text/javascript">
+function imagepopUp(){
+	$('#rated_r').attr('style', 'visibility:hidden');
+}
+</script>
+<c:if test="${movie_age_grade=='19세이상관람가'}">
+<div id="rated_r" style="visibility: visible;">		
+	<div id="rated_alarm" >
+		<h1 style="text-align: center;">관람등급 안내</h1>
+		<div style="width: 25%; margin-top: 30; float: left; margin-left: 30">
+			<img src="${contextPath}/resources/image/19img.png" width="130" height="130">
+		</div>
+
+		<div style="width: 75%; float:left; margin-left: -30">
+			<br>
+			본 영화는 청소년 관람불가 영화입니다.<br>
+			관람시 신분증을 꼭 지참해주세요<br>
+			 ※신분증 : 주민등록증/ 운전면허증/ 여권<br>
+			 		(신분증 사진 및 PASS 모바일 인증 불가)<br>
+			만 18세 미만(영, 유야 포함)은 보호자가 있어도 관람하실 수 없으며,<br>
+			만 18세 이상이더라도 「초중등교육법」에 따라 재학중인 학생은 입장이 제한됩니다.<br><br>
+			<a href="javascript:imagepopUp()"><img style="margin-left: 100" src="${contextPath}/resources/image/agprbtn.png" width="120" height="40" ></a>
+		</div>
+	</div>
+</div>
+</c:if>
+
 <script>
     let test = [];
     let selectedSeats = new Array();
