@@ -175,11 +175,21 @@ padding : 5;
    #slider-wrap.active #previous{left:0px;}
 
 #slide .btn .prev {
-  left: 5px;
+  left: 5px; font-weight : bold;
 }
 
 #slide .btn .next {
   right: 5px;
+}
+.btn img{
+width:20;
+height:20;
+padding:5;
+}
+.auto img{
+width:20;
+height:20;
+padding:5;
 }
 
 #slide .auto > button {
@@ -653,12 +663,12 @@ padding : 5;
     </li></c:forEach>
   </ul>
   <div class="btn">
-    <button type="button" class="prev">prev</button>
-    <button type="button" class="next">next</button>
+    <button type="button" class="prev"><img src="${contextPath}/resources/image/prevlogo.png"></button>
+    <button type="button" class="next"><img src="${contextPath}/resources/image/nextlogo.png"></button>
   </div>
   <div class="auto">
-    <button type="button" class="stop">stop</button>
-    <button type="button" class="play">play</button>
+    <button type="button" class="stop"><img src="${contextPath}/resources/image/stop.png"></button>
+    <button type="button" class="play"><img src="${contextPath}/resources/image/play.png"></button>
   </div>
 </div>
        

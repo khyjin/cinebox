@@ -35,18 +35,19 @@ color : black;
             <td><strong>관람일</strong></td> <!-- ticket_movie_day -->
             <td><strong>결제일</strong></td>
          </tr>
-        
+         
         <c:choose>
-         <c:when test="${ empty myOrderList  }">
+         <c:when test="${empty myOrderList }"> 
         <tr>
           <td colspan=5 class="fixed">
               <strong>${memberInfo.member_id }님의 예매내역이 존재하지 않습니다.</strong>
           </td>
         </tr>
-        </c:when>       
+        </c:when> 
        
         <c:otherwise>
-         <c:forEach var="item" items="${myOrderList }">         
+         <c:forEach var="item" items="${myOrderList }">  
+          <c:if test="${item.ticket_movie_day ge today}">       
             <tr>             
 	             <td> <!-- 1.예매번호 -->
 	             	<strong><a href="${contextPath}/mypage/myOrderDetail.do?ticket_number=${item.ticket_number}&movie_id=${item.movie_id}">
@@ -71,7 +72,8 @@ color : black;
 	               <span>${item.ticket_payment_date} </span> 
 	             </td> 
 	                                                     
-            </tr>         
+            </tr> 
+            </c:if>        
       </c:forEach>
      </c:otherwise>   
     </c:choose> 
