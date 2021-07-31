@@ -5,11 +5,9 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
-import com.bookshop01.cart.vo.CartVO;
 import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.vo.MyPageVO;
-import com.bookshop01.order.vo.OrderVO;
 import com.bookshop01.ticket.vo.TicketVO;
 
 public interface MyPageDAO {

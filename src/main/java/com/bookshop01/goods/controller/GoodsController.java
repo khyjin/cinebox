@@ -17,7 +17,8 @@ import com.bookshop01.mypage.vo.MyPageVO;
 public interface GoodsController  {
 	public ModelAndView goodsDetail(@RequestParam("movie_id") String movie_id,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity myReview(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView movieOpenList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView movieScheduledList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView movieClosedList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity myReview(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

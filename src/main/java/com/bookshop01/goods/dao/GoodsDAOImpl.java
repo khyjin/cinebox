@@ -24,57 +24,6 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	   return goodsList;	
 	}
 	
-	//IT/인터넷 리스트 나오게 하기
-	@Override
-	public List<GoodsVO> selectGoodsListsort(String goodsSort ) throws DataAccessException {
-		List<GoodsVO> goodsList=sqlSession.selectList("mapper.goods.selectGoodsListsort",goodsSort);
-	   return goodsList;	
-	}
-	
-	//경제 리스트 나오게 하기
-		@Override
-		public List<GoodsVO> selectGoodsListsortmoney(String goodsSort ) throws DataAccessException {
-			List<GoodsVO> goodsList=sqlSession.selectList("mapper.goods.selectGoodsListsort",goodsSort);
-		   return goodsList;	
-		}
-		
-	//대학교재 리스트 나오게 하기
-		@Override
-		public List<GoodsVO> selectGoodsListsortuni(String goodsSort ) throws DataAccessException {
-			List<GoodsVO> goodsList=sqlSession.selectList("mapper.goods.selectGoodsListsort",goodsSort);
-			return goodsList;	
-		}
-	//자기계발 리스트 나오게 하기
-		@Override
-		public List<GoodsVO> selectGoodsListsortself(String goodsSort ) throws DataAccessException {
-			List<GoodsVO> goodsList=sqlSession.selectList("mapper.goods.selectGoodsListsort",goodsSort);
-			return goodsList;	
-		}
-	//자연과학 리스트 나오게 하기
-		@Override
-		public List<GoodsVO> selectGoodsListsortsci(String goodsSort ) throws DataAccessException {
-			List<GoodsVO> goodsList=sqlSession.selectList("mapper.goods.selectGoodsListsort",goodsSort);
-			return goodsList;	
-		}
-	//역사 리스트 나오게 하기
-		@Override
-		public List<GoodsVO> selectGoodsListsorthistory(String goodsSort ) throws DataAccessException {
-			List<GoodsVO> goodsList=sqlSession.selectList("mapper.goods.selectGoodsListsort",goodsSort);
-			return goodsList;	
-		}
-	
-	@Override
-	public List<String> selectKeywordSearch(String keyword) throws DataAccessException {
-	   List<String> list=(ArrayList)sqlSession.selectList("mapper.goods.selectKeywordSearch",keyword);
-	   return list;
-	}
-	
-	@Override
-	public ArrayList selectGoodsBySearchWord(String searchWord) throws DataAccessException{
-		ArrayList list=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsBySearchWord",searchWord);
-		 return list;
-	}
-	
 	@Override
 	public GoodsVO selectGoodsDetail(String movie_id) throws DataAccessException{
 		GoodsVO goodsVO=(GoodsVO)sqlSession.selectOne("mapper.goods.selectGoodsDetail",movie_id);
@@ -115,4 +64,5 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	public int eachCount(String movie_id) throws Exception {
 		return sqlSession.selectOne("mapper.goods.eachCount", movie_id);
 	}
+
 }

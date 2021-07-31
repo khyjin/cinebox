@@ -14,7 +14,6 @@ import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.order.vo.OrderVO;
 
 @Repository("adminGoodsDAO")
 public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
@@ -81,18 +80,6 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 			image_id=bean.getImage_number();
 			sqlSession.delete("mapper.admin.goods.deleteGoodsImage",image_id);	
 		}
-	}
-
-	@Override
-	public List<OrderVO> selectOrderGoodsList(Map condMap) throws DataAccessException{
-		List<OrderVO>  orderGoodsList=(ArrayList)sqlSession.selectList("mapper.admin.selectOrderGoodsList",condMap);
-		return orderGoodsList;
-	}	
-	
-	@Override
-	public void updateOrderGoods(Map orderMap) throws DataAccessException{
-		sqlSession.update("mapper.admin.goods.updateOrderGoods",orderMap);
-		
 	}
 
 	@Override

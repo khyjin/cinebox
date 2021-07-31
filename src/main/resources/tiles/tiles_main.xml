@@ -18,19 +18,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
 	
-	<definition name="/main/loading" extends="baseLayout">
-		<put-attribute name="title" value="공사중" />
-		<put-attribute name="body" value="/WEB-INF/views/main/loading.jsp" />
-	</definition>
-	
 	<definition name="/map/map" extends="baseLayout">
 		<put-attribute name="title" value="위치 약도" />
 		<put-attribute name="body" value="/WEB-INF/views/map/map.jsp" />
-	</definition>
-	
-	<definition name="/main/notice" extends="baseLayout">
-		<put-attribute name="title" value="공지사항" />
-		<put-attribute name="body" value="/WEB-INF/views/main/notice.jsp" />
 	</definition>
 	
 	</tiles-definitions>

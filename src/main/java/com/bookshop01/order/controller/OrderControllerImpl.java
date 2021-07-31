@@ -10,20 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookshop01.common.base.BaseController;
-import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.service.OrderService;
-import com.bookshop01.order.vo.OrderVO;
-import com.bookshop01.schedule.vo.ScheduleVO;
 import com.bookshop01.ticket.vo.TicketVO;
 
 @Controller("orderController")

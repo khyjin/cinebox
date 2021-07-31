@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.member.vo.MemberVO;
-import com.bookshop01.order.vo.OrderVO;
 
 public interface AdminMemberService {
 	public ArrayList<MemberVO> listMember(HashMap condMap) throws Exception;

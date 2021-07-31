@@ -42,14 +42,6 @@ public class MainController extends BaseController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value= "/main/loading.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView loadingview(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav=new ModelAndView(viewName);
-		return mav;
-	}
-	
 	@RequestMapping(value= "/map/map.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView mapview(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
@@ -57,11 +49,5 @@ public class MainController extends BaseController {
 		return mav;
 	}
 	
-	@RequestMapping(value= "/main/notice.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView noticeview(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav=new ModelAndView(viewName);
-		return mav;
-	}
 	
 }

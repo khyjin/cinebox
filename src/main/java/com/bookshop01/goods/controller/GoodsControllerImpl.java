@@ -53,90 +53,6 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		return mav;
 	}
 	
-
-	@RequestMapping(value= "/goodslist.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView itbooklist(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssort();
-		mav.addObject("goodsMap", goodsMap);
-		return mav;
-	}
-	
-	@RequestMapping(value= "/goodslist1.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView moneybooklist(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodsmoney();
-		mav.addObject("goodsMap", goodsMap);
-		return mav;
-	}
-	
-	@RequestMapping(value= "/goodslist2.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView unibooklist(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodsuni();
-		mav.addObject("goodsMap", goodsMap);
-		return mav;
-	}
-	
-	@RequestMapping(value= "/goodslist3.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView selfbooklist(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodsself();
-		mav.addObject("goodsMap", goodsMap);
-		return mav;
-	}
-	
-	@RequestMapping(value= "/goodslist4.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView scibooklist(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodssci();
-		mav.addObject("goodsMap", goodsMap);
-		return mav;
-	}
-	
-	@RequestMapping(value= "/goodslist5.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView historybooklist(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		HttpSession session;
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
-		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user");
-		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoodshistory();
-		mav.addObject("goodsMap", goodsMap);
-		return mav;
-	}
 	
 	//상영 중인 영화 리스트 조회
 	@RequestMapping(value= "/movieopen.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -181,38 +97,6 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		Map<String,List<GoodsVO>> goodsMap=goodsService.movieendlist();
 		mav.addObject("goodsMap", goodsMap);
 		return mav;
-	}
-	
-	@RequestMapping(value="/keywordSearch.do",method = RequestMethod.GET,produces = "application/text; charset=utf8")
-	public @ResponseBody String  keywordSearch(@RequestParam("keyword") String keyword,
-			                                  HttpServletRequest request, HttpServletResponse response) throws Exception{
-		response.setContentType("text/html;charset=utf-8");
-		response.setCharacterEncoding("utf-8");
-		//System.out.println(keyword);
-		if(keyword == null || keyword.equals(""))
-		   return null ;
-	
-		keyword = keyword.toUpperCase();
-	    List<String> keywordList =goodsService.keywordSearch(keyword);
-	    
-	 // 최종 완성될 JSONObject 선언(전체)
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("keyword", keywordList);
-		 		
-	    String jsonInfo = jsonObject.toString();
-	   // System.out.println(jsonInfo);
-	    return jsonInfo ;
-	}
-	
-	@RequestMapping(value="/searchGoods.do" ,method = RequestMethod.GET)
-	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
-			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("goodsList", goodsList);
-		return mav;
-		
 	}
 	
 

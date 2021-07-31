@@ -3,12 +3,6 @@ package com.bookshop01.goods.vo;
 import java.sql.Date;
 
 public class ImageFileVO {
-//	private int goods_id;		//상품번호
-//	private int image_id;		//이미지 번호
-//	private String fileName;	//이미지 파일명
-//	private String fileType;	//이미지 종류
-//	private String reg_id;		//등록자 아이디
-
 
 	private int movie_id;
 	private int image_number;

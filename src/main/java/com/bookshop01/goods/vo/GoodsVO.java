@@ -4,27 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class GoodsVO {
-//	private int goods_id;					//상품번호
-//	private String goods_title;				//책제목
-//	private String goods_writer;			//저자
-//	private int    goods_price;				//가격	
-//	private String goods_publisher;			//출판사
-//	private String goods_sort;				//종류(분류) 중분류 품목
-//	private int    goods_sales_price;		//판매가격
-//	private int    goods_point;				//적립 포인트
-//	private Date    goods_published_date;	//출판일
-//	private int    goods_total_page;		//페이지수
-//	private String goods_isbn;				//ISBN번호(일련번호)
-//	private String goods_delivery_price;	//배송비
-//	private Date goods_delivery_date;		//배송날짜
-//	private String goods_fileName;			//이미지파일 이름
-//	private String goods_status;			//상품분류 - 베스트셀러, 신간...
-//	private String goods_writer_intro;		//저자소개
-//	private String goods_contents_order;	//목차
-//	private String goods_intro;				//책소개
-//	private String goods_publisher_comment; //출판사 평
-//	private String goods_recommendation;	//추천사
-//	private Date   goods_credate;			//입고일
 	
 	private String movie_admin_id;	//등록자ID
 	private int movie_id;			//영화ID

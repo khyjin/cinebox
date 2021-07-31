@@ -9,7 +9,6 @@ import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.order.vo.OrderVO;
 
 public interface AdminGoodsDAO {
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException;
@@ -21,8 +20,6 @@ public interface AdminGoodsDAO {
 	public void updateGoodsImage(List<ImageFileVO> imageFileList) throws DataAccessException;
 	public void deleteGoodsImage(int image_number) throws DataAccessException;
 	public void deleteGoodsImage(List fileList) throws DataAccessException;
-	public List<OrderVO> selectOrderGoodsList(Map condMap) throws DataAccessException;
-	public void updateOrderGoods(Map orderMap) throws DataAccessException;
 	public void deleteMovie(int movie_id) throws DataAccessException;
 	
 	public int listCount() throws DataAccessException;

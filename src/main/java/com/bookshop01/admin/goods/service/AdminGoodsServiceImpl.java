@@ -19,7 +19,6 @@ import com.bookshop01.cscenter.vo.Criteria;
 import com.bookshop01.cscenter.vo.SearchCriteria;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
-import com.bookshop01.order.vo.OrderVO;
 
 
 @Service("adminGoodsService")
@@ -71,15 +70,6 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	@Override
 	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception{
 		adminGoodsDAO.updateGoodsImage(imageFileList); 
-	}
-	
-	@Override
-	public List<OrderVO> listOrderGoods(Map condMap) throws Exception{
-		return adminGoodsDAO.selectOrderGoodsList(condMap);
-	}
-	@Override
-	public void modifyOrderGoods(Map orderMap) throws Exception{
-		adminGoodsDAO.updateOrderGoods(orderMap);
 	}
 	
 	@Override

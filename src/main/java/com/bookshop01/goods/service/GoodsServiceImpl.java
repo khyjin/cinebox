@@ -34,51 +34,6 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMap;
 	}
 	
-	//it/인터넷
-	public Map<String,List<GoodsVO>> listGoodssort() throws Exception {
-		Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
-		List<GoodsVO> goodsList=goodsDAO.selectGoodsListsort("it");
-		goodsMap.put("it",goodsList);
-		return goodsMap;
-	}
-	
-	//경제
-		public Map<String,List<GoodsVO>> listGoodsmoney() throws Exception {
-			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
-			List<GoodsVO> goodsList=goodsDAO.selectGoodsListsort("MONEY");
-			goodsMap.put("MONEY",goodsList);
-			return goodsMap;
-		}
-	//대학교재
-		public Map<String,List<GoodsVO>> listGoodsuni() throws Exception {
-			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
-			List<GoodsVO> goodsList=goodsDAO.selectGoodsListsortuni("UNI");
-			goodsMap.put("UNI",goodsList);
-			return goodsMap;
-		}
-	//자기계발
-		public Map<String, List<GoodsVO>> listGoodsself() throws Exception {
-			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
-			List<GoodsVO> goodsList=goodsDAO.selectGoodsListsortself("SELF");
-			goodsMap.put("SELF",goodsList);
-			return goodsMap;
-		}
-		
-	//자연과학
-		public Map<String,List<GoodsVO>> listGoodssci() throws Exception {
-			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
-			List<GoodsVO> goodsList=goodsDAO.selectGoodsListsortsci("SCI");
-			goodsMap.put("SCI",goodsList);
-			return goodsMap;
-		}
-	//역사
-		public Map<String, List<GoodsVO>> listGoodshistory() throws Exception {
-			Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();
-			List<GoodsVO> goodsList=goodsDAO.selectGoodsListsorthistory("HISTORY");
-			goodsMap.put("HISTORY",goodsList);
-			return goodsMap;
-		}
-	
 	public Map goodsDetail(String movie_id) throws Exception {
 		Map goodsMap=new HashMap();
 		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(movie_id);
@@ -120,15 +75,6 @@ public class GoodsServiceImpl implements GoodsService{
 			return goodsMap;
 	}	
 	
-	public List<String> keywordSearch(String keyword) throws Exception {
-		List<String> list=goodsDAO.selectKeywordSearch(keyword);
-		return list;
-	}
-	
-	public List<GoodsVO> searchGoods(String searchWord) throws Exception{
-		List goodsList=goodsDAO.selectGoodsBySearchWord(searchWord);
-		return goodsList;
-	}
 
 	@Override
 	public void myReview(HashMap<String,String> reviewmap) throws Exception {
