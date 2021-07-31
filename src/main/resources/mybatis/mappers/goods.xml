@@ -58,7 +58,6 @@
 	   <result property="image_id" column="image_id" />
 	   <result property="fileType" column="fileType" /> -->
 	</resultMap>
-	
 
 	
    
@@ -104,6 +103,12 @@
 				and movie_id=#{movie_id}
     	]]>
 	</select>
+	<select id="selectReviewList" resultType="mypageVO"   parameterType="String"  >
+	    <![CDATA[
+		    	select * from  cinebox_review
+		    	where movie_id=#{movie_id}
+    	]]>
+	</select>
 	
    <select id="selectGoodsBySearchWord" resultMap="goodsResult"   parameterType="String"  >
      <![CDATA[
@@ -132,7 +137,8 @@
 									review_content,	
 									movie_title,								
 									review_score,									
-									review_reg_date
+									review_reg_date,
+									movie_id
 									)
 							values (
 									review_seq.nextval,
@@ -140,7 +146,8 @@
 									#{review_content},
 									#{movie_title},									
 									#{review_score},									
-									to_date(sysdate)
+									to_date(sysdate),
+									#{movie_id}
 									)
 							
 ]]>
@@ -153,5 +160,9 @@
 	<select id="eachCount" resultType="int">
 		select count(ticket_number) from cinebox_ticket
 		where movie_id=#{movie_id}
+	</select>
+	
+	<select id="ReviewList" resultType="String"   parameterType="String" >
+		select * from cinebox_review where movie_title=#{movie_title} 
 	</select>
 </mapper>

@@ -21,6 +21,7 @@ public interface GoodsDAO {
 	public List<String> selectKeywordSearch(String keyword) throws DataAccessException;
 	public GoodsVO selectGoodsDetail(String goods_id) throws DataAccessException;
 	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException;
+	public List<MyPageVO> selectReviewList(String movie_id) throws DataAccessException;
 	public List<GoodsVO> movielist(String movie_status) throws DataAccessException;
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
 	public void myReview(HashMap<String,String> reviewmap) throws Exception;

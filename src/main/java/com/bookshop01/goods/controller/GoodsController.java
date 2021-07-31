@@ -15,7 +15,8 @@ import com.bookshop01.cscenter.vo.CscenterVO;
 import com.bookshop01.mypage.vo.MyPageVO;
 
 public interface GoodsController  {
-	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView goodsDetail(@RequestParam("movie_id") String movie_id,
+            HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity myReview(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws Exception;

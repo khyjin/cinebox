@@ -7,7 +7,6 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="movie"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
-<c:set var="rate" value="${goodsMap.rate}"/>
  <%
      //치환 변수 선언합니다.
       //pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -361,6 +360,35 @@ padding:5;
 	font-family : "맑은 고딕";
 }
 
+
+
+
+
+
+
+
+.review {
+	padding-top:20px;
+	padding-bottom:50px;
+}
+.reviewList {
+   width: 100%;
+    border-collapse: collapse;
+    font-size:14px;;
+}
+.reviewtd {
+    padding: 10px;
+    text-align: center;
+     background-color: #ecf0f1;
+}
+.reviewtitle {
+    padding: 10px;
+    text-align: center;
+    background-color: #d5e5e8;
+}
+.fixed {
+   width: 110px; font-weight: bold;font-size: 15px;  text-align: center; padding:10px;
+}
 </style>
 <script type="text/javascript">
    function add_cart(goods_id) {
@@ -573,6 +601,7 @@ padding:5;
 	
 </script>
 
+
 </head>
 <body>
    <hgroup>
@@ -670,15 +699,60 @@ padding:5;
         
         <div class="review_contents">      
         <input type="hidden" name="member_id" value="${memberInfo.member_id}"/><p>
-        <input type="hidden" name="movie_title" value="${movie.movie_title}"/><p>     
+        <input type="hidden" name="movie_title" value="${movie.movie_title}"/><p>
+        <input type="hidden" name="movie_id" value="${movie.movie_id}"/><p> 
 			<input type="text" name="review_content" size="100" title="관람평" placeholder="5자 이상 작성해 주세요.">&emsp;
         </div>   
             <div class="reg"><input type="button" value="등록" onClick="reg_review()"></div>
                           
     </form>
 </div>
-   
-   </div>   
+</div>
+ <div class="clear">
+  <div class="review">
+<table class="reviewList">
+	<tr class="reviewtr">
+		<th class="reviewtitle">작성자</th>
+		<th class="reviewtitle">평점</th>
+		<th class="reviewtitle">관람평</th>
+		<th class="reviewtitle">작성일자</th>
+	</tr>
+	<c:choose>
+         <c:when test="${ empty goodsMap.reviewList  }">
+        <tr>
+          <td colspan=5 class="fixed">
+              <strong>작성된 관람평이 없습니다.</strong>
+          </td>
+        </tr>
+        </c:when> 
+         <c:otherwise>
+	<c:forEach var="reviewList" items="${goodsMap.reviewList}">
+		<script type="text/javascript">
+			function delete_review() {
+				if (confirm("관람평을 삭제하시겠습니까?") == true) {
+					location.href = '${contextPath}/mypage/deletemyReview.do?review_number=${reviewList.review_number}';
+				} else {
+					return;
+				}
+			}
+		</script>
+	<tr class="reviewtr">
+		<td class="reviewtd">${reviewList.member_id}</td>
+		<td class="reviewtd" style="font-size: xx-large;">${reviewList.review_score}</td>
+		<td class="reviewtd">${reviewList.review_content}</td>
+		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd HH:ss"/>&emsp;
+
+		 <c:if test="${memberInfo.member_id==reviewList.member_id}">
+		 <button onclick="delete_review()">삭제</button></td>
+		 </c:if>  
+	</tr>
+	</c:forEach>
+     </c:otherwise>
+    </c:choose>   
+     
+</table>
+</div>
+</div>
 </body>
 </html>
  <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/> 

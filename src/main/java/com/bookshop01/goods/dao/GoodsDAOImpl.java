@@ -88,6 +88,12 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		return imageList;
 	}
 	
+	@Override
+	public List<MyPageVO> selectReviewList(String movie_title) throws DataAccessException{
+		List<MyPageVO> reviewList=(ArrayList)sqlSession.selectList("mapper.goods.selectReviewList",movie_title);
+		return reviewList;
+	}
+	
 	//  영화 리스트 출력
 	@Override
 	public List<GoodsVO> movielist(String movie_status) throws DataAccessException {
@@ -109,5 +115,4 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	public int eachCount(String movie_id) throws Exception {
 		return sqlSession.selectOne("mapper.goods.eachCount", movie_id);
 	}
-
 }

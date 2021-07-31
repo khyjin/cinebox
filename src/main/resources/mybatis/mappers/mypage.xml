@@ -194,7 +194,9 @@
 	
 	<!-- 나의 1:1 문의 내역 출력 -->
 	<select id="myQnaList" resultType="cscenterVO" parameterType="String">
-		select * from cinebox_cscenter where member_id=#{member_id} 
+		select * from cinebox_cscenter where member_id=#{member_id}
+		or cscenter_group in (select cscenter_group from cinebox_cscenter where member_id=#{member_id})
+		order by cscenter_group desc, cscenter_number
 	</select>
 	
 	<!-- 나의 1:1 문의 내역 수정 -->
