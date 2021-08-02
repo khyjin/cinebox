@@ -269,7 +269,7 @@ function readURL(input,preview) {
 					<td><input type="button" value="수정반영" onclick="fn_modify_goods('${goods.movie_id}','movie_age_grade')"></td>
 				</tr>
 				<tr>
-					<td>제작나라</td>
+					<td>제작국가</td>
 					<td><input type="text" value="${goods.movie_country}" name="movie_country" size="40"></td>
 					<td><input type="button" value="수정반영" onclick="fn_modify_goods('${goods.movie_id}','movie_country')"></td>
 				</tr>				
