@@ -46,6 +46,8 @@ public class MainController extends BaseController {
 	public ModelAndView mapview(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav=new ModelAndView(viewName);
+		HttpSession session = request.getSession();
+		session.removeAttribute("side_menu");
 		return mav;
 	}
 	

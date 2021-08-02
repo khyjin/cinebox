@@ -52,7 +52,6 @@
 <body>
 <div class="main_book" >
 <h3>상영 예정인 영화</h3><br>
-<c:set  var="goods_count" value="0" />
 <div class="movietabcontainer" id="moviecontainer">
 		<ul class="movietabs">
         <li><a href="${contextPath}/goods/movieopen.do">현재 상영 중인 영화</a></li>
@@ -61,7 +60,6 @@
         </ul>
       </div>
 	<c:forEach var="item" items="${goodsMap.readysc}">
-	   <c:set  var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
 			<a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
@@ -71,11 +69,6 @@
 			<div class="title">${item.movie_title }</div>
 			<div class="date">개봉일&emsp;<fmt:formatDate value="${item.movie_open_date}" pattern="yy-MM-dd"/></div>
 		</div>
-	   <c:if test="${goods_count==8}">
-         <div class="book">
-           <font size=20> <a href="#">more</a></font>
-         </div>
-     </c:if>
   </c:forEach>
 </div>
 <br><br>

@@ -38,10 +38,8 @@
 </style>
 </head>
 <div class="main_book">
-   <c:set  var="goods_count" value="0" />
 	<h3>예매율 순위<a href="${contextPath}/goods/movieopen.do" id="more">더 보기<img width="23" height="15" src="${contextPath}/resources/image/more.png"></a></h3><br>
-	<c:forEach var="item" items="${goodsMap.screening}">
-	   <c:set  var="goods_count" value="${goods_count+1 }" />
+	<c:forEach var="item" items="${goodsMap.screening}" begin="1" end="5" step="1">
 		<div class="book">
 			<a href="${contextPath}/goods/goodsDetail.do?movie_id=${item.movie_id }">
 			<img class="link"  src="${contextPath}/resources/image/1px.gif"> 
@@ -50,11 +48,6 @@
 			<div class="title">${item.movie_title }</div>
 		  	  <a href="${contextPath}/ticket/reservation.do" class="myButton">예매하기</a>
 		</div>
-	   <c:if test="${goods_count==8}">
-         <div class="book">
-           <font size=20> <a href="#">more</a></font>
-         </div>
-     </c:if>
   </c:forEach>
 </div>
 

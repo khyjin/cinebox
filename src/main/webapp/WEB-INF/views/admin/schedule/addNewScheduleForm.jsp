@@ -260,8 +260,38 @@ function delete_check(deleteSchedule) {
 		<li><a href="#tab2">상영 일정</a></li>
 	</ul>
 
-	<div class="tab_content" id="tab1">		
+	<div class="tab_content" id="tab1">	
+	
+<!-- 입력 -->	
+<h1>상영시간표 추가</h1>
+<div style="overflow: auto; height: 20%;">
+<form action="${contextPath}/schedule/addSchedule.do" method="post">
+			<table id = "scheduleTable">
+				<thead>
+				<tr>
+					<th>NO.</th>
+					<th>상영날짜</th>
+					<th>상영관</th>
+					<th>영화명</th>
+					<th>시작시간</th>
+				</tr>
+				</thead>
+			 <tbody id="scheduledata"/> 
+			</table>	
+
+		<div class="clear"></div>
+		<br>
+		<div id="right-align">
+		<input type="button" id="button0" id="addBtn" value="행추가" onclick="addRow()" style="width:80px">
+		<input type="button" id="button0"value="맨 끝행삭제" onclick="deleteRow('-1')" style="width:80px">
+		<input type="button" id="button0"value="앞 행삭제" onclick="deleteRow('1')" style="width:80px">
+		<input type="submit"id="button0" value="입력하기" style="width:80px">
+		</div>
+		</form>	
+</div>
 <!-- 출력 -->	
+<h1>상영시간표</h1>
+<div style="overflow: auto; height: 50%;">
 <form>
 	<table>
 		<thead>
@@ -293,33 +323,8 @@ function delete_check(deleteSchedule) {
 	</tbody>
 </table>	
 </form>	
-
+</div>
 <br/>
-<!-- 입력 -->	
-<h1>상영시간표 추가</h1>
-<form action="${contextPath}/schedule/addSchedule.do" method="post">
-			<table id = "scheduleTable">
-				<thead>
-				<tr>
-					<th>NO.</th>
-					<th>상영날짜</th>
-					<th>상영관</th>
-					<th>영화명</th>
-					<th>시작시간</th>
-				</tr>
-				</thead>
-			 <tbody id="scheduledata"/> 
-			</table>	
-
-		<div class="clear"></div>
-		<br>
-		<div id="right-align">
-		<input type="button" id="button0" id="addBtn" value="행추가" onclick="addRow()" style="width:80px">
-		<input type="button" id="button0"value="맨 끝행삭제" onclick="deleteRow('-1')" style="width:80px">
-		<input type="button" id="button0"value="앞 행삭제" onclick="deleteRow('1')" style="width:80px">
-		<input type="submit"id="button0" value="입력하기" style="width:80px">
-		</div>
-		</form>
 	</div>
 <!-- 일정 -->	
 	<div class="tab_content" id="tab2">

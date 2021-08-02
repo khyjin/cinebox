@@ -17,7 +17,6 @@
 			<li><a href="${contextPath}/admin/order/adminOrderMain.do">예매관리</a></li>
 			<li><a href="${contextPath}/admin/member/searchMember.do">회원관리</a></li>
 			<li><a href="${contextPath}/schedule/addNewScheduleForm.do">영화스케줄</a></li>
-			<li><a href="${contextPath}/schedule/selectSchedule.do">상영시간표</a></li>
 		</ul>
 	</li>
 </c:when>
