@@ -73,25 +73,72 @@ body {
 			<c:when test="${ulist.cscenter_type=='faq'}">
 			<td>
 				<select name="cscenter_headline">
-				<option value="영화관 이용">[영화관 이용]</option>
-				<option value="에매/매표">[예매/매표]</option>
-				<option value="홈페이지">[홈페이지]</option>
-				<option value="결제수단">[결제수단]</option>
-				<option value="기타">[기타]</option>
+				<c:choose>
+					<c:when test="${ulist.cscenter_headline=='영화관 이용'}">
+						<option value="영화관 이용" selected="selected">[영화관 이용]</option>
+						<option value="예매/매표">[예매/매표]</option>
+						<option value="홈페이지">[홈페이지]</option>
+						<option value="결제수단">[결제수단]</option>
+						<option value="기타">[기타]</option>				
+					</c:when>
+					<c:when test="${ulist.cscenter_headline=='예매/매표'}">
+						<option value="영화관 이용">[영화관 이용]</option>
+						<option value="예매/매표" selected="selected">[예매/매표]</option>
+						<option value="홈페이지">[홈페이지]</option>
+						<option value="결제수단">[결제수단]</option>
+						<option value="기타">[기타]</option>				
+					</c:when>
+					<c:when test="${ulist.cscenter_headline=='홈페이지'}">
+						<option value="영화관 이용">[영화관 이용]</option>
+						<option value="예매/매표">[예매/매표]</option>
+						<option value="홈페이지" selected="selected">[홈페이지]</option>
+						<option value="결제수단">[결제수단]</option>
+						<option value="기타">[기타]</option>				
+					</c:when>
+					<c:when test="${ulist.cscenter_headline=='결제수단'}">
+						<option value="영화관 이용">[영화관 이용]</option>
+						<option value="예매/매표">[예매/매표]</option>
+						<option value="홈페이지">[홈페이지]</option>
+						<option value="결제수단" selected="selected">[결제수단]</option>
+						<option value="기타">[기타]</option>				
+					</c:when>
+					<c:when test="${ulist.cscenter_headline=='기타'}">
+						<option value="영화관 이용">[영화관 이용]</option>
+						<option value="예매/매표">[예매/매표]</option>
+						<option value="홈페이지">[홈페이지]</option>
+						<option value="결제수단">[결제수단]</option>
+						<option value="기타" selected="selected">[기타]</option>				
+					</c:when>
+				</c:choose>
 				</select>
 			</td>
 			</c:when>
 			<c:otherwise>
 				<td><select name="cscenter_headline">
-				<option value="공지" selected="selected">[공지]</option>
-				<option value="이벤트">[이벤트]</option>
-				<option value="기타">[기타]</option>
+				<c:choose>
+					<c:when test="${ulist.cscenter_headline=='공지'}">
+						<option value="공지" selected="selected">[공지]</option>
+						<option value="이벤트">[이벤트]</option>
+						<option value="기타">[기타]</option>
+					</c:when>
+					<c:when test="${ulist.cscenter_headline=='이벤트'}">
+						<option value="공지">[공지]</option>
+						<option value="이벤트" selected="selected">[이벤트]</option>
+						<option value="기타">[기타]</option>
+					</c:when>
+					<c:when test="${ulist.cscenter_headline=='기타'}">
+						<option value="공지">[공지]</option>
+						<option value="이벤트">[이벤트]</option>
+						<option value="기타" selected="selected">[기타]</option>
+					</c:when>
+				</c:choose>
+
 				</select></td>				
 			</c:otherwise>
 		</c:choose>
 
 			<td>제목</td>
-			<td colspan="2"><input type="text" name="cscenter_title" value="${ulist.cscenter_title}">
+			<td colspan="2"><input type="text" size="70" name="cscenter_title" value="${ulist.cscenter_title}">
 			</td>		
 		</tr>
 		

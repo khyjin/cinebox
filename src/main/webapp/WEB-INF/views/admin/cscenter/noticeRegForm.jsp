@@ -77,7 +77,7 @@ body {
 			<td>
 				<select name="cscenter_headline">
 				<option value="영화관 이용">[영화관 이용]</option>
-				<option value="에매/매표">[예매/매표]</option>
+				<option value="예매/매표">[예매/매표]</option>
 				<option value="홈페이지">[홈페이지]</option>
 				<option value="결제수단">[결제수단]</option>
 				<option value="기타">[기타]</option>

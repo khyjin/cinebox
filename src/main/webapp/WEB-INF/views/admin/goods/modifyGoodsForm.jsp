@@ -259,10 +259,33 @@ function readURL(input,preview) {
 					<td>연령등급</td>
 					<td>
 						<select name="movie_age_grade">
-							<option value="전체관람가">전체관람가</option>
-							<option value="12세이상관람가">12세이상관람가</option>
-							<option value="15세이상관람가">15세이상관람가</option>
-							<option value="19세이상관람가">19세이상관람가</option>
+						<c:choose>
+							<c:when test="${goods.movie_age_grade=='전체관람가'}">
+								<option value="전체관람가" selected="selected">전체관람가</option>
+								<option value="12세이상관람가">12세이상관람가</option>
+								<option value="15세이상관람가">15세이상관람가</option>
+								<option value="19세이상관람가">19세이상관람가</option>
+							</c:when>
+							<c:when test="${goods.movie_age_grade=='12세이상관람가'}">
+								<option value="전체관람가">전체관람가</option>
+								<option value="12세이상관람가" selected="selected">12세이상관람가</option>
+								<option value="15세이상관람가">15세이상관람가</option>
+								<option value="19세이상관람가">19세이상관람가</option>
+							</c:when>
+							<c:when test="${goods.movie_age_grade=='15세이상관람가'}">
+								<option value="전체관람가">전체관람가</option>
+								<option value="12세이상관람가">12세이상관람가</option>
+								<option value="15세이상관람가" selected="selected">15세이상관람가</option>
+								<option value="19세이상관람가">19세이상관람가</option>
+							</c:when>
+							<c:when test="${goods.movie_age_grade=='19세이상관람가'}">
+								<option value="전체관람가">전체관람가</option>
+								<option value="12세이상관람가">12세이상관람가</option>
+								<option value="15세이상관람가">15세이상관람가</option>
+								<option value="19세이상관람가" selected="selected">19세이상관람가</option>
+							</c:when>
+						</c:choose>
+							
 						</select>
 						<input type="hidden" name="h_movie_age_grade" value="${goods.movie_age_grade}">
 					</td>
