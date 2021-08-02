@@ -208,7 +208,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		@RequestMapping("/deletemyReview.do")
 		public String deletemyReview(@RequestParam("review_number") int review_number) throws Exception {
 			myPageService.deletemyReview(review_number);
-			return "redirect:/main/main.do";
+			return "redirect:/mypage/myReviewList.do";
 		}
 		
 	// 나의 1:1 문의 내역 리스트 출력

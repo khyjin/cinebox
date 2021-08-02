@@ -727,24 +727,11 @@ padding:5;
         </c:when> 
          <c:otherwise>
 	<c:forEach var="reviewList" items="${goodsMap.reviewList}">
-		<script type="text/javascript">
-			function delete_review() {
-				if (confirm("관람평을 삭제하시겠습니까?") == true) {
-					location.href = '${contextPath}/mypage/deletemyReview.do?review_number=${reviewList.review_number}';
-				} else {
-					return;
-				}
-			}
-		</script>
 	<tr class="reviewtr">
 		<td class="reviewtd">${reviewList.member_id}</td>
 		<td class="reviewtd" style="font-size: xx-large;">${reviewList.review_score}</td>
 		<td class="reviewtd">${reviewList.review_content}</td>
 		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd HH:ss"/>&emsp;
-
-		 <c:if test="${memberInfo.member_id==reviewList.member_id}">
-		 <button onclick="delete_review()">삭제</button></td>
-		 </c:if>  
 	</tr>
 	</c:forEach>
      </c:otherwise>

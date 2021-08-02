@@ -52,7 +52,7 @@ section.admin_mypage_main {
 			enctype="multipart/form-data">
 			<input type="hidden" name="movie_admin_id"
 				value="${memberInfo.member_id}">
-			<h1>새상품 등록창</h1>
+			<h1>영화 등록창</h1>
 			<br>
 			<div class="tab_container">
 				<!-- 내용 들어 가는 곳 -->
@@ -100,7 +100,7 @@ section.admin_mypage_main {
 					</tr>
 
 					<tr>
-						<td>제작나라</td>
+						<td>제작국가</td>
 						<td><input name="movie_country" type="text" size="40" /></td>
 					</tr>
 					<tr>
@@ -129,7 +129,7 @@ section.admin_mypage_main {
 					</tr>
 
 					<tr>
-						<td>이미지파일 첨부</td>
+						<td>포스터 이미지파일 첨부</td>
 						<td><input type="button" value="파일 추가" onClick="fn_addFile()" />
 							<div id="d_file"></div></td>
 					</tr>
@@ -139,7 +139,7 @@ section.admin_mypage_main {
 					</tr>
 					<tr>
 						<td align=center colspan="2"><input type="button"
-							value="상품 등록하기" onClick="fn_add_new_goods(this.form)"></td>
+							value="영화 등록하기" onClick="fn_add_new_goods(this.form)"></td>
 					</tr>
 				</table>
 			</div>
