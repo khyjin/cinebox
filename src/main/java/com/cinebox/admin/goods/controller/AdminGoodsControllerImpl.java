@@ -99,7 +99,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				}
 			}
 			message= "<script>";
-			message += " alert('새상품을 추가했습니다.');";
+			message += " alert('영화를 추가했습니다.');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/goods/addNewGoodsForm.do';";
 			message +=("</script>");
 		}catch(Exception e) {

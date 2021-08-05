@@ -110,7 +110,7 @@ function delete_check(deleteId) {
 <DIV id="search" style="float: right; width: 40%; margin: 10; text-align: right;">
 	<p>
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
-		<input type="submit" value="상품 등록하기">
+		<input type="submit" value="영화 등록하기">
 	</form>
 </DIV>
 <br>

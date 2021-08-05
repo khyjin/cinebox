@@ -60,6 +60,8 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		mav.addObject("img", orderService.getImage(movie_id));
 		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
 		session.setAttribute("orderer", memberInfo);
+		int point=orderService.searchPoint(memberInfo.getMember_id());
+		mav.addObject("point",point);
 		return mav;
 
 		}	

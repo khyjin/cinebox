@@ -133,7 +133,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 				goodsService.myReview(reviewmap);
 				message  = "<script>";
 				message +=" alert('작성을 완료했습니다.');";
-				message += " location.href='"+request.getContextPath()+"/main/main.do';";
+				message += " location.href='"+request.getContextPath()+"/goods/goodsDetail.do?movie_id="+movie_id+"';";
 				message += " </script>";
 			} catch (Exception e) {
 				message  = "<script>";

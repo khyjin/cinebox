@@ -16,8 +16,7 @@ public class OrderDAOImpl implements OrderDAO {
 	
 	
 	public void insertNewOrder(TicketVO ticketVO) throws DataAccessException{
-		
-			sqlSession.insert("mapper.ticket.insertNewOrder",ticketVO);
+		sqlSession.insert("mapper.ticket.insertNewOrder",ticketVO);
 	}
 	
 	
@@ -36,5 +35,11 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public TicketVO searchSeatNumber(TicketVO ticketVO) throws DataAccessException {
 		return sqlSession.selectOne("mapper.ticket.selectSeatNumber", ticketVO);
+	}
+
+
+	@Override
+	public int searchPoint(String member_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.admin.member.searchPoint", member_id);
 	}
 }

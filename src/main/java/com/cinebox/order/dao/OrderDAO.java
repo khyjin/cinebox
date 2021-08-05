@@ -11,5 +11,6 @@ public interface OrderDAO {
 	public TicketVO selectImage(int movie_id) throws DataAccessException;
 	public void modifyPoint(Map<String, Object> pointMap) throws DataAccessException;
 	public TicketVO searchSeatNumber(TicketVO ticketVO) throws DataAccessException;
+	public int searchPoint(String member_id) throws DataAccessException;
 
 }

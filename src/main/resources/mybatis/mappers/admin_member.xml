@@ -105,10 +105,13 @@
 			         member_jibunaddress=#{member_jibunaddress},
 			      </if>
 			      <if test=" member_namujiaddress!='' and member_namujiaddress!=null">
-			         member_namujiaddress=#{member_namujiaddress}
+			         member_namujiaddress=#{member_namujiaddress},
 			      </if>
 			      <if test=" member_del_yn!='' and member_del_yn!=null">			      	 
 			         member_del_yn=#{member_del_yn,jdbcType=VARCHAR}, member_del_date=to_date(sysdate)
+			      </if>
+			      <if test=" member_point!='' and member_point!=null">			      	 
+			         member_point=#{member_point,jdbcType=VARCHAR}
 			      </if>
 			      <!-- <if test=" member_del_date!='' and member_del_date!=null">
 			         member_del_date=to_date(sysdate)
@@ -170,7 +173,7 @@
 		<if test="keyword != null">
 			<if test="searchType == 't'.toString()">and member_id like '%'||#{keyword}||'%'</if>
 			<if test="searchType == 'd'.toString()">and member_name like '%'||#{keyword}||'%'</if>
-		 	<if test="searchType == 'a'.toString()">and member_id like '%'||#{keyword}||'%'</if>
+		 	<if test="searchType == 'a'.toString()">and member_del_yn like '%'||#{keyword}||'%'</if>
 		</if>
 	</sql>
 	
@@ -178,5 +181,10 @@
 		update cinebox_member set member_point=(member_point - #{ticket_used_point} + #{plus_point})
 		 where member_id=#{member_id}
 	</update>
+	
+	<select id="searchPoint" resultType="int">
+	select member_point from cinebox_member where member_id=#{member_id}
+	
+	</select>
 </mapper>
 

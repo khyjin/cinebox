@@ -123,7 +123,7 @@ function readURL(input,preview) {
  	});
  }
   function addNewImageFile(fileId, movie_id){
-	     alert(fileId);
+//	     alert(fileId);
 		  var form = $('#FILE_FORM')[0];
 	      var formData = new FormData(form);
 	      formData.append("uploadFile", $('#'+fileId)[0].files[0]);
