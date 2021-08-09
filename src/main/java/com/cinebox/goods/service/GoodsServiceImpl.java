@@ -45,9 +45,10 @@ public class GoodsServiceImpl implements GoodsService{
 		double totalCount =(double)goodsDAO.totalCount();
 		double eachCount = (double)goodsDAO.eachCount(movie_id);
 		double rate = (eachCount/totalCount*100);
-		
-		System.out.println("ÃÑ°¹¼ö "+totalCount+" ¿µÈ­°¹¼ö "+eachCount+" °è»ê°á°ú "+rate);
 		goodsMap.put("rate", rate);
+		
+		double score = goodsDAO.selectScore(movie_id);
+		goodsMap.put("score", score);
 		return goodsMap;
 	}
 	

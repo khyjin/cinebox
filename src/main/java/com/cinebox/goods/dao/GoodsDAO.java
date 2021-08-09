@@ -19,4 +19,5 @@ public interface GoodsDAO {
 	public void myReview(HashMap<String,String> reviewmap) throws Exception;
 	public int totalCount() throws Exception;
 	public int eachCount(String movie_id) throws Exception;
+	public double selectScore (String movie_id) throws Exception;
 }

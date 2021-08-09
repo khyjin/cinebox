@@ -19,6 +19,8 @@ public class GoodsVO {
 	private Date movie_open_date;	//개봉일
 	private Date movie_close_date;	//종료일
 	private String movie_fileName;
+
+	
 	public GoodsVO() {
 		super();
 		// TODO Auto-generated constructor stub

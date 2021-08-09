@@ -710,6 +710,8 @@ padding:5;
 </div>
  <div class="clear">
   <div class="review">
+  <div style="text-align: right; font-size: large; padding-right: 50;">평점 : <fmt:formatNumber value="${goodsMap.score}" pattern="#.0"/></div>
+  <br>
 <table class="reviewList">
 	<tr class="reviewtr">
 		<th class="reviewtitle">작성자</th>
@@ -731,7 +733,7 @@ padding:5;
 		<td class="reviewtd">${reviewList.member_id}</td>
 		<td class="reviewtd" style="font-size: xx-large;">${reviewList.review_score}</td>
 		<td class="reviewtd">${reviewList.review_content}</td>
-		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd HH:ss"/>&emsp;
+		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd"/>&emsp;
 	</tr>
 	</c:forEach>
      </c:otherwise>

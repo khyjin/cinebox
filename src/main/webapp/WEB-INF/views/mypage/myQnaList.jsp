@@ -35,9 +35,9 @@ color:black;
         <c:otherwise>
          <c:forEach var="item" items="${myQnaList}">
          <script type="text/javascript">
-			function delete_qna() {
+			function delete_qna(cscenter_number) {
 				if (confirm("문의 내역을 삭제하시겠습니까?") == true) {
-					location.href = '${contextPath}/mypage/deletemyQna.do?cscenter_number=${item.cscenter_number}';
+					location.href = '${contextPath}/mypage/deletemyQna.do?cscenter_number='+cscenter_number+'';
 				} else {
 					return;
 				}
@@ -65,7 +65,7 @@ color:black;
            </td>
              
              <td> <!-- 4.삭제 -->  
-               <button onclick="delete_qna()">삭제</button>                 
+               <button onclick="delete_qna('${item.cscenter_number}')">삭제</button>                 
          </tr> 
       </c:forEach>
      </c:otherwise> 

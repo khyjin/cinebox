@@ -35,16 +35,15 @@
    
      <select id="selectGoodsList" parameterType="String" resultMap="goodsResult"   >
         <![CDATA[
-        select t.*
-		from (
 			select m.*, i.image_file_name from cinebox_movie m, cinebox_image i
 			where m.movie_id = i.movie_id
 			and i.image_file_sort='poster'
 			and movie_status = #{movie_status}
-			order by m.movie_id desc) t
-		where rowNum < 16
+			order by m.movie_id desc
 	    ]]>
 	</select>
+	
+
 	
 	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
 	    <![CDATA[
@@ -68,6 +67,7 @@
 		    	where movie_id=#{movie_id}
     	]]>
 	</select>
+	
 	
 	<insert id="myReview" parameterType="java.util.Map">
 		<![CDATA[
@@ -104,5 +104,10 @@
 	
 	<select id="ReviewList" resultType="String"   parameterType="String" >
 		select * from cinebox_review where movie_title=#{movie_title} 
+	</select>
+	
+	<select id="selectScore" resultType="double" parameterType="String">
+		select avg(review_score) as score from cinebox_review
+		where movie_id=#{movie_id}
 	</select>
 </mapper>

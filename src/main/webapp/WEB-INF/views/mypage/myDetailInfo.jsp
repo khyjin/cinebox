@@ -202,8 +202,11 @@ function fn_modify_member_info(attribute){
 				alert("에러가 발생했습니다."+data);
 			},
 			complete : function(data, textStatus) {
-				window.location.href = "myDetailInfo.do";
-				
+				if(attribute=='del'){
+					location.href="${contextPath}/main/main.do";
+				}else{
+					window.location.href = "myDetailInfo.do";	
+				}			
 			}
 		}); //end ajax
 }

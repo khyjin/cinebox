@@ -38,7 +38,6 @@
 				<img width="171" height="214" src="${contextPath}/thumbnails.do?movie_id=${item.movie_id}&image_file_name=${item.movie_fileName}">
 
 			<div class="title">${item.movie_title }</div>
-			<!-- <div class="score">평점 0.0</div> -->
 		</div>
   </c:forEach>
 </div>
