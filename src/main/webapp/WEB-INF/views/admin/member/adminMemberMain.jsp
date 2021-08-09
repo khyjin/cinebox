@@ -128,7 +128,7 @@ function delete_check(deleteId) {
                  <select name="searchType">
                     <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>아이디</option>
                     <option value="d"<c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>이름</option>
-                    <option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>휴대폰</option>
+                    <option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>탈퇴여부(Y/N)</option>
                  </select>
                <input name="keyword" id="keywordInput" type="text"  size="30"/>  
                <input type="submit"  value="회원찾기"/>
@@ -170,7 +170,7 @@ function delete_check(deleteId) {
                <td width=15%>
                  <strong>${item.member_name}</strong><br>
                </td>
-               <td width=15% >
+               <td width=20% >
                  <strong>${item.member_hp1}-${item.member_hp2}-${item.member_hp3}</strong><br>
                </td>
                <td width=15%>
@@ -189,7 +189,7 @@ function delete_check(deleteId) {
                    </c:choose>
                 </td>
                 
-                <td width=25%>
+                <td width=20%>
                  <button id="button0"><a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">수정</a></button>
                <input type="hidden" value="${item.member_id}" name="deleteId${status.index}">
                <input type="button" id="button0" onclick="delete_check(deleteId${status.index})" value="삭제">            

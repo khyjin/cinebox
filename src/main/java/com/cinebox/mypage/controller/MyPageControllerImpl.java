@@ -168,12 +168,19 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		//수정된 회원 정보를 다시 세션에 저장한다.
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 		session.removeAttribute("memberInfo");
-		session.setAttribute("memberInfo", memberVO);
-		
 		String message = null;
 		ResponseEntity resEntity = null;
+		
+		if(memberVO.getMember_del_yn().equals("N")) { 
+			session.setAttribute("memberInfo", memberVO);
+		}else {
+			message  = "<script>";
+			message += "location.href='"+request.getContextPath()+"/main/main.do';";
+			message += "</script>";
+		}
 		HttpHeaders responseHeaders = new HttpHeaders();
 		message  = "mod_success";
+	
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
@@ -183,6 +190,11 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	public ModelAndView myPoint(HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session=request.getSession();
+		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
+		session.setAttribute("orderer", memberInfo);
+		int point=myPageService.searchPoint(memberInfo.getMember_id());
+		mav.addObject("point",point);
 		return mav;
 	}
 	

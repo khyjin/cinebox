@@ -98,4 +98,10 @@ public class MyPageServiceImpl  implements MyPageService{
 		return myPageDAO.selectImage(movie_id);
 	}
 
+
+	@Override
+	public int searchPoint(String member_id) throws Exception {
+		return myPageDAO.selectPoint(member_id);
+	}
+
 }

@@ -30,16 +30,18 @@ table#point {
 <div class="checkPoint">
 <img src="${contextPath}/resources/image/coinlogo.jpg" width="70" height="70"/>
  CINEBOX 포인트 
+ <hr>
  </div><br>
  
 <table id="point" cellspacing="20">
 <tr>
 	<td width="350">
 	${memberInfo.member_name}님의 사용가능 포인트  
+	
 	</td>
 	
 	<td>
-	<Strong><fmt:formatNumber type="number" value="${memberInfo.member_point}" pattern="#,##0" />점</Strong>
+	<Strong><fmt:formatNumber type="number" value="${point}" pattern="#,##0" />점</Strong>
 	</td>
 </tr>
 

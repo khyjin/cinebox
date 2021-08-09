@@ -25,4 +25,5 @@ public interface MyPageDAO {
 	public void myQnaModify(CscenterVO cscenterVO) throws DataAccessException;
 	public List<CscenterVO> myQnaModifyview(int cscenter_number) throws DataAccessException;
 	public void deletemyQna(int cscenter_number) throws DataAccessException;
+	public int selectPoint(String member_id) throws DataAccessException;
 }

@@ -9,5 +9,6 @@ public interface OrderService {
 	public void modifyPoint(Map<String, Object> pointMap) throws Exception;
 	public TicketVO getImage(int movie_id) throws Exception;
 	public TicketVO searchSeatNumber(TicketVO ticketVO) throws Exception;
+	public int searchPoint(String member_id) throws Exception;
 	
 }

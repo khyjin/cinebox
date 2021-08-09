@@ -18,30 +18,30 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderDAO orderDAO;
 	
-	
-	public void addNewOrder(TicketVO ticketVO) throws Exception{
-		//주문상품목록에 상품 추가
+	//주문상품목록에 상품 추가
+	public void addNewOrder(TicketVO ticketVO) throws Exception{		
 		orderDAO.insertNewOrder(ticketVO);
-		
 	}
 
-
 	@Override
-	public TicketVO getImage(int movie_id) throws Exception {
-		
+	public TicketVO getImage(int movie_id) throws Exception {		
 		return orderDAO.selectImage(movie_id);
 	}
 
 	@Override
 	public void modifyPoint(Map<String, Object> pointMap) {
 		orderDAO.modifyPoint(pointMap);
-		
 	}
 
 	@Override
 	public TicketVO searchSeatNumber(TicketVO ticketVO) throws Exception {
-		return orderDAO.searchSeatNumber(ticketVO);
-		 
+		return orderDAO.searchSeatNumber(ticketVO); 
 	}
 
+	@Override
+	public int searchPoint(String member_id) throws Exception {
+		return orderDAO.searchPoint(member_id); 
+	}
+
+	
 }

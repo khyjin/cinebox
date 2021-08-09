@@ -623,9 +623,9 @@ height:20;
          <li><a class="buy" href="${contextPath}/ticket/reservation.do">예매</a></li>
       </ul></td><tr class="dot_line">
             </tr>
-            <tr>
+           <!--  <tr>
                <td colspan="2" class="fixed">예매율 : <fmt:formatNumber value="${rate}" pattern="##.##"/>%</td><tr class="dot_line">
-            </tr>
+            </tr> -->
             <tr>
                <td class="fixed">감독 : ${movie.movie_director}</td>
                <td class="fixed">배우 : ${movie.movie_actor}</td>
@@ -730,7 +730,7 @@ height:20;
 		<td class="reviewtd">${reviewList.member_id}</td>
 		<td class="reviewtd" style="font-size: xx-large;">${reviewList.review_score}</td>
 		<td class="reviewtd">${reviewList.review_content}</td>
-		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd HH:ss"/>&emsp;
+		<td class="reviewtd"><fmt:formatDate value="${reviewList.review_reg_date}" pattern="yyyy-MM-dd"/>&emsp;
 	</tr>
 	</c:forEach>
      </c:otherwise>

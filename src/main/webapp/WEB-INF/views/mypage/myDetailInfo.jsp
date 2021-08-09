@@ -117,8 +117,7 @@ function fn_modify_member_info(attribute){
 			}			
 		}else if(attribute=='del'){
 			var del_yn=frm_mod_member.member_del_yn;
-			value_del_yn=del_yn.checked;
-			value=value_del_yn;
+			value=del_yn.value;
 		}else if(attribute=='member_birth'){
 			var birth_y=frm_mod_member.member_birth_y;
 			var birth_m=frm_mod_member.member_birth_m;
@@ -165,8 +164,14 @@ function fn_modify_member_info(attribute){
 			
 			value_email1=email1.value;
 			value_email2=email2.value;
-			value_email_yn=email_yn.checked;
+			
+			if($("input:checkbox[name=member_email_yn]").is(":checked") == false) {
+				value_email_yn="N";
+			}else{
+				value_email_yn="Y";
+			}
 			value=value_email1+","+value_email2+","+value_email_yn;
+			
 			//alert(value);
 		}else if(attribute=='address'){
 			var zipcode=frm_mod_member.member_zip;
@@ -181,7 +186,7 @@ function fn_modify_member_info(attribute){
 			value=value_zipcode+","+value_roadaddress+","+value_jibunaddress+","+value_namujiaddress;
 		}
 		console.log(attribute);
-	 
+		console.log(value); //
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
@@ -202,7 +207,11 @@ function fn_modify_member_info(attribute){
 				alert("에러가 발생했습니다."+data);
 			},
 			complete : function(data, textStatus) {
-				window.location.href = "myDetailInfo.do";
+				if(attribute=='del'){
+					location.href="${contextPath}/main/main.do";
+				}else{
+					window.location.href = "myDetailInfo.do";
+				}
 				
 			}
 		}); //end ajax
@@ -335,12 +344,12 @@ function fn_modify_member_info(attribute){
 					<td class="member_input">
 					   <input type="text" name="member_email1" size=10 value="${memberInfo.member_email1 }" /> @
 					    <input type="text" name="member_email2" size=10 value="${memberInfo.member_email2 }"><Br><br> 
-					<c:choose> 
-					   <c:when test="${memberInfo.member_email_yn=='true' }">
-					   <input type="checkbox" name="member_email_yn"  value="Y"  /> cinebox에서 발송하는 e-mail을 수신합니다.
+					 <c:choose> 
+					   <c:when test="${memberInfo.member_email_yn=='Y' }">
+					   <input type="checkbox" name="member_email_yn"  value="Y"  checked  /> cinebox에서 발송하는 e-mail을 수신합니다.
 						</c:when>
 						<c:otherwise>
-					     <input type="checkbox" name="member_email_yn"  value="N" checked /> cinebox에서 발송하는 e-mail을 수신합니다.
+					     <input type="checkbox" name="member_email_yn"  value="N"/> cinebox에서 발송하는 e-mail을 수신합니다.
 						</c:otherwise>
 					 </c:choose>
 					</td>
@@ -381,17 +390,11 @@ function fn_modify_member_info(attribute){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">탈퇴</td>
-					<td class="member_input">										  
-					  <c:choose> 
-					   <c:when test="${memberInfo.member_del_yn=='true'}">
-					     <input type="checkbox" name="member_del_yn"  value="Y"/> 체크하면 탈퇴됩니다.
-						</c:when>
-						<c:otherwise>
-						  <input type="checkbox" name="member_del_yn"  value="N" /> 체크하면 탈퇴됩니다.
-						</c:otherwise>
-					 </c:choose>					  <br>					  
-					</td>
-					<td>
+					<td class="member_input">
+					<input type="checkbox" name="member_del_yn"  value="Y"/> 체크하면 탈퇴됩니다.								  
+					  <br>
+					  </td>
+					  <td>
 						<label><input type="button" value="탈퇴하기" onClick="fn_modify_member_info('del')" />	</label>				
 					</td>
 				</tr>				
