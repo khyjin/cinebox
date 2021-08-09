@@ -89,5 +89,10 @@ public class MyPageDAOImpl implements MyPageDAO{
 	public TicketVO selectImage(int movie_id) throws DataAccessException {
 		return sqlSession.selectOne("mapper.mypage.selectImage",movie_id);		
 	}
+
+	@Override
+	public int selectPoint(String member_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.admin.member.searchPoint",member_id);	
+	}
 	
 }

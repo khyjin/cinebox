@@ -116,7 +116,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 			val=value.split(",");
 			memberMap.put("member_email1",val[0]);
 			memberMap.put("member_email2",val[1]);
-			memberMap.put("member_emailsts_yn", val[2]);
+			memberMap.put("member_email_yn", val[2]);
 		}else if(mod_type.equals("address")){
 			val=value.split(",");
 			memberMap.put("zip",val[0]);
@@ -125,6 +125,8 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 			memberMap.put("member_namujiaddress", val[3]);
 		}else if(mod_type.equals("del")){
 			memberMap.put("member_del_yn", value);
+		}else if(mod_type.equals("point")){
+			memberMap.put("member_point", value);
 		}
 		
 		memberMap.put("member_id", member_id);

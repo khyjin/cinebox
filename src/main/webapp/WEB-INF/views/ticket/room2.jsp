@@ -365,6 +365,11 @@ function imagepopUp(){
     }
 </script>
 
+<div>
+<img src = "${contextPath}/resources/image/grayseat.PNG" style="width:20px; height:20px;"> 예매불가
+</div>
+<br/>
+
 <table>
 <tr class="dot_line">
    <td  class="fixed_join">영화 제목</td>

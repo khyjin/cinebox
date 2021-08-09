@@ -69,7 +69,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			HttpSession session=request.getSession(); // 받은 세션(아이디, 패스워드) 가져오기
 			session=request.getSession();												
 						
-				if(memberVO.getMember_del_yn().equals("true")) {
+				if(memberVO.getMember_del_yn().equals("Y")) {
 					session.setAttribute("isLogOn", false); 
 					session.setAttribute("memberInfo",memberVO);
 					String message="탈퇴한 회원입니다.";

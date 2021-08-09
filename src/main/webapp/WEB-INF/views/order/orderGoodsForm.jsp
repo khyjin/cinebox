@@ -128,29 +128,37 @@ function myFunction() {
 	var finalPayment=ticket; //최종결제금액
 	
 	if(Number(point.innerText) >= Number(x)){	
-				 			
+		
 		finalPayment=ticket.innerText-x; 	
 	    $('#ticket_total_price').val(finalPayment);
 	    document.getElementById("result2").innerText =document.getElementById("ticket_total_price").value;   
+	
 	}else{
     	alert("보유 포인트 이상 입력하였습니다.");
     	document.getElementById("result").innerText =0;
     	document.getElementById("result2").innerText =ticket.innerText;//최후금액도 초기화
     	$('#usedPoint').val(0);
     }
+	
+	
 }
 
 $(document).ready(function(){ //포인트 모두 사용 체크시
     $("#checkBoxId").change(function(){
         if($("#checkBoxId").is(":checked")){
-        	document.getElementById("result").innerText =point.innerText;
-        	document.getElementById("result2").innerText =document.getElementById("origin").innerText-point.innerText;        	
-        	$('#usedPoint').val(point.innerText);
         	
+        	if((document.getElementById("origin").innerText-point.innerText)<0){
+	  			document.getElementById("result").innerText =document.getElementById("origin").innerText;
+	  	        document.getElementById("result2").innerText =0;        	
+	  	        $('#usedPoint').val(document.getElementById("origin").innerText);
+    	    }else{
+	        	document.getElementById("result").innerText =point.innerText;
+	        	document.getElementById("result2").innerText =document.getElementById("origin").innerText-point.innerText;        	
+	        	$('#usedPoint').val(point.innerText);
+    	    }
         }else{
         	document.getElementById("result").innerText =0;
         	$('#usedPoint').val(0);
-        	//y= document.getElementById("ticket_total_price").value;
         }
     });
 });
@@ -159,11 +167,35 @@ window.history.forward(); //뒤로가기 방지
 function noBack() {
 	window.history.forward();
 }
+
+ function check() { //카드 및 휴대폰번호 선택시 입력확인
+	 
+	if($('input[name=ticket_pay_method]:checked').val()== "신용카드"){			
+	   if($("#ticket_card_company").val() == "N") {
+	       alert('결제카드를 선택해주세요.');
+	       return false;
+	   }			
+	   if($("#ticket_card_month").val() == "N") {
+	       alert('할부개월을 선택해주세요.');
+	       return false;
+	   }
+	   
+	}else if($('input[name=ticket_pay_method]:checked').val()=="휴대폰결제"){
+   		if($("#ticket_phone_number1").val() == "" || $("#ticket_phone_number2").val() == "" || $("#ticket_phone_number3").val() == "") {
+ 	       alert('결제 휴대폰번호를 입력해주세요.');
+ 	       return false;	
+ 	       
+ 	}else{
+  	 return confirm('최종 결제하기');
+   		}
+	
+	}
+}
 </script>
 </head>
 <body> 
 
-<form  name="form_order" action="${contextPath}/order/payToOrderGoods.do" method="post" onsubmit="return confirm('최종 결제하기');">
+<form  name="form_order" action="${contextPath}/order/payToOrderGoods.do" method="post" onsubmit="return check();">
  <div style='float:left'>
    <br>
   
@@ -268,9 +300,9 @@ function noBack() {
                 </tr>
                <tr cellpadding="5"></tr>
              <tr >
-               <td style="padding-top:8px"><fmt:formatNumber value="${list.ticket_total_price*0.05}" var="point" pattern="#"/> 
-               ( 보유포인트 : <span id="point">${orderer.member_point}</span>원 / 적립예정 포인트 : ${point}원
-               <input type="hidden" name="plus_point" value="${point}" />)         
+               <td style="padding-top:8px"><fmt:formatNumber value="${list.ticket_total_price*0.05}" var="earnPoint" pattern="#"/> 
+               ( 보유포인트 : <span id="point">${point}</span>원 / 적립예정 포인트 : ${earnPoint}원
+               <input type="hidden" name="plus_point" value="${earnPoint}" />)         
                </td>
             </tr>
          </tbody>
@@ -353,5 +385,5 @@ function noBack() {
       
 <div class="clear"></div>      
   
- </body>
+</body>
               

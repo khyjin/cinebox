@@ -182,14 +182,13 @@ padding : 5;
   right: 5px;
 }
 .btn img{
-width:20;
-height:20;
-padding:5;
+width:15;
+height:15;
 }
+
 .auto img{
 width:20;
 height:20;
-padding:5;
 }
 
 #slide .auto > button {
@@ -624,9 +623,9 @@ padding:5;
          <li><a class="buy" href="${contextPath}/ticket/reservation.do">예매</a></li>
       </ul></td><tr class="dot_line">
             </tr>
-            <tr>
+           <!--  <tr>
                <td colspan="2" class="fixed">예매율 : <fmt:formatNumber value="${rate}" pattern="##.##"/>%</td><tr class="dot_line">
-            </tr>
+            </tr> -->
             <tr>
                <td class="fixed">감독 : ${movie.movie_director}</td>
                <td class="fixed">배우 : ${movie.movie_actor}</td>

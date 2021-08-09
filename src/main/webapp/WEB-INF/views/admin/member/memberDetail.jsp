@@ -119,8 +119,8 @@ function fn_modify_member_info(member_id,mod_type){
 			}			
 		}else if(mod_type=='del'){
 			var del_yn=frm_mod_member.member_del_yn;
-			value_del_yn=del_yn.checked;
-			value=value_del_yn;
+			value=del_yn.value;//del_yn.checked;
+			
 		}else if(mod_type=='member_birth'){
 			var birth_y=frm_mod_member.member_birth_y;
 			var birth_m=frm_mod_member.member_birth_m;
@@ -167,7 +167,12 @@ function fn_modify_member_info(member_id,mod_type){
 			
 			value_email1=email1.value;
 			value_email2=email2.value;
-			value_email_yn=email_yn.checked;
+			
+			if($("input:checkbox[name=member_email_yn]").is(":checked") == false) {
+				value_email_yn="N";
+			}else{
+				value_email_yn="Y";
+			}			
 			value=value_email1+","+value_email2+","+value_email_yn;
 			//alert(value);
 		}else if(mod_type=='address'){
@@ -181,11 +186,14 @@ function fn_modify_member_info(member_id,mod_type){
 			value_jibunaddress=jibunaddress.value;
 			value_namujiaddress=namujiaddress.value;
 			value=value_zipcode+","+value_roadaddress+","+value_jibunaddress+","+value_namujiaddress;
+		}else if(mod_type=='point'){
+			var point=frm_mod_member.member_point;
+			value=point.value;
 		}
-		console.log(mod_type);
+		console.log(mod_type); 
 		var mod_type=mod_type.toString(); 
-		var member_id=member_id.toString(); 
-		var value=value.toString(); 
+		var member_id=member_id.toString(); console.log(member_id); //
+		var value=value.toString(); console.log(value); //
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
@@ -337,15 +345,15 @@ function fn_modify_member_info(member_id,mod_type){
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td class="member_input">
 					   <input type="text" name="member_email1" size=10 value="${member_info.member_email1 }" /> @
-					    <input type="text" name="member_email2" size=10 value="${member_info.member_email2 }"><Br><br> 
-					<c:choose> 
-					   <c:when test="${member_info.member_email_yn=='true' }">
-					   <input type="checkbox" name="member_email_yn"  value="Y"  /> cinebox에서 발송하는 e-mail을 수신합니다.
+					    <input type="text" name="member_email2" size=10 value="${member_info.member_email2 }"><Br><br>	
+					    <c:choose> 
+					   <c:when test="${member_info.member_email_yn=='Y' }">
+					   <input type="checkbox" name="member_email_yn"  value="Y"  checked  /> cinebox에서 발송하는 e-mail을 수신합니다.
 						</c:when>
 						<c:otherwise>
-					     <input type="checkbox" name="member_email_yn"  value="N" checked /> cinebox에서 발송하는 e-mail을 수신합니다.
+					     <input type="checkbox" name="member_email_yn"  value="N"/> cinebox에서 발송하는 e-mail을 수신합니다.
 						</c:otherwise>
-					 </c:choose>
+					 </c:choose> 
 					</td>
 					<td>
 					  <input type="button" value="변경하기" onClick="fn_modify_member_info('${member_info.member_id }','email')" />
@@ -369,10 +377,12 @@ function fn_modify_member_info(member_id,mod_type){
 				<tr class="dot_line">
 					<td class="fixed_join">포인트</td>
 					<td class="member_input">
-					   <input type="text" id="point" name="member_point" size=5 value="${member_info.member_point }" disabled> 원
+					   <input type="text" id="point" name="member_point" size=5 value="${member_info.member_point }" > 원
+					   
 					  <br>	  
 					</td>
-					<td></td>
+					<td><input type="button" value="변경하기" onClick="fn_modify_member_info('${member_info.member_id }','point')" />
+					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">가입 날짜</td>
@@ -384,15 +394,9 @@ function fn_modify_member_info(member_id,mod_type){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">탈퇴</td>
-					<td class="member_input">										  
-					  <c:choose> 
-					   <c:when test="${member_info.member_del_yn=='true'}">
-					     <input type="checkbox" name="member_del_yn"  value="Y"/> 체크하면 탈퇴됩니다.
-						</c:when>
-						<c:otherwise>
-						  <input type="checkbox" name="member_del_yn"  value="N" /> 체크하면 탈퇴됩니다.
-						</c:otherwise>
-					 </c:choose>					  <br>					  
+					<td class="member_input">
+					<input type="checkbox" name="member_del_yn"  value="Y"/> 체크하면 탈퇴됩니다.								  
+					<br>					  
 					</td>
 					<td>
 						<label><input type="button" value="탈퇴하기" onClick="fn_modify_member_info('${member_info.member_id }','del')" />	</label>				

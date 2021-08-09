@@ -125,8 +125,8 @@ function delete_check(deleteId) {
 				  <td style="text-align: left;">
 				  	<select name="searchType">
 				  		<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>영화</option>
-				  		<option value="d"<c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>감독</option>
-				  		<option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>배우</option>
+				  		<option value="d"<c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>장르</option>
+				  		<option value="a"<c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>개봉상태</option>
 				  	</select>
 					<input name="keyword" id="keywordInput" type="text"  size="30"/>  
 					<input type="submit"  value="영화찾기"/>
@@ -141,7 +141,7 @@ function delete_check(deleteId) {
 <DIV id="search" style="float: right; width: 30%; margin: 10; text-align: right;">
 	<p>
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
-		<input type="submit" value="상품 등록하기">
+		<input type="submit" value="영화 등록하기">
 	</form>
 </DIV>
 <br>
