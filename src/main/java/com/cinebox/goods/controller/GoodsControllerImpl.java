@@ -41,6 +41,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
+		session.removeAttribute("side_menu");
 		GoodsVO goodVO = new GoodsVO();
 		String movie_title = goodVO.getMovie_title();
 		System.out.println(movie_title);

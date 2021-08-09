@@ -182,14 +182,13 @@ padding : 5;
   right: 5px;
 }
 .btn img{
-width:20;
-height:20;
-padding:5;
+width:15;
+height:15;
 }
+
 .auto img{
 width:20;
 height:20;
-padding:5;
 }
 
 #slide .auto > button {
