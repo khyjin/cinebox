@@ -65,10 +65,5 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		return sqlSession.selectOne("mapper.goods.eachCount", movie_id);
 	}
 
-	@Override
-	public double selectScore(String movie_id) throws Exception {
-		return sqlSession.selectOne("mapper.goods.selectScore", movie_id);
-	}
-
 
 }

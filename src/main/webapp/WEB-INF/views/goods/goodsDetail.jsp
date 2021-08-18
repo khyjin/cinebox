@@ -709,7 +709,6 @@ height:20;
 </div>
  <div class="clear">
   <div class="review">
-  <div style="text-align: right; font-size: large; padding-right: 50;">평점 : <fmt:formatNumber value="${goodsMap.score}" pattern="#.0"/></div>
   <br>
 <table class="reviewList">
 	<tr class="reviewtr">

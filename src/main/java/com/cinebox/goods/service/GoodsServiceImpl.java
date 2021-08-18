@@ -47,8 +47,6 @@ public class GoodsServiceImpl implements GoodsService{
 		double rate = (eachCount/totalCount*100);
 		goodsMap.put("rate", rate);
 		
-		double score = goodsDAO.selectScore(movie_id);
-		goodsMap.put("score", score);
 		return goodsMap;
 	}
 	
