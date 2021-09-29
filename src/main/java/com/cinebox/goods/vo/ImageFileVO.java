@@ -9,10 +9,10 @@ public class ImageFileVO {
 	private String image_file_name;
 	private String image_admin_id;
 	private String image_file_sort;
-	private Date image_reg_date;
+	private String image_reg_date;
 	
 	public ImageFileVO(int movie_id, int image_number, String image_file_name, String image_admin_id,
-			String image_file_sort, Date image_reg_date) {
+			String image_file_sort, String image_reg_date) {
 		super();
 		this.movie_id = movie_id;
 		this.image_number = image_number;
@@ -81,12 +81,12 @@ public class ImageFileVO {
 	}
 
 
-	public Date getImage_reg_date() {
+	public String getImage_reg_date() {
 		return image_reg_date;
 	}
 
 
-	public void setImage_reg_date(Date image_reg_date) {
+	public void setImage_reg_date(String image_reg_date) {
 		this.image_reg_date = image_reg_date;
 	}
 
